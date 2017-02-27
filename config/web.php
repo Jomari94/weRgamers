@@ -7,9 +7,18 @@ $config = [
     'name' => "We 'r' Gamers",
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'aliases' => [
+        '@uploads' => 'uploads',
+    ],
     'modules' => [
         'user' => [
             'class' => 'dektrium\user\Module',
+            'controllerMap' => [
+                'settings' => 'app\controllers\user\SettingsController'
+            ],
+            'modelMap' => [
+                'Profile' => 'app\models\Profile',
+            ],
             'enableUnconfirmedLogin' => true,
             'enableAccountDelete' => true,
             'confirmWithin' => 21600,
@@ -32,6 +41,13 @@ $config = [
         //     'identityClass' => 'app\models\User',
         //     'enableAutoLogin' => true,
         // ],
+        'view' => [
+            'theme' => [
+                'pathMap' => [
+                    '@dektrium/user/views' => '@app/views/user'
+                ],
+            ],
+        ],
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],

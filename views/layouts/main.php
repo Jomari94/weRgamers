@@ -39,7 +39,8 @@ AppAsset::register($this);
             Yii::$app->user->isGuest ?
             ['label' => 'Sign in', 'url' => ['/user/security/login']]:
             [
-                'label' => Html::encode(Yii::$app->user->identity->username),
+                'label' => (Yii::$app->user->identity->username . ' ' .
+                Html::img(Yii::$app->user->identity->profile->getAvatarMini(), ['class' => 'img-rounded'])),
                 'url' => ['/user/profile/show', 'id' => Yii::$app->user->id],
                 'encode' => false,
                 'items' => [

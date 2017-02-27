@@ -1,0 +1,46 @@
+<?php
+
+namespace app\models;
+
+use Yii;
+use phpDocumentor\Reflection\Types\Boolean;
+use yii\base\Model;
+use yii\web\UploadedFile;
+use yii\imagine\Image;
+
+class UploadForm extends Model
+{
+    /**
+     * @var UploadedFile
+     */
+    public $imageFile;
+
+    public function rules()
+    {
+        return [
+            [['imageFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, gif'],
+        ];
+    }
+
+    /**
+     * Guarda una imagen en uploads
+     * @return Boolean
+     */
+    public function upload()
+    {
+        if ($this->validate()) {
+            $nombre = Yii::getAlias('@uploads/')
+                . \Yii::$app->user->id . '.' . $this->imageFile->extension;
+            $nombreMini = Yii::getAlias('@uploads/')
+                . \Yii::$app->user->id . '-mini.' . $this->imageFile->extension;
+            $this->imageFile->saveAs($nombre);
+            Image::thumbnail($nombre, 225, 225)
+                ->save($nombre, ['quality' => 80]);
+            Image::thumbnail($nombre, 25, 25)
+                ->save($nombreMini, ['quality' => 50]);
+            return true;
+        } else {
+            return false;
+        }
+    }
+}

@@ -50,6 +50,16 @@ $config = [
                 'encryption' => 'tls',
             ],
         ],
+        'authClientCollection' => [
+            'class'   => \yii\authclient\Collection::className(),
+            'clients' => [
+                'google' => [
+                    'class'        => 'dektrium\user\clients\Google',
+                    'clientId'     => getenv('GOOGLE_ID'),
+                    'clientSecret' => getenv('GOOGLE_SECRET'),
+                ],
+            ],
+        ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [

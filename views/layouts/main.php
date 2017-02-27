@@ -37,18 +37,18 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             Yii::$app->user->isGuest ?
-            ['label' => 'Login', 'url' => ['/user/security/login']]:
+            ['label' => 'Sign in', 'url' => ['/user/security/login']]:
             [
                 'label' => Html::encode(Yii::$app->user->identity->username),
                 'url' => ['/user/profile/show', 'id' => Yii::$app->user->id],
                 'encode' => false,
                 'items' => [
                     [
-                       'label' => 'Mi Perfil',
+                       'label' => 'My Profile',
                        'url' => ['/user/' . Yii::$app->user->id],
                     ],
                     [
-                       'label' => 'Configuración',
+                       'label' => 'Configuration',
                        'url' => ['/user/settings/profile']
                     ],
                     '<li class="divider"></li>',
@@ -59,7 +59,7 @@ AppAsset::register($this);
                     ],
                 ],
             ],
-            ['label' => 'Registrarse', 'url' => ['/user/register'], 'linkOptions' => ['class' =>'blanco'],'visible' => Yii::$app->user->isGuest]
+            ['label' => 'Sign Up', 'url' => ['/user/register'], 'linkOptions' => ['class' =>'blanco'],'visible' => Yii::$app->user->isGuest]
         ],
     ]);
     NavBar::end();

@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="row">
     <div class="col-md-3">
-        <?= $this->render('_menu', ['upload' => $upload]) ?>
+        <?= $this->render('_menu') ?>
     </div>
     <div class="col-md-9">
         <div class="panel panel-default">
@@ -50,6 +50,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'username') ?>
 
                 <?= $form->field($model, 'new_password')->passwordInput() ?>
+
+                <?= $form->field($model, 'repeat_password')->passwordInput() ?>
 
                 <hr/>
 

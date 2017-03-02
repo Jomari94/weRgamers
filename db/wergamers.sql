@@ -6,3 +6,6 @@ create table session
     expire integer,
     data BYTEA
 );
+
+alter table profile
+    add column gender varchar(255);

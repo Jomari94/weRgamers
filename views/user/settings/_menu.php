@@ -23,8 +23,8 @@ $networksVisible = count(Yii::$app->authClientCollection->clients) > 0;
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">
-            <?= Html::img($user->profile->getAvatarMini(), [
-                'class' => 'img-rounded',
+            <?= Html::img($user->profile->getAvatar(), [
+                'class' => 'img-rounded img30',
                 'alt' => $user->username,
             ]) ?>
             <?= $user->username ?>
@@ -58,19 +58,5 @@ $networksVisible = count(Yii::$app->authClientCollection->clients) > 0;
             'class' => 'img-thumbnail',
             'alt' => $user->username,
             ]) ?>
-            <?php $form = ActiveForm::begin([
-                'options' => ['enctype' => 'multipart/form-data']
-            ])
-            ?>
-            <?= $form->field($upload, 'imageFile')->widget(FileInput::classname(), [
-                'options' => ['accept' => 'image/*'],
-                'pluginOptions' => [
-                    'showPreview' => true,
-                    'showCaption' => true,
-                    'showRemove' => false,
-                    'showUpload' => true,
-                ],
-            ])->label(false) ?>
-            <?php ActiveForm::end() ?>
     </div>
 </div>

@@ -36,34 +36,4 @@ class SettingsController extends BaseSettingsController
             'upload' => $upload,
         ]);
     }
-
-    public function actionAccount()
-    {
-        $upload = new UploadForm;
-        $model = \Yii::createObject(SettingsForm::className());
-        $event = $this->getFormEvent($model);
-
-        $this->performAjaxValidation($model);
-
-        $this->trigger(self::EVENT_BEFORE_ACCOUNT_UPDATE, $event);
-        if ($model->load(\Yii::$app->request->post()) && $model->save()) {
-            \Yii::$app->session->setFlash('success', \Yii::t('user', 'Your account details have been updated'));
-            $this->trigger(self::EVENT_AFTER_ACCOUNT_UPDATE, $event);
-            return $this->refresh();
-        }
-
-        return $this->render('account', [
-            'model' => $model,
-            'upload' => $upload
-        ]);
-    }
-
-    public function actionNetworks()
-    {
-        $upload = new UploadForm;
-        return $this->render('networks', [
-            'user' => \Yii::$app->user->identity,
-            'upload' => $upload
-        ]);
-    }
 }

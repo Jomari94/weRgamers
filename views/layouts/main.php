@@ -40,7 +40,7 @@ AppAsset::register($this);
             ['label' => 'Sign in', 'url' => ['/user/security/login']]:
             [
                 'label' => (Yii::$app->user->identity->username . ' ' .
-                Html::img(Yii::$app->user->identity->profile->getAvatarMini(), ['class' => 'img-rounded'])),
+                Html::img(Yii::$app->user->identity->profile->getAvatar(), ['class' => 'img-rounded img30'])),
                 'url' => ['/user/profile/show', 'id' => Yii::$app->user->id],
                 'encode' => false,
                 'items' => [

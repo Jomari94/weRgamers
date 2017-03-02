@@ -9,6 +9,7 @@
  * file that was distributed with this source code.
  */
 
+use kartik\file\FileInput;
 use yii\helpers\Html;
 use dektrium\user\helpers\Timezone;
 use yii\widgets\ActiveForm;
@@ -22,13 +23,15 @@ use yii\helpers\ArrayHelper;
 
 $this->title = Yii::t('user', 'Profile settings');
 $this->params['breadcrumbs'][] = $this->title;
+$items = ['Male' => Yii::t('user', 'Male'), 'Female' => Yii::t('user', 'Female'), 'Undefined' => Yii::t('user', 'Undefined')];
+$user = Yii::$app->user->identity;
 ?>
 
 <?= $this->render('/_alert', ['module' => Yii::$app->getModule('user')]) ?>
 
 <div class="row">
     <div class="col-md-3">
-        <?= $this->render('_menu', ['upload' => $upload]) ?>
+        <?= $this->render('_menu') ?>
     </div>
     <div class="col-md-9">
         <div class="panel panel-default">
@@ -38,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="panel-body">
                 <?php $form = ActiveForm::begin([
                     'id' => 'profile-form',
-                    'options' => ['class' => 'form-horizontal'],
+                    'options' => ['class' => 'form-horizontal', 'enctype' => 'multipart/form-data'],
                     'fieldConfig' => [
                         'template' => "{label}\n<div class=\"col-lg-9\">{input}</div>\n<div class=\"col-sm-offset-3 col-lg-9\">{error}\n{hint}</div>",
                         'labelOptions' => ['class' => 'col-lg-3 control-label'],
@@ -48,9 +51,22 @@ $this->params['breadcrumbs'][] = $this->title;
                     'validateOnBlur' => false,
                 ]); ?>
 
+                <?= $form->field($upload, 'imageFile')->widget(FileInput::classname(), [
+                    'options' => ['accept' => 'image/*'],
+                    'pluginOptions' => [
+                        'showPreview' => true,
+                        'showCaption' => false,
+                        'showRemove' => false,
+                        'showUpload' => false,
+                        'browseClass' => 'btn btn-primary btn-block',
+                        'browseIcon' => '<i class="glyphicon glyphicon-picture"></i> ',
+                        'browseLabel' =>  Yii::t('user', 'Select Avatar'),
+                    ],
+                ]) ?>
+
                 <?= $form->field($model, 'name') ?>
 
-                <?= $form->field($model, 'public_email') ?>
+                <?= $form->field($model, 'gender')->dropDownList($items, ['prompt' => Yii::t('user', 'Select Gender')]) ?>
 
                 <?= $form->field($model, 'website') ?>
 

@@ -113,3 +113,17 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+
+.img30 {
+    max-height: 32px;
+}
+
+a.navbar-brand {
+    padding: 20px;
+    font-size: 24px;
+}
+
+.nav li:hover {
+    box-shadow: inset 0px 7px 0px 0px #e33030;
+    transition: box-shadow .25s linear;
+}

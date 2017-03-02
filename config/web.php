@@ -18,6 +18,7 @@ $config = [
             ],
             'modelMap' => [
                 'Profile' => 'app\models\Profile',
+                'SettingsForm' => 'app\models\SettingsForm'
             ],
             'enableUnconfirmedLogin' => true,
             'enableAccountDelete' => true,

@@ -22,6 +22,13 @@ class UploadForm extends Model
         ];
     }
 
+    public function attributeLabels()
+    {
+        return [
+            'imageFile' => 'Avatar',
+        ];
+    }
+
     /**
      * Guarda una imagen en uploads
      * @return Boolean
@@ -31,13 +38,9 @@ class UploadForm extends Model
         if ($this->validate()) {
             $nombre = Yii::getAlias('@uploads/')
                 . \Yii::$app->user->id . '.' . $this->imageFile->extension;
-            $nombreMini = Yii::getAlias('@uploads/')
-                . \Yii::$app->user->id . '-mini.' . $this->imageFile->extension;
             $this->imageFile->saveAs($nombre);
             Image::thumbnail($nombre, 225, 225)
                 ->save($nombre, ['quality' => 80]);
-            Image::thumbnail($nombre, 25, 25)
-                ->save($nombreMini, ['quality' => 50]);
             return true;
         } else {
             return false;

@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\Game;
 use app\models\GameSearch;
+use app\models\PlatformSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -41,6 +42,25 @@ class GameController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    /**
+     * Show game management.
+     * @return mixed
+     */
+    public function actionMain()
+    {
+        $searchGame = new GameSearch();
+        $dataProviderGame = $searchGame->search(Yii::$app->request->queryParams);
+        $searchPlatform = new PlatformSearch();
+        $dataProviderPlatform = $searchPlatform->search(Yii::$app->request->queryParams);
+
+        return $this->render('main', [
+            'searchGame' => $searchGame,
+            'dataProviderGame' => $dataProviderGame,
+            'searchPlatform' => $searchPlatform,
+            'dataProviderPlatform' => $dataProviderPlatform,
         ]);
     }
 

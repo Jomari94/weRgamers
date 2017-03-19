@@ -36,11 +36,12 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
+            ['label' => Yii::t('app', 'Game management'), 'url' => ['/game/main'], 'linkOptions' => ['class' =>'blanco'],'visible' => !Yii::$app->user->isGuest && Yii::$app->user->identity->isAdmin],
             Yii::$app->user->isGuest ?
             ['label' => 'Sign in', 'url' => ['/user/security/login']]:
             [
                 'label' => (Yii::$app->user->identity->username . ' ' .
-                Html::img(Yii::$app->user->identity->profile->getAvatar(), ['class' => 'img-rounded img30'])),
+                Html::img(Yii::$app->user->identity->profile->getAvatar(), ['class' => 'img-rounded img32'])),
                 'url' => ['/user/profile/show', 'id' => Yii::$app->user->id],
                 'encode' => false,
                 'items' => [
@@ -60,7 +61,7 @@ AppAsset::register($this);
                     ],
                 ],
             ],
-            ['label' => 'Sign Up', 'url' => ['/user/register'], 'linkOptions' => ['class' =>'blanco'],'visible' => Yii::$app->user->isGuest]
+            ['label' => 'Sign Up', 'url' => ['/user/register'], 'linkOptions' => ['class' =>'blanco'],'visible' => Yii::$app->user->isGuest],
         ],
     ]);
     NavBar::end();

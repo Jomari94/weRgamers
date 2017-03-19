@@ -7,6 +7,7 @@ create table session
     data BYTEA
 );
 
+-- Hacer migración de yii2-user antes de inyectar este sql
 alter table profile
     add column gender varchar(255);
 

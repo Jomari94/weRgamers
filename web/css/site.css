@@ -114,8 +114,11 @@ a.desc:after {
     outline: none;
 }
 
-.img30 {
+.img32 {
     max-height: 32px;
+}
+.navbar-nav li a {
+ line-height: 30px;
 }
 
 a.navbar-brand {
@@ -123,7 +126,7 @@ a.navbar-brand {
     font-size: 24px;
 }
 
-.nav li:hover {
-    box-shadow: inset 0px 7px 0px 0px #e33030;
+.navbar-nav > li:hover {
+    box-shadow: inset 0px 5px 0px 0px #e33030;
     transition: box-shadow .25s linear;
 }

@@ -60,7 +60,11 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        return Yii::$app->user->isGuest ?
+            $this->run('/user/security/login') :
+            $this->run('/user/profile/show', [
+                'id' => Yii::$app->user->id
+            ]);
     }
 
     /**

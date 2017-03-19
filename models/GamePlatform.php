@@ -31,8 +31,8 @@ class GamePlatform extends \yii\db\ActiveRecord
         return [
             [['id_game', 'id_platform'], 'required'],
             [['id_game', 'id_platform'], 'integer'],
-            [['id_game'], 'exist', 'skipOnError' => true, 'targetClass' => Games::className(), 'targetAttribute' => ['id_game' => 'id']],
-            [['id_platform'], 'exist', 'skipOnError' => true, 'targetClass' => Platforms::className(), 'targetAttribute' => ['id_platform' => 'id']],
+            [['id_game'], 'exist', 'skipOnError' => true, 'targetClass' => Game::className(), 'targetAttribute' => ['id_game' => 'id']],
+            [['id_platform'], 'exist', 'skipOnError' => true, 'targetClass' => Platform::className(), 'targetAttribute' => ['id_platform' => 'id']],
         ];
     }
 
@@ -52,7 +52,7 @@ class GamePlatform extends \yii\db\ActiveRecord
      */
     public function getIdGame()
     {
-        return $this->hasOne(Games::className(), ['id' => 'id_game'])->inverseOf('gamePlatforms');
+        return $this->hasOne(Game::className(), ['id' => 'id_game'])->inverseOf('gamePlatforms');
     }
 
     /**
@@ -60,6 +60,6 @@ class GamePlatform extends \yii\db\ActiveRecord
      */
     public function getIdPlatform()
     {
-        return $this->hasOne(Platforms::className(), ['id' => 'id_platform'])->inverseOf('gamePlatforms');
+        return $this->hasOne(Platform::className(), ['id' => 'id_platform'])->inverseOf('gamePlatforms');
     }
 }

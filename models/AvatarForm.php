@@ -8,7 +8,7 @@ use yii\base\Model;
 use yii\web\UploadedFile;
 use yii\imagine\Image;
 
-class UploadForm extends Model
+class AvatarForm extends Model
 {
     /**
      * @var UploadedFile
@@ -30,13 +30,13 @@ class UploadForm extends Model
     }
 
     /**
-     * Guarda una imagen en uploads
+     * Guarda una imagen en avatars
      * @return Boolean
      */
     public function upload()
     {
         if ($this->validate()) {
-            $nombre = Yii::getAlias('@uploads/')
+            $nombre = Yii::getAlias('@avatars/')
                 . \Yii::$app->user->id . '.' . $this->imageFile->extension;
             $this->imageFile->saveAs($nombre);
             Image::thumbnail($nombre, 225, 225)

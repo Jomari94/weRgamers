@@ -8,7 +8,8 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'aliases' => [
-        '@uploads' => 'uploads',
+        '@avatars' => 'avatars',
+        '@covers' => 'covers'
     ],
     'modules' => [
         'user' => [

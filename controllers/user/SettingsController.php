@@ -3,20 +3,19 @@
 namespace app\controllers\user;
 
 use Yii;
-use app\models\UploadForm;
+use app\models\AvatarForm;
 use dektrium\user\controllers\SettingsController as BaseSettingsController;
 use dektrium\user\models\Profile;
-use dektrium\user\models\SettingsForm;
 use yii\web\UploadedFile;
 
 class SettingsController extends BaseSettingsController
 {
     public function actionProfile()
     {
-        $upload = new UploadForm;
+        $avatar = new AvatarForm;
         if (Yii::$app->request->isPost) {
-            $upload->imageFile = UploadedFile::getInstance($upload, 'imageFile');
-            $upload->upload();
+            $avatar->imageFile = UploadedFile::getInstance($avatar, 'imageFile');
+            $avatar->upload();
         }
         $model = $this->finder->findProfileById(\Yii::$app->user->identity->getId());
         if ($model == null) {
@@ -33,7 +32,7 @@ class SettingsController extends BaseSettingsController
         }
         return $this->render('profile', [
             'model' => $model,
-            'upload' => $upload,
+            'avatar' => $avatar,
         ]);
     }
 }

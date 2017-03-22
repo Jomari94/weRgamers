@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\imagine\Image;
 
 /**
  * This is the model class for table "games".
@@ -17,6 +18,11 @@ use Yii;
  */
 class Game extends \yii\db\ActiveRecord
 {
+    /**
+     * @var UploadedFile
+     */
+    public $imageFile;
+
     /**
      * @inheritdoc
      */
@@ -33,7 +39,9 @@ class Game extends \yii\db\ActiveRecord
         return [
             [['name'], 'required'],
             [['released'], 'safe'],
+            [['released'], 'date', 'format'=>'php:Y-m-d'],
             [['name', 'genre', 'developers'], 'string', 'max' => 255],
+            [['imageFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, gif'],
         ];
     }
 
@@ -48,7 +56,26 @@ class Game extends \yii\db\ActiveRecord
             'genre' => Yii::t('app', 'Genre'),
             'released' => Yii::t('app', 'Released'),
             'developers' => Yii::t('app', 'Developers'),
+            'imageFile' => Yii::t('app', 'Cover'),
         ];
+    }
+
+    /**
+     * Guarda una imagen en covers
+     * @return Boolean
+     */
+    public function upload()
+    {
+        if ($this->validate(['imageFile'])) {
+            $nombre = Yii::getAlias('@covers/')
+                . $this->id . '.' . $this->imageFile->extension;
+            $this->imageFile->saveAs($nombre);
+            Image::thumbnail($nombre, null, 500)
+                ->save($nombre);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -64,6 +91,6 @@ class Game extends \yii\db\ActiveRecord
      */
     public function getPlatforms()
     {
-        return $this->hasMany(Platform::className(), ['id' => 'id_platform'])->via('games_platforms');
+        return $this->hasMany(Platform::className(), ['id' => 'id_platform'])->via('gamePlatform');
     }
 }

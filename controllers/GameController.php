@@ -4,9 +4,13 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Game;
+use app\models\Platform;
 use app\models\GameSearch;
+use app\models\GamePlatform;
 use app\models\PlatformSearch;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
+use yii\web\UploadedFile;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -36,27 +40,12 @@ class GameController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new GameSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
-    }
-
-    /**
-     * Show game management.
-     * @return mixed
-     */
-    public function actionMain()
-    {
         $searchGame = new GameSearch();
         $dataProviderGame = $searchGame->search(Yii::$app->request->queryParams);
         $searchPlatform = new PlatformSearch();
         $dataProviderPlatform = $searchPlatform->search(Yii::$app->request->queryParams);
 
-        return $this->render('main', [
+        return $this->render('index', [
             'searchGame' => $searchGame,
             'dataProviderGame' => $dataProviderGame,
             'searchPlatform' => $searchPlatform,
@@ -84,12 +73,36 @@ class GameController extends Controller
     public function actionCreate()
     {
         $model = new Game();
+        $gamePlatform = new GamePlatform();
+        $platforms = Platform::find()->all();
+        $platforms = ArrayHelper::map($platforms, 'id', 'name');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+            $model->upload();
+            $model->refresh();
+            $ids_platforms = Yii::$app->request->post('GamePlatform')['id_platform'];
+            $gamePlatform->id_game = $model->id;
+            $saved = true;
+            foreach ($ids_platforms as $key => $value) {
+                $gamePlatform->id_platform = $value;
+                $saved = $gamePlatform->save() && $saved;
+            }
+
+            if ($saved) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                return $this->render('create', [
+                    'model' => $model,
+                    'gamePlatform' => $gamePlatform,
+                    'platforms' => $platforms,
+                ]);
+            }
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'gamePlatform' => $gamePlatform,
+                'platforms' => $platforms,
             ]);
         }
     }
@@ -103,12 +116,19 @@ class GameController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $gamePlatform = new GamePlatform();
+        $platforms = Platform::find()->all();
+        $platforms = ArrayHelper::map($platforms, 'id', 'name');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+            $model->upload();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'gamePlatform' => $gamePlatform,
+                'platforms' => $platforms,
             ]);
         }
     }

@@ -23,7 +23,8 @@
         "fxp/composer-asset-plugin": "^1.2.0",
         "dektrium/yii2-user": "^0.9.12",
         "yiisoft/yii2-imagine": "^2.1",
-        "kartik-v/yii2-widget-fileinput": "@dev"
+        "kartik-v/yii2-widget-fileinput": "@dev",
+        "yiisoft/yii2-jui": "^2.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

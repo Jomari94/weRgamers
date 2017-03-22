@@ -130,3 +130,8 @@ a.navbar-brand {
     box-shadow: inset 0px 5px 0px 0px #e33030;
     transition: box-shadow .25s linear;
 }
+
+.navbar-brand {
+    font-family: 'Audiowide';
+    color: #e33030 !important;
+}

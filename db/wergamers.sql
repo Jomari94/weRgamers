@@ -16,7 +16,7 @@ drop table if exists games cascade;
 create table games
 (
     id         bigserial    constraint pk_games primary key,
-    name       varchar(255) not null,
+    name       varchar(255) not null constraint uq_games_name unique,
     genre      varchar(255),
     released   date,
     developers varchar(255)
@@ -39,5 +39,6 @@ create table games_platforms
                         on delete cascade on update cascade,
     id_platform bigint not null constraint fk_games_platforms_platforms
                         references platforms(id)
-                        on delete cascade on update cascade
+                        on delete cascade on update cascade,
+    constraint pk_games_platforms primary key (id_game, id_platform)
 );

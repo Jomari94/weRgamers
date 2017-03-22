@@ -58,6 +58,6 @@ class Platform extends \yii\db\ActiveRecord
      */
     public function getGames()
     {
-        return $this->hasMany(Game::className(), ['id' => 'id_game'])->via('games_platforms');
+        return $this->hasMany(Game::className(), ['id' => 'id_game'])->via('gamePlatform');
     }
 }

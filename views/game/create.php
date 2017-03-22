@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Game */
 
-$this->title = Yii::t('app', 'Create Game');
+$this->title = Yii::t('app', 'Add Game');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Games'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -16,6 +16,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= $this->render('_form', [
         'model' => $model,
+        'gamePlatform' => $gamePlatform,
+        'platforms' => $platforms
     ]) ?>
 
 </div>

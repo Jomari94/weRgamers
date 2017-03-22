@@ -53,17 +53,17 @@ class Profile extends BaseProfile
      */
     public function getAvatar()
     {
-        $uploads = Yii::getAlias('@uploads');
-        $files = FileHelper::findFiles($uploads);
+        $avatars = Yii::getAlias('@avatars');
+        $files = FileHelper::findFiles($avatars);
         if (isset($files[0])) {
             foreach ($files as $index => $file) {
                 $archivo = substr($file, strrpos($file, '/') + 1);
                 $nombre = substr($archivo, 0, strlen($archivo) - 4);
                 if (strlen($nombre) === 1 && intval($nombre) === $this->user_id) {
-                    return "/$uploads/$archivo";
+                    return "/$avatars/$archivo";
                 }
             }
         }
-        return "/$uploads/default.png";
+        return "/$avatars/default.png";
     }
 }

@@ -43,7 +43,7 @@ class GamePlatform extends \yii\db\ActiveRecord
     {
         return [
             'id_game' => 'Id Game',
-            'id_platform' => 'Id Platform',
+            'id_platform' => 'Platforms',
         ];
     }
 

@@ -3,6 +3,7 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+use app\assets\FontAsset;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
@@ -10,6 +11,7 @@ use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
 AppAsset::register($this);
+FontAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -36,7 +38,7 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => Yii::t('app', 'Game management'), 'url' => ['/game/main'], 'linkOptions' => ['class' =>'blanco'],'visible' => !Yii::$app->user->isGuest && Yii::$app->user->identity->isAdmin],
+            ['label' => Yii::t('app', 'Game management'), 'url' => ['/game/index'], 'linkOptions' => ['class' =>'blanco'],'visible' => !Yii::$app->user->isGuest && Yii::$app->user->identity->isAdmin],
             Yii::$app->user->isGuest ?
             ['label' => 'Sign in', 'url' => ['/user/security/login']]:
             [

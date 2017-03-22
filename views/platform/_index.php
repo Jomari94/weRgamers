@@ -9,7 +9,6 @@ use yii\grid\GridView;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('app', 'Platforms');
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="platform-index">
 
@@ -17,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Platform'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Create Platform'), ['platform/create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -28,18 +27,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
 
             ['class' => 'yii\grid\ActionColumn',
-                'template' => '{update}{delete}',
+                'template' => '{update}',
                 'buttons' => [
                     'update' => function ($url, $model) {
                         $url = Url::to(['platform/update', 'id' => $model->id]);
                         return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
                                 'title' => Yii::t('app', 'update'),
-                    ]);
-                    },
-                    'delete' => function ($url, $model) {
-                        $url = Url::to(['platform/delete', 'id' => $model->id]);
-                        return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url, [
-                                'title' => Yii::t('app', 'delete'),
                     ]);
                 },
                 ],

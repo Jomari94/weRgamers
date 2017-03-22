@@ -51,7 +51,7 @@ $user = Yii::$app->user->identity;
                     'validateOnBlur' => false,
                 ]); ?>
 
-                <?= $form->field($upload, 'imageFile')->widget(FileInput::classname(), [
+                <?= $form->field($avatar, 'imageFile')->widget(FileInput::classname(), [
                     'options' => ['accept' => 'image/*'],
                     'pluginOptions' => [
                         'showPreview' => true,

@@ -9,12 +9,10 @@ use yii\helpers\Html;
 /* @var $searchPlatform app\models\PlatformSearch */
 /* @var $dataProviderPlatform yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Game management');
+$this->title = Yii::t('app', 'Manage Games');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="game-index">
-
-    <h1><?= Html::encode($this->title) ?></h1>
     <?= Tabs::widget([
     'items' => [
         [

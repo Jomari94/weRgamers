@@ -16,19 +16,7 @@ use yii\widgets\ActiveForm;
         'options' => ['class' => 'form-horizontal', 'enctype' => 'multipart/form-data'],
 
     ]); ?>
-    <?= $form->field($model, 'imageFile')->widget(FileInput::classname(), [
-        'options' => ['accept' => 'image/*'],
-        'pluginOptions' => [
-            'showPreview' => true,
-            'showCaption' => false,
-            'showRemove' => false,
-            'showUpload' => false,
-            'browseClass' => 'btn btn-primary btn-block',
-            'browseIcon' => '<i class="glyphicon glyphicon-picture"></i> ',
-            'browseLabel' =>  Yii::t('user', 'Select Cover'),
-        ],
-    ]) ?>
-
+    <div class="col-lg-5">
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'genre')->textInput(['maxlength' => true]) ?>
@@ -45,9 +33,27 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'developers')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($gamePlatform, 'id_platform[]')->checkboxList($platforms) ?>
+    <?= $form->field($model, 'platforms')->checkboxList($platforms) ?>
 
-    <div class="form-group">
+    </div>
+    <div class="col-lg-offset-1 col-lg-6">
+    <?= $form->field($model, 'imageFile')->widget(FileInput::classname(), [
+        'options' => ['accept' => 'image/*'],
+        'pluginOptions' => [
+            'showPreview' => true,
+            'showCaption' => false,
+            'showRemove' => false,
+            'showUpload' => false,
+            'browseClass' => 'btn btn-primary btn-block',
+            'browseIcon' => '<i class="glyphicon glyphicon-picture"></i> ',
+            'browseLabel' =>  Yii::t('app', 'Select Cover'),
+            'initialPreview' => ($model->getCover() == '/covers/default.png' ? [] : [$model->getCover()]),
+            'initialPreviewAsData'=>true,
+        ],
+    ]) ?>
+    </div>
+
+    <div class="form-group col-lg-12">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 

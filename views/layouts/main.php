@@ -39,6 +39,20 @@ FontAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => Yii::t('app', 'Game management'), 'url' => ['/game/index'], 'linkOptions' => ['class' =>'blanco'],'visible' => !Yii::$app->user->isGuest && Yii::$app->user->identity->isAdmin],
+            [
+                'label' => Yii::t('app', 'Management'),
+                'url' => ['/game/index'],
+                'items' => [
+                    [
+                       'label' => 'Games',
+                       'url' => ['/game/index'],
+                    ],
+                    [
+                       'label' => 'Users',
+                       'url' => ['/user/admin/index']
+                    ],
+                ],
+                'visible' => !Yii::$app->user->isGuest && Yii::$app->user->identity->isAdmin],
             Yii::$app->user->isGuest ?
             ['label' => 'Sign in', 'url' => ['/user/security/login']]:
             [

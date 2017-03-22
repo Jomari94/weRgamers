@@ -1,6 +1,8 @@
 <?php
 
+use app\models\Platform;
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
@@ -16,13 +18,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
-                'method' => 'post',
-            ],
-        ]) ?>
     </p>
 
     <?= DetailView::widget([
@@ -32,6 +27,16 @@ $this->params['breadcrumbs'][] = $this->title;
             'genre',
             'released',
             'developers',
+            [
+                'label' => Yii::t('app', 'Platforms'),
+                //'value' => $model->getPlatforms()->all(),
+                'value' => implode(', ', $model->getNamePlatforms()),
+            ],
+            [
+                'label' => Yii::t('app', 'Cover'),
+                'value' => Html::img($model->getCover()),
+                'format' => 'html'
+            ]
         ],
     ]) ?>
 

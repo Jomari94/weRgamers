@@ -1,7 +1,9 @@
 <?php
 
+use app\models\Platform;
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\GameSearch */
@@ -27,9 +29,16 @@ $this->title = Yii::t('app', 'Games');
             'genre',
             'released:date',
             'developers',
+            [
+                'label' => Yii::t('app', 'Platforms'),
+                'value' => function ($model)
+                {
+                    return implode(', ', $model->getNamePlatforms());
+                },
+            ],
 
             ['class' => 'yii\grid\ActionColumn',
-                'template' => '{view}{update}',
+                'template' => '{view}&nbsp{update}',
             ],
         ],
     ]); ?>

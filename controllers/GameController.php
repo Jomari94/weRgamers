@@ -72,36 +72,29 @@ class GameController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Game();
-        $gamePlatform = new GamePlatform();
-        $platforms = Platform::find()->all();
-        $platforms = ArrayHelper::map($platforms, 'id', 'name');
+        $model = new Game([
+            'scenario' => Game::ESCENARIO_CREATE,
+        ]);
+        $platforms = ArrayHelper::map(Platform::find()->all(), 'id', 'name');
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->save(true, ['name', 'genre', 'released', 'developers'])) {
             $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
-            $model->upload();
-            $model->refresh();
-            $ids_platforms = Yii::$app->request->post('GamePlatform')['id_platform'];
-            $gamePlatform->id_game = $model->id;
-            $saved = true;
-            foreach ($ids_platforms as $key => $value) {
-                $gamePlatform->id_platform = $value;
-                $saved = $gamePlatform->save() && $saved;
+
+            if ($model->imageFile !== null) {
+                $model->upload();
             }
 
-            if ($saved) {
+            if ($model->savePlatforms()) {
                 return $this->redirect(['view', 'id' => $model->id]);
             } else {
                 return $this->render('create', [
                     'model' => $model,
-                    'gamePlatform' => $gamePlatform,
                     'platforms' => $platforms,
                 ]);
             }
         } else {
             return $this->render('create', [
                 'model' => $model,
-                'gamePlatform' => $gamePlatform,
                 'platforms' => $platforms,
             ]);
         }
@@ -116,19 +109,30 @@ class GameController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $gamePlatform = new GamePlatform();
-        $platforms = Platform::find()->all();
-        $platforms = ArrayHelper::map($platforms, 'id', 'name');
+        $platforms = ArrayHelper::map(Platform::find()->all(), 'id', 'name');
+        $platformsChecked = Platform::find()->select('id')->joinWith('gamesPlatforms')->where(['id_game' => $id])->column();
+        $model->platforms = $platformsChecked;
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->save(true, ['name', 'genre', 'released', 'developers'])) {
             $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
-            $model->upload();
-            return $this->redirect(['view', 'id' => $model->id]);
+
+            if ($model->imageFile !== null) {
+                $model->upload();
+            }
+
+            if ($model->savePlatforms()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                return $this->render('create', [
+                    'model' => $model,
+                    'platforms' => $platforms,
+                ]);
+            }
         } else {
             return $this->render('update', [
                 'model' => $model,
-                'gamePlatform' => $gamePlatform,
                 'platforms' => $platforms,
+                'platformsChecked' => $platformsChecked,
             ]);
         }
     }

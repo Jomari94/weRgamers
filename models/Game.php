@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\helpers\FileHelper;
+use yii\helpers\ArrayHelper;
 use yii\imagine\Image;
 
 /**
@@ -19,9 +21,21 @@ use yii\imagine\Image;
 class Game extends \yii\db\ActiveRecord
 {
     /**
+     * Escenario de creación de juego
+     * @var string
+     */
+    const ESCENARIO_CREATE = 'create';
+
+    /**
      * @var UploadedFile
      */
     public $imageFile;
+
+    /**
+     * Variable para guardar las plataformas que tiene el modelo
+     * @var string[]
+     */
+    public $platforms;
 
     /**
      * @inheritdoc
@@ -38,10 +52,11 @@ class Game extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
-            [['released'], 'safe'],
+            [['released', 'platforms'], 'safe'],
             [['released'], 'date', 'format'=>'php:Y-m-d'],
             [['name', 'genre', 'developers'], 'string', 'max' => 255],
-            [['imageFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, gif'],
+            [['imageFile'], 'file', 'extensions' => 'png, jpg, gif'],
+            [['imageFile'], 'file', 'skipOnEmpty' => false, 'on' => self::ESCENARIO_CREATE],
         ];
     }
 
@@ -76,6 +91,59 @@ class Game extends \yii\db\ActiveRecord
         } else {
             return false;
         }
+    }
+
+    /**
+     * Devuelve la ruta a la caratula del juego
+     * @return string Ruta de la caratula del juego
+     */
+    public function getCover()
+    {
+        $covers = Yii::getAlias('@covers');
+        $files = FileHelper::findFiles($covers);
+        if (isset($files[0])) {
+            foreach ($files as $index => $file) {
+                $archivo = substr($file, strrpos($file, '/') + 1);
+                $nombre = substr($archivo, 0, strlen($archivo) - 4);
+                if (intval($nombre) === $this->id) {
+                    return "/$covers/$archivo";
+                }
+            }
+        }
+        return "/$covers/default.png";
+    }
+
+    /**
+     * Guarda las plataformas del juego
+     * @return boolean true si ha guardado todas las plataformas, false en caso contrario
+     */
+    public function savePlatforms()
+    {
+        $this->refresh();
+        GamePlatform::deleteAll(['id_game' => $this->id]);
+        $saved = true;
+        if ($this->platforms !== '') {
+            foreach ($this->platforms as $value) {
+                $gamePlatform = new GamePlatform;
+                $gamePlatform->id_game = $this->id;
+                $gamePlatform->id_platform = $value;
+                $saved = $gamePlatform->save() && $saved;
+            }
+        }
+        return $saved;
+    }
+
+    /**
+     * Devuelve los nombres de las plataformas del modelo en forma de array
+     * @return array Nombres de las plataformas del juego
+     */
+    public function getNamePlatforms()
+    {
+        return ArrayHelper::toArray(Platform::find()
+                        ->select('name')
+                        ->joinWith('gamesPlatforms')
+                        ->where(['id_game' => $this->id])
+                        ->column());
     }
 
     /**

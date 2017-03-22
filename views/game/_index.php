@@ -1,7 +1,9 @@
 <?php
 
+use app\models\Platform;
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\GameSearch */
@@ -33,6 +35,7 @@ use yii\grid\GridView;
                 {
                     return implode(', ', $model->getNamePlatforms());
                 },
+                'filter' => ArrayHelper::map(Platform::find()->all(), 'name', 'name'),
             ],
 
             ['class' => 'yii\grid\ActionColumn',

@@ -1,12 +1,26 @@
 <?php
 
+use app\models\Platform;
 use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\PlatformSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
+$js = <<<EOT
+    $(document).ready(function() {
+       $('a[data-toggle=\"tab\"]').on('show.bs.tab', function (e) {
+          localStorage.setItem('lastTab', $(this).attr('href'));
+       });
+       var lastTab = localStorage.getItem('lastTab');
+       if (lastTab) {
+          $('[href=\"' + lastTab + '\"]').tab('show');
+       }
+    });
+EOT;
+$this->registerJs($js);
 ?>
 <div class="platform-index">
 
@@ -23,7 +37,10 @@ use yii\grid\GridView;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'name',
+            [
+                'attribute' => 'name',
+                'filter' => ArrayHelper::map(Platform::find()->all(), 'name', 'name'),
+            ],
 
             ['class' => 'yii\grid\ActionColumn',
                 'template' => '{update}',

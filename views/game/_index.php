@@ -1,19 +1,15 @@
 <?php
 
-use app\models\Platform;
 use yii\helpers\Html;
 use yii\grid\GridView;
-use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\GameSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-
-$this->title = Yii::t('app', 'Games');
 ?>
 <div class="game-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1><?= Html::encode(Yii::t('app', 'Games')) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
@@ -22,6 +18,7 @@ $this->title = Yii::t('app', 'Games');
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'summary' => '',
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
@@ -31,6 +28,7 @@ $this->title = Yii::t('app', 'Games');
             'developers',
             [
                 'label' => Yii::t('app', 'Platforms'),
+                'attribute' => 'namePlatforms',
                 'value' => function ($model)
                 {
                     return implode(', ', $model->getNamePlatforms());

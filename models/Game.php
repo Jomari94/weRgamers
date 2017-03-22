@@ -72,6 +72,7 @@ class Game extends \yii\db\ActiveRecord
             'released' => Yii::t('app', 'Released'),
             'developers' => Yii::t('app', 'Developers'),
             'imageFile' => Yii::t('app', 'Cover'),
+            'namePlatforms' => Yii::t('app', 'Platforms'),
         ];
     }
 
@@ -149,7 +150,7 @@ class Game extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getGamePlatform()
+    public function getGamePlatforms()
     {
         return $this->hasMany(GamePlatform::className(), ['id_game' => 'id'])->inverseOf('idGame');
     }
@@ -159,6 +160,6 @@ class Game extends \yii\db\ActiveRecord
      */
     public function getPlatforms()
     {
-        return $this->hasMany(Platform::className(), ['id' => 'id_platform'])->via('gamePlatform');
+        return $this->hasMany(Platform::className(), ['id' => 'id_platform'])->via('gamePlatforms');
     }
 }

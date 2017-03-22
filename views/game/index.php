@@ -1,7 +1,6 @@
 <?php
 
 use yii\bootstrap\Tabs;
-use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $searchGame app\models\GameSearch */

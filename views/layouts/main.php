@@ -38,7 +38,6 @@ FontAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => Yii::t('app', 'Game management'), 'url' => ['/game/index'], 'linkOptions' => ['class' =>'blanco'],'visible' => !Yii::$app->user->isGuest && Yii::$app->user->identity->isAdmin],
             [
                 'label' => Yii::t('app', 'Management'),
                 'url' => ['/game/index'],

@@ -12,6 +12,8 @@ use app\models\Game;
  */
 class GameSearch extends Game
 {
+    public $namePlatforms;
+
     /**
      * @inheritdoc
      */
@@ -19,7 +21,7 @@ class GameSearch extends Game
     {
         return [
             [['id'], 'integer'],
-            [['name', 'genre', 'released', 'developers'], 'safe'],
+            [['name', 'genre', 'released', 'developers', 'namePlatforms'], 'safe'],
         ];
     }
 
@@ -49,6 +51,21 @@ class GameSearch extends Game
             'query' => $query,
         ]);
 
+        $dataProvider->setSort([
+            'attributes' => [
+                'name',
+                'genre',
+                'released',
+                'developers',
+                // 'namePlatforms' => [
+                //     'asc' => ['platforms.name' => SORT_ASC,],
+                //     'desc' => ['platforms.name' => SORT_DESC,],
+                //     'label' => Yii::t('app', 'Platforms'),
+                //     'default' => SORT_ASC
+                // ],
+            ]
+        ]);
+
         $this->load($params);
 
         if (!$this->validate()) {
@@ -65,8 +82,10 @@ class GameSearch extends Game
 
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'genre', $this->genre])
-            ->andFilterWhere(['like', 'developers', $this->developers]);
-
+            ->andFilterWhere(['like', 'developers', $this->developers])
+            ->joinWith(['platforms' => function ($q) {
+                $q->andFilterWhere(['or like', 'platforms.name', $this->namePlatforms]);
+            } ], true, 'LEFT JOIN');
         return $dataProvider;
     }
 }

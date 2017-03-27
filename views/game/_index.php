@@ -1,8 +1,9 @@
 <?php
 
 use app\models\Platform;
+use yii\helpers\Url;
 use yii\helpers\Html;
-use yii\grid\GridView;
+use kartik\grid\GridView;
 use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
@@ -20,27 +21,55 @@ use yii\helpers\ArrayHelper;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
-        'summary' => '',
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            ['class' => 'kartik\grid\SerialColumn'],
 
-            'name',
-            'genre',
-            'released:date',
-            'developers',
             [
-                'label' => Yii::t('app', 'Platforms'),
-                'attribute' => 'namePlatforms',
-                'value' => function ($model)
-                {
-                    return implode(', ', $model->getNamePlatforms());
+                'attribute' => 'name',
+                'value' => 'game.name',
+                'group' => true,
+            ],
+            [
+                'attribute' => 'genre',
+                'value' => 'game.genre',
+                'group' => true,
+            ],
+            [
+                'attribute' => 'released',
+                'value' => 'game.released',
+                'format' => 'date',
+                'group' => true,
+            ],
+            [
+                'attribute' => 'developers',
+                'value' => 'game.developers',
+                'group' => true,
+            ],
+            [
+                'attribute' => 'id_platform',
+                'value' => function ($model, $key, $index, $widget) {
+                    return $model->platform->name;
                 },
-                'filter' => ArrayHelper::map(Platform::find()->all(), 'name', 'name'),
+                'filter' => ArrayHelper::map(Platform::find()->all(), 'id', 'name'),
+                'filterInputOptions' => [
+                    'placeholder' => 'Seleccione plataforma',
+                    'class' => 'form-control',
+                ],
             ],
 
-            ['class' => 'yii\grid\ActionColumn',
-                'template' => '{view}&nbsp{update}',
+            ['class' => 'kartik\grid\ActionColumn',
+                'template' => '{view} {update}',
+                'buttons' => [
+                    'view' => function ($url, $model, $key) {
+                        return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', Url::to(['view', 'id' => $model->id_game]));
+                    },
+                    'update' => function ($url, $model, $key) {
+                        return Html::a('<span class="glyphicon glyphicon-pencil"></span>', Url::to(['update', 'id' => $model->id_game]));
+                    },
+                ],
             ],
         ],
+        'responsive' => true,
+        'hover' => true
     ]); ?>
 </div>

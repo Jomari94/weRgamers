@@ -50,7 +50,7 @@ class GamePlatform extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getIdGame()
+    public function getGame()
     {
         return $this->hasOne(Game::className(), ['id' => 'id_game'])->inverseOf('gamePlatforms');
     }
@@ -58,8 +58,8 @@ class GamePlatform extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getIdPlatform()
+    public function getPlatform()
     {
-        return $this->hasOne(Platform::className(), ['id' => 'id_platform'])->inverseOf('gamePlatforms');
+        return $this->hasOne(Platform::className(), ['id' => 'id_platform'])->inverseOf('gamesPlatform');
     }
 }

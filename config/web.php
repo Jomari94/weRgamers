@@ -30,6 +30,11 @@ $config = [
                 'sender' => 'proyectowergamers@gmail.com', // or ['no-reply@myhost.com' => 'Sender name']
             ],
         ],
+        'gridview' =>  [
+            'class' => '\kartik\grid\Module'
+            // 'downloadAction' => 'gridview/export/download',
+            // 'i18n' => []
+        ]
     ],
     'components' => [
         'request' => [

@@ -8,6 +8,7 @@ use app\models\Platform;
 use app\models\GameSearch;
 use app\models\GamePlatform;
 use app\models\PlatformSearch;
+use app\models\GamePlatformSearch;
 use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\UploadedFile;
@@ -40,7 +41,9 @@ class GameController extends Controller
      */
     public function actionIndex()
     {
-        $searchGame = new GameSearch();
+        // $searchGame = new GameSearch();
+        // $dataProviderGame = $searchGame->search(Yii::$app->request->queryParams);
+        $searchGame = new GamePlatformSearch();
         $dataProviderGame = $searchGame->search(Yii::$app->request->queryParams);
         $searchPlatform = new PlatformSearch();
         $dataProviderPlatform = $searchPlatform->search(Yii::$app->request->queryParams);
@@ -110,7 +113,7 @@ class GameController extends Controller
     {
         $model = $this->findModel($id);
         $platforms = ArrayHelper::map(Platform::find()->all(), 'id', 'name');
-        $platformsChecked = Platform::find()->select('id')->joinWith('gamesPlatforms')->where(['id_game' => $id])->column();
+        $platformsChecked = Platform::find()->select('id')->joinWith('gamesPlatform')->where(['id_game' => $id])->column();
         $model->platforms = $platformsChecked;
 
         if ($model->load(Yii::$app->request->post()) && $model->save(true, ['name', 'genre', 'released', 'developers'])) {

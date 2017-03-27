@@ -142,7 +142,7 @@ class Game extends \yii\db\ActiveRecord
     {
         return ArrayHelper::toArray(Platform::find()
                         ->select('name')
-                        ->joinWith('gamesPlatforms')
+                        ->joinWith('gamesPlatform')
                         ->where(['id_game' => $this->id])
                         ->column());
     }
@@ -152,7 +152,7 @@ class Game extends \yii\db\ActiveRecord
      */
     public function getGamePlatforms()
     {
-        return $this->hasMany(GamePlatform::className(), ['id_game' => 'id'])->inverseOf('idGame');
+        return $this->hasMany(GamePlatform::className(), ['id_game' => 'id'])->inverseOf('game');
     }
 
     /**

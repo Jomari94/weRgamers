@@ -29,7 +29,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'developers',
             [
                 'label' => Yii::t('app', 'Platforms'),
-                //'value' => $model->getPlatforms()->all(),
                 'value' => implode(', ', $model->getNamePlatforms()),
             ],
             [

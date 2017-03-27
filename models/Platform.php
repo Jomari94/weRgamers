@@ -48,9 +48,9 @@ class Platform extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getGamesPlatforms()
+    public function getGamesPlatform()
     {
-        return $this->hasMany(GamePlatform::className(), ['id_platform' => 'id'])->inverseOf('idPlatform');
+        return $this->hasMany(GamePlatform::className(), ['id_platform' => 'id'])->inverseOf('platform');
     }
 
     /**
@@ -58,6 +58,6 @@ class Platform extends \yii\db\ActiveRecord
      */
     public function getGames()
     {
-        return $this->hasMany(Game::className(), ['id' => 'id_game'])->via('gamePlatform');
+        return $this->hasMany(Game::className(), ['id' => 'id_game'])->via('gamesPlatform');
     }
 }

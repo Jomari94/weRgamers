@@ -4,12 +4,43 @@ namespace app\controllers\user;
 
 use Yii;
 use app\models\AvatarForm;
+use app\models\GamePlatformSearch;
 use dektrium\user\controllers\SettingsController as BaseSettingsController;
 use dektrium\user\models\Profile;
+use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 use yii\web\UploadedFile;
 
 class SettingsController extends BaseSettingsController
 {
+    public function behaviors()
+    {
+        return [
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'disconnect' => ['post'],
+                    'delete'     => ['post'],
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow'   => true,
+                        'actions' => ['profile', 'account', 'networks', 'disconnect', 'delete', 'collection'],
+                        'roles'   => ['@'],
+                    ],
+                    [
+                        'allow'   => true,
+                        'actions' => ['confirm'],
+                        'roles'   => ['?', '@'],
+                    ],
+                ],
+            ],
+        ];
+    }
+
     public function actionProfile()
     {
         $avatar = new AvatarForm;
@@ -33,6 +64,16 @@ class SettingsController extends BaseSettingsController
         return $this->render('profile', [
             'model' => $model,
             'avatar' => $avatar,
+        ]);
+    }
+
+    public function actionCollection()
+    {
+        $searchModel = new GamePlatformSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        return $this->render('collection', [
+            'dataProvider' => $dataProvider,
+            'searchModel' => $searchModel,
         ]);
     }
 }

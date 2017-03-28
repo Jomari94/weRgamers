@@ -44,7 +44,7 @@ FontAsset::register($this);
                 'items' => [
                     [
                        'label' => 'Games',
-                       'url' => ['/game/index'],
+                       'url' => ['/games/index'],
                     ],
                     [
                        'label' => 'Users',

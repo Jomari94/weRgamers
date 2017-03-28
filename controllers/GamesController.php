@@ -5,10 +5,9 @@ namespace app\controllers;
 use Yii;
 use app\models\Game;
 use app\models\Platform;
-use app\models\GameSearch;
-use app\models\GamePlatform;
 use app\models\PlatformSearch;
 use app\models\GamePlatformSearch;
+use app\models\Collection;
 use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\UploadedFile;
@@ -30,6 +29,7 @@ class GamesController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                    'addgame' => ['POST'],
                 ],
             ],
         ];
@@ -58,7 +58,7 @@ class GamesController extends Controller
 
     /**
      * Displays a single Game model.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      */
     public function actionView($id)
@@ -106,7 +106,7 @@ class GamesController extends Controller
     /**
      * Updates an existing Game model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      */
     public function actionUpdate($id)
@@ -140,23 +140,35 @@ class GamesController extends Controller
         }
     }
 
-    /**
-     * Deletes an existing Game model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionDelete($id)
+    public function actionAddgame()
     {
-        $this->findModel($id)->delete();
+        $post = file_get_contents('php://input');
+        $datos = json_decode($post, true);
+        $model = new Collection;
+        $model->id_user = Yii::$app->user->id;
+        $model->id_game =$datos['id_game'];
+        $model->id_platform = $datos['id_platform'];
+        $model->save();
+        return true;
+    }
 
-        return $this->redirect(['index']);
+
+    public function actionDropgame()
+    {
+        $post = file_get_contents('php://input');
+        $datos = json_decode($post, true);
+        $id_user = Yii::$app->user->id;
+        $id_game =$datos['id_game'];
+        $id_platform = $datos['id_platform'];
+        $model = Collection::findOne([$id_user, $id_game, $id_platform]);
+        $model->delete();
+        return true;
     }
 
     /**
      * Finds the Game model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
+     * @param int $id
      * @return Game the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */

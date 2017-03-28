@@ -42,3 +42,17 @@ create table games_platforms
                         on delete cascade on update cascade,
     constraint pk_games_platforms primary key (id_game, id_platform)
 );
+
+drop table if exists collections cascade;
+
+create table collections
+(
+    id_user     bigint not null constraint fk_collections_user
+                        references public.user(id)
+                        on delete cascade on update cascade,
+    id_game     bigint not null,
+    id_platform bigint not null,
+    constraint fk_collections_games_platforms foreign key (id_game, id_platform)
+    references games_platforms (id_game, id_platform),
+    constraint pk_collections primary key (id_user, id_game, id_platform)
+);

@@ -135,3 +135,12 @@ a.navbar-brand {
     font-family: 'Audiowide';
     color: #e33030 !important;
 }
+
+div#alertas {
+    position: fixed;
+    top: 2;
+    right: 0;
+    z-index: 1;
+    width: 600px;
+    min-height: 100px;
+}

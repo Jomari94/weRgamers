@@ -67,6 +67,10 @@ class SettingsController extends BaseSettingsController
         ]);
     }
 
+    /**
+     * Muestra todos los juegos almacenados en la db marcando los del usuario
+     * @return mixed
+     */
     public function actionCollection()
     {
         $searchModel = new GamePlatformSearch();

@@ -65,7 +65,7 @@ class PlatformController extends Controller
     /**
      * Updates an existing Platform model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      */
     public function actionUpdate($id)
@@ -84,7 +84,7 @@ class PlatformController extends Controller
     /**
      * Finds the Platform model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
+     * @param int $id
      * @return Platform the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */

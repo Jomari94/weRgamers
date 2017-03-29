@@ -49,7 +49,7 @@ class Profile extends BaseProfile
     /**
      * Se obtiene la ruta hacia el avatar del usuario, si no tiene se le
      * da un avatar por defecto
-     * @return String_ ruta hacia el avatar
+     * @return string ruta hacia el avatar
      */
     public function getAvatar()
     {

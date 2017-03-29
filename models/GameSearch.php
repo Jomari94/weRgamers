@@ -12,6 +12,10 @@ use app\models\Game;
  */
 class GameSearch extends Game
 {
+    /**
+     * Nombre de las plataformas del juego
+     * @var array
+     */
     public $namePlatforms;
 
     /**

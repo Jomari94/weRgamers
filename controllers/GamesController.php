@@ -8,7 +8,6 @@ use app\models\Platform;
 use app\models\GameSearch;
 use app\models\GamePlatform;
 use app\models\PlatformSearch;
-use app\models\GamePlatformSearch;
 use app\models\Collection;
 use yii\helpers\ArrayHelper;
 use yii\web\Controller;
@@ -31,7 +30,8 @@ class GamesController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
-                    'addgame' => ['POST'],
+                    'addGame' => ['POST'],
+                    'dropGame' => ['POST'],
                 ],
             ],
         ];
@@ -126,6 +126,10 @@ class GamesController extends Controller
         }
     }
 
+    /**
+     * Añade un juego a la colección
+     * @return bool True si se añade el juego a la coleccion, false en caso contrario
+     */
     public function actionAddgame()
     {
         $post = file_get_contents('php://input');
@@ -134,13 +138,16 @@ class GamesController extends Controller
         $model->id_user = Yii::$app->user->id;
         $model->id_game =$datos['id_game'];
         $model->id_platform = $datos['id_platform'];
-        $model->save();
-        return true;
+        if ($model->save()) {
+            Yii::$app->session->setFlash('anadido', "The game {$model->game->game->name} ({$model->game->platform->name}) has been added");
+            return true;
+        }
+        return false;
     }
 
     /**
      * Elimina juego de la coleccion del usuario
-     * @return [type] [description]
+     * @return int|bool
      */
     public function actionDropgame()
     {
@@ -149,9 +156,12 @@ class GamesController extends Controller
         $id_user = Yii::$app->user->id;
         $id_game =$datos['id_game'];
         $id_platform = $datos['id_platform'];
-        $model = Collection::findOne([$id_user, $id_game, $id_platform]);
-        $model->delete();
-        return true;
+        $model = Collection::findOne(['id_user' => $id_user, 'id_game' => $id_game, 'id_platform' => $id_platform]);
+        if ($model->delete() != false) {
+            Yii::$app->session->setFlash('eliminado', "The game {$model->game->game->name} ({$model->game->platform->name}) has been deleted");
+            return true;
+        }
+        return false;
     }
 
     /**

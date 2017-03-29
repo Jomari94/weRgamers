@@ -17,8 +17,23 @@ class GamePlatformSearch extends GamePlatform
      * @var string
      */
     public $name;
+
+    /**
+     * Géneros del juego
+     * @var string
+     */
     public $genre;
+
+    /**
+     * Fecha de publicación
+     * @var string
+     */
     public $released;
+
+    /**
+     * Desarrolladores del juego
+     * @var string
+     */
     public $developers;
 
     /**

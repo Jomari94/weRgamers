@@ -12,6 +12,7 @@
 use app\models\Platform;
 use app\models\Collection;
 use kartik\grid\GridView;
+use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 
@@ -23,8 +24,9 @@ use yii\helpers\ArrayHelper;
 
 $this->title = Yii::t('user', 'Game collection');
 $this->params['breadcrumbs'][] = $this->title;
-$add = '/games/addgame';
-$drop = '/games/dropgame';
+$add = Url::to(['/games/addgame']);
+$drop = Url::to(['/games/dropgame']);
+$alertas = Url::to(['/user/settings/collection']). ' #alerta';
 $js = <<<EOT
 $('input[name="selection[]"]').on('click', function () {
     if ($(this).is(':checked')) {
@@ -32,23 +34,41 @@ $('input[name="selection[]"]').on('click', function () {
             url: "$add",
             method: 'POST',
             contentType: 'json',
-            data: $(this).val()
+            data: $(this).val(),
+            success: alerta
         });
     } else {
         $.ajax({
             url: "$drop",
             method: 'POST',
             contentType: 'json',
-            data: $(this).val()
+            data: $(this).val(),
+            success: alerta
         });
     }
 });
+
+function alerta(datos, status, xhr) {
+    $('#alertas').fadeIn();
+    $('#alertas').load("$alertas");
+    setTimeout(function (){
+        $('#alertas').fadeOut();
+    }, 1000);
+}
 EOT;
 $this->registerJs($js);
 ?>
 
 <?= $this->render('/_alert', ['module' => Yii::$app->getModule('user')]) ?>
 
+<div id="alertas">
+    <?php if (Yii::$app->session->hasFlash('anadido')): ?>
+        <span id="alerta" class="alert alert-success"><?= Yii::$app->session->getFlash('anadido') ?></span>
+    <?php endif; ?>
+    <?php if (Yii::$app->session->hasFlash('eliminado')): ?>
+        <span id="alerta" class="alert alert-success"><?= Yii::$app->session->getFlash('eliminado') ?></span>
+    <?php endif; ?>
+</div>
 <div class="row">
     <div class="col-md-3">
         <?= $this->render('_menu') ?>

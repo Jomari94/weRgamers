@@ -3,7 +3,6 @@
 namespace app\models;
 
 use Yii;
-use phpDocumentor\Reflection\Types\Boolean;
 use yii\base\Model;
 use yii\web\UploadedFile;
 use yii\imagine\Image;
@@ -31,7 +30,7 @@ class AvatarForm extends Model
 
     /**
      * Guarda una imagen en avatars
-     * @return Boolean
+     * @return bool
      */
     public function upload()
     {

@@ -54,7 +54,7 @@ class PlatformController extends Controller
         $model = new Platform();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['game/index']);
+            return $this->redirect(['games/index']);
         } else {
             return $this->render('create', [
                 'model' => $model,

@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\Game;
 use app\models\Platform;
+use app\models\GameSearch;
 use app\models\GamePlatform;
 use app\models\PlatformSearch;
 use app\models\GamePlatformSearch;
@@ -42,10 +43,10 @@ class GamesController extends Controller
      */
     public function actionIndex()
     {
-        // $searchGame = new GameSearch();
-        // $dataProviderGame = $searchGame->search(Yii::$app->request->queryParams);
-        $searchGame = new GamePlatformSearch();
+        $searchGame = new GameSearch();
         $dataProviderGame = $searchGame->search(Yii::$app->request->queryParams);
+        // $searchGame = new GamePlatformSearch();
+        // $dataProviderGame = $searchGame->search(Yii::$app->request->queryParams);
         $searchPlatform = new PlatformSearch();
         $dataProviderPlatform = $searchPlatform->search(Yii::$app->request->queryParams);
 

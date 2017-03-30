@@ -3,7 +3,7 @@
 use app\models\Platform;
 use yii\helpers\Url;
 use yii\helpers\Html;
-use yii\grid\GridView;
+use kartik\grid\GridView;
 use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
@@ -35,14 +35,14 @@ $this->registerJs($js);
         'filterModel' => $searchModel,
         'summary' => '',
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            ['class' => 'kartik\grid\SerialColumn'],
 
             [
                 'attribute' => 'name',
                 'filter' => ArrayHelper::map(Platform::find()->all(), 'name', 'name'),
             ],
 
-            ['class' => 'yii\grid\ActionColumn',
+            ['class' => 'kartik\grid\ActionColumn',
                 'template' => '{update}',
                 'buttons' => [
                     'update' => function ($url, $model) {
@@ -54,5 +54,7 @@ $this->registerJs($js);
                 ],
             ],
         ],
+        'responsive' => true,
+        'hover' => true,
     ]); ?>
 </div>

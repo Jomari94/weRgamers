@@ -161,12 +161,12 @@ class Game extends \yii\db\ActiveRecord
 
 
     /**
-     * Devuelve los nombres de las plataformas del modelo en forma de array
-     * @return array Nombres de las plataformas del juego
+     * Devuelve los nombres de las plataformas del juego concatenadas
+     * @return string Nombres de las plataformas del juego
      */
     public function getNamePlatforms()
     {
-        return ArrayHelper::toArray(Platform::find()
+        return implode(', ', Platform::find()
                         ->select('name')
                         ->joinWith('gamesPlatform')
                         ->where(['id_game' => $this->id])

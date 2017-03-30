@@ -44,6 +44,9 @@ class GameSearch extends Game
     public function search($params)
     {
         $query = Game::find();
+        $subQuery = GamePlatform::find()
+            ->select('id_platform');
+        $query->leftJoin(['games_platforms' => $subQuery], 'games_platforms.id_game = id');
 
         // add conditions that should always apply here
 
@@ -58,9 +61,8 @@ class GameSearch extends Game
                 'released',
                 'developers',
                 // 'namePlatforms' => [
-                //     'asc' => ['platforms.name' => SORT_ASC,],
-                //     'desc' => ['platforms.name' => SORT_DESC,],
-                //     'label' => Yii::t('app', 'Platforms'),
+                //     'asc' => ['platforms.name' => SORT_ASC],
+                //     'desc' => ['platforms.name' => SORT_DESC],
                 //     'default' => SORT_ASC
                 // ],
             ]
@@ -82,10 +84,9 @@ class GameSearch extends Game
 
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'genre', $this->genre])
-            ->andFilterWhere(['like', 'developers', $this->developers])
-            ->joinWith(['platforms' => function ($q) {
-                $q->andFilterWhere(['or like', 'platforms.name', $this->namePlatforms]);
-            } ], true, 'LEFT JOIN');
+            ->andFilterWhere(['like', 'developers', $this->developers]);
+
+        $query->andWhere(['games_platforms.id_game' => $this->id]);
         return $dataProvider;
     }
 }

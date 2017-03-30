@@ -22,37 +22,19 @@ use yii\helpers\ArrayHelper;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'kartik\grid\SerialColumn'],
 
+            'attribute' => 'name',
+            'genre',
+            'released:date',
+            'developers',
             [
-                'attribute' => 'name',
-                'value' => 'game.name',
-                'group' => true,
-            ],
-            [
-                'attribute' => 'genre',
-                'value' => 'game.genre',
-                'group' => true,
-            ],
-            [
-                'attribute' => 'released',
-                'value' => 'game.released',
-                'format' => 'date',
-                'group' => true,
-            ],
-            [
-                'attribute' => 'developers',
-                'value' => 'game.developers',
-                'group' => true,
-            ],
-            [
-                'attribute' => 'id_platform',
+                'label' => Yii::t('app', 'Platforms'),
+                'attribute' => 'namePlatforms',
                 'value' => function ($model, $key, $index, $widget) {
-                    return $model->platform->name;
+                    return $model->namePlatforms;
                 },
                 'filter' => ArrayHelper::map(Platform::find()->all(), 'id', 'name'),
                 'filterInputOptions' => [
-                    'placeholder' => 'Seleccione plataforma',
                     'class' => 'form-control',
                 ],
             ],
@@ -61,15 +43,15 @@ use yii\helpers\ArrayHelper;
                 'template' => '{view} {update}',
                 'buttons' => [
                     'view' => function ($url, $model, $key) {
-                        return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', Url::to(['view', 'id' => $model->id_game]));
+                        return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', Url::to(['view', 'id' => $model->id]));
                     },
                     'update' => function ($url, $model, $key) {
-                        return Html::a('<span class="glyphicon glyphicon-pencil"></span>', Url::to(['update', 'id' => $model->id_game]));
+                        return Html::a('<span class="glyphicon glyphicon-pencil"></span>', Url::to(['update', 'id' => $model->id]));
                     },
                 ],
             ],
         ],
         'responsive' => true,
-        'hover' => true
+        'hover' => true,
     ]); ?>
 </div>

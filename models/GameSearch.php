@@ -2,7 +2,6 @@
 
 namespace app\models;
 
-use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Game;
@@ -16,7 +15,7 @@ class GameSearch extends Game
      * Nombre de las plataformas del juego
      * @var array
      */
-    public $namePlatforms;
+    public $namePlatforms = '';
 
     /**
      * @inheritdoc
@@ -48,10 +47,7 @@ class GameSearch extends Game
     public function search($params)
     {
         $query = Game::find();
-        $subQuery = GamePlatform::find()
-            ->select('id_platform');
-        $query->leftJoin(['games_platforms' => $subQuery], 'games_platforms.id_game = id');
-
+        $query->joinWith('platforms');
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
@@ -64,11 +60,11 @@ class GameSearch extends Game
                 'genre',
                 'released',
                 'developers',
-                // 'namePlatforms' => [
-                //     'asc' => ['platforms.name' => SORT_ASC],
-                //     'desc' => ['platforms.name' => SORT_DESC],
-                //     'default' => SORT_ASC
-                // ],
+                'namePlatforms' => [
+                    'asc' => ['platforms.name' => SORT_ASC],
+                    'desc' => ['platforms.name' => SORT_DESC],
+                    'default' => SORT_ASC
+                ],
             ]
         ]);
 
@@ -90,7 +86,9 @@ class GameSearch extends Game
             ->andFilterWhere(['like', 'genre', $this->genre])
             ->andFilterWhere(['like', 'developers', $this->developers]);
 
-        $query->andWhere(['games_platforms.id_game' => $this->id]);
+        $query->joinWith(['platforms' => function ($q) {
+            $q->where(['or like', 'platforms.name', $this->namePlatforms]);
+        }]);
         return $dataProvider;
     }
 }

@@ -4,7 +4,7 @@ namespace app\models;
 
 use Yii;
 use yii\helpers\FileHelper;
-use yii\helpers\ArrayHelper;
+use yii\db\Expression;
 use yii\imagine\Image;
 use yii\web\UploadedFile;
 
@@ -167,9 +167,8 @@ class Game extends \yii\db\ActiveRecord
     public function getNamePlatforms()
     {
         return implode(', ', Platform::find()
-                        ->select('name')
-                        ->joinWith('gamesPlatform')
-                        ->where(['id_game' => $this->id])
+                        ->select('platforms.name')->joinWith('games')
+                        ->where(['games.id' => $this->id])
                         ->column());
     }
 

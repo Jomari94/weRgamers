@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\Game;
 use app\models\Platform;
+use app\models\GamePlatform;
 use app\models\PlatformSearch;
 use app\models\GamePlatformSearch;
 use app\models\Collection;
@@ -76,25 +77,16 @@ class GamesController extends Controller
     public function actionCreate()
     {
         $model = new Game([
-            'scenario' => Game::ESCENARIO_CREATE,
+            'scenario' => Game::ESCENARIO_RECORD,
         ]);
         $platforms = ArrayHelper::map(Platform::find()->all(), 'id', 'name');
 
-        if ($model->load(Yii::$app->request->post()) && $model->save(true, ['name', 'genre', 'released', 'developers'])) {
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
-
             if ($model->imageFile !== null) {
                 $model->upload();
             }
-
-            if ($model->savePlatforms()) {
-                return $this->redirect(['view', 'id' => $model->id]);
-            } else {
-                return $this->render('create', [
-                    'model' => $model,
-                    'platforms' => $platforms,
-                ]);
-            }
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -112,25 +104,18 @@ class GamesController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $model->scenario = Game::ESCENARIO_RECORD;
+
         $platforms = ArrayHelper::map(Platform::find()->all(), 'id', 'name');
-        $platformsChecked = Platform::find()->select('id')->joinWith('gamesPlatform')->where(['id_game' => $id])->column();
+        $platformsChecked = GamePlatform::find()->select('id_platform')->where(['id_game' => $id])->column();
         $model->platforms = $platformsChecked;
 
-        if ($model->load(Yii::$app->request->post()) && $model->save(true, ['name', 'genre', 'released', 'developers'])) {
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
-
             if ($model->imageFile !== null) {
                 $model->upload();
             }
-
-            if ($model->savePlatforms()) {
-                return $this->redirect(['view', 'id' => $model->id]);
-            } else {
-                return $this->render('create', [
-                    'model' => $model,
-                    'platforms' => $platforms,
-                ]);
-            }
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -152,7 +137,10 @@ class GamesController extends Controller
         return true;
     }
 
-
+    /**
+     * Elimina juego de la coleccion del usuario
+     * @return [type] [description]
+     */
     public function actionDropgame()
     {
         $post = file_get_contents('php://input');

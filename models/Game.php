@@ -6,6 +6,7 @@ use Yii;
 use yii\helpers\FileHelper;
 use yii\helpers\ArrayHelper;
 use yii\imagine\Image;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "games".
@@ -24,7 +25,13 @@ class Game extends \yii\db\ActiveRecord
      * Escenario de creación de juego
      * @var string
      */
-    const ESCENARIO_CREATE = 'create';
+    const ESCENARIO_RECORD = 'create';
+
+    /**
+     * Escenario de subida de caratula
+     * @var string
+     */
+    const ESCENARIO_UPLOAD = 'upload';
 
     /**
      * @var UploadedFile
@@ -56,7 +63,7 @@ class Game extends \yii\db\ActiveRecord
             [['released'], 'date', 'format'=>'php:Y-m-d'],
             [['name', 'genre', 'developers'], 'string', 'max' => 255],
             [['imageFile'], 'file', 'extensions' => 'png, jpg, gif'],
-            [['imageFile'], 'file', 'skipOnEmpty' => false, 'on' => self::ESCENARIO_CREATE],
+            [['imageFile'], 'file', 'skipOnEmpty' => false],
         ];
     }
 
@@ -77,12 +84,23 @@ class Game extends \yii\db\ActiveRecord
     }
 
     /**
+     * @inheritdoc
+     */
+    public function scenarios()
+    {
+        $scenarios = parent::scenarios();
+        $scenarios[self::ESCENARIO_RECORD] = ['name', 'genre', 'released', 'developers', 'platforms'];
+        $scenarios[self::ESCENARIO_UPLOAD] = ['imageFile'];
+        return $scenarios;
+    }
+
+    /**
      * Guarda una imagen en covers
-     * @return Boolean
+     * @return bool
      */
     public function upload()
     {
-        if ($this->validate(['imageFile'])) {
+        if ($this->validate()) {
             $nombre = Yii::getAlias('@covers/')
                 . $this->id . '.' . $this->imageFile->extension;
             $this->imageFile->saveAs($nombre);
@@ -92,6 +110,33 @@ class Game extends \yii\db\ActiveRecord
         } else {
             return false;
         }
+    }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        parent::afterSave($insert, $changedAttributes);
+        $this->scenario = self::ESCENARIO_UPLOAD;
+        return $this->savePlatforms();
+    }
+
+    /**
+    * Guarda las plataformas del juego
+    * @return bool true si ha guardado todas las plataformas, false en caso contrario
+    */
+    public function savePlatforms()
+    {
+        $this->refresh();
+        GamePlatform::deleteAll(['id_game' => $this->id]);
+        $saved = true;
+        if ($this->platforms !== '') {
+            foreach ($this->platforms as $value) {
+                $gamePlatform = new GamePlatform;
+                $gamePlatform->id_game = $this->id;
+                $gamePlatform->id_platform = $value;
+                $saved = $gamePlatform->save() && $saved;
+            }
+        }
+        return $saved;
     }
 
     /**
@@ -114,25 +159,6 @@ class Game extends \yii\db\ActiveRecord
         return "/$covers/default.png";
     }
 
-    /**
-     * Guarda las plataformas del juego
-     * @return boolean true si ha guardado todas las plataformas, false en caso contrario
-     */
-    public function savePlatforms()
-    {
-        $this->refresh();
-        GamePlatform::deleteAll(['id_game' => $this->id]);
-        $saved = true;
-        if ($this->platforms !== '') {
-            foreach ($this->platforms as $value) {
-                $gamePlatform = new GamePlatform;
-                $gamePlatform->id_game = $this->id;
-                $gamePlatform->id_platform = $value;
-                $saved = $gamePlatform->save() && $saved;
-            }
-        }
-        return $saved;
-    }
 
     /**
      * Devuelve los nombres de las plataformas del modelo en forma de array

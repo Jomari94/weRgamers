@@ -17,18 +17,15 @@ use yii\helpers\Html;
  */
 
 $this->title = empty($profile->name) ? Html::encode($profile->user->username) : Html::encode($profile->name);
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="row">
     <div class="col-xs-12 col-sm-6 col-md-6">
         <div class="row">
-            <div class="col-sm-6 col-md-4">
+            <div class="col-sm-6 col-md-5">
                 <?= Html::img($profile->getAvatar(), [
                     'class' => 'img-rounded img-responsive',
                     'alt' => $profile->user->username,
                 ]) ?>
-            </div>
-            <div class="col-sm-6 col-md-8">
                 <h4><?= $this->title ?></h4>
                 <ul style="padding: 0; list-style: none outside none;">
                     <?php if (!empty($profile->location)): ?>
@@ -53,6 +50,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php if (!empty($profile->bio)): ?>
                     <p><?= Html::encode($profile->bio) ?></p>
                 <?php endif; ?>
+            </div>
+            <div class="col-sm-6 col-md-7">
+                <?php if (!Yii::$app->user->isGuest && Yii::$app->user->id !== $profile->user_id){ ?>
+                <div id="buttons">
+                    <?php if (Yii::$app->user->identity->isFollower($profile->user_id)){ ?>
+                        <button id="btn-follow" class="btn btn-default">Dejar de seguir</button>
+                    <?php } else { ?>
+                        <button id="btn-follow">Seguir</button>
+                    <?php } ?>
+                </div>
+                <?php } ?>
             </div>
         </div>
     </div>

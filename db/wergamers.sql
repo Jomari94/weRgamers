@@ -56,3 +56,16 @@ create table collections
     references games_platforms (id_game, id_platform),
     constraint pk_collections primary key (id_user, id_game, id_platform)
 );
+
+drop table if exists followers cascade;
+
+create table followers
+(
+    id_follower bigint not null constraint fk_followers_userFollower
+                        references public.user(id)
+                        on delete cascade on update cascade,
+    id_followed bigint not null constraint fk_followers_userFollowed
+                        references public.user(id)
+                        on delete cascade on update cascade,
+    constraint pk_followers primary key (id_follower, id_followed)
+);

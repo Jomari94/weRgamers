@@ -1,8 +1,6 @@
 <?php
 
-use app\models\Platform;
 use yii\helpers\Html;
-use yii\helpers\ArrayHelper;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
@@ -29,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'developers',
             [
                 'label' => Yii::t('app', 'Platforms'),
-                'value' => implode(', ', $model->getNamePlatforms()),
+                'value' => $model->getNamePlatforms(),
             ],
             [
                 'label' => Yii::t('app', 'Cover'),

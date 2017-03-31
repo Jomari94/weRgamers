@@ -30,9 +30,6 @@ use yii\helpers\ArrayHelper;
             [
                 'label' => Yii::t('app', 'Platforms'),
                 'attribute' => 'namePlatforms',
-                // 'value' => function ($model, $key, $index, $widget) {
-                //     return $model->namePlatforms;
-                // },
                 'filter' => ArrayHelper::map(Platform::find()->all(), 'name', 'name'),
                 'filterInputOptions' => [
                     'class' => 'form-control',

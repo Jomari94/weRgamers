@@ -126,14 +126,15 @@ class Game extends \yii\db\ActiveRecord
     public function savePlatforms()
     {
         $this->refresh();
-        GamePlatform::deleteAll(['id_game' => $this->id]);
         $saved = true;
         if ($this->platforms !== '') {
             foreach ($this->platforms as $value) {
                 $gamePlatform = new GamePlatform;
                 $gamePlatform->id_game = $this->id;
                 $gamePlatform->id_platform = $value;
-                $saved = $gamePlatform->save() && $saved;
+                if (!GamePlatform::find()->where(['id_game' => $gamePlatform->id_game, 'id_platform' => $gamePlatform->id_platform])->exists()) {
+                    $saved = $gamePlatform->save() && $saved;
+                }
             }
         }
         return $saved;

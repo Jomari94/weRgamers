@@ -2,16 +2,27 @@
 
 namespace app\controllers;
 
-class FollowersController extends \yii\web\Controller
+use Yii;
+use app\models\Follower;
+use yii\web\Controller;
+
+class FollowersController extends Controller
 {
     public function actionFollow()
     {
-        return $this->render('follow');
+        $followed = Yii::$app->request->post('followed_id');
+        $follower = new Follower;
+        $follower->id_follower = Yii::$app->user->id;
+        $follower->id_followed = $followed;
+        $follower->save();
+        return Yii::$app->request->post('followed_id');
     }
 
     public function actionUnfollow()
     {
-        return $this->render('unfollow');
+        $followed = Yii::$app->request->post('followed_id');
+        $follower = Follower::findOne(['id_follower' => Yii::$app->user->id, 'id_followed' => $followed]);
+        $follower->delete();
+        return true;
     }
-
 }

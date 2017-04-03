@@ -9,13 +9,75 @@
  * file that was distributed with this source code.
  */
 
+use yii\helpers\Url;
+use yii\helpers\Json;
 use yii\helpers\Html;
 
 /**
  * @var \yii\web\View $this
  * @var \dektrium\user\models\Profile $profile
  */
+$follow = Url::to(['/followers/follow']);
+$unfollow = Url::to(['/followers/unfollow']);
+// $data = ['followed_id' => $profile->user_id];
+// $data = Json::encode($data);
+$data = $profile->user_id;
+$button = Url::to(['/user/profile/show?id='.$profile->user_id]). ' #btn-follow';
+$js = <<<EOT
+$('.btn-follow').on('click',function () {
+    $.ajax({
+        url: "$follow",
+        method: 'POST',
+        data: {'followed_id': $data},
+        success: cambiaBoton
+    });
+});
 
+$('.btn-unfollow').on('click',function () {
+    $.ajax({
+        url: "$unfollow",
+        method: 'POST',
+        data: {'followed_id': $data},
+        success: cambiaBoton
+    });
+});
+
+$('.btn-unfollow').hover(function (){
+    $(this).text('Dejar de seguir');
+}, function (){
+    $(this).text('Siguiendo');
+});
+
+function cambiaBoton(datos, status, xhr) {
+    $('#buttons').load("$button", function(){
+        $('.btn-follow').on('click',function () {
+            $.ajax({
+                url: "$follow",
+                method: 'POST',
+                data: {'followed_id': $data},
+                success: cambiaBoton
+            });
+        });
+
+        $('.btn-unfollow').on('click',function () {
+            $.ajax({
+                url: "$unfollow",
+                method: 'POST',
+                data: {'followed_id': $data},
+                success: cambiaBoton
+            });
+        });
+
+        $('.btn-unfollow').hover(function (){
+            $(this).text('Dejar de seguir');
+        }, function (){
+            $(this).text('Siguiendo');
+        });
+    });
+
+}
+EOT;
+$this->registerJs($js);
 $this->title = empty($profile->name) ? Html::encode($profile->user->username) : Html::encode($profile->name);
 ?>
 <div class="row">
@@ -55,9 +117,9 @@ $this->title = empty($profile->name) ? Html::encode($profile->user->username) : 
                 <?php if (!Yii::$app->user->isGuest && Yii::$app->user->id !== $profile->user_id){ ?>
                 <div id="buttons">
                     <?php if (Yii::$app->user->identity->isFollower($profile->user_id)){ ?>
-                        <button id="btn-follow" class="btn btn-default">Dejar de seguir</button>
+                        <button id="btn-follow" class="btn btn-danger btn-unfollow">Siguiendo</button>
                     <?php } else { ?>
-                        <button id="btn-follow">Seguir</button>
+                        <button id="btn-follow" class="btn btn-primary btn-follow">Seguir</button>
                     <?php } ?>
                 </div>
                 <?php } ?>

@@ -8,6 +8,10 @@ use yii\web\Controller;
 
 class FollowersController extends Controller
 {
+    /**
+     * Añade al usuario actual como seguidor de otro usuario
+     * @return bool true cuando se completa la acción
+     */
     public function actionFollow()
     {
         $followed = Yii::$app->request->post('followed_id');
@@ -15,9 +19,13 @@ class FollowersController extends Controller
         $follower->id_follower = Yii::$app->user->id;
         $follower->id_followed = $followed;
         $follower->save();
-        return Yii::$app->request->post('followed_id');
+        return true;
     }
 
+    /**
+     * Elimina al usuario actual como seguidor de otro usuario
+     * @return bool true cuando se completa la acción
+     */
     public function actionUnfollow()
     {
         $followed = Yii::$app->request->post('followed_id');

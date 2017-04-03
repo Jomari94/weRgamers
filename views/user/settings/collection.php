@@ -33,16 +33,14 @@ $('input[name="selection[]"]').on('click', function () {
         $.ajax({
             url: "$add",
             method: 'POST',
-            contentType: 'json',
-            data: $(this).val(),
+            data: {'datos': $(this).val()},
             success: alerta
         });
     } else {
         $.ajax({
             url: "$drop",
             method: 'POST',
-            contentType: 'json',
-            data: $(this).val(),
+            data: {'datos': $(this).val()},
             success: alerta
         });
     }

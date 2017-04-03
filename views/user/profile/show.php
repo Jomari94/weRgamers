@@ -24,29 +24,7 @@ $unfollow = Url::to(['/followers/unfollow']);
 $data = $profile->user_id;
 $button = Url::to(['/user/profile/show?id='.$profile->user_id]). ' #btn-follow';
 $js = <<<EOT
-$('.btn-follow').on('click',function () {
-    $.ajax({
-        url: "$follow",
-        method: 'POST',
-        data: {'followed_id': $data},
-        success: cambiaBoton
-    });
-});
-
-$('.btn-unfollow').on('click',function () {
-    $.ajax({
-        url: "$unfollow",
-        method: 'POST',
-        data: {'followed_id': $data},
-        success: cambiaBoton
-    });
-});
-
-$('.btn-unfollow').hover(function (){
-    $(this).text('Dejar de seguir');
-}, function (){
-    $(this).text('Siguiendo');
-});
+cambiaBoton();
 
 function cambiaBoton(datos, status, xhr) {
     $('#buttons').load("$button", function(){

@@ -132,7 +132,7 @@ class GamesController extends Controller
      */
     public function actionAddgame()
     {
-        $post = file_get_contents('php://input');
+        $post = Yii::$app->request->post('datos');
         $datos = json_decode($post, true);
         $model = new Collection;
         $model->id_user = Yii::$app->user->id;
@@ -142,16 +142,16 @@ class GamesController extends Controller
             Yii::$app->session->setFlash('anadido', "The game {$model->game->game->name} ({$model->game->platform->name}) has been added");
             return true;
         }
-        return false;
+        return true;
     }
 
     /**
      * Elimina juego de la coleccion del usuario
-     * @return int|bool
+     * @return bool true si se ha borrado, false en caso contrario
      */
     public function actionDropgame()
     {
-        $post = file_get_contents('php://input');
+        $post = Yii::$app->request->post('datos');
         $datos = json_decode($post, true);
         $id_user = Yii::$app->user->id;
         $id_game =$datos['id_game'];

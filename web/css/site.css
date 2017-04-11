@@ -144,3 +144,7 @@ div#alertas {
     width: 600px;
     min-height: 100px;
 }
+
+#btn-follow {
+    min-width: 125px !important;
+}

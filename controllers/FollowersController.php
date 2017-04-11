@@ -4,10 +4,27 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Follower;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 
 class FollowersController extends Controller
 {
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['follow', 'unfollow'],
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
+        ];
+    }
+
     /**
      * Añade al usuario actual como seguidor de otro usuario
      * @return bool true cuando se completa la acción

@@ -69,3 +69,17 @@ create table followers
                         on delete cascade on update cascade,
     constraint pk_followers primary key (id_follower, id_followed)
 );
+
+drop table if exists votes;
+
+create table votes
+(
+    id_voter bigint not null constraint fk_votes_userVoter
+                        references public.user(id)
+                        on delete no action on update cascade,
+    id_voted bigint not null constraint fk_votes_userVoted
+                        references public.user(id)
+                        on delete no action on update cascade,
+    positive boolean not null,
+    constraint pk_votes primary key (id_voter, id_voted)
+);

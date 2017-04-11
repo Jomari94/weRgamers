@@ -149,7 +149,7 @@ class Game extends \yii\db\ActiveRecord
         $covers = Yii::getAlias('@covers');
         $files = FileHelper::findFiles($covers);
         if (isset($files[0])) {
-            foreach ($files as $index => $file) {
+            foreach ($files as $file) {
                 $archivo = substr($file, strrpos($file, '/') + 1);
                 $nombre = substr($archivo, 0, strlen($archivo) - 4);
                 if (intval($nombre) === $this->id) {

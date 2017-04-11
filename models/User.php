@@ -16,4 +16,10 @@ class User extends BaseUser
         $follower = Follower::findOne(['id_follower' => $this->id, 'id_followed' => $id]);
         return $follower !== null;
     }
+
+    public function hasVoted($id)
+    {
+        $vote = Vote::findOne(['id_voter' => $this->id, 'id_voted' => $id]);
+        return $vote !== null;
+    }
 }

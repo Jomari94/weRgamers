@@ -53,7 +53,8 @@ create table collections
     id_game     bigint not null,
     id_platform bigint not null,
     constraint fk_collections_games_platforms foreign key (id_game, id_platform)
-    references games_platforms (id_game, id_platform),
+    references games_platforms (id_game, id_platform)
+    on delete no action on update cascade,
     constraint pk_collections primary key (id_user, id_game, id_platform)
 );
 
@@ -82,4 +83,30 @@ create table votes
                         on delete no action on update cascade,
     positive boolean not null,
     constraint pk_votes primary key (id_voter, id_voted)
+);
+
+drop table if exists groups;
+
+create table groups
+(
+    id bigserial constraint pk_groups primary key,
+    name varchar(255) not null,
+    id_game     bigint not null,
+    id_platform bigint not null,
+    constraint fk_groups_games_platforms foreign key (id_game, id_platform)
+    references games_platforms (id_game, id_platform)
+    on delete no action on update cascade
+);
+
+drop table if exists members cascade;
+
+create table members
+(
+    id_group bigint not null constraint fk_members_groups
+                    references groups(id)
+                    on delete no action on update cascade,
+    id_user bigint not null constraint fk_members_user
+                    references public.user(id)
+                    on delete no action on update cascade,
+    constraint pk_members primary key (id_group, id_user)
 );

@@ -2,8 +2,6 @@
 
 namespace app\models;
 
-use Yii;
-
 /**
  * This is the model class for table "games_platforms".
  *
@@ -61,5 +59,21 @@ class GamePlatform extends \yii\db\ActiveRecord
     public function getPlatform()
     {
         return $this->hasOne(Platform::className(), ['id' => 'id_platform'])->inverseOf('gamesPlatform');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getGroups()
+    {
+        return $this->hasMany(Group::className(), ['id_game' => 'id_game', 'id_platform' => 'id_platform'])->inverseOf('game');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUsers()
+    {
+        return $this->hasMany(User::className(), ['id' => 'id_user'])->viaTable('collections', ['id_game' => 'id_game', 'id_platform' => 'id_platform']);
     }
 }

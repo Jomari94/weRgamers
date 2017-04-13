@@ -9,6 +9,7 @@ use app\models\GameSearch;
 use app\models\GamePlatform;
 use app\models\PlatformSearch;
 use app\models\Collection;
+use yii\helpers\Json;
 use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\UploadedFile;
@@ -162,6 +163,43 @@ class GamesController extends Controller
             return true;
         }
         return false;
+    }
+
+    /**
+     * Busca juegos y los devuelve
+     * @param  string $q Nombre del juego a buscar
+     * @return array Nombres de los juegos encontrados
+     */
+    public function actionSearchAjax($q = null)
+    {
+        $games = [];
+        if ($q != null || $q != '') {
+            $games = Game::find()
+            ->select(['id', 'name'])
+            ->where(['ilike', 'name', "$q"])
+            ->all();
+            $games = ArrayHelper::map($games, 'name', 'id');
+        }
+        return Json::encode($games);
+    }
+
+    /**
+     * Busca las plataformas de un juego y las devuelve
+     * @param  string $name Nombre del juego a buscar
+     * @return array Nombres de las plataformas encontrados
+     */
+    public function actionPlatformsAjax($name = null)
+    {
+        $platforms = [];
+        if ($name != null || $name != '') {
+            $platforms = Game::find()
+            ->where(['like', 'name', $name])
+            ->one()
+            ->getPlatforms()
+            ->all();
+            $platforms = ArrayHelper::map($platforms, 'id', 'name');
+        }
+        return Json::encode($platforms);
     }
 
     /**

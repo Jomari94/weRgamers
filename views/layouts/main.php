@@ -51,7 +51,9 @@ FontAsset::register($this);
                        'url' => ['/user/admin/index']
                     ],
                 ],
-                'visible' => !Yii::$app->user->isGuest && Yii::$app->user->identity->isAdmin],
+                'visible' => !Yii::$app->user->isGuest && Yii::$app->user->identity->isAdmin
+            ],
+            ['label' => 'Groups', 'url' => ['/groups/index']],
             Yii::$app->user->isGuest ?
             ['label' => 'Sign in', 'url' => ['/user/security/login']]:
             [

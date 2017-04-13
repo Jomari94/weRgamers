@@ -122,11 +122,11 @@ $this->title = empty($profile->name) ? Html::encode($profile->user->username) : 
                         <button class="btn
                         <?= !Yii::$app->user->isGuest &&
                             Yii::$app->user->identity->hasVoted($profile->user_id) &&
-                            Vote::findOne(['id_voter' => Yii::$app->user->id, 'id_voted' => $profile->user_id])->positive ? 'btn-danger' : 'btn-default'?> glyphicon glyphicon-thumbs-up" id="up"></button>
+                            Vote::findOne(['id_voter' => Yii::$app->user->id, 'id_voted' => $profile->user_id])->positive ? 'btn-danger' : 'btn-default'?>" id="up"><span class="glyphicon glyphicon-thumbs-up"></span></button>
                         <button class="btn
                         <?= !Yii::$app->user->isGuest &&
                             Yii::$app->user->identity->hasVoted($profile->user_id) &&
-                            Vote::findOne(['id_voter' => Yii::$app->user->id, 'id_voted' => $profile->user_id])->positive == false ? 'btn-danger' : 'btn-default'?> glyphicon glyphicon-thumbs-down" id="down"></button>
+                            Vote::findOne(['id_voter' => Yii::$app->user->id, 'id_voted' => $profile->user_id])->positive == false ? 'btn-danger' : 'btn-default'?>" id="down"><span class="glyphicon glyphicon-thumbs-down"></span></button>
                     </div>
                 </div>
                 <?php } ?>

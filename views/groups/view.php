@@ -16,23 +16,33 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
-                'method' => 'post',
-            ],
-        ]) ?>
     </p>
 
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
             'name',
-            'id_game',
-            'id_platform',
+            [
+                'label' => 'Game',
+                'attribute' => 'game.game.name',
+            ],
+            [
+                'label' => 'Platform',
+                'attribute' => 'game.platform.name',
+            ],
         ],
     ]) ?>
+
+    <?php if ($model->isMember(Yii::$app->user->id)) { ?>
+        <div class="member-options">
+            <?= Html::a(Yii::t('app', 'Leave group'), ['members/leave', 'id_group' => $model->id, 'id_user' => Yii::$app->user->id], [
+            'class' => 'btn btn-danger',
+            'data' => [
+                'confirm' => Yii::t('app', 'Are you sure you want to leave this group?'),
+                'method' => 'post',
+            ],
+        ]) ?>
+        </div>
+    <?php } ?>
 
 </div>

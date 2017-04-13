@@ -66,4 +66,15 @@ class Group extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Member::className(), ['id_group' => 'id'])->inverseOf('group');
     }
+
+    /**
+     * Comprueba si el usuario indicado es miembro del grupo
+     * @param  int  $id ID del usuario
+     * @return bool True si es miembro, false en caso contrario
+     */
+    public function isMember($id)
+    {
+        $member = Member::findOne(['id_group' => $this->id, 'id_user' => $id]);
+        return $member !== null ? true : false;
+    }
 }

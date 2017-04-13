@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Group;
+use app\models\Member;
 use app\models\GroupSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -66,6 +67,11 @@ class GroupsController extends Controller
         $model = new Group();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $model->refresh();
+            $admin = new Member;
+            $admin->id_group = $model->id;
+            $admin->id_user = Yii::$app->user->id;
+            $admin->save();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -91,19 +97,6 @@ class GroupsController extends Controller
                 'model' => $model,
             ]);
         }
-    }
-
-    /**
-     * Deletes an existing Group model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param int $id
-     * @return mixed
-     */
-    public function actionDelete($id)
-    {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
     }
 
     /**

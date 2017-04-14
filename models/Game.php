@@ -62,8 +62,7 @@ class Game extends \yii\db\ActiveRecord
             [['released', 'platforms'], 'safe'],
             [['released'], 'date', 'format'=>'php:Y-m-d'],
             [['name', 'genre', 'developers'], 'string', 'max' => 255],
-            [['imageFile'], 'file', 'extensions' => 'png, jpg, gif'],
-            [['imageFile'], 'file', 'skipOnEmpty' => false],
+            [['imageFile'], 'image', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, gif'],
         ];
     }
 
@@ -101,6 +100,19 @@ class Game extends \yii\db\ActiveRecord
     public function upload()
     {
         if ($this->validate()) {
+            $covers = Yii::getAlias('@covers');
+            $files = FileHelper::findFiles($covers);
+
+            if (isset($files[0])) {
+                foreach ($files as $file) {
+                    $archivo = substr($file, strrpos($file, DIRECTORY_SEPARATOR) + 1);
+                    $nombre = substr($archivo, 0, strlen($archivo) - 4);
+                    if (strlen($nombre) === 1 && intval($nombre) === Yii::$app->user->id) {
+                        unlink(Yii::getAlias('@app/web/' . $file));
+                    }
+                }
+            }
+
             $nombre = Yii::getAlias('@covers/')
                 . $this->id . '.' . $this->imageFile->extension;
             $this->imageFile->saveAs($nombre);

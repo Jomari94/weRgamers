@@ -40,6 +40,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'imageFile')->widget(FileInput::classname(), [
         'options' => ['accept' => 'image/*'],
         'pluginOptions' => [
+            'allowedFileExtensions'=>['png', 'jpg', 'gif'],
             'showPreview' => true,
             'showCaption' => false,
             'showRemove' => false,

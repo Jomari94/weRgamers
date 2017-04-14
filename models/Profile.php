@@ -57,7 +57,7 @@ class Profile extends BaseProfile
         $files = FileHelper::findFiles($avatars);
         if (isset($files[0])) {
             foreach ($files as $file) {
-                $archivo = substr($file, strrpos($file, '/') + 1);
+                $archivo = substr($file, strrpos($file, DIRECTORY_SEPARATOR) + 1);
                 $nombre = substr($archivo, 0, strlen($archivo) - 4);
                 if (strlen($nombre) === 1 && intval($nombre) === $this->user_id) {
                     return "/$avatars/$archivo";

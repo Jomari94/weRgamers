@@ -54,6 +54,7 @@ $user = Yii::$app->user->identity;
                 <?= $form->field($avatar, 'imageFile')->widget(FileInput::classname(), [
                     'options' => ['accept' => 'image/*'],
                     'pluginOptions' => [
+                        'allowedFileExtensions'=>['png', 'jpg', 'gif'],
                         'showPreview' => true,
                         'showCaption' => false,
                         'showRemove' => false,

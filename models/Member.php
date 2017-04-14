@@ -9,6 +9,7 @@ use Yii;
  *
  * @property integer $id_group
  * @property integer $id_user
+ * @property boolean $accepted
  *
  * @property Groups $idGroup
  * @property User $idUser
@@ -31,6 +32,7 @@ class Member extends \yii\db\ActiveRecord
         return [
             [['id_group', 'id_user'], 'required'],
             [['id_group', 'id_user'], 'integer'],
+            [['accepted'], 'boolean', 'trueValue' => true, 'falseValue' => false],
             [['id_group'], 'exist', 'skipOnError' => true, 'targetClass' => Group::className(), 'targetAttribute' => ['id_group' => 'id']],
             [['id_user'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['id_user' => 'id']],
         ];
@@ -44,6 +46,7 @@ class Member extends \yii\db\ActiveRecord
         return [
             'id_group' => Yii::t('app', 'Id Group'),
             'id_user' => Yii::t('app', 'Id User'),
+            'accepted' => Yii::t('app', 'Accepted'),
         ];
     }
 

@@ -71,6 +71,7 @@ class GroupsController extends Controller
             $admin = new Member;
             $admin->id_group = $model->id;
             $admin->id_user = Yii::$app->user->id;
+            $admin->accepted = true;
             $admin->save();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {

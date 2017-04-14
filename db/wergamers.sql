@@ -108,5 +108,6 @@ create table members
     id_user bigint not null constraint fk_members_user
                     references public.user(id)
                     on delete no action on update cascade,
+    accepted boolean not null,
     constraint pk_members primary key (id_group, id_user)
 );

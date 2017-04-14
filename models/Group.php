@@ -76,13 +76,24 @@ class Group extends \yii\db\ActiveRecord
     }
 
     /**
-     * Comprueba si el usuario indicado es miembro del grupo
+     * Comprueba si el usuario indicado es miembro aceptado del grupo
      * @param  int  $id ID del usuario
      * @return bool True si es miembro, false en caso contrario
      */
     public function isMember($id)
     {
-        $member = Member::findOne(['id_group' => $this->id, 'id_user' => $id]);
+        $member = Member::findOne(['id_group' => $this->id, 'id_user' => $id, 'accepted' => true]);
+        return $member !== null ? true : false;
+    }
+
+    /**
+     * Comprueba si el usuario indicado es miembro pendiente de aceptar del grupo
+     * @param  int  $id ID del usuario
+     * @return bool True si es miembro, false en caso contrario
+     */
+    public function isPending($id)
+    {
+        $member = Member::findOne(['id_group' => $this->id, 'id_user' => $id, 'accepted' => false]);
         return $member !== null ? true : false;
     }
 }

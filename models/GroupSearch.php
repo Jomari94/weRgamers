@@ -12,6 +12,8 @@ use app\models\Group;
  */
 class GroupSearch extends Group
 {
+    public $game_name;
+    
     /**
      * @inheritdoc
      */
@@ -19,7 +21,7 @@ class GroupSearch extends Group
     {
         return [
             [['id', 'id_game', 'id_platform'], 'integer'],
-            [['name'], 'safe'],
+            [['name', 'game_name'], 'safe'],
         ];
     }
 

@@ -42,6 +42,11 @@ class MembersController extends \yii\web\Controller
         return $this->redirect(['/groups/view', 'id' => $id_group]);
     }
 
+    /**
+     * Lista de las solicitudes de unión al grupo
+     * @param  int $id_group Id del grupo]
+     * @return mixed
+     */
     public function actionRequests($id_group)
     {
         $dataProvider = new ActiveDataProvider([
@@ -53,6 +58,12 @@ class MembersController extends \yii\web\Controller
         ]);
     }
 
+    /**
+     * Se acepta una solicitud de unión
+     * @param  int $id_group Id del grupo
+     * @param  int $id_user  Id del miembro
+     * @return mixed
+     */
     public function actionConfirm($id_group, $id_user)
     {
         $model = Member::findOne(['id_group' => $id_group, 'id_user' => $id_user]);
@@ -63,6 +74,12 @@ class MembersController extends \yii\web\Controller
         $this->redirect(['requests', 'id_group' => $id_group]);
     }
 
+    /**
+     * Se rechaza una solicitud de unión
+     * @param  int $id_group Id del grupo
+     * @param  int $id_user  Id del miembro
+     * @return mixed
+     */
     public function actionReject($id_group, $id_user)
     {
         $model = Member::findOne(['id_group' => $id_group, 'id_user' => $id_user]);

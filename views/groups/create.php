@@ -45,9 +45,7 @@ var games = {};
 
     function mostrarPlataformas(data, status, event) {
         var platforms = JSON.parse(data);
-        $('#platforms').empty();
-        var label = '<label for="platforms">Select platform</label><br />'
-        $('#platforms').append(label);
+        $('#group-id_platform').empty();
         for(i in platforms) {
             var radio = '<label><input type="radio" name="Group[id_platform]" value="'+ i + '"> '+platforms[i]+'</label>';
             $('#group-id_platform').append(radio);

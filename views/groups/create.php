@@ -12,28 +12,26 @@ $urlGames = Url::to(['/games/search-ajax']);
 $urlPlatforms = Url::to(['/games/platforms-ajax']);
 $js = <<<EOT
 var games = {};
-    $('#search').on('focus keyup', function () {
+    $('#group-game_name').on('focus keyup', function () {
         $.ajax({
             method: 'get',
             url: '$urlGames',
             data: {
-                q: $('#search').val()
+                q: $('#group-game_name').val()
             },
             success: function (data, status, event) {
-                var d = JSON.parse(data);
-                games = d;
-                d = $.map(d, function(value, index){
+                var juegos = JSON.parse(data);
+                games = juegos;
+                juegos = $.map(juegos, function(value, index){
                     return index;
-                });
-                console.log(d);
-                $('#search').autocomplete({source: d});
+                });;
+                $('#group-game_name').autocomplete({source: juegos});
             }
         });
     });
 
-    $('#search').on('autocompleteselect', function (event, ui) {
+    $('#group-game_name').on('autocompleteselect', function (event, ui) {
         $('#group-id_game').val(games[ui.item.value]);
-        console.log(ui.item);
         $.ajax({
             method: 'get',
             url: '$urlPlatforms',
@@ -47,17 +45,13 @@ var games = {};
 
     function mostrarPlataformas(data, status, event) {
         var platforms = JSON.parse(data);
-        console.log(platforms);
         $('#platforms').empty();
         var label = '<label for="platforms">Select platform</label><br />'
         $('#platforms').append(label);
         for(i in platforms) {
-            var radio = '<input type="radio" name="platform" value="'+ i + '">'+platforms[i]+'<br />';
-            $('#platforms').append(radio);
+            var radio = '<label><input type="radio" name="Group[id_platform]" value="'+ i + '"> '+platforms[i]+'</label>';
+            $('#group-id_platform').append(radio);
         }
-        $('input[type="radio"]').on('click', function (){
-            $('#group-id_platform').val($(this).val());
-        });
     }
 EOT;
 $this->registerJs($js);
@@ -76,15 +70,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-        <label for="search"><?= Yii::t('app', 'Game search') ?></label>
-        <input type="text" id="search" class="form-control" placeholder="<?= Yii::t('app', 'Search') ?>">
+        <?= $form->field($model, 'game_name')->textInput(['maxlength' => true]) ?>
 
         <?= $form->field($model, 'id_game')->hiddenInput()->label(false) ?>
 
-        <div id="platforms">
-        </div>
-
-        <?= $form->field($model, 'id_platform')->hiddenInput()->label(false) ?>
+        <?= $form->field($model, 'id_platform')->radioList([]) ?>
 
         <div class="form-group">
             <?= Html::submitButton(Yii::t('app', 'Create'), ['class' => 'btn btn-success']) ?>

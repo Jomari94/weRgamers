@@ -18,6 +18,12 @@ use Yii;
 class Group extends \yii\db\ActiveRecord
 {
     /**
+     * Nombre del juego en el formulario
+     * @var string
+     */
+    public $game_name;
+
+    /**
      * @inheritdoc
      */
     public static function tableName()
@@ -31,10 +37,11 @@ class Group extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'id_game', 'id_platform'], 'required'],
+            [['name', 'id_platform', 'game_name'], 'required'],
             [['id_game', 'id_platform'], 'integer'],
-            [['name'], 'string', 'max' => 255],
-            [['id_game', 'id_platform'], 'exist', 'skipOnError' => true, 'targetClass' => GamePlatform::className(), 'targetAttribute' => ['id_game' => 'id_game', 'id_platform' => 'id_platform']],
+            [['name', 'game_name'], 'string', 'max' => 255],
+            [['game_name'], 'exist', 'skipOnError' => true, 'targetClass' => Game::className(), 'targetAttribute' => ['game_name' => 'name', 'id_game' => 'id']],
+            // [['id_game', 'id_platform'], 'exist', 'skipOnError' => true, 'targetClass' => GamePlatform::className(), 'targetAttribute' => ['id_game' => 'id_game', 'id_platform' => 'id_platform']],
         ];
     }
 
@@ -48,6 +55,7 @@ class Group extends \yii\db\ActiveRecord
             'name' => Yii::t('app', 'Name'),
             'id_game' => Yii::t('app', 'Game'),
             'id_platform' => Yii::t('app', 'Platform'),
+            'game_name' => Yii::t('app', 'Game'),
         ];
     }
 

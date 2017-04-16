@@ -1,25 +1,27 @@
 <?php
 
+use app\models\Member;
+use yii\data\ActiveDataProvider;
 use yii\helpers\Html;
+use yii\widgets\ListView;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Group */
-
+$dataProvider = new ActiveDataProvider([
+    'query' => Member::find()->where(['id_group' => $model->id]),
+    'pagination' => [
+        'pageSize' => 10,
+    ],
+]);
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Groups'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="group-view">
-    <?php if (Yii::$app->session->hasFlash('Pending')): ?>
-        <p class="alert alert-success"><?= Yii::$app->session->getFlash('Pending') ?></p>
-    <?php endif; ?>
     <?php if (Yii::$app->session->hasFlash('Error')): ?>
         <p class="alert alert-danger"><?= Yii::$app->session->getFlash('Error') ?></p>
     <?php endif; ?>
-    <div class="flash">
-
-    </div>
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -39,21 +41,38 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= Html::a(Yii::t('app', 'Join'), ['members/join', 'id_group' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?php } ?>
     </p>
-
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'name',
-            [
-                'label' => 'Game',
-                'attribute' => 'game.game.name',
-            ],
-            [
-                'label' => 'Platform',
-                'attribute' => 'game.platform.name',
-            ],
-        ],
-    ]) ?>
+    <div class="row">
+        <div class="col-xs-12 col-sm-4">
+            <h4><?= Yii::t('app', 'Members') ?></h4>
+            <?= ListView::widget([
+                'dataProvider' => $dataProvider,
+                'itemOptions' => ['class' => 'item'],
+                'options' => [
+                    'tag' => 'div',
+                    'class' => 'list-wrapper',
+                    'id' => 'list-wrapper',
+                ],
+                'layout' => "{items}\n{pager}",
+                'itemView' => '../members/_view',
+            ]) ?>
+        </div>
+        <div class="col-xs-12 col-sm-8">
+            <?= DetailView::widget([
+                'model' => $model,
+                'attributes' => [
+                    'name',
+                    [
+                        'label' => 'Game',
+                        'attribute' => 'game.game.name',
+                    ],
+                    [
+                        'label' => 'Platform',
+                        'attribute' => 'game.platform.name',
+                    ],
+                ],
+                ]) ?>
+        </div>
+    </div>
 
 
 </div>

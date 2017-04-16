@@ -117,6 +117,11 @@ a.desc:after {
 .img32 {
     max-height: 32px;
 }
+
+.img64 {
+    max-height: 70px;
+    max-width: 60px;
+}
 .navbar-nav li a {
  line-height: 30px;
 }

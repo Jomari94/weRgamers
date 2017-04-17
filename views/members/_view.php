@@ -1,5 +1,6 @@
 <?php
 
+use yii\helpers\Url;
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
@@ -13,7 +14,7 @@ use yii\helpers\Html;
             ]) ?>
     </div>
     <div class="col-xs-offset-1 col-xs-9">
-        <h4><?= $model->user->username?></h4>
+        <h4><?= Html::a($model->user->username, Url::to(['user/profile/show', 'id' => $model->id_user]))?></h4>
         <p><?= Yii::t('app', 'Role') ?>:</p>
     </div>
 </article>

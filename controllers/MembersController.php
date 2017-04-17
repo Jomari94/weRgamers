@@ -5,7 +5,6 @@ namespace app\controllers;
 use Yii;
 use app\models\Member;
 use app\models\Group;
-use app\models\MemberSearch;
 use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
 

@@ -15,7 +15,8 @@ $config = [
         'user' => [
             'class' => 'dektrium\user\Module',
             'controllerMap' => [
-                'settings' => 'app\controllers\user\SettingsController'
+                'settings' => 'app\controllers\user\SettingsController',
+                'profile' => 'app\controllers\user\ProfileController',
             ],
             'modelMap' => [
                 'Profile' => 'app\models\Profile',

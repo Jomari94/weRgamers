@@ -10,11 +10,9 @@
  */
 
 use app\models\Vote;
-use yii\data\ActiveDataProvider;
 use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\widgets\ListView;
-use app\models\Collection;
 
 /**
  * @var \yii\web\View $this
@@ -23,16 +21,9 @@ use app\models\Collection;
 $urlFollow = Url::to(['/followers/follow']);
 $urlUnfollow = Url::to(['/followers/unfollow']);
 $urlVote = Url::to(['/votes/vote']);
-$user_id = $profile->user_id;
 $toolbar = Url::to(['/user/profile/show?id='.$profile->user_id]). ' #toolbar';
-$dataProvider = new ActiveDataProvider([
-    'query' => Collection::find()->where(['id_user' => $profile->user_id])->orderBy('id_game DESC'),
-    'pagination' => [
-        'pageSize' => 10,
-    ],
-]);
-$positive = Vote::find()->select('count(*)')->where(['id_voted' => $profile->user_id, 'positive' => true])->scalar();
-$negative = Vote::find()->select('count(*)')->where(['id_voted' => $profile->user_id, 'positive' => false])->scalar();
+
+
 $js = <<<EOT
 cargaBotones();
 
@@ -42,7 +33,7 @@ function cargaBotones(datos, status, xhr) {
             $.ajax({
                 url: "$urlFollow",
                 method: 'POST',
-                data: {'followed_id': $user_id},
+                data: {'followed_id': $profile->user_id},
                 success: cargaBotones
             });
         });
@@ -51,25 +42,16 @@ function cargaBotones(datos, status, xhr) {
             $.ajax({
                 url: "$urlUnfollow",
                 method: 'POST',
-                data: {'followed_id': $user_id},
+                data: {'followed_id': $profile->user_id},
                 success: cargaBotones
             });
         });
 
-        $('#up').on('click', function () {
+        $('#up, #down').on('click', function () {
             $.ajax({
                 url: "$urlVote",
                 method: 'POST',
-                data: {'voted_id': $user_id, 'positive': 1},
-                success: cargaBotones
-            });
-        });
-
-        $('#down').on('click', function () {
-            $.ajax({
-                url: "$urlVote",
-                method: 'POST',
-                data: {'voted_id': $user_id, 'positive': 0},
+                data: {'voted_id': $profile->user_id, 'positive': $(this).val()},
                 success: cargaBotones
             });
         });
@@ -79,6 +61,10 @@ function cargaBotones(datos, status, xhr) {
         }, function (){
             $(this).html('<span class="glyphicon glyphicon-ok"></span> Siguiendo');
         });
+
+        if (datos != true && datos != undefined) {
+            $('#karma').text('Karma: ' + datos);
+        }
     });
 }
 
@@ -93,59 +79,59 @@ $this->title = empty($profile->name) ? Html::encode($profile->user->username) : 
                 'class' => 'img-rounded img-responsive',
                 'alt' => $profile->user->username,
             ]) ?>
-            <h4><?= $this->title ?></h4>
-            <h4>Karma: <?= $positive - $negative ?></h4>
+            <h3><?= $this->title ?></h3>
+            <h4 id="karma">Karma: <?= $karma ?></h4>
             <div id="column">
-                <?php if (Yii::$app->user->isGuest || Yii::$app->user->id !== $profile->user_id){ ?>
+                <?php if (Yii::$app->user->isGuest || Yii::$app->user->id !== $profile->user_id) { ?>
                 <div class="toolbar" id="toolbar">
                     <div class="btn-group" id="buttons">
                     <?php if (!Yii::$app->user->isGuest && Yii::$app->user->identity->isFollower($profile->user_id)){ ?>
                     <button id="btn-follow" class="btn btn-danger btn-unfollow"><span class="glyphicon glyphicon-ok"></span> Siguiendo</button>
                     <?php } else { ?>
-                        <button id="btn-follow" class="btn btn-default btn-follow"><span class="glyphicon glyphicon-user"></span> Seguir</button>
-                        <?php } ?>
-                    </div>
-                    <div class="btn-group">
-                        <button class="btn
-                        <?= !Yii::$app->user->isGuest &&
-                        Yii::$app->user->identity->hasVoted($profile->user_id) &&
-                        Vote::findOne(['id_voter' => Yii::$app->user->id, 'id_voted' => $profile->user_id])->positive ? 'btn-danger' : 'btn-default'?>" id="up"><span class="glyphicon glyphicon-thumbs-up"></span></button>
-                        <button class="btn
-                        <?= !Yii::$app->user->isGuest &&
-                        Yii::$app->user->identity->hasVoted($profile->user_id) &&
-                        Vote::findOne(['id_voter' => Yii::$app->user->id, 'id_voted' => $profile->user_id])->positive == false ? 'btn-danger' : 'btn-default'?>" id="down"><span class="glyphicon glyphicon-thumbs-down"></span></button>
-                    </div>
+                    <button id="btn-follow" class="btn btn-default btn-follow"><span class="glyphicon glyphicon-user"></span> Seguir</button>
+                    <?php } ?>
+                </div>
+                <div class="btn-group">
+                    <button class="btn
+                    <?= !Yii::$app->user->isGuest &&
+                    Yii::$app->user->identity->hasVoted($profile->user_id) &&
+                    Vote::findOne(['id_voter' => Yii::$app->user->id, 'id_voted' => $profile->user_id])->positive ? 'btn-danger' : 'btn-default'?>" id="up" value="1"><span class="glyphicon glyphicon-thumbs-up"></span></button>
+                    <button class="btn
+                    <?= !Yii::$app->user->isGuest &&
+                    Yii::$app->user->identity->hasVoted($profile->user_id) &&
+                    Vote::findOne(['id_voter' => Yii::$app->user->id, 'id_voted' => $profile->user_id])->positive == false ? 'btn-danger' : 'btn-default'?>" id="down" value="0"><span class="glyphicon glyphicon-thumbs-down"></span></button>
                 </div>
                 <?php } ?>
             </div>
-            <ul style="padding: 0; list-style: none outside none;">
-                <?php if (!empty($profile->location)): ?>
-                    <li>
-                        <i class="glyphicon glyphicon-map-marker text-muted"></i> <?= Html::encode($profile->location) ?>
-                    </li>
-                <?php endif; ?>
-                <?php if (!empty($profile->website)): ?>
-                    <li>
-                        <i class="glyphicon glyphicon-globe text-muted"></i> <?= Html::a(Html::encode($profile->website), Html::encode($profile->website)) ?>
-                    </li>
-                <?php endif; ?>
-                <?php if (!empty($profile->public_email)): ?>
-                    <li>
-                        <i class="glyphicon glyphicon-envelope text-muted"></i> <?= Html::a(Html::encode($profile->public_email), 'mailto:' . Html::encode($profile->public_email)) ?>
-                    </li>
-                <?php endif; ?>
-                <li>
-                    <i class="glyphicon glyphicon-time text-muted"></i> <?= Yii::t('user', 'Joined on {0, date}', $profile->user->created_at) ?>
-                </li>
-            </ul>
-            <?php if (!empty($profile->bio)): ?>
-                <p><?= Html::encode($profile->bio) ?></p>
-            <?php endif; ?>
         </div>
+        <br />
+        <ul style="padding: 0; list-style: none outside none;">
+            <?php if (!empty($profile->location)): ?>
+                <li>
+                    <i class="glyphicon glyphicon-map-marker text-muted"></i> <?= Html::encode($profile->location) ?>
+                </li>
+            <?php endif; ?>
+            <?php if (!empty($profile->website)): ?>
+                <li>
+                    <i class="glyphicon glyphicon-globe text-muted"></i> <?= Html::a(Html::encode($profile->website), Html::encode($profile->website)) ?>
+                </li>
+            <?php endif; ?>
+            <?php if (!empty($profile->public_email)): ?>
+                <li>
+                    <i class="glyphicon glyphicon-envelope text-muted"></i> <?= Html::a(Html::encode($profile->public_email), 'mailto:' . Html::encode($profile->public_email)) ?>
+                </li>
+            <?php endif; ?>
+            <li>
+                <i class="glyphicon glyphicon-time text-muted"></i> <?= Yii::t('user', 'Joined on {0, date}', $profile->user->created_at) ?>
+            </li>
+        </ul>
+        <?php if (!empty($profile->bio)): ?>
+            <p><?= Html::encode($profile->bio) ?></p>
+        <?php endif; ?>
         <div>
             <h4><?= Yii::t('app', 'Collection') ?></h4>
             <?= ListView::widget([
-                'dataProvider' => $dataProvider,
+                'dataProvider' => $collection,
                 'itemOptions' => ['class' => 'item'],
                 'options' => [
                     'tag' => 'div',
@@ -158,9 +144,6 @@ $this->title = empty($profile->name) ? Html::encode($profile->user->username) : 
         </div>
     </div>
     <div class="col-xs-12 col-sm-8">
-
-        <div class="">
-
-        </div>
+        <div></div>
     </div>
 </div>

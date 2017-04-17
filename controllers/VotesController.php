@@ -41,13 +41,15 @@ class VotesController extends Controller
         if ($previous != null) {
             if ($previous->positive != $vote->positive) {
                 $previous->positive = $vote->positive;
-                return $previous->update() != false;
+                $previous->update();
             } else {
-                return $previous->delete() != false;
+                $previous->delete();
             }
         } else {
-            return $vote->save();
+            $vote->save();
         }
-        return false;
+        $positive = Vote::find()->select('count(*)')->where(['id_voted' => $voted, 'positive' => true])->scalar();
+        $negative = Vote::find()->select('count(*)')->where(['id_voted' => $voted, 'positive' => false])->scalar();
+        return $positive - $negative;
     }
 }

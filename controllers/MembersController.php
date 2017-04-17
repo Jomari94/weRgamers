@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Member;
+use app\models\Group;
 use app\models\MemberSearch;
 use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
@@ -20,6 +21,11 @@ class MembersController extends \yii\web\Controller
     public function actionLeave($id_group, $id_user)
     {
         $this->findModel($id_group, $id_user)->delete();
+
+        if (Member::findOne(['id_group' => $id_group, 'accepted' => true]) === null) {
+            Member::deleteAll(['id_group' => $id_group, 'accepted' => false]);
+            Group::findOne(['id' => $id_group])->delete();
+        }
 
         return $this->redirect(['/groups/index']);
     }

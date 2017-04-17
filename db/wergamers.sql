@@ -36,10 +36,10 @@ create table games_platforms
 (
     id_game     bigint not null constraint fk_games_platforms_games
                         references games(id)
-                        on delete cascade on update cascade,
+                        on delete no action on update cascade,
     id_platform bigint not null constraint fk_games_platforms_platforms
                         references platforms(id)
-                        on delete cascade on update cascade,
+                        on delete no action on update cascade,
     constraint pk_games_platforms primary key (id_game, id_platform)
 );
 
@@ -54,7 +54,7 @@ create table collections
     id_platform bigint not null,
     constraint fk_collections_games_platforms foreign key (id_game, id_platform)
     references games_platforms (id_game, id_platform)
-    on delete no action on update cascade,
+    on delete cascade on update cascade,
     constraint pk_collections primary key (id_user, id_game, id_platform)
 );
 
@@ -62,10 +62,10 @@ drop table if exists followers cascade;
 
 create table followers
 (
-    id_follower bigint not null constraint fk_followers_userFollower
+    id_follower bigint not null constraint fk_followers_user_follower
                         references public.user(id)
                         on delete cascade on update cascade,
-    id_followed bigint not null constraint fk_followers_userFollowed
+    id_followed bigint not null constraint fk_followers_user_followed
                         references public.user(id)
                         on delete cascade on update cascade,
     constraint pk_followers primary key (id_follower, id_followed)
@@ -75,12 +75,12 @@ drop table if exists votes;
 
 create table votes
 (
-    id_voter bigint not null constraint fk_votes_userVoter
+    id_voter bigint not null constraint fk_votes_user_voter
                         references public.user(id)
-                        on delete no action on update cascade,
-    id_voted bigint not null constraint fk_votes_userVoted
+                        on delete cascade on update cascade,
+    id_voted bigint not null constraint fk_votes_user_voted
                         references public.user(id)
-                        on delete no action on update cascade,
+                        on delete cascade on update cascade,
     positive boolean not null,
     constraint pk_votes primary key (id_voter, id_voted)
 );
@@ -107,7 +107,7 @@ create table members
                     on delete no action on update cascade,
     id_user bigint not null constraint fk_members_user
                     references public.user(id)
-                    on delete no action on update cascade,
+                    on delete cascade on update cascade,
     accepted boolean not null,
     constraint pk_members primary key (id_group, id_user)
 );

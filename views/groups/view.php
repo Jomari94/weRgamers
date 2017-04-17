@@ -9,7 +9,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Group */
 $dataProvider = new ActiveDataProvider([
-    'query' => Member::find()->where(['id_group' => $model->id]),
+    'query' => Member::find()->where(['id_group' => $model->id, 'accepted' => true]),
     'pagination' => [
         'pageSize' => 10,
     ],

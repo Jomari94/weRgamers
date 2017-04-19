@@ -29,7 +29,7 @@ $config = [
             'cost' => 12,
             'admins' => ['Jomari'],
             'mailer' => [
-                'sender' => 'proyectowergamers@gmail.com', // or ['no-reply@myhost.com' => 'Sender name']
+                'sender' => ['no-reply@myhost.com' => "We 'r' Gamers"]
             ],
         ],
         'gridview' =>  [

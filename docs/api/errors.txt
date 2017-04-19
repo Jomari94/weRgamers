@@ -1,0 +1,388 @@
+Array
+(
+    [0] => Array
+        (
+            [line] => 27
+            [file] => controllers/GamesController.php
+            [message] => Method behaviors has no parent to inherit from in app\controllers\GamesController.
+        )
+
+    [1] => Array
+        (
+            [line] => 21
+            [file] => controllers/GroupsController.php
+            [message] => Method behaviors has no parent to inherit from in app\controllers\GroupsController.
+        )
+
+    [2] => Array
+        (
+            [line] => 20
+            [file] => controllers/PlatformController.php
+            [message] => Method behaviors has no parent to inherit from in app\controllers\PlatformController.
+        )
+
+    [3] => Array
+        (
+            [line] => 17
+            [file] => controllers/SiteController.php
+            [message] => Method behaviors has no parent to inherit from in app\controllers\SiteController.
+        )
+
+    [4] => Array
+        (
+            [line] => 43
+            [file] => controllers/SiteController.php
+            [message] => Method actions has no parent to inherit from in app\controllers\SiteController.
+        )
+
+    [5] => Array
+        (
+            [line] => 17
+            [file] => controllers/user/ProfileController.php
+            [message] => Method behaviors has no parent to inherit from in app\controllers\user\ProfileController.
+        )
+
+    [6] => Array
+        (
+            [line] => 22
+            [file] => models/Collection.php
+            [message] => Method tableName has no parent to inherit from in app\models\Collection.
+        )
+
+    [7] => Array
+        (
+            [line] => 30
+            [file] => models/Collection.php
+            [message] => Method rules has no parent to inherit from in app\models\Collection.
+        )
+
+    [8] => Array
+        (
+            [line] => 43
+            [file] => models/Collection.php
+            [message] => Method attributeLabels has no parent to inherit from in app\models\Collection.
+        )
+
+    [9] => Array
+        (
+            [line] => 21
+            [file] => models/Follower.php
+            [message] => Method tableName has no parent to inherit from in app\models\Follower.
+        )
+
+    [10] => Array
+        (
+            [line] => 29
+            [file] => models/Follower.php
+            [message] => Method rules has no parent to inherit from in app\models\Follower.
+        )
+
+    [11] => Array
+        (
+            [line] => 42
+            [file] => models/Follower.php
+            [message] => Method attributeLabels has no parent to inherit from in app\models\Follower.
+        )
+
+    [12] => Array
+        (
+            [line] => 50
+            [file] => models/Game.php
+            [message] => Method tableName has no parent to inherit from in app\models\Game.
+        )
+
+    [13] => Array
+        (
+            [line] => 58
+            [file] => models/Game.php
+            [message] => Method rules has no parent to inherit from in app\models\Game.
+        )
+
+    [14] => Array
+        (
+            [line] => 72
+            [file] => models/Game.php
+            [message] => Method attributeLabels has no parent to inherit from in app\models\Game.
+        )
+
+    [15] => Array
+        (
+            [line] => 88
+            [file] => models/Game.php
+            [message] => Method scenarios has no parent to inherit from in app\models\Game.
+        )
+
+    [16] => Array
+        (
+            [line] => 50
+            [file] => models/Game.php
+            [message] => Method tableName has no parent to inherit from in app\models\Game.
+        )
+
+    [17] => Array
+        (
+            [line] => 58
+            [file] => models/Game.php
+            [message] => Method rules has no parent to inherit from in app\models\Game.
+        )
+
+    [18] => Array
+        (
+            [line] => 72
+            [file] => models/Game.php
+            [message] => Method attributeLabels has no parent to inherit from in app\models\Game.
+        )
+
+    [19] => Array
+        (
+            [line] => 88
+            [file] => models/Game.php
+            [message] => Method scenarios has no parent to inherit from in app\models\Game.
+        )
+
+    [20] => Array
+        (
+            [line] => 50
+            [file] => models/Game.php
+            [message] => Method tableName has no parent to inherit from in app\models\Game.
+        )
+
+    [21] => Array
+        (
+            [line] => 58
+            [file] => models/Game.php
+            [message] => Method rules has no parent to inherit from in app\models\Game.
+        )
+
+    [22] => Array
+        (
+            [line] => 72
+            [file] => models/Game.php
+            [message] => Method attributeLabels has no parent to inherit from in app\models\Game.
+        )
+
+    [23] => Array
+        (
+            [line] => 88
+            [file] => models/Game.php
+            [message] => Method scenarios has no parent to inherit from in app\models\Game.
+        )
+
+    [24] => Array
+        (
+            [line] => 19
+            [file] => models/GamePlatform.php
+            [message] => Method tableName has no parent to inherit from in app\models\GamePlatform.
+        )
+
+    [25] => Array
+        (
+            [line] => 27
+            [file] => models/GamePlatform.php
+            [message] => Method rules has no parent to inherit from in app\models\GamePlatform.
+        )
+
+    [26] => Array
+        (
+            [line] => 40
+            [file] => models/GamePlatform.php
+            [message] => Method attributeLabels has no parent to inherit from in app\models\GamePlatform.
+        )
+
+    [27] => Array
+        (
+            [line] => 19
+            [file] => models/GamePlatform.php
+            [message] => Method tableName has no parent to inherit from in app\models\GamePlatform.
+        )
+
+    [28] => Array
+        (
+            [line] => 27
+            [file] => models/GamePlatform.php
+            [message] => Method rules has no parent to inherit from in app\models\GamePlatform.
+        )
+
+    [29] => Array
+        (
+            [line] => 40
+            [file] => models/GamePlatform.php
+            [message] => Method attributeLabels has no parent to inherit from in app\models\GamePlatform.
+        )
+
+    [30] => Array
+        (
+            [line] => 53
+            [file] => models/GamePlatformSearch.php
+            [message] => Method scenarios has no parent to inherit from in app\models\GamePlatformSearch.
+        )
+
+    [31] => Array
+        (
+            [line] => 29
+            [file] => models/Group.php
+            [message] => Method tableName has no parent to inherit from in app\models\Group.
+        )
+
+    [32] => Array
+        (
+            [line] => 37
+            [file] => models/Group.php
+            [message] => Method rules has no parent to inherit from in app\models\Group.
+        )
+
+    [33] => Array
+        (
+            [line] => 51
+            [file] => models/Group.php
+            [message] => Method attributeLabels has no parent to inherit from in app\models\Group.
+        )
+
+    [34] => Array
+        (
+            [line] => 29
+            [file] => models/Group.php
+            [message] => Method tableName has no parent to inherit from in app\models\Group.
+        )
+
+    [35] => Array
+        (
+            [line] => 37
+            [file] => models/Group.php
+            [message] => Method rules has no parent to inherit from in app\models\Group.
+        )
+
+    [36] => Array
+        (
+            [line] => 51
+            [file] => models/Group.php
+            [message] => Method attributeLabels has no parent to inherit from in app\models\Group.
+        )
+
+    [37] => Array
+        (
+            [line] => 31
+            [file] => models/GroupSearch.php
+            [message] => Method scenarios has no parent to inherit from in app\models\GroupSearch.
+        )
+
+    [38] => Array
+        (
+            [line] => 22
+            [file] => models/Member.php
+            [message] => Method tableName has no parent to inherit from in app\models\Member.
+        )
+
+    [39] => Array
+        (
+            [line] => 30
+            [file] => models/Member.php
+            [message] => Method rules has no parent to inherit from in app\models\Member.
+        )
+
+    [40] => Array
+        (
+            [line] => 44
+            [file] => models/Member.php
+            [message] => Method attributeLabels has no parent to inherit from in app\models\Member.
+        )
+
+    [41] => Array
+        (
+            [line] => 20
+            [file] => models/Platform.php
+            [message] => Method tableName has no parent to inherit from in app\models\Platform.
+        )
+
+    [42] => Array
+        (
+            [line] => 28
+            [file] => models/Platform.php
+            [message] => Method rules has no parent to inherit from in app\models\Platform.
+        )
+
+    [43] => Array
+        (
+            [line] => 40
+            [file] => models/Platform.php
+            [message] => Method attributeLabels has no parent to inherit from in app\models\Platform.
+        )
+
+    [44] => Array
+        (
+            [line] => 20
+            [file] => models/Platform.php
+            [message] => Method tableName has no parent to inherit from in app\models\Platform.
+        )
+
+    [45] => Array
+        (
+            [line] => 28
+            [file] => models/Platform.php
+            [message] => Method rules has no parent to inherit from in app\models\Platform.
+        )
+
+    [46] => Array
+        (
+            [line] => 40
+            [file] => models/Platform.php
+            [message] => Method attributeLabels has no parent to inherit from in app\models\Platform.
+        )
+
+    [47] => Array
+        (
+            [line] => 29
+            [file] => models/PlatformSearch.php
+            [message] => Method scenarios has no parent to inherit from in app\models\PlatformSearch.
+        )
+
+    [48] => Array
+        (
+            [line] => 15
+            [file] => models/Profile.php
+            [message] => Method rules has no parent to inherit from in app\models\Profile.
+        )
+
+    [49] => Array
+        (
+            [line] => 35
+            [file] => models/Profile.php
+            [message] => Method attributeLabels has no parent to inherit from in app\models\Profile.
+        )
+
+    [50] => Array
+        (
+            [line] => 23
+            [file] => models/SettingsForm.php
+            [message] => Method rules has no parent to inherit from in app\models\SettingsForm.
+        )
+
+    [51] => Array
+        (
+            [line] => 52
+            [file] => models/SettingsForm.php
+            [message] => Method attributeLabels has no parent to inherit from in app\models\SettingsForm.
+        )
+
+    [52] => Array
+        (
+            [line] => 22
+            [file] => models/Vote.php
+            [message] => Method tableName has no parent to inherit from in app\models\Vote.
+        )
+
+    [53] => Array
+        (
+            [line] => 30
+            [file] => models/Vote.php
+            [message] => Method rules has no parent to inherit from in app\models\Vote.
+        )
+
+    [54] => Array
+        (
+            [line] => 44
+            [file] => models/Vote.php
+            [message] => Method attributeLabels has no parent to inherit from in app\models\Vote.
+        )
+
+)

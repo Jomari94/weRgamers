@@ -38,6 +38,7 @@ $config = [
                 'sender' => ['wearegamers@firemail.cc' => "We 'r' Gamers"]
             ],
         ],
+        'rbac' => 'dektrium\rbac\RbacWebModule',
         'gridview' =>  [
             'class' => '\kartik\grid\Module'
             // 'downloadAction' => 'gridview/export/download',

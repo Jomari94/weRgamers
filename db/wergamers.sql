@@ -12,6 +12,12 @@ alter table profile
     add column gender varchar(255),
     add column language varchar(5);
 
+-- Hacer migración de yii2-rbac antes de inyectar este sql
+alter table auth_role
+    alter column data type text;
+alter table auth_item
+    alter column data type text;
+
 drop table if exists games cascade;
 
 create table games

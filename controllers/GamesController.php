@@ -140,7 +140,10 @@ class GamesController extends Controller
         $model->id_game =$datos['id_game'];
         $model->id_platform = $datos['id_platform'];
         if ($model->save()) {
-            Yii::$app->session->setFlash('anadido', "The game {$model->game->game->name} ({$model->game->platform->name}) has been added");
+            Yii::$app->session->setFlash('anadido', Yii::t('app', 'The game {game} ({platform}) has been added', [
+                'game' => $model->game->game->name,
+                'platform' => $model->game->platform->name
+            ]));
             return true;
         }
         return true;
@@ -159,7 +162,10 @@ class GamesController extends Controller
         $id_platform = $datos['id_platform'];
         $model = Collection::findOne(['id_user' => $id_user, 'id_game' => $id_game, 'id_platform' => $id_platform]);
         if ($model->delete() != false) {
-            Yii::$app->session->setFlash('eliminado', "The game {$model->game->game->name} ({$model->game->platform->name}) has been deleted");
+            Yii::$app->session->setFlash('eliminado', Yii::t('app', 'The game {game} ({platform}) has been deleted', [
+                'game' => $model->game->game->name,
+                'platform' => $model->game->platform->name
+            ]));
             return true;
         }
         return false;

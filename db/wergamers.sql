@@ -9,7 +9,8 @@ create table session
 
 -- Hacer migración de yii2-user antes de inyectar este sql
 alter table profile
-    add column gender varchar(255);
+    add column gender varchar(255),
+    add column language varchar(5);
 
 drop table if exists games cascade;
 

@@ -43,19 +43,19 @@ FontAsset::register($this);
                 'url' => ['/game/index'],
                 'items' => [
                     [
-                       'label' => 'Games',
+                       'label' => Yii::t('app', 'Games'),
                        'url' => ['/games/index'],
                     ],
                     [
-                       'label' => 'Users',
+                       'label' => Yii::t('app', 'Users'),
                        'url' => ['/user/admin/index']
                     ],
                 ],
                 'visible' => !Yii::$app->user->isGuest && Yii::$app->user->identity->isAdmin
             ],
-            ['label' => 'Groups', 'url' => ['/groups/index']],
+            ['label' => Yii::t('app', 'Groups'), 'url' => ['/groups/index']],
             Yii::$app->user->isGuest ?
-            ['label' => 'Sign in', 'url' => ['/user/security/login']]:
+            ['label' => Yii::t('app', 'Sign in'), 'url' => ['/user/security/login']]:
             [
                 'label' => (Yii::$app->user->identity->username . ' ' .
                 Html::img(Yii::$app->user->identity->profile->getAvatar(), ['class' => 'img-rounded img32'])),
@@ -63,22 +63,22 @@ FontAsset::register($this);
                 'encode' => false,
                 'items' => [
                     [
-                       'label' => 'My Profile',
+                       'label' => Yii::t('app', 'My Profile'),
                        'url' => ['/user/' . Yii::$app->user->id],
                     ],
                     [
-                       'label' => 'Configuration',
+                       'label' => Yii::t('app', 'Configuration'),
                        'url' => ['/user/settings/profile']
                     ],
                     '<li class="divider"></li>',
                     [
-                       'label' => 'Logout',
+                       'label' => Yii::t('app', 'Logout'),
                        'url' => ['/user/security/logout'],
                        'linkOptions' => ['data-method' => 'post'],
                     ],
                 ],
             ],
-            ['label' => 'Sign Up', 'url' => ['/user/register'], 'linkOptions' => ['class' =>'blanco'],'visible' => Yii::$app->user->isGuest],
+            ['label' => Yii::t('app', 'Sign up'), 'url' => ['/user/register'], 'linkOptions' => ['class' =>'blanco'],'visible' => Yii::$app->user->isGuest],
         ],
     ]);
     NavBar::end();
@@ -95,8 +95,16 @@ FontAsset::register($this);
 <footer class="footer">
     <div class="container">
         <p class="pull-left">&copy; <?=Yii::$app->name . ' ' . date('Y') ?></p>
-
-        <p class="pull-right"><?= Yii::powered() ?></p>
+        <div class="pull-right">
+            <?= Html::beginForm('/site/language') ?>
+            <div class="col-xs-8">
+                <?= Html::dropDownList('language', Yii::$app->language, ['en-US' => 'English', 'es-ES' => 'Spanish'], ['class' => 'form-control']) ?>
+            </div>
+            <div class="col-xs-4">
+                <?= Html::submitButton('Change', ['class' => 'btn btn-default']) ?>
+            </div>
+            <?= Html::endForm() ?>
+        </div>
     </div>
 </footer>
 

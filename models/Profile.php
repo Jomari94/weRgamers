@@ -5,7 +5,6 @@ namespace app\models;
 use Yii;
 use dektrium\user\models\Profile as BaseProfile;
 use yii\helpers\FileHelper;
-use phpDocumentor\Reflection\Types\String_;
 
 class Profile extends BaseProfile
 {
@@ -26,6 +25,7 @@ class Profile extends BaseProfile
             'locationLength'       => ['location', 'string', 'max' => 255],
             'websiteLength'        => ['website', 'string', 'max' => 255],
             'gender'               => ['gender', 'string', 'max' => 255],
+            'language'             => ['language', 'string', 'max' => 5],
         ];
     }
 
@@ -35,14 +35,15 @@ class Profile extends BaseProfile
     public function attributeLabels()
     {
         return [
-            'name'           => \Yii::t('user', 'Your name'),
+            'name'           => \Yii::t('app', 'Your name'),
             'public_email'   => \Yii::t('user', 'Email (public)'),
             'gravatar_email' => \Yii::t('user', 'Gravatar email'),
             'location'       => \Yii::t('user', 'Location'),
             'website'        => \Yii::t('user', 'Website'),
             'bio'            => \Yii::t('user', 'Bio'),
-            'timezone'       => \Yii::t('user', 'Time zone'),
-            'gender'         => \Yii::t('user', 'Gender'),
+            'timezone'       => \Yii::t('app', 'Time zone'),
+            'gender'         => \Yii::t('app', 'Gender'),
+            'language'       => \Yii::t('user', 'Language'),
         ];
     }
 

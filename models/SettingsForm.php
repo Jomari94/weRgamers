@@ -55,7 +55,7 @@ class SettingsForm extends BaseSettingsForm
             'email'            => Yii::t('user', 'Email'),
             'username'         => Yii::t('user', 'Username'),
             'new_password'     => Yii::t('user', 'New password'),
-            'repeat_password'     => Yii::t('user', 'Repeat password'),
+            'repeat_password'     => Yii::t('app', 'Repeat password'),
             'current_password' => Yii::t('user', 'Current password'),
         ];
     }

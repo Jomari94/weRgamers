@@ -11,8 +11,6 @@
 
 use yii\helpers\Html;
 use yii\widgets\Menu;
-use yii\widgets\ActiveForm;
-use kartik\file\FileInput;
 
 /**
  * @var dektrium\user\models\User $user
@@ -38,7 +36,7 @@ $networksVisible = count(Yii::$app->authClientCollection->clients) > 0;
             'items' => [
                 ['label' => Yii::t('user', 'Profile'), 'url' => ['/user/settings/profile']],
                 ['label' => Yii::t('user', 'Account'), 'url' => ['/user/settings/account']],
-                ['label' => Yii::t('user', 'Collection'), 'url' => ['/user/settings/collection']],
+                ['label' => Yii::t('app', 'Collection'), 'url' => ['/user/settings/collection']],
                 [
                     'label' => Yii::t('user', 'Networks'),
                     'url' => ['/user/settings/networks'],

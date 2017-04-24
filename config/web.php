@@ -6,7 +6,13 @@ $config = [
     'id' => 'basic',
     'name' => "We 'r' Gamers",
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => [
+        'log',
+        [
+            'class' => 'app\components\LanguageSelector',
+            'supportedLanguages' => ['en_US', 'es_ES'],
+        ],
+    ],
     'aliases' => [
         '@avatars' => 'avatars',
         '@covers' => 'covers'
@@ -29,7 +35,7 @@ $config = [
             'cost' => 12,
             'admins' => ['Jomari'],
             'mailer' => [
-                'sender' => ['no-reply@myhost.com' => "We 'r' Gamers"]
+                'sender' => ['wearegamers@firemail.cc' => "We 'r' Gamers"]
             ],
         ],
         'gridview' =>  [
@@ -68,8 +74,8 @@ $config = [
             'useFileTransport' => false,
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
-                'host' => 'smtp.gmail.com',
-                'username' => 'proyectowergamers@gmail.com',
+                'host' => 'mail.cock.li',
+                'username' => 'wearegamers@firemail.cc',
                 'password' => getenv('SMTP_PASS'),
                 'port' => '587',
                 'encryption' => 'tls',
@@ -104,6 +110,18 @@ $config = [
         'session' => [
             'class' => 'yii\web\DbSession',
         ],
+        'i18n' => [
+        'translations' => [
+            'app*' => [
+                'class' => 'yii\i18n\PhpMessageSource',
+                //'basePath' => '@app/messages',
+                //'sourceLanguage' => 'en-US',
+                'fileMap' => [
+                    'app' => 'app.php',
+                ],
+            ],
+        ],
+    ],
     ],
     'params' => $params,
 ];

@@ -62,11 +62,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attributes' => [
                     'name',
                     [
-                        'label' => 'Game',
+                        'label' => Yii::t('app', 'Game'),
                         'attribute' => 'game.game.name',
                     ],
                     [
-                        'label' => 'Platform',
+                        'label' => Yii::t('app', 'Platform'),
                         'attribute' => 'game.platform.name',
                     ],
                 ],

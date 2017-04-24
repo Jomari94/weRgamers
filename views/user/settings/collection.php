@@ -22,7 +22,7 @@ use yii\helpers\ArrayHelper;
  * @var dektrium\user\models\SettingsForm $model
  */
 
-$this->title = Yii::t('user', 'Game collection');
+$this->title = Yii::t('app', 'Game collection');
 $this->params['breadcrumbs'][] = $this->title;
 $add = Url::to(['/games/addgame']);
 $drop = Url::to(['/games/dropgame']);

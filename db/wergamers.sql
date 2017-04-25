@@ -112,3 +112,17 @@ create table members
     accepted boolean not null,
     constraint pk_members primary key (id_group, id_user)
 );
+
+drop table if exists messages cascade;
+
+create table messages
+(
+    id_sender   bigint not null constraint fk_messages_user_sender
+                    references public.user(id)
+                    on delete cascade on update cascade,
+    id_receiver bigint not null constraint fk_members_user_receiver
+                    references public.user(id)
+                    on delete cascade on update cascade,
+    content     text,
+    seen        boolean default false
+);

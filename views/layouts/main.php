@@ -32,7 +32,7 @@ FontAsset::register($this);
         'brandLabel' => Yii::$app->name,
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
+            'class' => 'navbar navbar-fixed-top',
         ],
     ]);
     echo Nav::widget([
@@ -107,7 +107,9 @@ FontAsset::register($this);
         </div>
     </div>
 </footer>
+<div class="post-footer">
 
+</div>
 <?php $this->endBody() ?>
 </body>
 </html>

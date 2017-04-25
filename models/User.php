@@ -22,4 +22,20 @@ class User extends BaseUser
         $vote = Vote::findOne(['id_voter' => $this->id, 'id_voted' => $id]);
         return $vote !== null;
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSended()
+    {
+        return $this->hasMany(Message::className(), ['id_sender' => 'id'])->inverseOf('sender');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getReceived()
+    {
+        return $this->hasMany(Message::className(), ['id_receiver' => 'id'])->inverseOf('receiver');
+    }
 }

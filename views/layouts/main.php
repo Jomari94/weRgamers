@@ -4,6 +4,7 @@
 /* @var $content string */
 
 use app\assets\FontAsset;
+use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
@@ -12,6 +13,13 @@ use app\assets\AppAsset;
 
 AppAsset::register($this);
 FontAsset::register($this);
+$url = Url::to(['/conversations/index']);
+$js = <<<EOT
+$('.navbar-nav.navbar-right.nav li:first-of-type a').on('click', function () {
+    var ventana = open("$url", "ventana", "width=800,height=800,toolbar=0");
+});
+EOT;
+$this->registerJs($js);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -38,21 +46,7 @@ FontAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            [
-                'label' => Yii::t('app', 'Management'),
-                'url' => ['/game/index'],
-                'items' => [
-                    [
-                       'label' => Yii::t('app', 'Games'),
-                       'url' => ['/games/index'],
-                    ],
-                    [
-                       'label' => Yii::t('app', 'Users'),
-                       'url' => ['/user/admin/index']
-                    ],
-                ],
-                'visible' => !Yii::$app->user->isGuest && Yii::$app->user->identity->isAdmin
-            ],
+            ['label' => Yii::t('app', 'Messages')],
             ['label' => Yii::t('app', 'Groups'), 'url' => ['/groups/index']],
             Yii::$app->user->isGuest ?
             ['label' => Yii::t('app', 'Sign in'), 'url' => ['/user/security/login']]:
@@ -79,6 +73,21 @@ FontAsset::register($this);
                 ],
             ],
             ['label' => Yii::t('app', 'Sign up'), 'url' => ['/user/register'], 'linkOptions' => ['class' =>'blanco'],'visible' => Yii::$app->user->isGuest],
+            [
+                'label' => Yii::t('app', 'Management'),
+                'url' => ['/game/index'],
+                'items' => [
+                    [
+                       'label' => Yii::t('app', 'Games'),
+                       'url' => ['/games/index'],
+                    ],
+                    [
+                       'label' => Yii::t('app', 'Users'),
+                       'url' => ['/user/admin/index']
+                    ],
+                ],
+                'visible' => !Yii::$app->user->isGuest && Yii::$app->user->identity->isAdmin
+            ],
         ],
     ]);
     NavBar::end();

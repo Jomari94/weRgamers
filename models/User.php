@@ -34,8 +34,16 @@ class User extends BaseUser
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getReceived()
+    public function getConversations1()
     {
-        return $this->hasMany(Message::className(), ['id_receiver' => 'id'])->inverseOf('receiver');
+        return $this->hasMany(Conversation::className(), ['id_participant1' => 'id'])->inverseOf('participant1');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getConversations2()
+    {
+        return $this->hasMany(Conversation::className(), ['id_participant2' => 'id'])->inverseOf('participant2');
     }
 }

@@ -117,12 +117,27 @@ drop table if exists messages cascade;
 
 create table messages
 (
+    id          bigserial constraint pk_messages primary key,
     id_sender   bigint not null constraint fk_messages_user_sender
                     references public.user(id)
                     on delete cascade on update cascade,
-    id_receiver bigint not null constraint fk_members_user_receiver
+    content     text,
+    seen        boolean default false,
+    created     timestamptz default current_timestamp,
+    id_conversation bigint not null constraint fk_messages_conversation
+                    references conversations(id)
+                    on delete cascade on update cascade
+);
+
+drop table if exists conversations cascade;
+
+create table conversations
+(
+    id bigserial constraint pk_conversations primary key,
+    id_participant1 bigint not null constraint fk_conversations_user_participant1
                     references public.user(id)
                     on delete cascade on update cascade,
-    content     text,
-    seen        boolean default false
+    id_participant2 bigint not null constraint fk_conversations_user_participant2
+                    references public.user(id)
+                    on delete cascade on update cascade
 );

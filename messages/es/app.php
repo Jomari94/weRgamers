@@ -70,4 +70,13 @@ return [
     'Game collection' => 'Colección de juegos',
     'The game {game} ({platform}) has been added' => 'Se ha añadido el juego {game} ({platform})',
     'The game {game} ({platform}) has been deleted'  => 'Se ha eliminado el juego {game} ({platform})',
+    'Messages' => 'Mensajes',
+    'New message' => 'Nuevo mensaje',
+    'New Message' => 'Nuevo Mensaje',
+    'Find user' => 'Buscar usuario',
+    'Send message' => 'Enviar mensaje',
+    'Send' => 'Enviar',
+    'Show old messages' => 'Mostrar mensajes antiguos',
+    'No messages left' => 'No hay más mensajes',
+    'Content' => 'Contenido'
 ];

@@ -46,10 +46,12 @@ class GamesController extends Controller
     {
         $searchGame = new GameSearch();
         $dataProviderGame = $searchGame->search(Yii::$app->request->queryParams);
-        // $searchGame = new GamePlatformSearch();
-        // $dataProviderGame = $searchGame->search(Yii::$app->request->queryParams);
+        $dataProviderGame->pagination->pageParam = 'pageG';
+        $dataProviderGame->sort->sortParam = 'sortG';
         $searchPlatform = new PlatformSearch();
         $dataProviderPlatform = $searchPlatform->search(Yii::$app->request->queryParams);
+        $dataProviderPlatform->pagination->pageParam = 'pageP';
+        $dataProviderPlatform->sort->sortParam = 'sortP';
 
         return $this->render('index', [
             'searchGame' => $searchGame,

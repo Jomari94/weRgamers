@@ -9,6 +9,8 @@ use app\models\GameSearch;
 use app\models\GamePlatform;
 use app\models\PlatformSearch;
 use app\models\Collection;
+use dektrium\user\filters\AccessRule;
+use yii\filters\AccessControl;
 use yii\helpers\Json;
 use yii\helpers\ArrayHelper;
 use yii\web\Controller;
@@ -30,9 +32,27 @@ class GamesController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['POST'],
                     'addGame' => ['POST'],
                     'dropGame' => ['POST'],
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'ruleConfig' => [
+                    'class' => AccessRule::className(),
+                ],
+                'only' => ['index', 'create', 'update', 'addGame', 'dropGame'],
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['index', 'create', 'update'],
+                        'roles' => ['admin'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['addGame', 'dropGame'],
+                        'roles' => ['@'],
+                    ],
                 ],
             ],
         ];

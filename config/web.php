@@ -23,6 +23,13 @@ $config = [
             'controllerMap' => [
                 'settings' => 'app\controllers\user\SettingsController',
                 'profile' => 'app\controllers\user\ProfileController',
+                'registration' => [
+                    'class' => \dektrium\user\controllers\RegistrationController::className(),
+                    'on ' . \dektrium\user\controllers\RegistrationController::EVENT_AFTER_REGISTER => function ($e) {
+                        Yii::$app->response->redirect(array('/user/security/login'))->send();
+                        Yii::$app->end();
+                    }
+                ],
             ],
             'modelMap' => [
                 'Profile' => 'app\models\Profile',
@@ -112,17 +119,17 @@ $config = [
             'class' => 'yii\web\DbSession',
         ],
         'i18n' => [
-        'translations' => [
-            'app*' => [
-                'class' => 'yii\i18n\PhpMessageSource',
-                //'basePath' => '@app/messages',
-                //'sourceLanguage' => 'en-US',
-                'fileMap' => [
-                    'app' => 'app.php',
+            'translations' => [
+                'app*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    //'basePath' => '@app/messages',
+                    //'sourceLanguage' => 'en-US',
+                    'fileMap' => [
+                        'app' => 'app.php',
+                    ],
                 ],
             ],
         ],
-    ],
     ],
     'params' => $params,
 ];

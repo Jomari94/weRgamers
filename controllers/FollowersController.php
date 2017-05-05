@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Follower;
+use dektrium\user\filters\AccessRule;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 
@@ -14,6 +15,9 @@ class FollowersController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
+                'ruleConfig' => [
+                    'class' => AccessRule::className(),
+                ],
                 'rules' => [
                     [
                         'allow' => true,

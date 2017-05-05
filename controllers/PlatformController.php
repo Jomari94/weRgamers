@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\Platform;
 use app\models\PlatformSearch;
+use dektrium\user\filters\AccessRule;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -24,6 +25,19 @@ class PlatformController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                ],
+            ],
+            'access' => [
+                'class' => \yii\filters\AccessControl::className(),
+                'ruleConfig' => [
+                    'class' => AccessRule::className(),
+                ],
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['index', 'create', 'update'],
+                        'roles' => ['admin'],
+                    ],
                 ],
             ],
         ];

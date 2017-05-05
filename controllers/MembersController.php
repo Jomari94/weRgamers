@@ -5,11 +5,51 @@ namespace app\controllers;
 use Yii;
 use app\models\Member;
 use app\models\Group;
+use dektrium\user\filters\AccessRule;
 use yii\data\ActiveDataProvider;
+use yii\filters\VerbFilter;
 use yii\web\NotFoundHttpException;
 
 class MembersController extends \yii\web\Controller
 {
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'leave' => ['POST'],
+                ],
+            ],
+            'access' => [
+            'class' => \yii\filters\AccessControl::className(),
+            'ruleConfig' => [
+                'class' => AccessRule::className(),
+            ],
+            'rules' => [
+                [
+                    'allow' => true,
+                    'actions' => ['join'],
+                    'roles' => ['@'],
+                ],
+                [
+                    'allow' => true,
+                    'actions' => ['leave'],
+                    'roles' => ['leaveGroup'],
+                ],
+                [
+                    'allow' => true,
+                    'actions' => ['requests', 'confirm', 'reject'],
+                    'roles' => ['manageRequests'],
+                ],
+            ],
+        ],
+        ];
+    }
+
     /**
     * Deletes an existing Member model.
     * If deletion is successful, the browser will be redirected to the 'index' page.

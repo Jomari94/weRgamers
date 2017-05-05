@@ -115,6 +115,7 @@ create table members
     id_user bigint not null constraint fk_members_user
                     references public.user(id)
                     on delete cascade on update cascade,
-    accepted boolean not null,
+    accepted boolean not null default false,
+    admin boolean not null default false,
     constraint pk_members primary key (id_group, id_user)
 );

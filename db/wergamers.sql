@@ -12,6 +12,12 @@ alter table profile
     add column gender varchar(255),
     add column language varchar(5);
 
+-- Hacer migración de yii2-rbac antes de inyectar este sql
+alter table auth_role
+    alter column data type text;
+alter table auth_item
+    alter column data type text;
+
 drop table if exists games cascade;
 
 create table games
@@ -109,7 +115,8 @@ create table members
     id_user bigint not null constraint fk_members_user
                     references public.user(id)
                     on delete cascade on update cascade,
-    accepted boolean not null,
+    accepted boolean not null default false,
+    admin boolean not null default false,
     constraint pk_members primary key (id_group, id_user)
 );
 

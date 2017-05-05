@@ -6,6 +6,7 @@ use Yii;
 use app\models\Group;
 use app\models\Member;
 use app\models\GroupSearch;
+use dektrium\user\filters\AccessRule;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -24,9 +25,22 @@ class GroupsController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['POST'],
                 ],
             ],
+            'access' => [
+            'class' => \yii\filters\AccessControl::className(),
+            'ruleConfig' => [
+                'class' => AccessRule::className(),
+            ],
+            'only' => ['create'],
+            'rules' => [
+                [
+                    'allow' => true,
+                    'actions' => ['create'],
+                    'roles' => ['@'],
+                ],
+            ],
+        ],
         ];
     }
 
@@ -72,6 +86,7 @@ class GroupsController extends Controller
             $admin->id_group = $model->id;
             $admin->id_user = Yii::$app->user->id;
             $admin->accepted = true;
+            $admin->admin = true;
             $admin->save();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {

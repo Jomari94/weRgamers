@@ -50,7 +50,7 @@ return [
     'Type' => 'Tipo',
     'Update' => 'Actualizar',
     'Update {modelClass}: ' => 'Actualizar {modelClass}:',
-    'Your request is pending of being valued' => 'TU solicitud está pendiente de ser valorada',
+    'Your request is pending of being valued' => 'Tu solicitud está pendiente de ser valorada',
     'update' => 'actualizar',
     'My Profile' => 'Mi Perfil',
     'Configuration' => 'Configuración',

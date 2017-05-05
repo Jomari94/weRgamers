@@ -9,6 +9,7 @@ use app\models\Conversation;
 use yii\data\ActiveDataProvider;
 use yii\helpers\Json;
 use yii\helpers\ArrayHelper;
+use yii\web\NotFoundHttpException;
 
 class ConversationsController extends \yii\web\Controller
 {
@@ -35,11 +36,12 @@ class ConversationsController extends \yii\web\Controller
         $this->layout = 'message';
         $model = new Conversation();
 
-        if ($model->load(Yii::$app->request->post())) {
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $conversation = Conversation::find()
             ->where(['id_participant1' => Yii::$app->user->id, 'id_participant2' => $model->id_participant2])
             ->orWhere(['id_participant2' => Yii::$app->user->id, 'id_participant1' => $model->id_participant2])->one();
             if ($conversation == null) {
+                $model->id_participant2 = User::find()->select('id')->where(['like', 'username', $model->username])->scalar();
                 $model->save();
                 $model->refresh();
                 return $this->redirect(['view', 'id' => $model->id]);
@@ -57,6 +59,7 @@ class ConversationsController extends \yii\web\Controller
     {
         $this->layout = 'message';
         $message = new Message;
+        $model = $this->findModel($id);
         $dataProvider = new ActiveDataProvider([
             'query' => Message::find()->where(['id_conversation' => $id])->orderBy('created DESC'),
             'pagination' => ['pageSize' => 20],
@@ -70,6 +73,7 @@ class ConversationsController extends \yii\web\Controller
         return $this->render('view', [
             'dataProvider' => $dataProvider,
             'message' => $message,
+            'receiver' => $model->receiver,
             'id' => $id,
         ]);
     }
@@ -79,15 +83,14 @@ class ConversationsController extends \yii\web\Controller
      * @param  string $q Nombre del juego a buscar
      * @return array Nombres de los juegos encontrados
      */
-    public function actionSearchUsers($q = null)
+    public function actionSearchUsers($name = null)
     {
         $users = [];
-        if ($q != null || $q != '') {
+        if ($name != null || $name != '') {
             $users = User::find()
-            ->select(['id', 'username'])
-            ->where(['ilike', 'username', "$q"])
-            ->all();
-            $users = ArrayHelper::map($users, 'username', 'id');
+            ->select(['username'])
+            ->where(['ilike', 'username', "$name"])
+            ->column();
         }
         return Json::encode($users);
     }
@@ -104,7 +107,7 @@ class ConversationsController extends \yii\web\Controller
         if (($model = Conversation::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new yii\web\NotFoundHttpException('The requested page does not exist.');
+            throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
 }

@@ -78,5 +78,8 @@ return [
     'Send' => 'Enviar',
     'Show old messages' => 'Mostrar mensajes antiguos',
     'No messages left' => 'No hay más mensajes',
-    'Content' => 'Contenido'
+    'Content' => 'Contenido',
+    "The username doesn't exist, make sure you type it properly" => 'El nombre de usuario no existe, asegúrate de escribirlo correctamente',
+    'Username' => 'Nombre del usuario',
+    'Back to conversations' => 'Volver a conversaciones'
 ];

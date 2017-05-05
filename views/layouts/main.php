@@ -16,7 +16,7 @@ FontAsset::register($this);
 $url = Url::to(['/conversations/index']);
 $js = <<<EOT
 $('.navbar-nav.navbar-right.nav li:first-of-type a').on('click', function () {
-    var ventana = open("$url", "ventana", "width=800,height=800,toolbar=0");
+    var ventana = open("$url", "ventana", "width=600,height=640,toolbar=0,titlebar=0");
 });
 EOT;
 $this->registerJs($js);
@@ -40,7 +40,7 @@ $this->registerJs($js);
         'brandLabel' => Yii::$app->name,
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar navbar-fixed-top',
+            'class' => 'navbar navbar-default navbar-fixed-top',
         ],
     ]);
     echo Nav::widget([
@@ -116,9 +116,6 @@ $this->registerJs($js);
         </div>
     </div>
 </footer>
-<div class="post-footer">
-
-</div>
 <?php $this->endBody() ?>
 </body>
 </html>

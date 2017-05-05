@@ -19,7 +19,7 @@ $this->title = Yii::t('app', 'Conversations');
     </p>
     <?= ListView::widget([
         'dataProvider' => $dataProvider,
-        'itemOptions' => ['class' => 'item'],
+        'itemOptions' => ['class' => 'conversation-item'],
         'layout' => "{items}\n{pager}",
         'itemView' => '_view.php',
     ]) ?>

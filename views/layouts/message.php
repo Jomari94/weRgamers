@@ -31,22 +31,13 @@ $this->registerJs($js);
 <?php $this->beginBody() ?>
 
 <div class="wrap">
-    <?php
-    NavBar::begin([
-        'brandLabel' => Yii::t('app', 'Messages'),
-        'brandUrl' => ['conversations/index'],
-        'options' => [
-            'class' => 'navbar navbar-fixed-top navbar-message',
-        ],
-    ]);
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => [
-            ['label' => Yii::t('app', 'New Message'), 'url' => ['/conversations/create']],
-        ],
-    ]);
-    NavBar::end();
-    ?>
+    <nav id="w1" class="navbar navbar-fixed-top navbar-default" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/conversations/index">Mensajes</a></div><div id="w1-collapse" class="collapse navbar-collapse">
+            </div>
+        </div>
+    </nav>
 
     <div class="container">
         <?= Breadcrumbs::widget([

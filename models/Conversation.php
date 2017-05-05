@@ -33,10 +33,17 @@ class Conversation extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_participant2'], 'required'],
+            [['username'], 'required'],
             [['id_participant1', 'id_participant2'], 'integer'],
             [['id_participant1'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['id_participant1' => 'id']],
             [['id_participant2'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['id_participant2' => 'id']],
+            [['username'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => User::className(),
+                'targetAttribute' => ['username' => 'username'],
+                'message' => Yii::t('app', "The username doesn't exist, make sure you type it properly"),
+            ],
         ];
     }
 
@@ -49,6 +56,7 @@ class Conversation extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'id_participant1' => Yii::t('app', 'Id Participant1'),
             'id_participant2' => Yii::t('app', 'Id Participant2'),
+            'username' => Yii::t('app', 'Username'),
         ];
     }
 
@@ -65,7 +73,7 @@ class Conversation extends \yii\db\ActiveRecord
     public static function vacias()
     {
         $ids = Message::find()->select('id_conversation')->column();
-        $conversations = Self::find()->where(['not in', 'id', $ids])->all();
+        $conversations = self::find()->where(['not in', 'id', $ids])->all();
         foreach ($conversations as $conversation) {
             $conversation->delete();
         }

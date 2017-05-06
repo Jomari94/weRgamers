@@ -49,7 +49,8 @@ $templateMessage = '{label}<div class="input-group">{input}
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($message, 'content', ['template' => $templateMessage])->textInput()->label(false) ?>
+    <?= $form->field($message, 'content', ['template' => $templateMessage, 'inputOptions' => [
+        'autocomplete' => 'off', 'class' => 'form-control']])->textInput()->label(false) ?>
 
     <?php ActiveForm::end(); ?>
 

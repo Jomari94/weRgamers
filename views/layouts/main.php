@@ -15,7 +15,7 @@ AppAsset::register($this);
 FontAsset::register($this);
 $url = Url::to(['/conversations/index']);
 $js = <<<EOT
-$('.navbar-nav.navbar-right.nav li:first-of-type a').on('click', function () {
+$('#messages-link').on('click', function () {
     var ventana = open("$url", "ventana", "width=600,height=640,toolbar=0,titlebar=0");
 });
 EOT;
@@ -46,7 +46,11 @@ $this->registerJs($js);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => Yii::t('app', 'Messages')],
+            [
+                'label' => Yii::t('app', 'Messages'),
+                'linkOptions' => ['id' => 'messages-link'],
+                'visible' => !Yii::$app->user->isGuest,
+            ],
             ['label' => Yii::t('app', 'Groups'), 'url' => ['/groups/index']],
             Yii::$app->user->isGuest ?
             ['label' => Yii::t('app', 'Sign in'), 'url' => ['/user/security/login']]:

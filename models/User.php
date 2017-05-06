@@ -3,8 +3,8 @@
 namespace app\models;
 
 use Yii;
-use app\model\Message;
-use app\model\Conversation;
+use app\models\Message;
+use app\models\Conversation;
 use dektrium\user\models\User as BaseUser;
 use dektrium\rbac\models\Assignment;
 

@@ -25,6 +25,7 @@ class GroupsController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
+                    'delete' => ['POST'],
                 ],
             ],
             'access' => [
@@ -32,13 +33,18 @@ class GroupsController extends Controller
             'ruleConfig' => [
                 'class' => AccessRule::className(),
             ],
-            'only' => ['create'],
+            'only' => ['create', 'delete'],
             'rules' => [
                 [
                     'allow' => true,
                     'actions' => ['create'],
                     'roles' => ['@'],
                 ],
+                [
+                    'allow' => true,
+                    'actions' => ['delete'],
+                    'roles' => ['admin'],
+                ]
             ],
         ],
         ];
@@ -94,6 +100,23 @@ class GroupsController extends Controller
                 'model' => $model,
             ]);
         }
+    }
+
+    /**
+     * Deletes an existing Group model.
+     * If deletion is successful, the browser will be redirected to the 'index' page.
+     * @param int $id
+     * @return mixed
+     */
+    public function actionDelete($id)
+    {
+        $members = Member::find()->where(['id_group' => $id])->all();
+        foreach ($members as $member) {
+            $member->delete();
+        }
+        $this->findModel($id)->delete();
+
+        return $this->redirect(['index']);
     }
 
     /**

@@ -33,13 +33,22 @@ $this->params['breadcrumbs'][] = $this->title;
                     'confirm' => Yii::t('app', 'Are you sure you want to leave this group?'),
                     'method' => 'post',
                 ],
-                ]) ?>
+            ]) ?>
             <?= Html::a(Yii::t('app', 'Requests'), ['members/requests', 'id_group' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?php } elseif ($model->isPending(Yii::$app->user->id)) { ?>
             <p class="alert alert-success"><?= Yii::t('app', 'Your request is pending of being valued') ?></p>
         <?php } else { ?>
             <?= Html::a(Yii::t('app', 'Join'), ['members/join', 'id_group' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?php } ?>
+        <?php if (Yii::$app->user->identity->isAdmin): ?>
+            <?= Html::a(Yii::t('app', 'Delete group'), ['groups/delete', 'id' => $model->id], [
+                'class' => 'btn btn-danger',
+                'data' => [
+                    'confirm' => Yii::t('app', 'Are you sure you want to delete this group?'),
+                    'method' => 'post',
+                ],
+            ]) ?>
+        <?php endif; ?>
     </p>
     <div class="row">
         <div class="col-xs-12 col-sm-4">

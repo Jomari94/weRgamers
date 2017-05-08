@@ -81,5 +81,7 @@ return [
     'Content' => 'Contenido',
     "The username doesn't exist, make sure you type it properly" => 'El nombre de usuario no existe, asegúrate de escribirlo correctamente',
     'Username' => 'Nombre del usuario',
-    'Back to conversations' => 'Volver a conversaciones'
+    'Back to conversations' => 'Volver a conversaciones',
+    'Administrator' => 'Administrador',
+    'Member' => 'Miembro',
 ];

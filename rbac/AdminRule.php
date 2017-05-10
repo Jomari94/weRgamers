@@ -24,6 +24,9 @@ class AdminRule extends Rule
         if (isset(Yii::$app->request->queryParams['id_group']) &&
             (Yii::$app->request->pathInfo == 'members/confirm'
             || Yii::$app->request->pathInfo == 'members/reject'
+            || Yii::$app->request->pathInfo == 'members/ban'
+            || Yii::$app->request->pathInfo == 'members/promote'
+            || Yii::$app->request->pathInfo == 'members/index'
             || Yii::$app->request->pathInfo == 'members/requests')) {
             $group = Yii::$app->request->queryParams['id_group'];
             $admin = Member::find()->where(['and', ['id_group' => $group], ['id_user' => Yii::$app->user->id], ['admin' => true]])->one();

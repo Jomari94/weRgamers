@@ -10,7 +10,7 @@ use kartik\grid\GridView;
 $this->title = Yii::t('app', 'Pending requests');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="member-index">
+<div class="members-requests">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?= GridView::widget([

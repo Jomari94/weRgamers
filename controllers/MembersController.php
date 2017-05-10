@@ -22,6 +22,7 @@ class MembersController extends \yii\web\Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'leave' => ['POST'],
+                    'ban' => ['POST'],
                 ],
             ],
             'access' => [
@@ -42,7 +43,7 @@ class MembersController extends \yii\web\Controller
                 ],
                 [
                     'allow' => true,
-                    'actions' => ['requests', 'confirm', 'reject'],
+                    'actions' => ['requests', 'confirm', 'reject', 'index', 'ban', 'promote'],
                     'roles' => ['manageRequests'],
                 ],
             ],
@@ -92,14 +93,24 @@ class MembersController extends \yii\web\Controller
      * @param  int $id_group Id del grupo]
      * @return mixed
      */
-    public function actionRequests($id_group)
+    public function actionIndex($id_group)
     {
-        $dataProvider = new ActiveDataProvider([
+        $requestProvider = new ActiveDataProvider([
             'query' => Member::find()->where(['accepted' => false, 'id_group' => $id_group])
         ]);
+        $requestProvider->pagination->pageParam = 'pageR';
+        $requestProvider->sort->sortParam = 'sortR';
+        $memberProvider = new ActiveDataProvider([
+            'query' => Member::find()->where(['accepted' => true, 'id_group' => $id_group])
+        ]);
+        $memberProvider->pagination->pageParam = 'pageM';
+        $memberProvider->sort->sortParam = 'sortM';
+        $group = Group::findOne($id_group);
 
-        return $this->render('requests', [
-            'dataProvider' => $dataProvider,
+        return $this->render('index', [
+            'requestProvider' => $requestProvider,
+            'memberProvider' => $memberProvider,
+            'group' => $group,
         ]);
     }
 
@@ -132,6 +143,37 @@ class MembersController extends \yii\web\Controller
             $model->delete();
         }
         $this->redirect(['requests', 'id_group' => $id_group]);
+    }
+
+    /**
+     * Se expulsa a un miembro del grupo
+     * @param  int $id_group Id del grupo
+     * @param  int $id_user  Id del miembro
+     * @return mixed
+     */
+    public function actionBan($id_group, $id_user)
+    {
+        $model = Member::findOne(['id_group' => $id_group, 'id_user' => $id_user]);
+        if ($model !== null) {
+            $model->delete();
+        }
+        $this->redirect(['index', 'id_group' => $id_group]);
+    }
+
+    /**
+     * Se asciende a un miembro del grupo a administrador
+     * @param  int $id_group Id del grupo
+     * @param  int $id_user  Id del miembro
+     * @return mixed
+     */
+    public function actionPromote($id_group, $id_user)
+    {
+        $model = Member::findOne(['id_group' => $id_group, 'id_user' => $id_user]);
+        if ($model !== null) {
+            $model->admin = true;
+            $model->update();
+        }
+        $this->redirect(['index', 'id_group' => $id_group]);
     }
 
     /**

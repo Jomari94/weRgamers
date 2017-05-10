@@ -83,7 +83,18 @@ class Group extends \yii\db\ActiveRecord
     public function isMember($id)
     {
         $member = Member::findOne(['id_group' => $this->id, 'id_user' => $id, 'accepted' => true]);
-        return $member !== null ? true : false;
+        return $member !== null;
+    }
+
+    /**
+     * Comprueba si el usuario indicado es administrador del grupo
+     * @param  int  $id ID del usuario
+     * @return bool True si es miembro, false en caso contrario
+     */
+    public function isAdmin($id)
+    {
+        $member = Member::findOne(['id_group' => $this->id, 'id_user' => $id, 'admin' => true]);
+        return $member !== null;
     }
 
     /**
@@ -94,6 +105,6 @@ class Group extends \yii\db\ActiveRecord
     public function isPending($id)
     {
         $member = Member::findOne(['id_group' => $this->id, 'id_user' => $id, 'accepted' => false]);
-        return $member !== null ? true : false;
+        return $member !== null;
     }
 }

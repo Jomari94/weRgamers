@@ -84,4 +84,8 @@ return [
     'Back to conversations' => 'Volver a conversaciones',
     'Delete group' => 'Borrar grupo',
     'Are you sure you want to delete this group?' => '¿Estás seguro de querer borrar este grupo?',
+    'Ban member' => 'Expulsar',
+    'Promote' => 'Ascender',
+    'Are you sure you want to ban this member?' => '¿Estás seguro de querer expulsar a este miembro?',
+    'Members management' => 'Gestión de miembros',
 ];

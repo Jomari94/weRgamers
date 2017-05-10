@@ -34,13 +34,15 @@ $this->params['breadcrumbs'][] = $this->title;
                     'method' => 'post',
                 ],
             ]) ?>
-            <?= Html::a(Yii::t('app', 'Requests'), ['members/requests', 'id_group' => $model->id], ['class' => 'btn btn-primary']) ?>
+            <?php if ($model->isAdmin(Yii::$app->user->id)) { ?>
+                <?= Html::a(Yii::t('app', 'Members'), ['members/index', 'id_group' => $model->id], ['class' => 'btn btn-primary']) ?>
+            <?php } ?>
         <?php } elseif ($model->isPending(Yii::$app->user->id)) { ?>
             <p class="alert alert-success"><?= Yii::t('app', 'Your request is pending of being valued') ?></p>
         <?php } else { ?>
             <?= Html::a(Yii::t('app', 'Join'), ['members/join', 'id_group' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?php } ?>
-        <?php if (Yii::$app->user->identity->isAdmin): ?>
+        <?php if (!Yii::$app->user->isGuest && Yii::$app->user->identity->isAdmin) { ?>
             <?= Html::a(Yii::t('app', 'Delete group'), ['groups/delete', 'id' => $model->id], [
                 'class' => 'btn btn-danger',
                 'data' => [
@@ -48,18 +50,21 @@ $this->params['breadcrumbs'][] = $this->title;
                     'method' => 'post',
                 ],
             ]) ?>
-        <?php endif; ?>
+        <?php } ?>
     </p>
     <div class="row">
         <div class="col-xs-12 col-sm-4">
             <h4><?= Yii::t('app', 'Members') ?></h4>
             <?= ListView::widget([
                 'dataProvider' => $dataProvider,
-                'itemOptions' => ['class' => 'item'],
+                'itemOptions' => [
+                    'class' => 'row member-view',
+                    'tag' => 'article',
+                ],
                 'options' => [
                     'tag' => 'div',
-                    'class' => 'list-wrapper',
-                    'id' => 'list-wrapper',
+                    'class' => 'members-wrapper',
+                    'id' => 'members-wrapper',
                 ],
                 'layout' => "{items}\n{pager}",
                 'itemView' => '../members/_view',

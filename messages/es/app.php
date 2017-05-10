@@ -88,4 +88,6 @@ return [
     'Promote' => 'Ascender',
     'Are you sure you want to ban this member?' => '¿Estás seguro de querer expulsar a este miembro?',
     'Members management' => 'Gestión de miembros',
+    'Administrator' => 'Administrador',
+    'Member' => 'Miembro',
 ];

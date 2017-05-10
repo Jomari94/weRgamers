@@ -4,10 +4,15 @@
 /* @var $content string */
 
 use app\assets\FontAsset;
+use kop\y2sp\ScrollPager;
+use app\models\Notification;
+use yii\bootstrap\Modal;
+use yii\data\ActiveDataProvider;
 use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
+use yii\widgets\ListView;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
@@ -17,6 +22,9 @@ $url = Url::to(['/conversations/index']);
 $js = <<<EOT
 $('#messages-link').on('click', function () {
     var ventana = open("$url", "ventana", "width=600,height=640,toolbar=0,titlebar=0");
+});
+$('#notifications-link').on('click', function () {
+    $("#modal").modal("show");
 });
 EOT;
 $this->registerJs($js);
@@ -49,6 +57,11 @@ $this->registerJs($js);
             [
                 'label' => Yii::t('app', 'Messages'),
                 'linkOptions' => ['id' => 'messages-link'],
+                'visible' => !Yii::$app->user->isGuest,
+            ],
+            [
+                'label' => Yii::t('app', 'Notifications'),
+                'linkOptions' => ['id' => 'notifications-link'],
                 'visible' => !Yii::$app->user->isGuest,
             ],
             ['label' => Yii::t('app', 'Groups'), 'url' => ['/groups/index']],
@@ -120,6 +133,36 @@ $this->registerJs($js);
         </div>
     </div>
 </footer>
+<?php
+    $notificationsProvider = new ActiveDataProvider([
+        'query' => Notification::find()->where(['id_receiver' => Yii::$app->user->id]),
+    ]);
+    Modal::begin(['id' => 'modal',
+       'header' => Yii::t('app', 'Notifications')]);
+
+        echo ListView::widget([
+            'dataProvider' => $notificationsProvider,
+            'itemOptions' => ['class' => 'item'],
+            'options' => [
+                'tag' => 'div',
+                'class' => 'notifications-wrapper',
+                'id' => 'notifications-wrapper',
+            ],
+            'layout' => "{items}\n{pager}",
+            'itemView' => function ($model) {
+                return $model->content;
+            },
+            'pager' => [
+                'class' => ScrollPager::className(),
+                'container' => '.notifications-wrapper',
+                'triggerText' => Yii::t('app', 'Show more notifications'),
+                'noneLeftText' => '',
+                'overflowContainer' => '.modal'
+            ],
+            ]);
+
+    Modal::end();
+   ?>
 <?php $this->endBody() ?>
 </body>
 </html>

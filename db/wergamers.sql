@@ -148,3 +148,15 @@ create table conversations
                     references public.user(id)
                     on delete cascade on update cascade
 );
+
+drop table if exists notifications cascade;
+
+create table notifications
+(
+    id bigserial constraint pk_notifications primary key,
+    id_receiver bigint not null constraint fk_notifications_receiver
+                    references public.user(id)
+                    on delete cascade on update cascade,
+    content varchar(250),
+    type    varchar(5)
+);

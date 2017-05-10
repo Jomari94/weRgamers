@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\Member;
 use app\models\Group;
+use app\models\Notification;
 use dektrium\user\filters\AccessRule;
 use yii\data\ActiveDataProvider;
 use yii\filters\VerbFilter;
@@ -84,6 +85,14 @@ class MembersController extends \yii\web\Controller
 
         if (!$model->save()) {
             Yii::$app->session->setFlash('Error', Yii::t('app', 'There was a problem submitting your request'));
+        } else {
+            $group = Group::findOne($id_group)->name;
+            $admins = Member::find()->select('id_user')->where(['id_group' => $id_group, 'admin' => true])->column();
+            Notification::create('solic',
+                Yii::t('app', "There is a join request from {user} for your group {group}",
+                    ['user' => Yii::$app->user->identity->username, 'group' => $group]),
+                $admins
+            );
         }
         return $this->redirect(['/groups/view', 'id' => $id_group]);
     }
@@ -126,8 +135,13 @@ class MembersController extends \yii\web\Controller
         if ($model !== null) {
             $model->accepted = true;
             $model->update();
+            $group = Group::findOne($id_group)->name;
+            Notification::create('confi',
+                Yii::t('app', "You've been accepted in the group {group}", ['group' => $group]),
+                [$id_user]
+            );
         }
-        $this->redirect(['requests', 'id_group' => $id_group]);
+        $this->redirect(['index', 'id_group' => $id_group]);
     }
 
     /**
@@ -142,7 +156,7 @@ class MembersController extends \yii\web\Controller
         if ($model !== null) {
             $model->delete();
         }
-        $this->redirect(['requests', 'id_group' => $id_group]);
+        $this->redirect(['index', 'id_group' => $id_group]);
     }
 
     /**

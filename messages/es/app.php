@@ -90,4 +90,9 @@ return [
     'Members management' => 'Gestión de miembros',
     'Administrator' => 'Administrador',
     'Member' => 'Miembro',
+    'Notifications' => 'Notificaciones',
+    "{user} is now your follower" => "{user} es ahora tu seguidor",
+    "{user} has send you: {content}" => "{user} te ha escrito: {content}",
+    "There is a join request from {user} for your group {group}" => "Hay una solicitud de unión de {user} para tu grupo {group}",
+    "You've been accepted in the group {group}" => "Has sido aceptado en el grupo {group}",
 ];

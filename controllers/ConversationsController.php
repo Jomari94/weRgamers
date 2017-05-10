@@ -6,13 +6,17 @@ use Yii;
 use app\models\User;
 use app\models\Message;
 use app\models\Conversation;
+use app\models\Notification;
 use yii\data\ActiveDataProvider;
 use yii\helpers\Json;
-use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
 
 class ConversationsController extends \yii\web\Controller
 {
+    /**
+     * Lista las conversaciones del usuario
+     * @return mixed
+     */
     public function actionIndex()
     {
         $this->layout = 'message';
@@ -55,6 +59,11 @@ class ConversationsController extends \yii\web\Controller
         }
     }
 
+    /**
+     * Muestra los mensajes de la conversacion
+     * @param  int $id Id de la conversacion
+     * @return mixed
+     */
     public function actionView($id)
     {
         $this->layout = 'message';
@@ -68,6 +77,12 @@ class ConversationsController extends \yii\web\Controller
             $message->id_sender = Yii::$app->user->id;
             $message->id_conversation = $id;
             $message->save();
+            $receiver = Conversation::findOne($id)->receiver->id;
+            Notification::create('messg',
+                Yii::t('app', "{user} has send you: {content}",
+                    ['user' => Yii::$app->user->identity->username, 'content' => $message->content]),
+                [$receiver]
+            );
             return $this->redirect(['view', 'id' => $id]);
         }
         return $this->render('view', [
@@ -80,7 +95,7 @@ class ConversationsController extends \yii\web\Controller
 
     /**
      * Busca juegos y los devuelve
-     * @param  string $q Nombre del juego a buscar
+     * @param  string $name Nombre del juego a buscar
      * @return array Nombres de los juegos encontrados
      */
     public function actionSearchUsers($name = null)

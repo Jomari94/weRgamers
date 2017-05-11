@@ -76,6 +76,14 @@ class Group extends \yii\db\ActiveRecord
     }
 
     /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getEvents()
+    {
+        return $this->hasMany(Event::className(), ['id_group' => 'id'])->inverseOf('group');
+    }
+
+    /**
      * Comprueba si el usuario indicado es miembro aceptado del grupo
      * @param  int  $id ID del usuario
      * @return bool True si es miembro, false en caso contrario

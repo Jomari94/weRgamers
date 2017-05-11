@@ -3,9 +3,11 @@
 namespace app\controllers;
 
 use Yii;
+use app\models\Event;
 use app\models\Group;
 use app\models\Member;
 use app\models\GroupSearch;
+use app\models\Notification;
 use dektrium\user\filters\AccessRule;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -72,8 +74,20 @@ class GroupsController extends Controller
      */
     public function actionView($id)
     {
+        $event = new Event;
+
+        if ($event->load(Yii::$app->request->post()) && $event->save()) {
+            $members = $this->findModel($id)->members;
+            $ids = [];
+            foreach ($members as $member) {
+                $ids[] = $member->id_user;
+            }
+            Notification::create('event', Yii::t('app', '{user} from {group} has created an event for {inicio}.', ['user' => Yii::$app->user->identity->username, 'group' => $this->findModel($id)->name, 'inicio' => $event->inicio]), $ids);
+            $this->redirect(['view', ['id' => $id]]);
+        }
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'event' => $event,
         ]);
     }
 

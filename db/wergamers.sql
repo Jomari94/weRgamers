@@ -160,3 +160,17 @@ create table notifications
     content varchar(250),
     type    varchar(5)
 );
+
+drop table if exists events cascade;
+
+create table events
+(
+    id          bigserial constraint pk_events primary key,
+    id_group    bigint constraint fk_events_groups
+                    references groups(id)
+                    on delete cascade on update cascade,
+    inicio      timestamptz default current_timestamp,
+    fin         timestamptz,
+    activity    varchar(250),
+    constraint uq_events_id_group unique (id_group)
+);

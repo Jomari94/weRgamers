@@ -13,16 +13,18 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="group-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php echo $this->render('_search', ['model' => $searchModel]); ?>
+    <div class="menu col-sm-6 col-md-4">
+        <p>
+            <?= Html::a(Yii::t('app', 'Create Group'), ['create'], ['class' => 'btn btn-success']) ?>
+        </p>
+        <?php echo $this->render('_search', ['model' => $searchModel]); ?>
+    </div>
+    <div class="index col-sm-6 col-md-8">
+        <?= ListView::widget([
+            'dataProvider' => $dataProvider,
+            'itemOptions' => ['class' => 'item'],
+            'itemView' => '_view.php',
+            ]) ?>
+    </div>
 
-    <p>
-        <?= Html::a(Yii::t('app', 'Create Group'), ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-    <?= ListView::widget([
-        'dataProvider' => $dataProvider,
-        'itemOptions' => ['class' => 'item'],
-        'itemView' => function ($model, $key, $index, $widget) {
-            return Html::a(Html::encode($model->name), ['view', 'id' => $model->id]);
-        },
-    ]) ?>
 </div>

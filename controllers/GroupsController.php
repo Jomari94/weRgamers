@@ -74,16 +74,19 @@ class GroupsController extends Controller
      */
     public function actionView($id)
     {
-        $event = new Event;
+        $event = Event::findOne(['id_group' => $id]);
+        if ($event === null) {
+            $event = new Event;
+        }
 
-        if ($event->load(Yii::$app->request->post()) && $event->save()) {
+        if ($event->load(Yii::$app->request->post()) && $event->guarda($id)) {
             $members = $this->findModel($id)->members;
             $ids = [];
             foreach ($members as $member) {
                 $ids[] = $member->id_user;
             }
             Notification::create('event', Yii::t('app', '{user} from {group} has created an event for {inicio}.', ['user' => Yii::$app->user->identity->username, 'group' => $this->findModel($id)->name, 'inicio' => $event->inicio]), $ids);
-            $this->redirect(['view', ['id' => $id]]);
+            return $this->redirect(['view', 'id' => $id]);
         }
         return $this->render('view', [
             'model' => $this->findModel($id),

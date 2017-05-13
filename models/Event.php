@@ -47,10 +47,16 @@ class Event extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'id_group' => Yii::t('app', 'Id Group'),
-            'inicio' => Yii::t('app', 'Inicio'),
-            'fin' => Yii::t('app', 'Fin'),
+            'inicio' => Yii::t('app', 'Begin'),
+            'fin' => Yii::t('app', 'End'),
             'activity' => Yii::t('app', 'Activity'),
         ];
+    }
+
+    public function guarda($group)
+    {
+        $this->id_group = $group;
+        return $this->save();
     }
 
     /**

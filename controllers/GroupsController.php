@@ -78,7 +78,18 @@ class GroupsController extends Controller
         if ($event === null) {
             $event = new Event;
         }
-
+        if (Yii::$app->request->post('cancel') !== null) {
+            if ($event->load(Yii::$app->request->post())) {
+                $members = $this->findModel($id)->members;
+                $ids = [];
+                foreach ($members as $member) {
+                    $ids[] = $member->id_user;
+                }
+                Notification::create('evenc', Yii::t('app', '{user} from {group} has cancelled the event "{activity}".', ['user' => Yii::$app->user->identity->username, 'group' => $this->findModel($id)->name, 'activity' => $event->activity]), $ids);
+                $event->delete();
+                return $this->redirect(['view', 'id' => $id]);
+            }
+        }
         if ($event->load(Yii::$app->request->post()) && $event->guarda($id)) {
             $members = $this->findModel($id)->members;
             $ids = [];

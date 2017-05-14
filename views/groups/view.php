@@ -23,7 +23,12 @@ $dataProvider = new ActiveDataProvider([
 JsAsset::register($this);
 $inicio = new DateTime($event->inicio);
 $inicio = $inicio->format('c');
-$options = ['inicio' => $inicio];
+$options = [
+    'inicio' => $inicio,
+    'newEvent' => $event->isNewRecord,
+    'activity' => Yii::t('app', '{activity} begins in:', ['activity' => $event->activity]),
+    'finish' => Yii::t('app', 'The event is on!'),
+];
 Json::htmlEncode($options);
 $this->registerJs(
     "var yiiOptions = ".\yii\helpers\Json::htmlEncode($options).";",
@@ -31,67 +36,70 @@ $this->registerJs(
     'yiiOptions'
 );
 $js = <<<EOT
-var begin = moment.tz(yiiOptions.inicio, moment.tz.guess());
-$('#countdown').countdown(begin.toDate(), {})
-.on('update.countdown', function(event) {
-    var format = '<input type="text" value="%H" max="24" class="dialh"> <input type="text" value="%M" max="60" class="dialm"> <input type="text" value="%S" max="60" class="dials">';
-    if(event.offset.totalDays > 0) {
-        format = '<input type="text" value="%-D" max="7" class="diald"> ' + format;
-    }
-    $(this).html(event.strftime(format));
-    $(".diald").knob({
-        'thickness' : .3,
-        'width': 100,
-        'height': 100,
-        'max': 365,
-        'readOnly': true,
-        'fgColor': '#03fff7',
-        'bgColor': '#fff',
-        'format': function (value) {
-            return value + ' d';
-        }
-    });
-    $(".dialh").knob({
-        'thickness' : .3,
-        'width': 100,
-        'height': 100,
-        'max': 24,
-        'readOnly': true,
-        'fgColor': '#62ff03',
-        'bgColor': '#fff',
-        'format': function (value) {
-            return value + ' h';
-        }
-    });
-    $(".dialm").knob({
-        'thickness' : .3,
-        'width': 100,
-        'height': 100,
-        'max': 60,
-        'readOnly': true,
-        'fgColor': '#ffec03',
-        'bgColor': '#fff',
-        'format': function (value) {
-            return value + ' m';
-        }
+if (!yiiOptions.newEvent) {
+    var begin = moment.tz(yiiOptions.inicio, moment.tz.guess());
+    $('#countdown').countdown(begin.toDate(), {})
+        .on('update.countdown', function(event) {
+            var format = '<input type="text" value="%H" max="24" class="dialh"> <input type="text" value="%M" max="60" class="dialm"> <input type="text" value="%S" max="60" class="dials">';
+            if(event.offset.totalDays > 0) {
+                format = '<input type="text" value="%-D" max="7" class="diald"> ' + format;
+            }
+            format = '<p>' + yiiOptions.activity + '</p>' + format;
+            $(this).html(event.strftime(format));
+            $(".diald").knob({
+                'thickness' : .3,
+                'width': 100,
+                'height': 100,
+                'max': 365,
+                'readOnly': true,
+                'fgColor': '#03fff7',
+                'bgColor': '#fff',
+                'format': function (value) {
+                    return value + ' d';
+                }
+            });
+            $(".dialh").knob({
+                'thickness' : .3,
+                'width': 100,
+                'height': 100,
+                'max': 24,
+                'readOnly': true,
+                'fgColor': '#62ff03',
+                'bgColor': '#fff',
+                'format': function (value) {
+                    return value + ' h';
+                }
+            });
+            $(".dialm").knob({
+                'thickness' : .3,
+                'width': 100,
+                'height': 100,
+                'max': 60,
+                'readOnly': true,
+                'fgColor': '#ffec03',
+                'bgColor': '#fff',
+                'format': function (value) {
+                    return value + ' m';
+                }
 
-    });
-    $(".dials").knob({
-        'thickness' : .3,
-        'width': 100,
-        'height': 100,
-        'max': 60,
-        'readOnly': true,
-        'fgColor': '#d03939',
-        'bgColor': '#fff',
-        'format': function (value) {
-            return value + ' s';
-        }
-    });
-}).on('finish.countdown', function(event) {
-    $(this).html('The event is on!')
-    .parent().addClass('disabled');
-});
+            });
+            $(".dials").knob({
+                'thickness' : .3,
+                'width': 100,
+                'height': 100,
+                'max': 60,
+                'readOnly': true,
+                'fgColor': '#d03939',
+                'bgColor': '#fff',
+                'format': function (value) {
+                    return value + ' s';
+                }
+            });
+        }).on('finish.countdown', function(event) {
+            $(this).html(yiiOptions.finish)
+            .parent().addClass('disabled');
+        });
+}
 EOT;
 $this->registerJs($js);
 $this->title = $model->name;
@@ -126,7 +134,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php if ($model->isAdmin(Yii::$app->user->id)) { ?>
                     <?= Html::a(Yii::t('app', 'Members'), ['members/index', 'id_group' => $model->id], ['class' => 'btn btn-primary']) ?>
         			<?php Modal::begin([
-        				'header' => '<h3>'.Yii::t('app', 'Create event').'</h3>',
+        				'header' => '<h3>'.Yii::t('app', 'Event').'</h3>',
         				'toggleButton' => ['label' => Yii::t('app', 'Event'), 'class' => 'btn btn-primary'],
         			]); ?>
                         <?php $form = ActiveForm::begin(); ?>
@@ -149,7 +157,16 @@ $this->params['breadcrumbs'][] = $this->title;
                                 ]); ?>
             				</div>
                             <div class="form-group col-sm-6">
-                                <?= Html::submitButton(Yii::t('app', 'Create'), ['class' => 'btn btn-success']) ?>
+                                <?= Html::submitButton(Yii::t('app', $event->isNewRecord ? 'Create' : 'Update'), [
+                                    'class' => $event->isNewRecord ? 'btn btn-success' : 'btn btn-primary',
+                                    'name' => 'create',
+                                    ]) ?>
+                                <?php if (!$event->isNewRecord): ?>
+                                    <?= Html::submitButton(Yii::t('app', 'Cancel'), [
+                                        'class' => 'btn btn-danger',
+                                        'name' => 'cancel',
+                                        ]) ?>
+                                <?php endif; ?>
                             </div>
             			</div>
                         <?php ActiveForm::end(); ?>

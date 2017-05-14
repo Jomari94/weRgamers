@@ -103,4 +103,7 @@ return [
     'End time ...' => 'Cuando termina ...',
     'Begin' => 'Inicio',
     'End' => 'Fin',
+    'Cancel' => 'Cancelar',
+    '{activity} begins in:' => '{activity} empieza en:',
+    'The event is on!' => '¡El evento ha empezado!',
 ];

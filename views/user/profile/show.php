@@ -82,26 +82,27 @@ $this->title = empty($profile->name) ? Html::encode($profile->user->username) : 
             <h3><?= $this->title ?></h3>
             <h4 id="karma">Karma: <?= $karma ?></h4>
             <div id="column">
-                <?php if (Yii::$app->user->isGuest || Yii::$app->user->id !== $profile->user_id) { ?>
                 <div class="toolbar" id="toolbar">
+                <?php if (Yii::$app->user->isGuest || Yii::$app->user->id !== $profile->user_id) { ?>
                     <div class="btn-group" id="buttons">
-                    <?php if (!Yii::$app->user->isGuest && Yii::$app->user->identity->isFollower($profile->user_id)){ ?>
-                    <button id="btn-follow" class="btn btn-danger btn-unfollow"><span class="glyphicon glyphicon-ok"></span> Siguiendo</button>
-                    <?php } else { ?>
-                    <button id="btn-follow" class="btn btn-default btn-follow"><span class="glyphicon glyphicon-user"></span> Seguir</button>
-                    <?php } ?>
-                </div>
-                <div class="btn-group">
-                    <button class="btn
-                    <?= !Yii::$app->user->isGuest &&
-                    Yii::$app->user->identity->hasVoted($profile->user_id) &&
-                    Vote::findOne(['id_voter' => Yii::$app->user->id, 'id_voted' => $profile->user_id])->positive ? 'btn-danger' : 'btn-default'?>" id="up" value="1"><span class="glyphicon glyphicon-thumbs-up"></span></button>
-                    <button class="btn
-                    <?= !Yii::$app->user->isGuest &&
-                    Yii::$app->user->identity->hasVoted($profile->user_id) &&
-                    Vote::findOne(['id_voter' => Yii::$app->user->id, 'id_voted' => $profile->user_id])->positive == false ? 'btn-danger' : 'btn-default'?>" id="down" value="0"><span class="glyphicon glyphicon-thumbs-down"></span></button>
-                </div>
+                        <?php if (!Yii::$app->user->isGuest && Yii::$app->user->identity->isFollower($profile->user_id)){ ?>
+                            <button id="btn-follow" class="btn btn-danger btn-unfollow"><span class="glyphicon glyphicon-ok"></span> Siguiendo</button>
+                        <?php } else { ?>
+                            <button id="btn-follow" class="btn btn-default btn-follow"><span class="glyphicon glyphicon-user"></span> Seguir</button>
+                        <?php } ?>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn
+                        <?= !Yii::$app->user->isGuest &&
+                        Yii::$app->user->identity->hasVoted($profile->user_id) &&
+                        Vote::findOne(['id_voter' => Yii::$app->user->id, 'id_voted' => $profile->user_id])->positive ? 'btn-danger' : 'btn-default'?>" id="up" value="1"><span class="glyphicon glyphicon-thumbs-up"></span></button>
+                        <button class="btn
+                        <?= !Yii::$app->user->isGuest &&
+                        Yii::$app->user->identity->hasVoted($profile->user_id) &&
+                        Vote::findOne(['id_voter' => Yii::$app->user->id, 'id_voted' => $profile->user_id])->positive == false ? 'btn-danger' : 'btn-default'?>" id="down" value="0"><span class="glyphicon glyphicon-thumbs-down"></span></button>
+                    </div>
                 <?php } ?>
+                </div>
             </div>
         </div>
         <br />
@@ -132,11 +133,14 @@ $this->title = empty($profile->name) ? Html::encode($profile->user->username) : 
             <h4><?= Yii::t('app', 'Collection') ?></h4>
             <?= ListView::widget([
                 'dataProvider' => $collection,
-                'itemOptions' => ['class' => 'item'],
+                'itemOptions' => [
+                    'tag' => 'article',
+                    'class' => 'collectionp-view',
+                ],
                 'options' => [
                     'tag' => 'div',
-                    'class' => 'list-wrapper',
-                    'id' => 'list-wrapper',
+                    'class' => 'collection-wrapper',
+                    'id' => 'collection-wrapper',
                 ],
                 'layout' => "{items}\n{pager}",
                 'itemView' => '../../collections/_view',

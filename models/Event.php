@@ -31,8 +31,9 @@ class Event extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['activity', 'inicio'], 'required'],
             [['id_group'], 'integer'],
-            [['inicio', 'fin'], 'safe'],
+            [['fin'], 'safe'],
             [['activity'], 'string', 'max' => 250],
             [['id_group'], 'unique'],
             [['id_group'], 'exist', 'skipOnError' => true, 'targetClass' => Group::className(), 'targetAttribute' => ['id_group' => 'id']],
@@ -53,6 +54,11 @@ class Event extends \yii\db\ActiveRecord
         ];
     }
 
+    /**
+     * guarda el evento con el id del grupo
+     * @param  int $group id del grupo
+     * @return bool        true si se ha guardado, false en caso contrario
+     */
     public function guarda($group)
     {
         $this->id_group = $group;

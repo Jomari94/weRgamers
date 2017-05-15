@@ -240,7 +240,7 @@ div.conversation-view img {
     margin-bottom: 5px;
 }
 
-.member-view {
+.member-view, .collectionp-view {
     display: flex;
     flex-flow: row;
     margin-top: 7px;
@@ -249,12 +249,17 @@ div.conversation-view img {
     max-width: 300px;
 }
 
-.member-view > div {
+.member-view > div, .collectionp-view > div {
     padding-left: 5px;
 }
 
-.notification-view {
-    margin:3px;
+.group-pview, .notification-view, .collectionp-view {
+    padding: 6px;
+    border-bottom: 1px solid #d01616;
+}
+
+.group-pview:last-of-type, .notification-view:last-of-type, .member-view:last-of-type, .collectionp-view:last-of-type {
+    border-bottom: 1px solid transparent;
 }
 
 /* Estilos del navbar */

@@ -115,4 +115,13 @@ class Group extends \yii\db\ActiveRecord
         $member = Member::findOne(['id_group' => $this->id, 'id_user' => $id, 'accepted' => false]);
         return $member !== null;
     }
+
+    /**
+     * Devuelve el número total de miembros del grupo
+     * @return int número de miembros
+     */
+    public function getTotalMembers()
+    {
+        return Member::find()->where(['id_group' => $this->id, 'accepted' => true])->count();
+    }
 }

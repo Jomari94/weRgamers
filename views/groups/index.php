@@ -22,7 +22,10 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="index col-sm-6 col-md-8">
         <?= ListView::widget([
             'dataProvider' => $dataProvider,
-            'itemOptions' => ['class' => 'item'],
+            'itemOptions' => [
+                'tag' => 'article',
+                'class' => 'group-pview'
+            ],
             'itemView' => '_view.php',
             ]) ?>
     </div>

@@ -21,12 +21,17 @@ FontAsset::register($this);
 JsAsset::register($this);
 
 $url = Url::to(['/conversations/index']);
+$urlN = Url::to(['/site/notificated']);
 $js = <<<EOT
 $('#messages-link').on('click', function () {
     var ventana = open("$url", "ventana", "width=600,height=640,toolbar=0,titlebar=0");
 });
 $('#notifications-link').on('click', function () {
     $("#modal").modal("show");
+    $.ajax({
+        method: 'post',
+        url: '$urlN',
+    });
 });
 EOT;
 $this->registerJs($js);

@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\Notification;
 
 class SiteController extends Controller
 {
@@ -146,5 +147,14 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+
+    /**
+     * Borra las notificaciones ya vistas
+     * @return void
+     */
+    public function actionNotificated()
+    {
+        Notification::deleteAll(['id_receiver' => Yii::$app->user->id]);
     }
 }

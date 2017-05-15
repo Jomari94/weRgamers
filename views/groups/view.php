@@ -48,36 +48,36 @@ if (!yiiOptions.newEvent) {
             $(this).html(event.strftime(format));
             $(".diald").knob({
                 'thickness' : .3,
-                'width': 100,
-                'height': 100,
+                'width': 110,
+                'height': 110,
                 'max': 365,
                 'readOnly': true,
                 'fgColor': '#03fff7',
-                'bgColor': '#fff',
+                'bgColor': '#919191',
                 'format': function (value) {
                     return value + ' d';
                 }
             });
             $(".dialh").knob({
                 'thickness' : .3,
-                'width': 100,
-                'height': 100,
+                'width': 110,
+                'height': 110,
                 'max': 24,
                 'readOnly': true,
                 'fgColor': '#62ff03',
-                'bgColor': '#fff',
+                'bgColor': '#919191',
                 'format': function (value) {
                     return value + ' h';
                 }
             });
             $(".dialm").knob({
                 'thickness' : .3,
-                'width': 100,
-                'height': 100,
+                'width': 110,
+                'height': 110,
                 'max': 60,
                 'readOnly': true,
                 'fgColor': '#ffec03',
-                'bgColor': '#fff',
+                'bgColor': '#919191',
                 'format': function (value) {
                     return value + ' m';
                 }
@@ -85,12 +85,12 @@ if (!yiiOptions.newEvent) {
             });
             $(".dials").knob({
                 'thickness' : .3,
-                'width': 100,
-                'height': 100,
+                'width': 110,
+                'height': 110,
                 'max': 60,
                 'readOnly': true,
-                'fgColor': '#d03939',
-                'bgColor': '#fff',
+                'fgColor': '#d01616',
+                'bgColor': '#919191',
                 'format': function (value) {
                     return value + ' s';
                 }

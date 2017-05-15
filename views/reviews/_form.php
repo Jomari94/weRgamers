@@ -12,14 +12,14 @@ $('#review-score').knob({
     'max': 10,
     'width': 80,
     'height': 80,
-    'fgColor': '#d03939',
+    'fgColor': '#d01616',
     'change': function (v) {
         if (v <= 4) {
             $('#review-score').trigger(
                 'configure',
                 {
-                    'fgColor': '#d03939',
-                    'inputColor': '#d03939'
+                    'fgColor': '#d01616',
+                    'inputColor': '#d01616'
                 }
             );
         }

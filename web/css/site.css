@@ -262,6 +262,18 @@ div.conversation-view img {
     border-bottom: 1px solid transparent;
 }
 
+#countdown {
+    background-color: #383838;
+    color: #ffffff;
+    font-size: 22px;
+    text-align: center;
+    min-width: 500px;
+    margin-bottom: 25px;
+    border-radius: 5px;
+}
+#countdown div canvas {
+}
+
 /* Estilos del navbar */
 .navbar-default {
   background-color: #d01616;

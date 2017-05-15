@@ -106,4 +106,6 @@ return [
     'Cancel' => 'Cancelar',
     '{activity} begins in:' => '{activity} empieza en:',
     'The event is on!' => '¡El evento ha empezado!',
+    'Score' => 'Puntuación',
+    'You already did a review on this game' => 'Ya has hecho una reseña sobre este juego',
 ];

@@ -2,7 +2,7 @@
 /**
  * Downward compatible, touchable dial
  *
- * Version: 1.2.11
+ * Version: 1.2.12
  * Requires: jQuery v1.7+
  *
  * Copyright (c) 2012 Anthony Terrien
@@ -79,7 +79,6 @@
         this.relativeWidth = false;
         this.relativeHeight = false;
         this.$div = null; // component div
-        this.scrubbing = false; // the user is currently scrubbing the dial
 
         this.run = function () {
             var cf = function (e, conf) {
@@ -178,12 +177,6 @@
                     }
                 );
 
-                this.$.bind(
-                    'update',
-                    function () {
-                        s.val(s._validate(s.o.parse(s.$.val())), false);
-                    }
-                );
             }
 
             !this.o.displayInput && this.$.hide();
@@ -304,7 +297,7 @@
             }
 
             return this;
-        }
+        };
 
         this._draw = function () {
 
@@ -340,8 +333,6 @@
 
             // First touch
             touchMove(e);
-            // scrubbing has started
-            s.scrubbing = true;
 
             // Touch events listeners
             k.c.d
@@ -350,8 +341,6 @@
                     "touchend.k",
                     function () {
                         k.c.d.unbind('touchmove.k touchend.k');
-                        // scrubbing has ended
-                        s.scrubbing = false;
                         s.val(s.cv);
                     }
                 );
@@ -373,8 +362,6 @@
 
             // First click
             mouseMove(e);
-            // scrubbing has started
-            s.scrubbing = true;
 
             // Mouse events listeners
             k.c.d
@@ -390,17 +377,12 @@
                                 return;
 
                             s.cancel();
-
-                            // scrubbing has ended
-                            s.scrubbing = false;
                         }
                     }
                 )
                 .bind(
                     "mouseup.k",
                     function (e) {
-                        // scrubbing has ended
-                        s.scrubbing = false;
                         k.c.d.unbind('mousemove.k mouseup.k keyup.k');
                         s.val(s.cv);
                     }
@@ -490,7 +472,7 @@
         // Utils
         this.h2rgba = function (h, a) {
             var rgb;
-            h = h.substring(1,7)
+            h = h.substring(1,7);
             rgb = [
                 parseInt(h.substring(0,2), 16),
                 parseInt(h.substring(2,4), 16),
@@ -598,9 +580,6 @@
 
                     v = max(min(v, s.o.max), s.o.min);
 
-                    // trigger change handler
-                    if (s.cH && (s.cH(v) === false)) return;
-
                     s.val(v, false);
 
                     if (s.rH) {
@@ -690,7 +669,7 @@
                 );
 
             this.$c.bind("mousewheel DOMMouseScroll", mw);
-            this.$.bind("mousewheel DOMMouseScroll", mw)
+            this.$.bind("mousewheel DOMMouseScroll", mw);
         };
 
         this.init = function () {
@@ -821,6 +800,6 @@
                 d.run();
             }
         ).parent();
-       };
+    };
 
-   }));
+}));

@@ -94,9 +94,9 @@ class ConversationsController extends \yii\web\Controller
     }
 
     /**
-     * Busca juegos y los devuelve
-     * @param  string $name Nombre del juego a buscar
-     * @return array Nombres de los juegos encontrados
+     * Busca usuarios y los devuelve
+     * @param  string $name Nombre del usuario a buscar
+     * @return array Nombres de los usuario encontrados
      */
     public function actionSearchUsers($name = null)
     {

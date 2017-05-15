@@ -3,6 +3,7 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+use app\assets\JsAsset;
 use app\assets\FontAsset;
 use kop\y2sp\ScrollPager;
 use app\models\Notification;
@@ -18,6 +19,8 @@ use app\assets\AppAsset;
 
 AppAsset::register($this);
 FontAsset::register($this);
+JsAsset::register($this);
+
 $url = Url::to(['/conversations/index']);
 $js = <<<EOT
 $('#messages-link').on('click', function () {

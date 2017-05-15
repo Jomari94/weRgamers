@@ -174,3 +174,19 @@ create table events
     activity    varchar(250),
     constraint uq_events_id_group unique (id_group)
 );
+
+drop table if exists reviews cascade;
+
+create table reviews
+(
+    id      bigserial    constraint pk_reviews primary key,
+    content varchar(500) not null,
+    score   int          not null,
+    created date         default current_date,
+    id_user bigint       not null constraint fk_reviews_users
+                            references public.user(id)
+                            on delete cascade on update cascade,
+    id_game bigint       not null constraint fk_reviews_games
+                            references games(id)
+                            on delete cascade on update cascade
+);

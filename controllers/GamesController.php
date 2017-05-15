@@ -4,12 +4,14 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Game;
+use app\models\Review;
 use app\models\Platform;
 use app\models\GameSearch;
 use app\models\GamePlatform;
 use app\models\PlatformSearch;
 use app\models\Collection;
 use dektrium\user\filters\AccessRule;
+use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\helpers\Json;
 use yii\helpers\ArrayHelper;
@@ -88,8 +90,14 @@ class GamesController extends Controller
      */
     public function actionView($id)
     {
+        $review = new Review;
+        $reviewProvider = new ActiveDataProvider([
+            'query' => Review::find()->where(['id_game' => $id]),
+        ]);
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'review' => $review,
+            'reviewProvider' => $reviewProvider
         ]);
     }
 

@@ -1,6 +1,7 @@
 html,
 body {
     height: 100%;
+    font-family: 'Open Sans';
 }
 
 .wrap {
@@ -83,7 +84,7 @@ a.desc:after {
 }
 
 .img32 {
-    max-height: 32px;
+    max-height: 28px;
 }
 
 .img64 {
@@ -91,16 +92,15 @@ a.desc:after {
     max-width: 60px;
 }
 .navbar-nav li a, .navbar-brand {
-    line-height: 30px;
+    line-height: 29px;
     color: white;
     text-shadow: 1px -1px 0 #000000, -1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000;
-    font-size: 18px;
-    font-family: 'Audiowide';
 }
 
 a.navbar-brand {
     padding: 20px;
     font-size: 24px;
+    font-family: 'Audiowide';
 }
 
 .navbar-nav > li:hover {
@@ -131,9 +131,7 @@ footer.footer {
     background-color: #d01616;
     border-top: 5px solid black;
     color: white;
-    font-size: 18px;
     text-shadow: 1px -1px 0 #000000, -1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000;
-    font-family: 'Audiowide';
 }
 
 .footer * {
@@ -253,6 +251,10 @@ div.conversation-view img {
 
 .member-view > div {
     padding-left: 5px;
+}
+
+.notification-view {
+    margin:3px;
 }
 
 /* Estilos del navbar */

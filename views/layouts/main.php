@@ -5,7 +5,6 @@
 
 use app\assets\JsAsset;
 use app\assets\FontAsset;
-use kop\y2sp\ScrollPager;
 use app\models\Notification;
 use yii\bootstrap\Modal;
 use yii\data\ActiveDataProvider;
@@ -139,30 +138,25 @@ $this->registerJs($js);
 <?php
     $notificationsProvider = new ActiveDataProvider([
         'query' => Notification::find()->where(['id_receiver' => Yii::$app->user->id]),
+        'pagination' => false,
     ]);
     Modal::begin(['id' => 'modal',
-       'header' => Yii::t('app', 'Notifications')]);
+       'header' => '<h3>'.Yii::t('app', 'Notifications').'</h3>']);
 
         echo ListView::widget([
             'dataProvider' => $notificationsProvider,
-            'itemOptions' => ['class' => 'item'],
+            'itemOptions' => [
+                'tag' => 'article',
+                'class' => 'notification-view'
+            ],
             'options' => [
                 'tag' => 'div',
                 'class' => 'notifications-wrapper',
                 'id' => 'notifications-wrapper',
             ],
             'layout' => "{items}\n{pager}",
-            'itemView' => function ($model) {
-                return $model->content;
-            },
-            'pager' => [
-                'class' => ScrollPager::className(),
-                'container' => '.notifications-wrapper',
-                'triggerText' => Yii::t('app', 'Show more notifications'),
-                'noneLeftText' => '',
-                'overflowContainer' => '.modal'
-            ],
-            ]);
+            'itemView' => '@app/views/notifications/_view.php',
+        ]);
 
     Modal::end();
    ?>

@@ -17,7 +17,7 @@ var games = {};
             method: 'get',
             url: '$urlGames',
             data: {
-                q: $('#group-game_name').val()
+                game: $('#group-game_name').val()
             },
             success: function (data, status, event) {
                 var juegos = JSON.parse(data);

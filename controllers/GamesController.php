@@ -203,16 +203,16 @@ class GamesController extends Controller
 
     /**
      * Busca juegos y los devuelve
-     * @param  string $q Nombre del juego a buscar
-     * @return array Nombres de los juegos encontrados
+     * @param  string $game Nombre del juego a buscar
+     * @return array        Nombres de los juegos encontrados
      */
-    public function actionSearchAjax($q = null)
+    public function actionSearchAjax($game = null)
     {
         $games = [];
-        if ($q != null || $q != '') {
+        if ($game != null || $game != '') {
             $games = Game::find()
             ->select(['id', 'name'])
-            ->where(['ilike', 'name', "$q"])
+            ->where(['ilike', 'name', "$game"])
             ->all();
             $games = ArrayHelper::map($games, 'name', 'id');
         }

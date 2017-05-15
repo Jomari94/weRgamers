@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="language" content="en" />
+        <link href="./assets/ad8f0b86/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/f07207ee/solarized_light.css" rel="stylesheet">
+<link href="./assets/67e76fc4/style.css" rel="stylesheet">
+<script src="./assets/97c103e1/jquery.js"></script>
+<script src="./assets/ad8f0b86/js/bootstrap.js"></script>
+<script src="./assets/40c47bf1/jssearch.js"></script>    <title>ConversationsController, app\controllers\ConversationsController - We &#039;r&#039; Gamers API</title>
+</head>
+<body>
+
+<div class="wrap">
+    <nav id="w61" class="navbar-inverse navbar-fixed-top navbar" role="navigation"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w61-collapse"><span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span></button><a class="navbar-brand" href="./index.html">We 'r' Gamers API</a></div><div id="w61-collapse" class="collapse navbar-collapse"><ul id="w62" class="navbar-nav nav"><li><a href="./index.html">Class reference</a></li>
+<li><a href="/guide-README.html">Guide</a></li></ul><div class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input id="searchbox" type="text" class="form-control" placeholder="Search">
+  </div>
+</div>
+</div></nav>
+    <div id="search-resultbox" style="display: none;" class="modal-content">
+        <ul id="search-results">
+        </ul>
+    </div>
+
+    
+<div class="row">
+    <div class="col-md-3">
+                <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-56" data-toggle="collapse" data-parent="#navigation">app\assets <b class="caret"></b></a><div id="navigation-56" class="submenu panel-collapse collapse"><a class="list-group-item" href="./app-assets-appasset.html">AppAsset</a>
+<a class="list-group-item" href="./app-assets-fontasset.html">FontAsset</a>
+<a class="list-group-item" href="./app-assets-jsasset.html">JsAsset</a></div>
+<a class="list-group-item" href="#navigation-57" data-toggle="collapse" data-parent="#navigation">app\commands <b class="caret"></b></a><div id="navigation-57" class="submenu panel-collapse collapse"><a class="list-group-item" href="./app-commands-hellocontroller.html">HelloController</a></div>
+<a class="list-group-item active" href="#navigation-58" data-toggle="collapse" data-parent="#navigation">app\controllers <b class="caret"></b></a><div id="navigation-58" class="submenu panel-collapse collapse in"><a class="list-group-item active" href="./app-controllers-conversationscontroller.html">ConversationsController</a>
+<a class="list-group-item" href="./app-controllers-followerscontroller.html">FollowersController</a>
+<a class="list-group-item" href="./app-controllers-gamescontroller.html">GamesController</a>
+<a class="list-group-item" href="./app-controllers-groupscontroller.html">GroupsController</a>
+<a class="list-group-item" href="./app-controllers-memberscontroller.html">MembersController</a>
+<a class="list-group-item" href="./app-controllers-platformcontroller.html">PlatformController</a>
+<a class="list-group-item" href="./app-controllers-reviewscontroller.html">ReviewsController</a>
+<a class="list-group-item" href="./app-controllers-sitecontroller.html">SiteController</a>
+<a class="list-group-item" href="./app-controllers-votescontroller.html">VotesController</a></div>
+<a class="list-group-item" href="#navigation-59" data-toggle="collapse" data-parent="#navigation">app\controllers\user <b class="caret"></b></a><div id="navigation-59" class="submenu panel-collapse collapse"><a class="list-group-item" href="./app-controllers-user-profilecontroller.html">ProfileController</a>
+<a class="list-group-item" href="./app-controllers-user-settingscontroller.html">SettingsController</a></div>
+<a class="list-group-item" href="#navigation-60" data-toggle="collapse" data-parent="#navigation">app\models <b class="caret"></b></a><div id="navigation-60" class="submenu panel-collapse collapse"><a class="list-group-item" href="./app-models-avatarform.html">AvatarForm</a>
+<a class="list-group-item" href="./app-models-collection.html">Collection</a>
+<a class="list-group-item" href="./app-models-contactform.html">ContactForm</a>
+<a class="list-group-item" href="./app-models-conversation.html">Conversation</a>
+<a class="list-group-item" href="./app-models-event.html">Event</a>
+<a class="list-group-item" href="./app-models-follower.html">Follower</a>
+<a class="list-group-item" href="./app-models-game.html">Game</a>
+<a class="list-group-item" href="./app-models-gameplatform.html">GamePlatform</a>
+<a class="list-group-item" href="./app-models-gameplatformsearch.html">GamePlatformSearch</a>
+<a class="list-group-item" href="./app-models-gamesearch.html">GameSearch</a>
+<a class="list-group-item" href="./app-models-group.html">Group</a>
+<a class="list-group-item" href="./app-models-groupsearch.html">GroupSearch</a>
+<a class="list-group-item" href="./app-models-loginform.html">LoginForm</a>
+<a class="list-group-item" href="./app-models-member.html">Member</a>
+<a class="list-group-item" href="./app-models-message.html">Message</a>
+<a class="list-group-item" href="./app-models-notification.html">Notification</a>
+<a class="list-group-item" href="./app-models-platform.html">Platform</a>
+<a class="list-group-item" href="./app-models-platformsearch.html">PlatformSearch</a>
+<a class="list-group-item" href="./app-models-profile.html">Profile</a>
+<a class="list-group-item" href="./app-models-review.html">Review</a>
+<a class="list-group-item" href="./app-models-reviewsearch.html">ReviewSearch</a>
+<a class="list-group-item" href="./app-models-settingsform.html">SettingsForm</a>
+<a class="list-group-item" href="./app-models-user.html">User</a>
+<a class="list-group-item" href="./app-models-vote.html">Vote</a></div></div>    </div>
+    <div class="col-md-9 api-content" role="main">
+        <h1>Class app\controllers\ConversationsController</h1>
+<div class="top-nav">
+    <a href="index.html">All Classes</a>
+                | <a href="#methods">Methods</a>
+            </div>
+
+<table class="summaryTable docClass table table-bordered">
+    <colgroup>
+        <col class="col-name" />
+        <col class="col-value" />
+    </colgroup>
+            <tr><th>Inheritance</th><td><a href="app-controllers-conversationscontroller.html">app\controllers\ConversationsController</a> &raquo;
+yii\web\Controller</td></tr>
+                                        </table>
+
+<div class="class-description">
+    <p><strong></strong></p>
+    
+    </div>
+
+<a id="properties"></a>
+
+<a id="methods"></a>
+
+<div class="summary doc-method">
+<h2>Public Methods</h2>
+
+<p><a href="#" class="toggle">Hide inherited methods</a></p>
+
+<table class="summary-table table table-striped table-bordered table-hover">
+<colgroup>
+    <col class="col-method" />
+    <col class="col-description" />
+    <col class="col-defined" />
+</colgroup>
+<tr>
+  <th>Method</th><th>Description</th><th>Defined By</th>
+</tr>
+        <tr id="actionCreate()">
+        <td><a href="app-controllers-conversationscontroller.html#actionCreate()-detail">actionCreate()</a></td>
+        <td>Creates a new Conversation model.</td>
+        <td><a href="app-controllers-conversationscontroller.html">app\controllers\ConversationsController</a></td>
+    </tr>
+            <tr id="actionIndex()">
+        <td><a href="app-controllers-conversationscontroller.html#actionIndex()-detail">actionIndex()</a></td>
+        <td>Lista las conversaciones del usuario</td>
+        <td><a href="app-controllers-conversationscontroller.html">app\controllers\ConversationsController</a></td>
+    </tr>
+            <tr id="actionSearchUsers()">
+        <td><a href="app-controllers-conversationscontroller.html#actionSearchUsers()-detail">actionSearchUsers()</a></td>
+        <td>Busca usuarios y los devuelve</td>
+        <td><a href="app-controllers-conversationscontroller.html">app\controllers\ConversationsController</a></td>
+    </tr>
+            <tr id="actionView()">
+        <td><a href="app-controllers-conversationscontroller.html#actionView()-detail">actionView()</a></td>
+        <td>Muestra los mensajes de la conversacion</td>
+        <td><a href="app-controllers-conversationscontroller.html">app\controllers\ConversationsController</a></td>
+    </tr>
+        </table>
+</div>
+
+<div class="summary doc-method">
+<h2>Protected Methods</h2>
+
+<p><a href="#" class="toggle">Hide inherited methods</a></p>
+
+<table class="summary-table table table-striped table-bordered table-hover">
+<colgroup>
+    <col class="col-method" />
+    <col class="col-description" />
+    <col class="col-defined" />
+</colgroup>
+<tr>
+  <th>Method</th><th>Description</th><th>Defined By</th>
+</tr>
+                        <tr id="findModel()">
+        <td><a href="app-controllers-conversationscontroller.html#findModel()-detail">findModel()</a></td>
+        <td>Finds the Conversation model based on its primary key value.</td>
+        <td><a href="app-controllers-conversationscontroller.html">app\controllers\ConversationsController</a></td>
+    </tr>
+    </table>
+</div>
+
+<a id="events"></a>
+
+<a id="constants"></a>
+
+<h2>Method Details</h2>
+
+<div class="method-doc">
+
+    <div class="detail-header h3" id="actionCreate()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="app-controllers-conversationscontroller.html#actionCreate()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        actionCreate()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Creates a new Conversation model.</strong></p>
+
+        <p>If creation is successful, the browser will be redirected to the 'view' page.</p>
+
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">mixed</span> <strong><a href="app-controllers-conversationscontroller.html#actionCreate()-detail">actionCreate</a></strong> ( )</td></tr>
+            </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="actionIndex()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="app-controllers-conversationscontroller.html#actionIndex()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        actionIndex()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Lista las conversaciones del usuario</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">mixed</span> <strong><a href="app-controllers-conversationscontroller.html#actionIndex()-detail">actionIndex</a></strong> ( )</td></tr>
+            </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="actionSearchUsers()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="app-controllers-conversationscontroller.html#actionSearchUsers()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        actionSearchUsers()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Busca usuarios y los devuelve</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.array">array</a></span> <strong><a href="app-controllers-conversationscontroller.html#actionSearchUsers()-detail">actionSearchUsers</a></strong> ( <span style="color: #0000BB">$name&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span> )</td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$name</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.string">string</a></td>
+                  <td class="param-desc-col"><p>Nombre del usuario a buscar</p>
+</td>
+                </tr>
+                                        <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.array">array</a></td>
+                  <td class="param-desc-col"><p>Nombres de los usuario encontrados</p>
+</td>
+                </tr>
+                                    </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="actionView()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="app-controllers-conversationscontroller.html#actionView()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        actionView()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Muestra los mensajes de la conversacion</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">mixed</span> <strong><a href="app-controllers-conversationscontroller.html#actionView()-detail">actionView</a></strong> ( <span style="color: #0000BB">$id</span> )</td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$id</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.integer">integer</a></td>
+                  <td class="param-desc-col"><p>Id de la conversacion</p>
+</td>
+                </tr>
+                                                </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="findModel()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="app-controllers-conversationscontroller.html#findModel()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        findModel()
+        <span class="detail-header-tag small">
+            protected                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Finds the Conversation model based on its primary key value.</strong></p>
+
+        <p>If the model is not found, a 404 HTTP exception will be thrown.</p>
+
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">protected</span> <span class="signature-type"><a href="app-models-conversation.html">app\models\Conversation</a></span> <strong><a href="app-controllers-conversationscontroller.html#findModel()-detail">findModel</a></strong> ( <span style="color: #0000BB">$id</span> )</td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$id</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.integer">integer</a></td>
+                  <td class="param-desc-col"></td>
+                </tr>
+                                        <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col"><a href="app-models-conversation.html">app\models\Conversation</a></td>
+                  <td class="param-desc-col"><p>The loaded model</p>
+</td>
+                </tr>
+                                        <tr>
+                  <th class="param-name-col">throws</th>
+                  <td class="param-type-col">\yii\web\NotFoundHttpException</td>
+                  <td class="param-desc-col"><p>if the model cannot be found</p>
+</td>
+                </tr>
+                        </table>
+
+<!--	-->
+</div>
+        </div>
+</div>
+
+<script type="text/javascript">
+    /*<![CDATA[*/
+    $("a.toggle").on('click', function () {
+        var $this = $(this);
+        if ($this.hasClass('properties-hidden')) {
+            $this.text($this.text().replace(/Show/,'Hide'));
+            $this.parents(".summary").find(".inherited").show();
+            $this.removeClass('properties-hidden');
+        } else {
+            $this.text($this.text().replace(/Hide/,'Show'));
+            $this.parents(".summary").find(".inherited").hide();
+            $this.addClass('properties-hidden');
+        }
+
+        return false;
+    });
+    /*
+     $(".sourceCode a.show").toggle(function () {
+     $(this).text($(this).text().replace(/show/,'hide'));
+     $(this).parents(".sourceCode").find("div.code").show();
+     },function () {
+     $(this).text($(this).text().replace(/hide/,'show'));
+     $(this).parents(".sourceCode").find("div.code").hide();
+     });
+     $("a.sourceLink").click(function () {
+     $(this).attr('target','_blank');
+     });
+     */
+    /*]]>*/
+</script>
+
+
+</div>
+
+<footer class="footer">
+        <p class="pull-right"><small>Page generated on Mon, 15 May 2017 18:56:02 +0000</small></p>
+    Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
+
+<script type="text/javascript">jQuery(document).ready(function () {
+    var shiftWindow = function () { scrollBy(0, -50) };
+    if (location.hash) setTimeout(shiftWindow, 1);
+    window.addEventListener("hashchange", shiftWindow);
+var element = document.createElement("script");
+element.src = "./jssearch.index.js";
+document.body.appendChild(element);
+
+var searchBox = $('#searchbox');
+
+// search when typing in search field
+searchBox.on("keyup", function(event) {
+    var query = $(this).val();
+
+    if (query == '' || event.which == 27) {
+        $('#search-resultbox').hide();
+        return;
+    } else if (event.which == 13) {
+        var selectedLink = $('#search-resultbox a.selected');
+        if (selectedLink.length != 0) {
+            document.location = selectedLink.attr('href');
+            return;
+        }
+    } else if (event.which == 38 || event.which == 40) {
+        $('#search-resultbox').show();
+
+        var selected = $('#search-resultbox a.selected');
+        if (selected.length == 0) {
+            $('#search-results').find('a').first().addClass('selected');
+        } else {
+            var next;
+            if (event.which == 40) {
+                next = selected.parent().next().find('a').first();
+            } else {
+                next = selected.parent().prev().find('a').first();
+            }
+            if (next.length != 0) {
+                var resultbox = $('#search-results');
+                var position = next.position();
+
+//              TODO scrolling is buggy and jumps around
+//                resultbox.scrollTop(Math.floor(position.top));
+//                console.log(position.top);
+
+                selected.removeClass('selected');
+                next.addClass('selected');
+            }
+        }
+
+        return;
+    }
+    $('#search-resultbox').show();
+    $('#search-results').html('<li><span class="no-results">No results</span></li>');
+
+    var result = jssearch.search(query);
+
+    if (result.length > 0) {
+        var i = 0;
+        var resHtml = '';
+
+        for (var key in result) {
+            if (i++ > 20) {
+                break;
+            }
+            resHtml = resHtml +
+            '<li><a href="' + result[key].file.u.substr(3) +'"><span class="title">' + result[key].file.t + '</span>' +
+            '<span class="description">' + result[key].file.d + '</span></a></li>';
+        }
+        $('#search-results').html(resHtml);
+    }
+});
+
+// hide the search results on ESC
+$(document).on("keyup", function(event) { if (event.which == 27) { $('#search-resultbox').hide(); } });
+// hide search results on click to document
+$(document).bind('click', function (e) { $('#search-resultbox').hide(); });
+// except the following:
+searchBox.bind('click', function(e) { e.stopPropagation(); });
+$('#search-resultbox').bind('click', function(e) { e.stopPropagation(); });
+
+});</script></body>
+</html>

@@ -13,7 +13,6 @@ use yii\helpers\ArrayHelper;
 <div class="game-index">
 
     <h1><?= Html::encode(Yii::t('app', 'Games')) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
         <?= Html::a(Yii::t('app', 'Add Game'), ['create'], ['class' => 'btn btn-success']) ?>

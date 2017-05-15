@@ -25,7 +25,6 @@ $this->registerJs($js);
 <div class="platform-index">
 
     <h1><?= Html::encode(Yii::t('app', 'Platforms')) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
         <?= Html::a(Yii::t('app', 'Add Platform'), ['platform/create'], ['class' => 'btn btn-success']) ?>

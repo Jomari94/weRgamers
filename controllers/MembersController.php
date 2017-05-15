@@ -27,28 +27,28 @@ class MembersController extends \yii\web\Controller
                 ],
             ],
             'access' => [
-            'class' => \yii\filters\AccessControl::className(),
-            'ruleConfig' => [
-                'class' => AccessRule::className(),
+                'class' => \yii\filters\AccessControl::className(),
+                'ruleConfig' => [
+                    'class' => AccessRule::className(),
+                ],
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['join'],
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['leave'],
+                        'roles' => ['leaveGroup'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['requests', 'confirm', 'reject', 'index', 'ban', 'promote'],
+                        'roles' => ['manageRequests'],
+                    ],
+                ],
             ],
-            'rules' => [
-                [
-                    'allow' => true,
-                    'actions' => ['join'],
-                    'roles' => ['@'],
-                ],
-                [
-                    'allow' => true,
-                    'actions' => ['leave'],
-                    'roles' => ['leaveGroup'],
-                ],
-                [
-                    'allow' => true,
-                    'actions' => ['requests', 'confirm', 'reject', 'index', 'ban', 'promote'],
-                    'roles' => ['manageRequests'],
-                ],
-            ],
-        ],
         ];
     }
 

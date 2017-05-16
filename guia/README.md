@@ -1,12 +1,12 @@
-Proyecto Integrado
-==================
+We 'r' Gamers
+=====================================
 
-Este es el documento que explica de qué va el proyecto bla bla bla...
+La aplicación es una red social centrada en los juegos online.
 
-```php
-function prueba($x)
-{
-    echo $x;
-}
-```
+En ella se puede buscar a otros jugadores que jueguen a lo mismo que tú e
+interactuar con ellos, formar grupos y crear eventos.
 
+También se puede valorar a otros jugadores, hacerte seguidor suyo, publicar mensajes
+y reseñas sobre videojuegos.
+
+[Documentación](https://jomari94.github.io/weRgamers/)

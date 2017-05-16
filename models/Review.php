@@ -70,6 +70,6 @@ class Review extends \yii\db\ActiveRecord
      */
     public function getUser()
     {
-        return $this->hasOne(User::className(), ['id' => 'id_user'])->inverseOf('reviews');
+        return $this->hasOne(User::className(), ['id' => 'id_user']);
     }
 }

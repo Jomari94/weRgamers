@@ -4,7 +4,6 @@ namespace app\models;
 
 use Yii;
 use yii\helpers\FileHelper;
-use yii\db\Expression;
 use yii\imagine\Image;
 use yii\web\UploadedFile;
 
@@ -186,6 +185,29 @@ class Game extends \yii\db\ActiveRecord
     }
 
     /**
+     * Devuelve el número total de reseñas que tienen un juego
+     * @return int Número de reseñas
+     */
+    public function getTotalReviews()
+    {
+        return Review::find()->where(['id_game' => $this->id])->count();
+    }
+    /**
+     * Devuelve la puntuación media del juego
+     * @return float Puntuación del juego
+     */
+    public function getScore()
+    {
+        $total = Review::find()->select('score')->where(['id_game' => $this->id])->sum('score');
+        if ($total == 0) {
+            return 0;
+        } else {
+            return round($total / $this->totalReviews, 1, PHP_ROUND_HALF_EVEN);
+        }
+    }
+
+
+    /**
      * @return \yii\db\ActiveQuery
      */
     public function getGamePlatforms()
@@ -199,5 +221,13 @@ class Game extends \yii\db\ActiveRecord
     public function getPlatforms()
     {
         return $this->hasMany(Platform::className(), ['id' => 'id_platform'])->via('gamePlatforms');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getReviews()
+    {
+        return $this->hasMany(Review::className(), ['id_game' => 'id'])->inverseOf('game');
     }
 }

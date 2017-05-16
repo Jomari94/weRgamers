@@ -7,6 +7,53 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Game */
 
+$js = <<<EOT
+$('.review-scored').knob({
+    'thickness': .1,
+    'min': 0,
+    'max': 10,
+    'width': 80,
+    'height': 80,
+    'readOnly': true
+});
+$('.total-scored').knob({
+    'thickness': .1,
+    'step': .1,
+    'min': 0,
+    'max': 10,
+    'width': 80,
+    'height': 80,
+    'readOnly': true
+});
+if ($('.review-scored, .total-scored').val() <= 4) {
+    $('.review-scored, .total-scored').trigger(
+        'configure',
+        {
+            'fgColor': '#d01616',
+            'inputColor': '#d01616'
+        }
+    );
+}
+if ($('.review-scored, .total-scored').val() >= 5 && $('.review-scored, .total-scored').val() <=7) {
+    $('.review-scored, .total-scored').trigger(
+        'configure',
+        {
+            'fgColor': '#fea000',
+            'inputColor': '#fea000'
+        }
+    );
+}
+if ($('.review-scored, .total-scored').val() > 7) {
+    $('.review-scored, .total-scored').trigger(
+        'configure',
+        {
+            'fgColor': '#62ff03',
+            'inputColor': '#62ff03'
+        }
+    );
+}
+EOT;
+$this->registerJs($js);
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Games'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
@@ -35,20 +82,30 @@ $this->params['breadcrumbs'][] = $this->title;
             ]) ?>
     </section>
     <section class="col-xs-12 col-md-8">
+        <p id="total-score">
+            <input type="text" class="total-scored" value="<?= $model->score ?>" /> <?= Yii::t('app', 'based on') ?> <span><?= $model->totalReviews ?></span> <?= Yii::t('app', 'reviews') ?>
+        </p>
+        <br />
+        <h3><?= Yii::t('app', 'Review this game') ?></h3>
         <?php if (Yii::$app->session->hasFlash('published')): ?>
             <p class="alert alert-danger"><?= Yii::$app->session->getFlash('published') ?></p>
         <?php endif; ?>
-    <?= $this->render('/reviews/_form', [
-        'model' => $review,
-        'id_game' => $model->id,
-        'id_user' => Yii::$app->user->id,
-    ]) ?>
-    <?= ListView::widget([
-        'dataProvider' => $reviewProvider,
-        'itemOptions' => ['class' => 'item'],
-        'itemView' => function ($model, $key, $index, $widget) {
-            return Html::encode($model->content);
-        },
-    ]) ?>
+        <?= $this->render('/reviews/_form', [
+            'model' => $review,
+            'id_game' => $model->id,
+            'id_user' => Yii::$app->user->id,
+        ]) ?>
+        <?= ListView::widget([
+            'dataProvider' => $reviewProvider,
+            'itemOptions' => [
+                'tag' => 'article',
+                'class' => 'reviewp-view',
+            ],
+            'options' => [
+                'id' => 'reviews-wrapper',
+                'class' => 'reviews-wrapper',
+            ],
+            'itemView' => '/reviews/_view',
+        ]) ?>
     </section>
 </div>

@@ -111,4 +111,9 @@ return [
     'Show more notifications' => 'Mostrar más notificaciones',
     'member' => 'miembro',
     'members' => 'miembros',
+    'followers' => 'seguidores',
+    'following' => 'siguiendo',
+    'Review this game' => 'Reseña este juego',
+    'based on' => 'basado en',
+    'reviews' => 'reseñas',
 ];

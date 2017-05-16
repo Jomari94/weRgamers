@@ -10,8 +10,8 @@ $js = <<<EOT
 $('#review-score').knob({
     'min': 0,
     'max': 10,
-    'width': 80,
-    'height': 80,
+    'width': 100,
+    'height': 100,
     'fgColor': '#d01616',
     'change': function (v) {
         if (v <= 4) {
@@ -53,18 +53,18 @@ $model->id_game = $id_game;
     <?php $form = ActiveForm::begin([
         'action' => ['/reviews/create'],
     ]); ?>
+    <div class="review-form-flex">
+        <div class="form-group field-review-score">
+            <label for="review-score"><?= Yii::t('app', 'Score') ?></label>
+            <input type="text" id="review-score" name="Review[score]" value="0" />
+        </div>
 
-    <!-- <?= $form->field($model, 'score')->textInput(['value' => 0]) ?> -->
-
-    <?= $form->field($model, 'id_user')->hiddenInput(['value' => $id_user])->label(false) ?>
-
+        <?= $form->field($model, 'content', ['inputOptions' => ['autocomplete'=>'off', 'class' => 'form-control']])->textarea(['rows' => 4]) ?>
+    </div>
+    
     <?= $form->field($model, 'id_game')->hiddenInput(['value' => $id_game])->label(false) ?>
 
-    <input type="text" id="review-score" name="Review[score]" value="0" />
-    <label for="review-score"><?= Yii::t('app', 'Score') ?></label>
-
-    <?= $form->field($model, 'content', ['inputOptions' => ['autocomplete'=>'off', 'class' => 'form-control']])->textarea(['rows' => 4]) ?>
-
+    <?= $form->field($model, 'id_user')->hiddenInput(['value' => $id_user])->label(false) ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Create'), ['class' => 'btn btn-success']) ?>

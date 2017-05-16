@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use Yii;
+use app\models\User;
 use app\models\Follower;
 use app\models\Notification;
 use dektrium\user\filters\AccessRule;
@@ -32,7 +33,7 @@ class FollowersController extends Controller
 
     /**
      * Añade al usuario actual como seguidor de otro usuario
-     * @return bool true cuando se completa la acción
+     * @return int numero de followers
      */
     public function actionFollow()
     {
@@ -41,22 +42,23 @@ class FollowersController extends Controller
         $follower->id_follower = Yii::$app->user->id;
         $follower->id_followed = $followed;
         $follower->save();
-        return Notification::create('follw',
+        Notification::create('follw',
             Yii::t('app', "{user} is now your follower",
                 ['user' => $follower->follower->username]),
             [$follower->id_followed]
         );
+        return User::findOne(['id' => $followed])->profile->totalFollowers;
     }
 
     /**
      * Elimina al usuario actual como seguidor de otro usuario
-     * @return bool true cuando se completa la acción
+     * @return int numero de followers
      */
     public function actionUnfollow()
     {
         $followed = Yii::$app->request->post('followed_id');
         $follower = Follower::findOne(['id_follower' => Yii::$app->user->id, 'id_followed' => $followed]);
         $follower->delete();
-        return true;
+        return User::findOne(['id' => $followed])->profile->totalFollowers;
     }
 }

@@ -92,7 +92,7 @@ class GamesController extends Controller
     {
         $review = new Review;
         $reviewProvider = new ActiveDataProvider([
-            'query' => Review::find()->where(['id_game' => $id]),
+            'query' => Review::find()->where(['id_game' => $id])->orderBy('created ASC'),
         ]);
         return $this->render('view', [
             'model' => $this->findModel($id),

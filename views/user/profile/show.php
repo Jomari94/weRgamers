@@ -34,7 +34,10 @@ function cargaBotones(datos, status, xhr) {
                 url: "$urlFollow",
                 method: 'POST',
                 data: {'followed_id': $profile->user_id},
-                success: cargaBotones
+                success: function (datos, status, xhr) {
+                    $('#followers').text(datos);
+                    cargaBotones(datos, status, xhr);
+                }
             });
         });
 
@@ -43,7 +46,10 @@ function cargaBotones(datos, status, xhr) {
                 url: "$urlUnfollow",
                 method: 'POST',
                 data: {'followed_id': $profile->user_id},
-                success: cargaBotones
+                success: function (datos, status, xhr) {
+                    $('#followers').text(datos);
+                    cargaBotones(datos, status, xhr);
+                }
             });
         });
 
@@ -52,7 +58,12 @@ function cargaBotones(datos, status, xhr) {
                 url: "$urlVote",
                 method: 'POST',
                 data: {'voted_id': $profile->user_id, 'positive': $(this).val()},
-                success: cargaBotones
+                success: function (datos, status, xhr) {
+                    if (datos != undefined) {
+                        $('#karma').text(datos);
+                    }
+                    cargaBotones(datos, status, xhr);
+                }
             });
         });
 
@@ -61,10 +72,6 @@ function cargaBotones(datos, status, xhr) {
         }, function (){
             $(this).html('<span class="glyphicon glyphicon-ok"></span> Siguiendo');
         });
-
-        if (datos != true && datos != undefined) {
-            $('#karma').text('Karma: ' + datos);
-        }
     });
 }
 
@@ -80,7 +87,17 @@ $this->title = empty($profile->name) ? Html::encode($profile->user->username) : 
                 'alt' => $profile->user->username,
             ]) ?>
             <h3><?= $this->title ?></h3>
-            <h4 id="karma">Karma: <?= $karma ?></h4>
+            <div id="follows" class="row">
+                <span class="col-xs-3">
+                    <h3 id="karma"><?= $karma ?></h3> Karma
+                </span>
+                <span class="col-xs-3">
+                    <h3 id="followers"><?= $profile->totalFollowers ?></h3> <?= Yii::t('app', 'followers') ?>
+                </span>
+                <span class="col-xs-3">
+                    <h3><?= $profile->totalFollowed ?></h3> <?= Yii::t('app', 'following') ?>
+                </span>
+            </div>
             <div id="column">
                 <div class="toolbar" id="toolbar">
                 <?php if (Yii::$app->user->isGuest || Yii::$app->user->id !== $profile->user_id) { ?>

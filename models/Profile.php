@@ -67,4 +67,22 @@ class Profile extends BaseProfile
         }
         return "/$avatars/default.png";
     }
+
+    /**
+     * Calcula el numero total de seguidores que tiene el usuario
+     * @return int      Número de seguidores
+     */
+    public function getTotalFollowers()
+    {
+        return Follower::find()->where(['id_followed' => $this->user_id])->count();
+    }
+
+    /**
+     * Calcula el numero total de seguidos que tiene el usuario
+     * @return int      Número de seguidos
+     */
+    public function getTotalFollowed()
+    {
+        return Follower::find()->where(['id_follower' => $this->user_id])->count();
+    }
 }

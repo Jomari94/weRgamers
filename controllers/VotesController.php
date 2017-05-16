@@ -52,8 +52,8 @@ class VotesController extends Controller
         } else {
             $vote->save();
         }
-        $positive = Vote::find()->select('count(*)')->where(['id_voted' => $voted, 'positive' => true])->scalar();
-        $negative = Vote::find()->select('count(*)')->where(['id_voted' => $voted, 'positive' => false])->scalar();
+        $positive = Vote::find()->where(['id_voted' => $voted, 'positive' => true])->count();
+        $negative = Vote::find()->where(['id_voted' => $voted, 'positive' => false])->count();
         return $positive - $negative;
     }
 }

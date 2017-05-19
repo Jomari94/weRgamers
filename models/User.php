@@ -56,6 +56,25 @@ class User extends BaseUser
         return $this->hasMany(Conversation::className(), ['id_participant2' => 'id'])->inverseOf('participant2');
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getVotes()
+    {
+        return $this->hasMany(Vote::className(), ['id_voted' => 'id'])->inverseOf('voted');
+    }
+
+    /**
+     * Devuelve el karma del usuario
+     * @return int Karma del usuario
+     */
+    public function getKarma()
+    {
+        $positive = Vote::find()->where(['id_voted' => $this->id, 'positive' => true])->count();
+        $negative = Vote::find()->where(['id_voted' => $this->id, 'positive' => false])->count();
+        return $positive - $negative;
+    }
+
     public function afterSave($insert, $changedAttributes)
     {
         parent::afterSave($insert, $changedAttributes);

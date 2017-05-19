@@ -63,6 +63,6 @@ class Vote extends \yii\db\ActiveRecord
      */
     public function getVoted()
     {
-        return $this->hasOne(User::className(), ['id' => 'id_voted']);
+        return $this->hasOne(User::className(), ['id' => 'id_voted'])->inverseOf('votes');
     }
 }

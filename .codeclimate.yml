@@ -29,3 +29,9 @@ exclude_paths:
 - tests/
 - docs/
 - requirements.php
+- web/js/jquery.countdown.js
+- web/js/jquery.knob.js
+- web/js/moment-timezone-with-data.js
+- web/js/moment.js
+- web/js/bloodhound.js
+- web/js/typeahead.jquery.js

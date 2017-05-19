@@ -22,16 +22,77 @@ JsAsset::register($this);
 
 $url = Url::to(['/conversations/index']);
 $urlN = Url::to(['/site/notificated']);
+$urlUsers = Url::to(['/site/bloodhound-users']) . '?q=%QUERY';
+$urlGames = Url::to(['/site/bloodhound-games']) . '?q=%QUERY';
+$userLink = Url::to(['/user/profile/show']) . '?id=';
+$gameLink = Url::to(['/games/view']) . '?id=';
 $js = <<<EOT
 $('#messages-link').on('click', function () {
     var ventana = open("$url", "ventana", "width=600,height=640,toolbar=0,titlebar=0");
 });
+
 $('#notifications-link').on('click', function () {
     $("#modal").modal("show");
     $.ajax({
         method: 'post',
         url: '$urlN',
     });
+});
+
+var users = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.whitespace,
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    remote: {
+    url: "$urlUsers",
+    wildcard: '%QUERY'
+  }
+});
+
+var games = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.whitespace,
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    remote: {
+    url: "$urlGames",
+    wildcard: '%QUERY'
+  }
+});
+
+$('.typeahead').typeahead({
+    hint: true,
+    minLength: 1,
+}, {
+    name: 'users',
+    source: users,
+     displayKey: 'username',
+    templates: {
+        header: '<h4 class="name">Users</h4>',
+        // pending: '<i class="fa fa-circle-o-notch fa-spin fa-2x fa-fw"></i>',
+        suggestion: function(data) {
+            html = '<div class="media">';
+            html += '<div class="media-left"><a class="pull-left" href ="' + "$userLink" + data.id + '"><img class="img-suggestion img-rounded media-object" src=' + data.avatar + ' /></a></div>'
+            html += '<div class="media-body">';
+            html += '<p class="media-heading"><a href ="' + "$userLink" + data.id + '">' + data.username + '</a></p>';
+            html += '<div class="user-search-view row"><span class="col-xs-5">' + data.karma + ' Karma</span><span class="col-xs-7">' + data.followers + ' Followers</span></div>';
+            html += '</div></div>';
+            return html;
+        }
+    }
+}, {
+    name: 'games',
+    source: games,
+    displayKey: 'name',
+    templates: {
+        header: '<h4 class="name">Games</h4>',
+        suggestion: function(data) {
+            html = '<div class="media">';
+            html += '<div class="media-left"><a class="pull-left" href ="' + "$gameLink" + data.id + '"><img class="img-suggestion media-object" src=' + data.cover + ' /></a></div>'
+            html += '<div class="media-body">';
+            html += '<p class="media-heading"><a href ="' + "$gameLink" + data.id + '">' + data.name + '</a></p>';
+            html += '<div class="user-search-view row"><span class="col-xs-5">Score: ' + data.score + '</span><span class="col-xs-7">' + data.reviews + ' Reviews</span></div>';
+            html += '</div></div>';
+            return html;
+        }
+    }
 });
 EOT;
 $this->registerJs($js);
@@ -44,6 +105,7 @@ $this->registerJs($js);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
+    <script src="https://use.fontawesome.com/02658bb44e.js"></script>
     <?php $this->head() ?>
 </head>
 <body>
@@ -61,6 +123,12 @@ $this->registerJs($js);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
+            '<form class="navbar-form navbar-left" method="POST" action="'.Url::to(['/site/search']).'">
+                <div class="form-group search-form">
+                    <input type="text" class="form-control typeahead" placeholder="Search">
+                </div>
+                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+              </form>',
             [
                 'label' => Yii::t('app', 'Messages'),
                 'linkOptions' => ['id' => 'messages-link'],

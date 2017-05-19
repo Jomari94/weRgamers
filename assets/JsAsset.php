@@ -24,6 +24,8 @@ class JsAsset extends AssetBundle
         'js/moment.js',
         'js/moment-timezone-with-data.js',
         'js/jquery.knob.js',
+        'js/typeahead.jquery.js',
+        'js/bloodhound.js',
     ];
     public $depends = [
         '\yii\web\JqueryAsset',

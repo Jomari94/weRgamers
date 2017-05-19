@@ -3,6 +3,8 @@
 namespace app\controllers;
 
 use Yii;
+use app\models\Game;
+use app\models\User;
 use yii\filters\AccessControl;
 use yii\web\Cookie;
 use yii\web\Controller;
@@ -69,6 +71,10 @@ class SiteController extends Controller
             ]);
     }
 
+    /**
+     * Cambia el lenguaje en el que se muestra la página
+     * @return mixed
+     */
     public function actionLanguage()
     {
         $language = Yii::$app->request->post('language');
@@ -87,6 +93,52 @@ class SiteController extends Controller
             Yii::$app->response->cookies->add($languageCookie);
         }
         return $this->goBack();
+    }
+
+    /**
+     * Busca usuarios para darselo a bloodhound
+     * @param  string $q Término a buscar
+     * @return string    Resultados de la búsqueda
+     */
+    public function actionBloodhoundUsers($q = null)
+    {
+        if ($q !== null && $q !== '') {
+            $users = User::find()->select('id, username')->where(['ilike', 'username', $q])->all();
+            $response = [];
+            foreach ($users as $user) {
+                $response[] = [
+                    'id' => $user->id,
+                    'username' => $user->username,
+                    'avatar' => $user->profile->avatar,
+                    'followers' => $user->profile->totalFollowers,
+                    'karma' => $user->karma,
+                ];
+            }
+            return json_encode($response);
+        }
+    }
+
+    /**
+     * Busca juegos para darselo a bloodhound
+     * @param  string $q Término a buscar
+     * @return string    Resultados de la búsqueda
+     */
+    public function actionBloodhoundGames($q = null)
+    {
+        if ($q !== null && $q !== '') {
+            $games = Game::find()->select('id, name')->where(['ilike', 'name', $q])->all();
+            $response = [];
+            foreach ($games as $game) {
+                $response[] = [
+                    'id' => $game->id,
+                    'name' => $game->name,
+                    'cover' => $game->cover,
+                    'score' => $game->score,
+                    'reviews' => $game->totalReviews,
+                ];
+            }
+            return json_encode($response);
+        }
     }
 
     /**

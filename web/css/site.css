@@ -327,7 +327,7 @@ div.conversation-view img {
 
 .search-form .typeahead {
     max-width: 200px;
-    border-radius: 40px;
+    border-radius: 40px 0px 0px 40px;
 }
 
 .search-form .tt-menu {

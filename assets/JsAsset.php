@@ -26,6 +26,7 @@ class JsAsset extends AssetBundle
         'js/jquery.knob.js',
         'js/typeahead.jquery.js',
         'js/bloodhound.js',
+        'js/search.js',
     ];
     public $depends = [
         '\yii\web\JqueryAsset',

@@ -116,4 +116,5 @@ return [
     'Review this game' => 'Reseña este juego',
     'based on' => 'basado en',
     'reviews' => 'reseñas',
+    'Search users, games...' => 'Buscar usuarios, juegos...',
 ];

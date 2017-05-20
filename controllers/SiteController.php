@@ -5,6 +5,8 @@ namespace app\controllers;
 use Yii;
 use app\models\Game;
 use app\models\User;
+use app\models\Group;
+use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\web\Cookie;
 use yii\web\Controller;
@@ -139,6 +141,33 @@ class SiteController extends Controller
             }
             return json_encode($response);
         }
+    }
+
+    /**
+     * Lista los resultados de una búsqueda
+     * @param  string $q Término a buscar
+     * @return mixed
+     */
+    public function actionSearch($q = null)
+    {
+        if ($q !== null && $q !== '') {
+            $userProvider = new ActiveDataProvider([
+                'query' => User::find()->where(['ilike', 'username', $q]),
+            ]);
+            $gameProvider = new ActiveDataProvider([
+                'query' => Game::find()->where(['ilike', 'name', $q]),
+            ]);
+            $groupProvider = new ActiveDataProvider([
+                'query' => Group::find()->where(['ilike', 'name', $q]),
+            ]);
+            return $this->render('search', [
+                'q' => $q,
+                'userProvider' => $userProvider,
+                'gameProvider' => $gameProvider,
+                'groupProvider' => $groupProvider,
+            ]);
+        }
+        return $this->refresh();
     }
 
     /**

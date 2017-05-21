@@ -6,6 +6,7 @@ use Yii;
 use app\models\Game;
 use app\models\User;
 use app\models\Group;
+use app\models\Collection;
 use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\web\Cookie;
@@ -160,11 +161,23 @@ class SiteController extends Controller
             $groupProvider = new ActiveDataProvider([
                 'query' => Group::find()->where(['ilike', 'name', $q]),
             ]);
+
+            $games = Game::find()->select('id')->where(['ilike', 'name', $q]);
+            $collection = Collection::find()->select('id_user')->where(['in', 'id_game', $games]);
+            $userByGameProvider = new ActiveDataProvider([
+                'query' => User::find()->where(['in', 'id', $collection]),
+            ]);
+            $groupByGameProvider = new ActiveDataProvider([
+                'query' => Group::find()->where(['in', 'id_game', $games]),
+            ]);
+
             return $this->render('search', [
                 'q' => $q,
                 'userProvider' => $userProvider,
+                'userByGameProvider' => $userByGameProvider,
                 'gameProvider' => $gameProvider,
                 'groupProvider' => $groupProvider,
+                'groupByGameProvider' => $groupByGameProvider,
             ]);
         }
         return $this->refresh();

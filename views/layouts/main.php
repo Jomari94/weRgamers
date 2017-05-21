@@ -27,6 +27,11 @@ $urlUsers = Url::to(['/site/bloodhound-users']) . '?q=%QUERY';
 $urlGames = Url::to(['/site/bloodhound-games']) . '?q=%QUERY';
 $userLink = Url::to(['/user/profile/show']) . '?id=';
 $gameLink = Url::to(['/games/view']) . '?id=';
+$score = Yii::t('app', 'Score');
+$games = Yii::t('app', 'Games');
+$users = Yii::t('app', 'Users');
+$reviews = Yii::t('app', 'Reviews');
+$followers = Yii::t('app', 'Followers');
 $js = <<<EOT
 var urlConversations = "$urlConversations";
 var urlNotifications = "$urlNotifications";
@@ -34,6 +39,23 @@ var urlUsers = "$urlUsers";
 var urlGames = "$urlGames";
 var userLink = "$userLink";
 var gameLink = "$gameLink";
+var nameScore = "$score";
+var nameGames = "$games";
+var nameUsers = "$users";
+var nameReviews = "$reviews";
+var nameFollowers = "$followers";
+
+$('#messages-link').on('click', function () {
+    var ventana = open(urlConversations, "ventana", "width=600,height=640,toolbar=0,titlebar=0");
+});
+
+$('#notifications-link').on('click', function () {
+    $("#modal").modal("show");
+    $.ajax({
+        method: 'post',
+        url: urlNotifications,
+    });
+});
 EOT;
 $this->registerJs($js, View::POS_HEAD);
 ?>

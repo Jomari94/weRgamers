@@ -6,6 +6,7 @@ $this->title = Yii::t('app', 'Search Results: {0}', [$q]);
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-search">
+    <h3><?= Yii::t('app', 'Searched: {0}', [$q]) ?></h3>
     <?= Tabs::widget([
     'items' => [
         [
@@ -15,6 +16,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 'userProvider' => $userProvider,
             ]),
             'active' => true
+        ],
+        [
+            'label' => Yii::t('app', 'Users by game'),
+            'content' => $this->render('/user/_searched', [
+                'q' => $q,
+                'userProvider' => $userByGameProvider,
+            ]),
         ],
         [
             'label' => Yii::t('app', 'Games'),
@@ -29,6 +37,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 'q' => $q,
                 'groupProvider' => $groupProvider,
             ]),
+        ],
+        [
+            'label' => Yii::t('app', 'Groups by game'),
+            'content' => $this->render('/groups/_searched', [
+                'q' => $q,
+                'groupProvider' => $groupByGameProvider,
+            ]),
+        ],
+        [
+            'label' => Yii::t('app', 'Messages'),
+            'content' => '<br />Próximamente',
         ],
     ],
 ]); ?>

@@ -1,7 +1,6 @@
 <?php
 use yii\widgets\ListView;
 ?>
-<h3><?= Yii::t('app', 'Games searched: {0}', [$q]) ?></h3>
 <br />
 <?= ListView::widget([
     'dataProvider' => $gameProvider,

@@ -63,6 +63,13 @@ class User extends BaseUser
     {
         return $this->hasMany(Vote::className(), ['id_voted' => 'id'])->inverseOf('voted');
     }
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPublications()
+    {
+        return $this->hasMany(Publication::className(), ['id_user' => 'id'])->inverseOf('users');
+    }
 
     /**
      * Devuelve el karma del usuario

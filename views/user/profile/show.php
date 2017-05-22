@@ -10,6 +10,7 @@
  */
 
 use app\models\Vote;
+use kop\y2sp\ScrollPager;
 use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\widgets\ListView;
@@ -165,6 +166,37 @@ $this->title = empty($profile->name) ? Html::encode($profile->user->username) : 
         </div>
     </div>
     <div class="col-xs-12 col-sm-8">
-        <div></div>
+        <div>
+            <?php if (!Yii::$app->user->isGuest && Yii::$app->user->id == $profile->user_id): ?>
+                <?= $this->render('../../publications/_form', [
+                    'model' => $publication,
+                    ]) ?>
+            <?php endif; ?>
+        </div>
+        <div>
+            <?= ListView::widget([
+               'dataProvider' => $publicationProvider,
+               'layout' => "{items}\n{pager}",
+               'options' => [
+                   'tag' => 'div',
+                   'class' => 'publications-wrapper',
+                   'id' => 'publications-wrapper',
+               ],
+               'layout' => "{items}\n{pager}",
+               'itemView' => '../messages/_view.php',
+               'pager' => [
+                   'class' => ScrollPager::className(),
+                   'container' => '.publications-wrapper',
+                   'triggerText' => Yii::t('app', 'Show old publications'),
+                   'noneLeftText' => '',
+                   //'overflowContainer' => '.list'
+               ],
+               'itemOptions' => [
+                   'tag' => 'article',
+                   'class' => 'publication-view',
+               ],
+               'itemView' => '../../publications/_view',
+           ]) ?>
+        </div>
     </div>
 </div>

@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="language" content="en" />
+        <link href="./assets/ad8f0b86/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/f07207ee/solarized_light.css" rel="stylesheet">
+<link href="./assets/67e76fc4/style.css" rel="stylesheet">
+<script src="./assets/97c103e1/jquery.js"></script>
+<script src="./assets/ad8f0b86/js/bootstrap.js"></script>
+<script src="./assets/40c47bf1/jssearch.js"></script>    <title>Definición Detallada - Catálogo de Requisitos - Guía de We &#039;r&#039; Gamers</title>
+</head>
+<body>
+
+<div class="wrap">
+    <nav id="w42" class="navbar-inverse navbar-fixed-top navbar" role="navigation"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w42-collapse"><span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span></button><a class="navbar-brand" href="./index.html">Guía de We 'r' Gamers</a></div><div id="w42-collapse" class="collapse navbar-collapse"><ul id="w43" class="navbar-nav nav"><li><a href="api/index.html">Class reference</a></li>
+<li><a href="./README.html">Guide</a></li></ul><div class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input id="searchbox" type="text" class="form-control" placeholder="Search">
+  </div>
+</div>
+</div></nav>
+    <div id="search-resultbox" style="display: none;" class="modal-content">
+        <ul id="search-results">
+        </ul>
+    </div>
+
+    
+<div class="row">
+    <div class="col-md-2">
+                <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-33" data-toggle="collapse" data-parent="#navigation">Descripción General del Proyecto <b class="caret"></b></a><div id="navigation-33" class="submenu panel-collapse collapse"><a class="list-group-item" href="./funcionalidad.html">Funcionalidad Principal de la Aplicación</a>
+<a class="list-group-item" href="./objetivos-generales.html">Objetivos Generales</a>
+<a class="list-group-item" href="https://github.com/Jomari94/weRgamers">Repositorio en GitHub</a>
+<a class="list-group-item" href="https://jomari94.github.io/weRgamers/">Documentación</a></div>
+<a class="list-group-item" href="#navigation-34" data-toggle="collapse" data-parent="#navigation">Instrucciones de instalación y despliegue <b class="caret"></b></a><div id="navigation-34" class="submenu panel-collapse collapse"><a class="list-group-item" href="./despliegue-local.html">En local</a>
+<a class="list-group-item" href="./despliegue-nube.html">En la nube</a></div>
+<a class="list-group-item active" href="#navigation-35" data-toggle="collapse" data-parent="#navigation">Catálogo de Requisitos <b class="caret"></b></a><div id="navigation-35" class="submenu panel-collapse collapse in"><a class="list-group-item active" href="./requisitos-detallados.html">Definición Detallada</a>
+<a class="list-group-item" href="./requisitos-resumen.html">Cuadro Resumen</a></div>
+<a class="list-group-item" href="#navigation-36" data-toggle="collapse" data-parent="#navigation">Manual Básico de Usuario <b class="caret"></b></a><div id="navigation-36" class="submenu panel-collapse collapse"><a class="list-group-item" href="./manual-usuario.html">Manual</a></div>
+<a class="list-group-item" href="#navigation-37" data-toggle="collapse" data-parent="#navigation">Decisiones Adoptadas y su Justificación <b class="caret"></b></a><div id="navigation-37" class="submenu panel-collapse collapse"><a class="list-group-item" href="./decisiones.html">Decisiones Adoptadas y su Justificación</a></div>
+<a class="list-group-item" href="#navigation-38" data-toggle="collapse" data-parent="#navigation">Dificultades Encontradas y Soluciones Aplicadas <b class="caret"></b></a><div id="navigation-38" class="submenu panel-collapse collapse"><a class="list-group-item" href="./dificultades.html">Dificultades Encontradas y Soluciones Aplicadas</a></div>
+<a class="list-group-item" href="#navigation-39" data-toggle="collapse" data-parent="#navigation">Diagramas <b class="caret"></b></a><div id="navigation-39" class="submenu panel-collapse collapse"><a class="list-group-item" href="./diagrama-clases.html">De Clases</a>
+<a class="list-group-item" href="./diagrama-db.html">De Estructura Lógica de Datos</a></div>
+<a class="list-group-item" href="#navigation-40" data-toggle="collapse" data-parent="#navigation">Glosario de Términos <b class="caret"></b></a><div id="navigation-40" class="submenu panel-collapse collapse"><a class="list-group-item" href="./glosario.html">Glosario de Términos</a></div>
+<a class="list-group-item" href="#navigation-41" data-toggle="collapse" data-parent="#navigation">Conclusiones <b class="caret"></b></a><div id="navigation-41" class="submenu panel-collapse collapse"><a class="list-group-item" href="./conclusiones.html">Conclusiones</a></div></div>    </div>
+    <div class="col-md-9 guide-content" role="main">
+        <h1>Definición Detallada de Requisitos <span id="definicion-detallada-de-requisitos"></span><a href="#definicion-detallada-de-requisitos" class="hashlink">&para;</a></h1><table class="table table-bordered table-striped">
+<thead>
+<tr><th>R01                </th><th>Darse de alta</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga  </td><td>El usuario dará de alta una cuenta en la aplicación, lo que le permitirá iniciar sesión</td></tr>
+<tr><td>Prioridad          </td><td>Importante</td></tr>
+<tr><td>Tipo               </td><td>Funcional</td></tr>
+<tr><td>Complejidad        </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada</td><td>v1</td></tr>
+<tr><td>Entrega realizada  </td><td>v1</td></tr>
+<tr><td>Nº Issue           </td><td>1</td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R02                </th><th>Darse de baja</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga  </td><td>El usuario dará de baja una cuenta en la aplicación</td></tr>
+<tr><td>Prioridad          </td><td>Importante</td></tr>
+<tr><td>Tipo               </td><td>Funcional</td></tr>
+<tr><td>Complejidad        </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada</td><td>v1</td></tr>
+<tr><td>Entrega realizada  </td><td>v1</td></tr>
+<tr><td>Nº Issue           </td><td>2</td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R03                </th><th>Modificar el perfil</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga  </td><td>El usuario podrá modificar los datos de su cuenta</td></tr>
+<tr><td>Prioridad          </td><td>Importante</td></tr>
+<tr><td>Tipo               </td><td>Funcional</td></tr>
+<tr><td>Complejidad        </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada</td><td>v1</td></tr>
+<tr><td>Entrega realizada  </td><td>v1</td></tr>
+<tr><td>Nº Issue           </td><td>3</td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R04                </th><th>Subir avatar</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga  </td><td>El usuario podrá subir su avatar a la aplicación</td></tr>
+<tr><td>Prioridad          </td><td>Importante</td></tr>
+<tr><td>Tipo               </td><td>Funcional</td></tr>
+<tr><td>Complejidad        </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada</td><td>v1</td></tr>
+<tr><td>Entrega realizada  </td><td>v1</td></tr>
+<tr><td>Nº Issue           </td><td>4</td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R05                </th><th>Confirmar correo</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga  </td><td>El usuario recibe un email con la intención de confirmar el correo dado a la aplicación durante el proceso de alta</td></tr>
+<tr><td>Prioridad          </td><td>Importante</td></tr>
+<tr><td>Tipo               </td><td>Funcional</td></tr>
+<tr><td>Complejidad        </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada</td><td>v1</td></tr>
+<tr><td>Entrega realizada  </td><td>v1</td></tr>
+<tr><td>Nº Issue           </td><td>5</td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R06                </th><th>Recuperar contraseña</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga  </td><td>El usuario recibe un email con una url que le permite renovar su contraseña</td></tr>
+<tr><td>Prioridad          </td><td>Importante</td></tr>
+<tr><td>Tipo               </td><td>Funcional</td></tr>
+<tr><td>Complejidad        </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada</td><td>v1</td></tr>
+<tr><td>Entrega realizada  </td><td>v1</td></tr>
+<tr><td>Nº Issue           </td><td>6</td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R07                </th><th>Iniciar sesión</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga  </td><td>El usuario se autentica en la aplicación, lo que le permite hacer uso de su cuenta</td></tr>
+<tr><td>Prioridad          </td><td>Importante</td></tr>
+<tr><td>Tipo               </td><td>Funcional</td></tr>
+<tr><td>Complejidad        </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada</td><td>v1</td></tr>
+<tr><td>Entrega realizada  </td><td>v1</td></tr>
+<tr><td>Nº Issue           </td><td>7</td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R08                </th><th>Cerrar sesión</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga  </td><td>El usuario cierra la sesión y pasa a ser un usuario invitado</td></tr>
+<tr><td>Prioridad          </td><td>Importante</td></tr>
+<tr><td>Tipo               </td><td>Funcional</td></tr>
+<tr><td>Complejidad        </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada</td><td>v1</td></tr>
+<tr><td>Entrega realizada  </td><td>v1</td></tr>
+<tr><td>Nº Issue           </td><td>8</td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R09                </th><th>Elegir videojuego de entre los disponibles</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga  </td><td>De entre los videojuegos almacenados en la base de datos el usuario podrá elegir los de su colección para que sean mostrados por su perfil y poder usarlos como criterio de búsqueda</td></tr>
+<tr><td>Prioridad          </td><td>Importante</td></tr>
+<tr><td>Tipo               </td><td>Funcional</td></tr>
+<tr><td>Complejidad        </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada</td><td>v1</td></tr>
+<tr><td>Entrega realizada  </td><td>v1</td></tr>
+<tr><td>Nº Issue           </td><td>9</td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R10                </th><th>Seguir a un usuario</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga  </td><td>El usuario podrá seguir a otros usuarios para ver en su página principal sus mensajes</td></tr>
+<tr><td>Prioridad          </td><td>Importante</td></tr>
+<tr><td>Tipo               </td><td>Funcional</td></tr>
+<tr><td>Complejidad        </td><td>Media</td></tr>
+<tr><td>Entrega planificada</td><td>v1</td></tr>
+<tr><td>Entrega realizada  </td><td>v1</td></tr>
+<tr><td>Nº Issue           </td><td>10</td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R11                </th><th>Dejar de seguir a un usuario</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga  </td><td>El usuario podrá dejar de seguir  a un usuario</td></tr>
+<tr><td>Prioridad          </td><td>Importante</td></tr>
+<tr><td>Tipo               </td><td>Funcional</td></tr>
+<tr><td>Complejidad        </td><td>Media</td></tr>
+<tr><td>Entrega planificada</td><td>v1</td></tr>
+<tr><td>Entrega realizada  </td><td>v1</td></tr>
+<tr><td>Nº Issue           </td><td>11</td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R12                </th><th>Votar positivo a un usuario</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga  </td><td>El usuario podrá votar positivo a otro usuario, si anteriormente había votado negativo se cambiará el voto a positivo</td></tr>
+<tr><td>Prioridad          </td><td>Importante</td></tr>
+<tr><td>Tipo               </td><td>Funcional</td></tr>
+<tr><td>Complejidad        </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada</td><td>v1</td></tr>
+<tr><td>Entrega realizada  </td><td>v1</td></tr>
+<tr><td>Nº Issue           </td><td>12</td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R13                </th><th>Votar negativo a un usuario</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga  </td><td>El usuario podrá votar negativo a otro usuario, si anteriormente había votado positivo se cambiará el voto a negativo</td></tr>
+<tr><td>Prioridad          </td><td>Importante</td></tr>
+<tr><td>Tipo               </td><td>Funcional</td></tr>
+<tr><td>Complejidad        </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada</td><td>v1</td></tr>
+<tr><td>Entrega realizada  </td><td>v1</td></tr>
+<tr><td>Nº Issue           </td><td>13</td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R14                </th><th>Cancelar el voto</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga  </td><td>Pulsando en el botón usado para votar anteriormente, ya sea positivo o negativo, se cancelará el voto</td></tr>
+<tr><td>Prioridad          </td><td>Importante</td></tr>
+<tr><td>Tipo               </td><td>Funcional</td></tr>
+<tr><td>Complejidad        </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada</td><td>v1</td></tr>
+<tr><td>Entrega realizada  </td><td>v1</td></tr>
+<tr><td>Nº Issue           </td><td>14</td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R15                </th><th>Crear un grupo</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga  </td><td>El usuario podrá crear un grupo y este irá asociado a uno de los juegos de la base de datos. El creador tendrá permisos de administrador del grupo</td></tr>
+<tr><td>Prioridad          </td><td>Importante</td></tr>
+<tr><td>Tipo               </td><td>Funcional</td></tr>
+<tr><td>Complejidad        </td><td>Media</td></tr>
+<tr><td>Entrega planificada</td><td>v1</td></tr>
+<tr><td>Entrega realizada  </td><td>v1</td></tr>
+<tr><td>Nº Issue           </td><td>15</td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R16                </th><th>Unirse a un grupo</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga  </td><td>El usuario se puede solicitar unirse a un grupo ya existente, si uno de los administradores de ese grupo acepta la solicitud será miembro del grupo</td></tr>
+<tr><td>Prioridad          </td><td>Importante</td></tr>
+<tr><td>Tipo               </td><td>Funcional</td></tr>
+<tr><td>Complejidad        </td><td>Media</td></tr>
+<tr><td>Entrega planificada</td><td>v1</td></tr>
+<tr><td>Entrega realizada  </td><td>v1</td></tr>
+<tr><td>Nº Issue           </td><td>16</td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R17                </th><th>Dejar un grupo</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga  </td><td>El usuario podrá dejar de formar parte de un grupo</td></tr>
+<tr><td>Prioridad          </td><td>Importante</td></tr>
+<tr><td>Tipo               </td><td>Funcional</td></tr>
+<tr><td>Complejidad        </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada</td><td>v1</td></tr>
+<tr><td>Entrega realizada  </td><td>v1</td></tr>
+<tr><td>Nº Issue           </td><td>17</td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R18                </th><th>Crear evento</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga  </td><td>El líder de un grupo podrá crear eventos con fecha, de forma que notificará a los miembros del grupo y aparecerá una cuenta atrás en la página del grupo</td></tr>
+<tr><td>Prioridad          </td><td>Importante</td></tr>
+<tr><td>Tipo               </td><td>Funcional</td></tr>
+<tr><td>Complejidad        </td><td>Media</td></tr>
+<tr><td>Entrega planificada</td><td>v2</td></tr>
+<tr><td>Entrega realizada  </td><td>v2</td></tr>
+<tr><td>Nº Issue           </td><td>18</td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R19                </th><th>Cancelar evento</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga  </td><td>El líder de un grupo puede cancelar un evento ya creado</td></tr>
+<tr><td>Prioridad          </td><td>Importante</td></tr>
+<tr><td>Tipo               </td><td>Funcional</td></tr>
+<tr><td>Complejidad        </td><td>Media</td></tr>
+<tr><td>Entrega planificada</td><td>v2</td></tr>
+<tr><td>Entrega realizada  </td><td>v2</td></tr>
+<tr><td>Nº Issue           </td><td>19</td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R20                </th><th>Recibir notificación por nuevo seguidor</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga  </td><td>El usuario recibirá una notificación cada vez que tenga un nuevo seguidor</td></tr>
+<tr><td>Prioridad          </td><td>Importante</td></tr>
+<tr><td>Tipo               </td><td>Funcional</td></tr>
+<tr><td>Complejidad        </td><td>Media</td></tr>
+<tr><td>Entrega planificada</td><td>v2</td></tr>
+<tr><td>Entrega realizada  </td><td>v2</td></tr>
+<tr><td>Nº Issue           </td><td>20</td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R21                </th><th>Recibir notificación por nuevo evento</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga  </td><td>El usuario recibirá una notificación cada vez que un grupo al que pertenece tiene un evento nuevo</td></tr>
+<tr><td>Prioridad          </td><td>Importante</td></tr>
+<tr><td>Tipo               </td><td>Funcional</td></tr>
+<tr><td>Complejidad        </td><td>Media</td></tr>
+<tr><td>Entrega planificada</td><td>v2</td></tr>
+<tr><td>Entrega realizada  </td><td>v2</td></tr>
+<tr><td>Nº Issue           </td><td>21</td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R22                </th><th>Recibir notificación por ser aceptado en un grupo</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga  </td><td>El usuario recibirá una notificación al ser aceptado en un grupo que había solicitado</td></tr>
+<tr><td>Prioridad          </td><td>Importante</td></tr>
+<tr><td>Tipo               </td><td>Funcional</td></tr>
+<tr><td>Complejidad        </td><td>Media</td></tr>
+<tr><td>Entrega planificada</td><td>v2</td></tr>
+<tr><td>Entrega realizada  </td><td>v2</td></tr>
+<tr><td>Nº Issue           </td><td>22</td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R23                </th><th>Recibir notificación por solicitud de admisión en grupo</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga  </td><td>Si un usuario solicita unirse al grupo, los administradores de ese grupo recibirán una notificación</td></tr>
+<tr><td>Prioridad          </td><td>Importante</td></tr>
+<tr><td>Tipo               </td><td>Funcional</td></tr>
+<tr><td>Complejidad        </td><td>Media</td></tr>
+<tr><td>Entrega planificada</td><td>v2</td></tr>
+<tr><td>Entrega realizada  </td><td>v2</td></tr>
+<tr><td>Nº Issue           </td><td>23</td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R24                </th><th>Recibir notificación por mensaje privado recibido</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga  </td><td>El usuario recibirá una notificación cuando reciba un mensaje privado de otro usuario</td></tr>
+<tr><td>Prioridad          </td><td>Importante</td></tr>
+<tr><td>Tipo               </td><td>Funcional</td></tr>
+<tr><td>Complejidad        </td><td>Media</td></tr>
+<tr><td>Entrega planificada</td><td>v2</td></tr>
+<tr><td>Entrega realizada  </td><td>v2</td></tr>
+<tr><td>Nº Issue           </td><td>24</td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R25                </th><th>Enviar mensaje privado</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga  </td><td>El usuario podrá enviar un mensaje a otro usuario</td></tr>
+<tr><td>Prioridad          </td><td>Importante</td></tr>
+<tr><td>Tipo               </td><td>Funcional</td></tr>
+<tr><td>Complejidad        </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada</td><td>v2</td></tr>
+<tr><td>Entrega realizada  </td><td>v2</td></tr>
+<tr><td>Nº Issue           </td><td>25</td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R26                </th><th>Reciir mensaje privado</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga  </td><td>El usuario podrá recibir un mensaje de otro usuario</td></tr>
+<tr><td>Prioridad          </td><td>Importante</td></tr>
+<tr><td>Tipo               </td><td>Funcional</td></tr>
+<tr><td>Complejidad        </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada</td><td>v2</td></tr>
+<tr><td>Entrega realizada  </td><td>v2</td></tr>
+<tr><td>Nº Issue           </td><td>26</td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R27                </th><th>Otorgar permisos de administrador del grupo</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga  </td><td>Un administrador de un grupo puede dar permisos de administrador a otros miembros del grupo</td></tr>
+<tr><td>Prioridad          </td><td>Importante</td></tr>
+<tr><td>Tipo               </td><td>Funcional</td></tr>
+<tr><td>Complejidad        </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada</td><td>v2</td></tr>
+<tr><td>Entrega realizada  </td><td>v2</td></tr>
+<tr><td>Nº Issue           </td><td>27</td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R28                </th><th>Aceptar la solicitud de un usuario para unirse al grupo</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga  </td><td>Un administrador puede aceptar a un usuario que ha solicitado unirse a el grupo</td></tr>
+<tr><td>Prioridad          </td><td>Importante</td></tr>
+<tr><td>Tipo               </td><td>Funcional</td></tr>
+<tr><td>Complejidad        </td><td>Media</td></tr>
+<tr><td>Entrega planificada</td><td>v2</td></tr>
+<tr><td>Entrega realizada  </td><td>v2</td></tr>
+<tr><td>Nº Issue           </td><td>28</td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R29                </th><th>Rechazar la solicitud de un usuario para unirse al grupo</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga  </td><td>Un administrador puede rechazar a un usuario que ha solicitado unirse a el grupo</td></tr>
+<tr><td>Prioridad          </td><td>Importante</td></tr>
+<tr><td>Tipo               </td><td>Funcional</td></tr>
+<tr><td>Complejidad        </td><td>Media</td></tr>
+<tr><td>Entrega planificada</td><td>v2</td></tr>
+<tr><td>Entrega realizada  </td><td>v2</td></tr>
+<tr><td>Nº Issue           </td><td>29</td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R30                </th><th>Echar a un usuario del grupo</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga  </td><td>Un administrador puede echar a un miembro del grupo</td></tr>
+<tr><td>Prioridad          </td><td>Importante</td></tr>
+<tr><td>Tipo               </td><td>Funcional</td></tr>
+<tr><td>Complejidad        </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada</td><td>v2</td></tr>
+<tr><td>Entrega realizada  </td><td>v2</td></tr>
+<tr><td>Nº Issue           </td><td>30</td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R31                </th><th>Publicar un mensaje en el chat del grupo</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga  </td><td>Un miembro de un grupo escribe un mensaje y lo publica en el chat del grupo</td></tr>
+<tr><td>Prioridad          </td><td>Importante</td></tr>
+<tr><td>Tipo               </td><td>Funcional</td></tr>
+<tr><td>Complejidad        </td><td>Difícil</td></tr>
+<tr><td>Entrega planificada</td><td>v3</td></tr>
+<tr><td>Entrega realizada  </td><td>v3</td></tr>
+<tr><td>Nº Issue           </td><td>64</td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R32                </th><th>Recibir un mensaje del chat</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga  </td><td>El chat se actualiza cuando un usuario publica un mensaje</td></tr>
+<tr><td>Prioridad          </td><td>Importante</td></tr>
+<tr><td>Tipo               </td><td>Funcional</td></tr>
+<tr><td>Complejidad        </td><td>Difícil</td></tr>
+<tr><td>Entrega planificada</td><td>v3</td></tr>
+<tr><td>Entrega realizada  </td><td>v3</td></tr>
+<tr><td>Nº Issue           </td><td>65</td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R33                </th><th>Buscar un usuario por nombre</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga  </td><td>El usuario podrá buscar usuarios usando el nombre como criterio de búsqueda</td></tr>
+<tr><td>Prioridad          </td><td>Importante</td></tr>
+<tr><td>Tipo               </td><td>Funcional</td></tr>
+<tr><td>Complejidad        </td><td>Media</td></tr>
+<tr><td>Entrega planificada</td><td>v3</td></tr>
+<tr><td>Entrega realizada  </td><td>v3</td></tr>
+<tr><td>Nº Issue           </td><td>66</td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R34                </th><th>Buscar un usuario por juego</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga  </td><td>El usuario podrá buscar usuarios usando la colección de juegos como criterio de búsqueda</td></tr>
+<tr><td>Prioridad          </td><td>Importante</td></tr>
+<tr><td>Tipo               </td><td>Funcional</td></tr>
+<tr><td>Complejidad        </td><td>Media</td></tr>
+<tr><td>Entrega planificada</td><td>v3</td></tr>
+<tr><td>Entrega realizada  </td><td>v3</td></tr>
+<tr><td>Nº Issue           </td><td>67</td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R35                </th><th>Buscar un grupo por nombre</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga  </td><td>El usuario podrá buscar grupos usando el nombre como criterio de búsqueda</td></tr>
+<tr><td>Prioridad          </td><td>Importante</td></tr>
+<tr><td>Tipo               </td><td>Funcional</td></tr>
+<tr><td>Complejidad        </td><td>Media</td></tr>
+<tr><td>Entrega planificada</td><td>v3</td></tr>
+<tr><td>Entrega realizada  </td><td>v3</td></tr>
+<tr><td>Nº Issue           </td><td>68</td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R36                </th><th>Buscar un grupo por juego</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga  </td><td>El usuario podrá buscar grupos usando el juego asociado al grupo como criterio de búsqueda</td></tr>
+<tr><td>Prioridad          </td><td>Importante</td></tr>
+<tr><td>Tipo               </td><td>Funcional</td></tr>
+<tr><td>Complejidad        </td><td>Media</td></tr>
+<tr><td>Entrega planificada</td><td>v3</td></tr>
+<tr><td>Entrega realizada  </td><td>v3</td></tr>
+<tr><td>Nº Issue           </td><td>69</td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R37                </th><th>Buscar un juego por título</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga  </td><td>El usuario podrá buscar juegos usando el título como criterio de búsqueda</td></tr>
+<tr><td>Prioridad          </td><td>Importante</td></tr>
+<tr><td>Tipo               </td><td>Funcional</td></tr>
+<tr><td>Complejidad        </td><td>Media</td></tr>
+<tr><td>Entrega planificada</td><td>v3</td></tr>
+<tr><td>Entrega realizada  </td><td>v3</td></tr>
+<tr><td>Nº Issue           </td><td>70</td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R38                </th><th>Buscar un mensaje por el cuerpo</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga  </td><td>El usuario podrá buscar un mensaje por el contenido del cuerpo del mensaje, haciendo uso de full text search</td></tr>
+<tr><td>Prioridad          </td><td>Importante</td></tr>
+<tr><td>Tipo               </td><td>Funcional</td></tr>
+<tr><td>Complejidad        </td><td>Media</td></tr>
+<tr><td>Entrega planificada</td><td>v3</td></tr>
+<tr><td>Entrega realizada  </td><td>v3</td></tr>
+<tr><td>Nº Issue           </td><td>71</td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R39                </th><th>Publicar un mensaje</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga  </td><td>El usuario publica un mensaje público que aparecerá en su perfil y en la página principal de sus seguidores</td></tr>
+<tr><td>Prioridad          </td><td>Importante</td></tr>
+<tr><td>Tipo               </td><td>Funcional</td></tr>
+<tr><td>Complejidad        </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada</td><td>v3</td></tr>
+<tr><td>Entrega realizada  </td><td>v3</td></tr>
+<tr><td>Nº Issue           </td><td>72</td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R40                </th><th>Iniciar sesión usando Google+</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga  </td><td>El usuario podrá iniciar sesión haciendo uso de su cuenta de google</td></tr>
+<tr><td>Prioridad          </td><td>Importante</td></tr>
+<tr><td>Tipo               </td><td>Funcional</td></tr>
+<tr><td>Complejidad        </td><td>Media</td></tr>
+<tr><td>Entrega planificada</td><td>v1</td></tr>
+<tr><td>Entrega realizada  </td><td>v1</td></tr>
+<tr><td>Nº Issue           </td><td>31</td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R41                </th><th>Iniciar sesión usando Steam</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga  </td><td>El usuario podrá usar su cuenta de Steam para iniciar sesión</td></tr>
+<tr><td>Prioridad          </td><td>Opcional</td></tr>
+<tr><td>Tipo               </td><td>Funcional</td></tr>
+<tr><td>Complejidad        </td><td>Difícil</td></tr>
+<tr><td>Entrega planificada</td><td>v3</td></tr>
+<tr><td>Entrega realizada</td></tr>
+<tr><td>Nº Issue           </td><td>73</td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R42                </th><th>Usar la API de Steam</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga  </td><td>Se usará la API de Steam para obtener datos del usuario si ha iniciado sesión con Steam y mostrarlos en su página de perfil</td></tr>
+<tr><td>Prioridad          </td><td>Opcional</td></tr>
+<tr><td>Tipo               </td><td>Técnico</td></tr>
+<tr><td>Complejidad        </td><td>Difícil</td></tr>
+<tr><td>Entrega planificada</td><td>v3</td></tr>
+<tr><td>Entrega realizada</td></tr>
+<tr><td>Nº Issue           </td><td>74</td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R43                </th><th>Uso de RBAC para la autorización</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga  </td><td>Se usará Role Based Access Control (RBAC) para el control de acceso de los usuarios</td></tr>
+<tr><td>Prioridad          </td><td>Importante</td></tr>
+<tr><td>Tipo               </td><td>Técnico</td></tr>
+<tr><td>Complejidad        </td><td>Media</td></tr>
+<tr><td>Entrega planificada</td><td>v2</td></tr>
+<tr><td>Entrega realizada  </td><td>v2</td></tr>
+<tr><td>Nº Issue           </td><td>32</td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R44                </th><th>Guardar variable de sesión en la DB</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga  </td><td>Se guardará la variable de sesión en la base de datos</td></tr>
+<tr><td>Prioridad          </td><td>Importante</td></tr>
+<tr><td>Tipo               </td><td>Técnico</td></tr>
+<tr><td>Complejidad        </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada</td><td>v1</td></tr>
+<tr><td>Entrega realizada  </td><td>v1</td></tr>
+<tr><td>Nº Issue           </td><td>33</td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R45                </th><th>Uso de varios idiomas</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga  </td><td>La aplicación estará en inglés y español</td></tr>
+<tr><td>Prioridad          </td><td>Importante</td></tr>
+<tr><td>Tipo               </td><td>Funcional</td></tr>
+<tr><td>Complejidad        </td><td>Media</td></tr>
+<tr><td>Entrega planificada</td><td>v2</td></tr>
+<tr><td>Entrega realizada  </td><td>v2</td></tr>
+<tr><td>Nº Issue           </td><td>34</td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R46                </th><th>Uso de Amazon S3</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga  </td><td>Se usará amazon s3 para almacenar archivos multimedia subidos por los usuarios</td></tr>
+<tr><td>Prioridad          </td><td>Opcional</td></tr>
+<tr><td>Tipo               </td><td>Técnico</td></tr>
+<tr><td>Complejidad        </td><td>Media</td></tr>
+<tr><td>Entrega planificada</td><td>v3</td></tr>
+<tr><td>Entrega realizada  </td><td>v3</td></tr>
+<tr><td>Nº Issue           </td><td>75</td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R47                </th><th>Adjuntar archivo a un mensaje público</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga  </td><td>Se podrá adjuntar un archivo multimedia, como una imagen o un vídeo, a un mensaje al momento de publicarlo</td></tr>
+<tr><td>Prioridad          </td><td>Opcional</td></tr>
+<tr><td>Tipo               </td><td>Funcional</td></tr>
+<tr><td>Complejidad        </td><td>Media</td></tr>
+<tr><td>Entrega planificada</td><td>v3</td></tr>
+<tr><td>Entrega realizada  </td><td>v3</td></tr>
+<tr><td>Nº Issue           </td><td>76</td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R48                </th><th>Publicar una reseña</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga  </td><td>El usuario podrá publicar una reseña en la página de un videojuego</td></tr>
+<tr><td>Prioridad          </td><td>Importante</td></tr>
+<tr><td>Tipo               </td><td>Funcional</td></tr>
+<tr><td>Complejidad        </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada</td><td>v2</td></tr>
+<tr><td>Entrega realizada  </td><td>v2</td></tr>
+<tr><td>Nº Issue           </td><td>35</td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R49                </th><th>Añadir videojuego</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga  </td><td>El administrador de la aplicación puede añadir videojuego a la propia aplicación, que los usuarios podrán añadir a su colección, tendrá su vista con reseñas hechas por los usuarios y se podrán crear grupos asociados a ese videojuego</td></tr>
+<tr><td>Prioridad          </td><td>Importante</td></tr>
+<tr><td>Tipo               </td><td>Funcional</td></tr>
+<tr><td>Complejidad        </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada</td><td>v1</td></tr>
+<tr><td>Entrega realizada  </td><td>v1</td></tr>
+<tr><td>Nº Issue           </td><td>36</td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R50                </th><th>Modificar datos de un videojuego</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga  </td><td>El administrador de la aplicación puede modificar los datos de un videojuego</td></tr>
+<tr><td>Prioridad          </td><td>Importante</td></tr>
+<tr><td>Tipo               </td><td>Funcional</td></tr>
+<tr><td>Complejidad        </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada</td><td>v1</td></tr>
+<tr><td>Entrega realizada  </td><td>v1</td></tr>
+<tr><td>Nº Issue           </td><td>37</td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R51                </th><th>Bloquear un usuario</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga  </td><td>El administrador de la aplicación podrá bloquear a un usuario, evitando que pueda iniciar sesión</td></tr>
+<tr><td>Prioridad          </td><td>Importante</td></tr>
+<tr><td>Tipo               </td><td>Funcional</td></tr>
+<tr><td>Complejidad        </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada</td><td>v1</td></tr>
+<tr><td>Entrega realizada  </td><td>v1</td></tr>
+<tr><td>Nº Issue           </td><td>38</td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R52                </th><th>Eliminar un grupo</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga  </td><td>El administrador de la aplicación podrá eliminar un grupo</td></tr>
+<tr><td>Prioridad          </td><td>Importante</td></tr>
+<tr><td>Tipo               </td><td>Funcional</td></tr>
+<tr><td>Complejidad        </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada</td><td>v2</td></tr>
+<tr><td>Entrega realizada  </td><td>v2</td></tr>
+<tr><td>Nº Issue           </td><td>39</td></tr>
+</tbody>
+</table>
+        <div class="toplink"><a href="#" class="h1" title="go to top"><span class="glyphicon glyphicon-arrow-up"></a></div>
+    </div>
+</div>
+
+
+</div>
+
+<footer class="footer">
+        <p class="pull-right"><small>Page generated on Mon, 22 May 2017 22:48:16 +0000</small></p>
+    Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
+
+<script type="text/javascript">jQuery(document).ready(function () {
+    var shiftWindow = function () { scrollBy(0, -50) };
+    if (location.hash) setTimeout(shiftWindow, 1);
+    window.addEventListener("hashchange", shiftWindow);
+var element = document.createElement("script");
+element.src = "./jssearch.index.js";
+document.body.appendChild(element);
+
+var searchBox = $('#searchbox');
+
+// search when typing in search field
+searchBox.on("keyup", function(event) {
+    var query = $(this).val();
+
+    if (query == '' || event.which == 27) {
+        $('#search-resultbox').hide();
+        return;
+    } else if (event.which == 13) {
+        var selectedLink = $('#search-resultbox a.selected');
+        if (selectedLink.length != 0) {
+            document.location = selectedLink.attr('href');
+            return;
+        }
+    } else if (event.which == 38 || event.which == 40) {
+        $('#search-resultbox').show();
+
+        var selected = $('#search-resultbox a.selected');
+        if (selected.length == 0) {
+            $('#search-results').find('a').first().addClass('selected');
+        } else {
+            var next;
+            if (event.which == 40) {
+                next = selected.parent().next().find('a').first();
+            } else {
+                next = selected.parent().prev().find('a').first();
+            }
+            if (next.length != 0) {
+                var resultbox = $('#search-results');
+                var position = next.position();
+
+//              TODO scrolling is buggy and jumps around
+//                resultbox.scrollTop(Math.floor(position.top));
+//                console.log(position.top);
+
+                selected.removeClass('selected');
+                next.addClass('selected');
+            }
+        }
+
+        return;
+    }
+    $('#search-resultbox').show();
+    $('#search-results').html('<li><span class="no-results">No results</span></li>');
+
+    var result = jssearch.search(query);
+
+    if (result.length > 0) {
+        var i = 0;
+        var resHtml = '';
+
+        for (var key in result) {
+            if (i++ > 20) {
+                break;
+            }
+            resHtml = resHtml +
+            '<li><a href="' + result[key].file.u.substr(3) +'"><span class="title">' + result[key].file.t + '</span>' +
+            '<span class="description">' + result[key].file.d + '</span></a></li>';
+        }
+        $('#search-results').html(resHtml);
+    }
+});
+
+// hide the search results on ESC
+$(document).on("keyup", function(event) { if (event.which == 27) { $('#search-resultbox').hide(); } });
+// hide search results on click to document
+$(document).bind('click', function (e) { $('#search-resultbox').hide(); });
+// except the following:
+searchBox.bind('click', function(e) { e.stopPropagation(); });
+$('#search-resultbox').bind('click', function(e) { e.stopPropagation(); });
+
+});</script></body>
+</html>

@@ -1,12 +1,52 @@
-We 'r' Gamers
-=====================================
+Guía de We 'r' Gamers
+=====================
 
-La aplicación es una red social centrada en los juegos online.
+Descripción General del Proyecto
+--------------------------------
 
-En ella se puede buscar a otros jugadores que jueguen a lo mismo que tú e
-interactuar con ellos, formar grupos y crear eventos.
+*   [Funcionalidad Principal de la Aplicación](funcionalidad.md)
+*   [Objetivos Generales](objetivos-generales.md)
+*   [Repositorio en GitHub](https://github.com/Jomari94/weRgamers)
+*   [Documentación](https://jomari94.github.io/weRgamers/)
 
-También se puede valorar a otros jugadores, hacerte seguidor suyo, publicar mensajes
-y reseñas sobre videojuegos.
+Instrucciones de instalación y despliegue
+-----------------------------------------
 
-[Documentación](https://jomari94.github.io/weRgamers/)
+*   [En local](despliegue-local.md)
+*   [En la nube](despliegue-nube.md)
+
+Catálogo de Requisitos
+----------------------
+
+*   [Definición Detallada](requisitos-detallados.md)
+*   [Cuadro Resumen](requisitos-resumen.md)
+
+Manual Básico de Usuario
+------------------------
+
+*   [Manual](manual-usuario.md)
+
+Decisiones Adoptadas y su Justificación
+---------------------------------------
+
+*   [Decisiones Adoptadas y su Justificación](decisiones.md)
+
+Dificultades Encontradas y Soluciones Aplicadas
+-----------------------------------------------
+*   [Dificultades Encontradas y Soluciones Aplicadas](dificultades.md)
+
+Diagramas
+---------
+
+*   [De Clases](diagrama-clases.md)
+*   [De Estructura Lógica de Datos](diagrama-db.md)
+
+Glosario de Términos
+--------------------
+
+*   [Glosario de Términos](glosario.md)
+
+Conclusiones
+------------
+
+*   [Conclusiones](conclusiones.md)

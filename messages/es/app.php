@@ -122,4 +122,5 @@ return [
     'Groups by game' => 'Grupos por juego',
     'Users by game' => 'Usuarios por juego',
     'Searched: {0}' => 'Buscado: {0}',
+    'Post' => 'Publicar',
 ];

@@ -61,7 +61,7 @@ class Game extends \yii\db\ActiveRecord
             [['released', 'platforms'], 'safe'],
             [['released'], 'date', 'format'=>'php:Y-m-d'],
             [['name', 'genre', 'developers'], 'string', 'max' => 255],
-            [['imageFile'], 'image', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, gif'],
+            [['imageFile'], 'image', 'skipOnEmpty' => false, 'extensions' => ['png', 'jpg', 'gif'], 'maxSize' => 1024*1024*1024*8],
         ];
     }
 

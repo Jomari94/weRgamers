@@ -66,6 +66,7 @@
 <a class="list-group-item" href="./app-models-platform.html">Platform</a>
 <a class="list-group-item" href="./app-models-platformsearch.html">PlatformSearch</a>
 <a class="list-group-item" href="./app-models-profile.html">Profile</a>
+<a class="list-group-item" href="./app-models-publication.html">Publication</a>
 <a class="list-group-item" href="./app-models-review.html">Review</a>
 <a class="list-group-item" href="./app-models-reviewsearch.html">ReviewSearch</a>
 <a class="list-group-item" href="./app-models-settingsform.html">SettingsForm</a>
@@ -115,6 +116,16 @@ yii\web\Controller</td></tr>
         <td>Displays about page.</td>
         <td><a href="app-controllers-sitecontroller.html">app\controllers\SiteController</a></td>
     </tr>
+            <tr id="actionBloodhoundGames()">
+        <td><a href="app-controllers-sitecontroller.html#actionBloodhoundGames()-detail">actionBloodhoundGames()</a></td>
+        <td>Busca juegos para darselo a bloodhound</td>
+        <td><a href="app-controllers-sitecontroller.html">app\controllers\SiteController</a></td>
+    </tr>
+            <tr id="actionBloodhoundUsers()">
+        <td><a href="app-controllers-sitecontroller.html#actionBloodhoundUsers()-detail">actionBloodhoundUsers()</a></td>
+        <td>Busca usuarios para darselo a bloodhound</td>
+        <td><a href="app-controllers-sitecontroller.html">app\controllers\SiteController</a></td>
+    </tr>
             <tr id="actionContact()">
         <td><a href="app-controllers-sitecontroller.html#actionContact()-detail">actionContact()</a></td>
         <td>Displays contact page.</td>
@@ -127,7 +138,7 @@ yii\web\Controller</td></tr>
     </tr>
             <tr id="actionLanguage()">
         <td><a href="app-controllers-sitecontroller.html#actionLanguage()-detail">actionLanguage()</a></td>
-        <td></td>
+        <td>Cambia el lenguaje en el que se muestra la página</td>
         <td><a href="app-controllers-sitecontroller.html">app\controllers\SiteController</a></td>
     </tr>
             <tr id="actionLogin()">
@@ -143,6 +154,11 @@ yii\web\Controller</td></tr>
             <tr id="actionNotificated()">
         <td><a href="app-controllers-sitecontroller.html#actionNotificated()-detail">actionNotificated()</a></td>
         <td>Borra las notificaciones ya vistas</td>
+        <td><a href="app-controllers-sitecontroller.html">app\controllers\SiteController</a></td>
+    </tr>
+            <tr id="actionSearch()">
+        <td><a href="app-controllers-sitecontroller.html#actionSearch()-detail">actionSearch()</a></td>
+        <td>Lista los resultados de una búsqueda</td>
         <td><a href="app-controllers-sitecontroller.html">app\controllers\SiteController</a></td>
     </tr>
             <tr id="actions()">
@@ -186,6 +202,76 @@ yii\web\Controller</td></tr>
     <table class="detail-table table table-striped table-bordered table-hover">
         <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <strong><a href="app-controllers-sitecontroller.html#actionAbout()-detail">actionAbout</a></strong> ( )</td></tr>
             </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="actionBloodhoundGames()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="app-controllers-sitecontroller.html#actionBloodhoundGames()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        actionBloodhoundGames()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Busca juegos para darselo a bloodhound</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <strong><a href="app-controllers-sitecontroller.html#actionBloodhoundGames()-detail">actionBloodhoundGames</a></strong> ( <span style="color: #0000BB">$q&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span> )</td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$q</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.string">string</a></td>
+                  <td class="param-desc-col"><p>Término a buscar</p>
+</td>
+                </tr>
+                                        <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.string">string</a></td>
+                  <td class="param-desc-col"><p>Resultados de la búsqueda</p>
+</td>
+                </tr>
+                                    </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="actionBloodhoundUsers()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="app-controllers-sitecontroller.html#actionBloodhoundUsers()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        actionBloodhoundUsers()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Busca usuarios para darselo a bloodhound</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <strong><a href="app-controllers-sitecontroller.html#actionBloodhoundUsers()-detail">actionBloodhoundUsers</a></strong> ( <span style="color: #0000BB">$q&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span> )</td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$q</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.string">string</a></td>
+                  <td class="param-desc-col"><p>Término a buscar</p>
+</td>
+                </tr>
+                                        <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.string">string</a></td>
+                  <td class="param-desc-col"><p>Resultados de la búsqueda</p>
+</td>
+                </tr>
+                                    </table>
 
 <!--	-->
 
@@ -247,13 +333,13 @@ yii\web\Controller</td></tr>
 
     
     <div class="doc-description">
-        <p><strong></strong></p>
+        <p><strong>Cambia el lenguaje en el que se muestra la página</strong></p>
 
         
             </div>
 
     <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">void</span> <strong><a href="app-controllers-sitecontroller.html#actionLanguage()-detail">actionLanguage</a></strong> ( )</td></tr>
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">mixed</span> <strong><a href="app-controllers-sitecontroller.html#actionLanguage()-detail">actionLanguage</a></strong> ( )</td></tr>
             </table>
 
 <!--	-->
@@ -324,6 +410,35 @@ yii\web\Controller</td></tr>
     <table class="detail-table table table-striped table-bordered table-hover">
         <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">void</span> <strong><a href="app-controllers-sitecontroller.html#actionNotificated()-detail">actionNotificated</a></strong> ( )</td></tr>
             </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="actionSearch()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="app-controllers-sitecontroller.html#actionSearch()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        actionSearch()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Lista los resultados de una búsqueda</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">mixed</span> <strong><a href="app-controllers-sitecontroller.html#actionSearch()-detail">actionSearch</a></strong> ( <span style="color: #0000BB">$q&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span> )</td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$q</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.string">string</a></td>
+                  <td class="param-desc-col"><p>Término a buscar</p>
+</td>
+                </tr>
+                                                </table>
 
 <!--	-->
 
@@ -411,7 +526,7 @@ yii\web\Controller</td></tr>
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Tue, 16 May 2017 21:59:13 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Mon, 22 May 2017 22:48:16 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script type="text/javascript">jQuery(document).ready(function () {

@@ -32,7 +32,7 @@ $games = Yii::t('app', 'Games');
 $users = Yii::t('app', 'Users');
 $reviews = Yii::t('app', 'Reviews');
 $followers = Yii::t('app', 'Followers');
-$js = <<<EOT
+$jsHead = <<<EOT
 var urlConversations = "$urlConversations";
 var urlNotifications = "$urlNotifications";
 var urlUsers = "$urlUsers";
@@ -44,7 +44,9 @@ var nameGames = "$games";
 var nameUsers = "$users";
 var nameReviews = "$reviews";
 var nameFollowers = "$followers";
-
+EOT;
+$this->registerJs($jsHead, View::POS_HEAD);
+$js = <<<EOT
 $('#messages-link').on('click', function () {
     var ventana = open(urlConversations, "ventana", "width=600,height=640,toolbar=0,titlebar=0");
 });
@@ -57,7 +59,7 @@ $('#notifications-link').on('click', function () {
     });
 });
 EOT;
-$this->registerJs($js, View::POS_HEAD);
+$this->registerJs($js);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>

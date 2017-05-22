@@ -190,3 +190,15 @@ create table reviews
                             references games(id)
                             on delete cascade on update cascade
 );
+
+drop table if exists publications cascade;
+
+create table publications
+(
+    id      bigserial    constraint pk_publications primary key,
+    content varchar(500) not null,
+    created timestamp    default current_timestamp,
+    id_user bigint       not null constraint fk_publications_users
+                            references public.user(id)
+                            on delete cascade on update cascade
+);

@@ -66,6 +66,7 @@
 <a class="list-group-item" href="./app-models-platform.html">Platform</a>
 <a class="list-group-item" href="./app-models-platformsearch.html">PlatformSearch</a>
 <a class="list-group-item" href="./app-models-profile.html">Profile</a>
+<a class="list-group-item" href="./app-models-publication.html">Publication</a>
 <a class="list-group-item" href="./app-models-review.html">Review</a>
 <a class="list-group-item" href="./app-models-reviewsearch.html">ReviewSearch</a>
 <a class="list-group-item" href="./app-models-settingsform.html">SettingsForm</a>
@@ -125,8 +126,23 @@ dektrium\user\models\User</td></tr>
         <td></td>
         <td><a href="app-models-user.html">app\models\User</a></td>
     </tr>
+            <tr id="getKarma()">
+        <td><a href="app-models-user.html#getKarma()-detail">getKarma()</a></td>
+        <td>Devuelve el karma del usuario</td>
+        <td><a href="app-models-user.html">app\models\User</a></td>
+    </tr>
+            <tr id="getPublications()">
+        <td><a href="app-models-user.html#getPublications()-detail">getPublications()</a></td>
+        <td></td>
+        <td><a href="app-models-user.html">app\models\User</a></td>
+    </tr>
             <tr id="getSended()">
         <td><a href="app-models-user.html#getSended()-detail">getSended()</a></td>
+        <td></td>
+        <td><a href="app-models-user.html">app\models\User</a></td>
+    </tr>
+            <tr id="getVotes()">
+        <td><a href="app-models-user.html#getVotes()-detail">getVotes()</a></td>
         <td></td>
         <td><a href="app-models-user.html">app\models\User</a></td>
     </tr>
@@ -230,6 +246,58 @@ dektrium\user\models\User</td></tr>
 
 <!--	-->
 
+    <div class="detail-header h3" id="getKarma()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="app-models-user.html#getKarma()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        getKarma()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Devuelve el karma del usuario</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.integer">integer</a></span> <strong><a href="app-models-user.html#getKarma()-detail">getKarma</a></strong> ( )</td></tr>
+                                                <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.integer">integer</a></td>
+                  <td class="param-desc-col"><p>Karma del usuario</p>
+</td>
+                </tr>
+                                    </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="getPublications()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="app-models-user.html#getPublications()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        getPublications()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong></strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">\yii\db\ActiveQuery</span> <strong><a href="app-models-user.html#getPublications()-detail">getPublications</a></strong> ( )</td></tr>
+            </table>
+
+<!--	-->
+
     <div class="detail-header h3" id="getSended()-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
         <a class="tool-link hash" href="app-models-user.html#getSended()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
@@ -249,6 +317,29 @@ dektrium\user\models\User</td></tr>
 
     <table class="detail-table table table-striped table-bordered table-hover">
         <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">\yii\db\ActiveQuery</span> <strong><a href="app-models-user.html#getSended()-detail">getSended</a></strong> ( )</td></tr>
+            </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="getVotes()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="app-models-user.html#getVotes()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        getVotes()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong></strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">\yii\db\ActiveQuery</span> <strong><a href="app-models-user.html#getVotes()-detail">getVotes</a></strong> ( )</td></tr>
             </table>
 
 <!--	-->
@@ -361,7 +452,7 @@ dektrium\user\models\User</td></tr>
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Tue, 16 May 2017 21:59:13 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Mon, 22 May 2017 22:48:16 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script type="text/javascript">jQuery(document).ready(function () {

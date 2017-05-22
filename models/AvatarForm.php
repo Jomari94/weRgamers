@@ -18,7 +18,7 @@ class AvatarForm extends Model
     public function rules()
     {
         return [
-            [['imageFile'], 'image', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, gif'],
+            [['imageFile'], 'image', 'skipOnEmpty' => false, 'extensions' => ['png', 'jpg', 'gif'], 'maxSize' => 1024*1024*1024*8],
         ];
     }
 
@@ -48,7 +48,7 @@ class AvatarForm extends Model
                     }
                 }
             }
-            
+
             $nombre = Yii::getAlias('@avatars/')
                 . \Yii::$app->user->id . '.' . $this->imageFile->extension;
             $this->imageFile->saveAs($nombre);

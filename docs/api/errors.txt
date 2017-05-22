@@ -37,21 +37,21 @@ Array
 
     [5] => Array
         (
-            [line] => 19
+            [line] => 24
             [file] => controllers/SiteController.php
             [message] => Method behaviors has no parent to inherit from in app\controllers\SiteController.
         )
 
     [6] => Array
         (
-            [line] => 45
+            [line] => 50
             [file] => controllers/SiteController.php
             [message] => Method actions has no parent to inherit from in app\controllers\SiteController.
         )
 
     [7] => Array
         (
-            [line] => 17
+            [line] => 20
             [file] => controllers/user/ProfileController.php
             [message] => Method behaviors has no parent to inherit from in app\controllers\user\ProfileController.
         )
@@ -450,23 +450,23 @@ Array
 
     [64] => Array
         (
-            [line] => 25
-            [file] => models/Review.php
-            [message] => Method tableName has no parent to inherit from in app\models\Review.
+            [line] => 24
+            [file] => models/Publication.php
+            [message] => Method tableName has no parent to inherit from in app\models\Publication.
         )
 
     [65] => Array
         (
-            [line] => 33
-            [file] => models/Review.php
-            [message] => Method rules has no parent to inherit from in app\models\Review.
+            [line] => 32
+            [file] => models/Publication.php
+            [message] => Method rules has no parent to inherit from in app\models\Publication.
         )
 
     [66] => Array
         (
-            [line] => 48
-            [file] => models/Review.php
-            [message] => Method attributeLabels has no parent to inherit from in app\models\Review.
+            [line] => 47
+            [file] => models/Publication.php
+            [message] => Method attributeLabels has no parent to inherit from in app\models\Publication.
         )
 
     [67] => Array
@@ -492,40 +492,61 @@ Array
 
     [70] => Array
         (
+            [line] => 25
+            [file] => models/Review.php
+            [message] => Method tableName has no parent to inherit from in app\models\Review.
+        )
+
+    [71] => Array
+        (
+            [line] => 33
+            [file] => models/Review.php
+            [message] => Method rules has no parent to inherit from in app\models\Review.
+        )
+
+    [72] => Array
+        (
+            [line] => 48
+            [file] => models/Review.php
+            [message] => Method attributeLabels has no parent to inherit from in app\models\Review.
+        )
+
+    [73] => Array
+        (
             [line] => 29
             [file] => models/ReviewSearch.php
             [message] => Method scenarios has no parent to inherit from in app\models\ReviewSearch.
         )
 
-    [71] => Array
+    [74] => Array
         (
             [line] => 23
             [file] => models/SettingsForm.php
             [message] => Method rules has no parent to inherit from in app\models\SettingsForm.
         )
 
-    [72] => Array
+    [75] => Array
         (
             [line] => 52
             [file] => models/SettingsForm.php
             [message] => Method attributeLabels has no parent to inherit from in app\models\SettingsForm.
         )
 
-    [73] => Array
+    [76] => Array
         (
             [line] => 22
             [file] => models/Vote.php
             [message] => Method tableName has no parent to inherit from in app\models\Vote.
         )
 
-    [74] => Array
+    [77] => Array
         (
             [line] => 30
             [file] => models/Vote.php
             [message] => Method rules has no parent to inherit from in app\models\Vote.
         )
 
-    [75] => Array
+    [78] => Array
         (
             [line] => 44
             [file] => models/Vote.php

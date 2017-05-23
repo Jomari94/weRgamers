@@ -10,6 +10,7 @@ use yii\helpers\Html;
 <div>
     <?= Html::img($model->user->profile->getAvatar(), [
         'class' => 'img64 img-rounded img-responsive',
+        'id' => $model->user->username,
         ]) ?>
 </div>
 <div>

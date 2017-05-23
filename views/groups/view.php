@@ -104,33 +104,51 @@ EOT;
 $this->registerJs($js);
 $listener = getenv('LISTENER')?: 'localhost:3000';
 $username = Yii::$app->user->identity->username;
+$avatar = Yii::$app->user->identity->profile->avatar;
 $room = $model->id;
 $jsChat = <<<JS
 var listener = "$listener";
 var username = "$username";
+var avatar = "$avatar";
 var room = "$room";
 
 var socket = io.connect(listener);
 socket.emit('join', username);
 socket.emit('switchRoom', room);
 
+$("#message-field").keyup(function(event){
+    if(event.keyCode == 13){
+        $("#send-button").click();
+    }
+});
+
 $('#send-button').on('click', function(){
-      socket.emit('chat message', JSON.stringify({name: username, message: $('#message-field').val()}));
-      $('#message-field').val('');
-      return false;
+    socket.emit('chat message', JSON.stringify({name: username, message: $('#message-field').val()}));
+    $('#message-field').val('');
+    return false;
 });
 
 socket.on('chat message', function(msg){
     msg = JSON.parse(msg);
-    $('#messages').append($('<li>').text(msg.name + ': ' + msg.message));
+    if (msg.name == username) {
+        $('#messages').append($('<div>').html('<img class="img64 img-circle" src="' + avatar + '"><p>' + msg.message + '</p>').addClass('message-view sender'));
+    } else {
+        var avatarUser = $('#' + msg.name).attr('src');
+        $('#messages').append($('<div>').html('<img class="img64 img-circle" src="' + avatarUser + '"><p>' + msg.message + '</p>').addClass('message-view nosender'));
+    }
+    $("#list").scrollTop($("#list")[0].scrollHeight);
 });
 
 socket.on('joined', function(msg){
-    $('#messages').append($('<li>').text(msg + ' se ha conectado'));
+    $('#messages').append($('<div>').text(msg + ' se ha conectado'));
 });
 
 socket.on('leave', function(msg){
-    $('#messages').append($('<li>').text(msg + ' se ha desconectado'));
+    $('#messages').append($('<div>').text(msg + ' se ha desconectado'));
+});
+
+$(document).on('ready', function () {
+    $('#message-field').focus();
 });
 JS;
 $this->registerJs($jsChat, \yii\web\View::POS_READY);
@@ -213,12 +231,10 @@ $this->params['breadcrumbs'][] = $this->title;
     </header>
     <div class="row">
         <div class="col-xs-12 row">
-            <div class="col-xs-12 col-sm-6" id="countdown"></div>
-            <div class="col-xs-12 col-sm-6">
+            <div class="col-xs-12 col-sm-4">
                 <?= DetailView::widget([
                     'model' => $model,
                     'attributes' => [
-                        'name',
                         [
                             'label' => Yii::t('app', 'Game'),
                             'attribute' => 'game.game.name',
@@ -229,10 +245,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         ],
                     ],
                     ]) ?>
-
             </div>
+            <div class="col-xs-12 col-sm-8" id="countdown"></div>
         </div>
-        <div class="col-xs-12 row">
+        <div class="well col-xs-12 row">
             <div class="col-xs-12 col-sm-4">
                 <h4><?= Yii::t('app', 'Members') ?></h4>
                 <?= ListView::widget([
@@ -250,36 +266,31 @@ $this->params['breadcrumbs'][] = $this->title;
                     'itemView' => '../members/_view',
                     ]) ?>
             </div>
-            <div class="well col-xs-12 col-sm-8">
-                <div class="row">
-                    <div class="col-xs-3">
-                        <div class="form-group">
-                            <?= Html::textInput('name', null, [
-                                'id' => 'name-field',
-                                'class' => 'form-control',
-                                'placeholder' => 'Name'
-                            ]) ?>
+            <div class="col-xs-12 col-sm-8">
+                <div class="chat" id="list">
+                    <?php if (Yii::$app->user->can('viewChat')) { ?>
+                        <div id="messages">
                         </div>
-                    </div>
-                    <div class="col-xs-7">
-                        <div class="form-group">
-                            <?= Html::textInput('message', null, [
-                                'id' => 'message-field',
-                                'class' => 'form-control',
-                                'placeholder' => 'Message'
-                            ]) ?>
-                        </div>
-                    </div>
-                    <div class="col-xs-2">
-                        <div class="form-group">
-                            <?= Html::buttonInput('Send', [
-                                'id' => 'send-button',
-                                'class' => 'btn btn-block btn-success'
-                            ]) ?>
-                        </div>
-                    </div>
+                    <?php } else { ?>
+                        <p>You can se the chat because you aren't in this group</p>
+                    <?php } ?>
                 </div>
-                <div id="messages" ></div>
+                <?php if (Yii::$app->user->can('viewChat')) { ?>
+                <div class="input-group">
+                    <?= Html::textInput('message', null, [
+                        'id' => 'message-field',
+                        'class' => 'form-control',
+                        'placeholder' => 'Message',
+                        'autocomplete' => 'off',
+                    ]) ?>
+                    <span class="input-group-btn">
+                        <?= Html::buttonInput('Send', [
+                            'id' => 'send-button',
+                            'class' => 'btn btn-block btn-primary'
+                            ]) ?>
+                    </span>
+                </div>
+                <?php } ?>
             </div>
         </div>
     </div>

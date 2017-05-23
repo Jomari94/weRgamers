@@ -127,4 +127,5 @@ return [
     'The format must be "yyyy-mm-dd" and must be a valid date.' => 'El formato debe ser "yyyy-mm-dd" y debe ser una fecha válida.',
     'Attach File' => 'Adjuntar Archivo',
     'Publications' => 'Publicaciones',
+    'Promote member' => 'Promocionar miembro',
 ];

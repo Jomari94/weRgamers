@@ -138,6 +138,8 @@ footer.footer {
     margin-top: 3px;
 }
 
+/* Estilos de conversaciones */
+
 div.conversation-item {
     margin: 10px;
 }
@@ -231,6 +233,8 @@ div.conversation-view img {
     margin:10px;
 }
 
+/*Estilos de vistar parciales */
+
 .game-side {
     text-align: center;
 }
@@ -277,6 +281,8 @@ div.conversation-view img {
     padding-bottom: 10px;
     margin-bottom: 10px;
 }
+
+/*Estilos de vista parcial de review */
 
 .reviewp-view {
     display: flex;
@@ -377,6 +383,14 @@ div.conversation-view img {
 .publication-view > img {
     margin-right: 15px;
     min-width: 64px;
+}
+
+/* Estilos del chat del grupo */
+div.chat {
+    height: 500px;
+    overflow: auto;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 /* Estilos del navbar */

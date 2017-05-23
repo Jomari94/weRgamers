@@ -202,3 +202,5 @@ create table publications
                             references public.user(id)
                             on delete cascade on update cascade
 );
+
+create index publications_idx on publications using gin ((to_tsvector('english', content) || to_tsvector('spanish', content)));

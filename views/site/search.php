@@ -46,8 +46,11 @@ $this->params['breadcrumbs'][] = $this->title;
             ]),
         ],
         [
-            'label' => Yii::t('app', 'Messages'),
-            'content' => '<br />Próximamente',
+            'label' => Yii::t('app', 'Publications'),
+            'content' => $this->render('/publications/_searched', [
+                'q' => $q,
+                'publicationProvider' => $publicationProvider,
+            ]),
         ],
     ],
 ]); ?>

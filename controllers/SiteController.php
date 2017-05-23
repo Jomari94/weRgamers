@@ -7,7 +7,9 @@ use app\models\Game;
 use app\models\User;
 use app\models\Group;
 use app\models\Collection;
+use app\models\Publication;
 use yii\data\ActiveDataProvider;
+use yii\db\Expression;
 use yii\filters\AccessControl;
 use yii\web\Cookie;
 use yii\web\Controller;
@@ -170,7 +172,12 @@ class SiteController extends Controller
             $groupByGameProvider = new ActiveDataProvider([
                 'query' => Group::find()->where(['in', 'id_game', $games]),
             ]);
-
+            $textSearch = implode(' & ', explode(' ', $q));
+            $publicationProvider = new ActiveDataProvider([
+                'query' => Publication::find()
+                ->select(new Expression("*, ts_rank_cd((to_tsvector('spanish', content) || to_tsvector('english', content)), to_tsquery('$textSearch')) as rank"))
+                ->where(new Expression("to_tsquery('$textSearch') @@ (to_tsvector('spanish', content) || to_tsvector('english', content))"))->orderBy('rank DESC'),
+            ]);
             return $this->render('search', [
                 'q' => $q,
                 'userProvider' => $userProvider,
@@ -178,6 +185,7 @@ class SiteController extends Controller
                 'gameProvider' => $gameProvider,
                 'groupProvider' => $groupProvider,
                 'groupByGameProvider' => $groupByGameProvider,
+                'publicationProvider' => $publicationProvider,
             ]);
         }
         return $this->refresh();

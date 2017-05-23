@@ -102,6 +102,38 @@ if (!yiiOptions.newEvent) {
 }
 EOT;
 $this->registerJs($js);
+$listener = getenv('LISTENER')?: 'localhost:3000';
+$username = Yii::$app->user->identity->username;
+$room = $model->id;
+$jsChat = <<<JS
+var listener = "$listener";
+var username = "$username";
+var room = "$room";
+
+var socket = io.connect(listener);
+socket.emit('join', username);
+socket.emit('switchRoom', room);
+
+$('#send-button').on('click', function(){
+      socket.emit('chat message', JSON.stringify({name: username, message: $('#message-field').val()}));
+      $('#message-field').val('');
+      return false;
+});
+
+socket.on('chat message', function(msg){
+    msg = JSON.parse(msg);
+    $('#messages').append($('<li>').text(msg.name + ': ' + msg.message));
+});
+
+socket.on('joined', function(msg){
+    $('#messages').append($('<li>').text(msg + ' se ha conectado'));
+});
+
+socket.on('leave', function(msg){
+    $('#messages').append($('<li>').text(msg + ' se ha desconectado'));
+});
+JS;
+$this->registerJs($jsChat, \yii\web\View::POS_READY);
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Groups'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
@@ -178,41 +210,77 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= Html::a(Yii::t('app', 'Join'), ['members/join', 'id_group' => $model->id], ['class' => 'btn btn-primary']) ?>
             <?php } ?>
         </p>
-        <div class="col-sm-6" id="countdown"></div>
     </header>
     <div class="row">
-        <div class="col-xs-12 col-sm-4">
-            <h4><?= Yii::t('app', 'Members') ?></h4>
-            <?= ListView::widget([
-                'dataProvider' => $dataProvider,
-                'itemOptions' => [
-                    'class' => 'row member-view',
-                    'tag' => 'article',
-                ],
-                'options' => [
-                    'tag' => 'div',
-                    'class' => 'members-wrapper',
-                    'id' => 'members-wrapper',
-                ],
-                'layout' => "{items}\n{pager}",
-                'itemView' => '../members/_view',
-            ]) ?>
+        <div class="col-xs-12 row">
+            <div class="col-xs-12 col-sm-6" id="countdown"></div>
+            <div class="col-xs-12 col-sm-6">
+                <?= DetailView::widget([
+                    'model' => $model,
+                    'attributes' => [
+                        'name',
+                        [
+                            'label' => Yii::t('app', 'Game'),
+                            'attribute' => 'game.game.name',
+                        ],
+                        [
+                            'label' => Yii::t('app', 'Platform'),
+                            'attribute' => 'game.platform.name',
+                        ],
+                    ],
+                    ]) ?>
+
+            </div>
         </div>
-        <div class="col-xs-12 col-sm-8">
-            <?= DetailView::widget([
-                'model' => $model,
-                'attributes' => [
-                    'name',
-                    [
-                        'label' => Yii::t('app', 'Game'),
-                        'attribute' => 'game.game.name',
+        <div class="col-xs-12 row">
+            <div class="col-xs-12 col-sm-4">
+                <h4><?= Yii::t('app', 'Members') ?></h4>
+                <?= ListView::widget([
+                    'dataProvider' => $dataProvider,
+                    'itemOptions' => [
+                        'class' => 'row member-view',
+                        'tag' => 'article',
                     ],
-                    [
-                        'label' => Yii::t('app', 'Platform'),
-                        'attribute' => 'game.platform.name',
+                    'options' => [
+                        'tag' => 'div',
+                        'class' => 'members-wrapper',
+                        'id' => 'members-wrapper',
                     ],
-                ],
-                ]) ?>
+                    'layout' => "{items}\n{pager}",
+                    'itemView' => '../members/_view',
+                    ]) ?>
+            </div>
+            <div class="well col-xs-12 col-sm-8">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <div class="form-group">
+                            <?= Html::textInput('name', null, [
+                                'id' => 'name-field',
+                                'class' => 'form-control',
+                                'placeholder' => 'Name'
+                            ]) ?>
+                        </div>
+                    </div>
+                    <div class="col-xs-7">
+                        <div class="form-group">
+                            <?= Html::textInput('message', null, [
+                                'id' => 'message-field',
+                                'class' => 'form-control',
+                                'placeholder' => 'Message'
+                            ]) ?>
+                        </div>
+                    </div>
+                    <div class="col-xs-2">
+                        <div class="form-group">
+                            <?= Html::buttonInput('Send', [
+                                'id' => 'send-button',
+                                'class' => 'btn btn-block btn-success'
+                            ]) ?>
+                        </div>
+                    </div>
+                </div>
+                <div id="messages" ></div>
+            </div>
         </div>
     </div>
 

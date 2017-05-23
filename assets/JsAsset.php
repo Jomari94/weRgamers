@@ -27,6 +27,7 @@ class JsAsset extends AssetBundle
         'js/typeahead.jquery.js',
         'js/bloodhound.js',
         'js/search.js',
+        'js/socket.io.js',
     ];
     public $depends = [
         '\yii\web\JqueryAsset',

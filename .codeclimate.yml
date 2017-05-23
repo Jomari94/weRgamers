@@ -35,3 +35,4 @@ exclude_paths:
 - web/js/moment.js
 - web/js/bloodhound.js
 - web/js/typeahead.jquery.js
+- web/js/socket.io.js

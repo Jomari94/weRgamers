@@ -2,7 +2,7 @@
 
 use yii\bootstrap\Tabs;
 
-$this->title = Yii::t('app', 'Search Results: {0}', [$q]);
+$this->title = Yii::t('app', 'Searched: {0}', [$q]);
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-search">

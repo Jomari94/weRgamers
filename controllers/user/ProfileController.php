@@ -72,9 +72,7 @@ class ProfileController extends BaseProfileController
         if ($publication->load(Yii::$app->request->post()) && $publication->validate(['content'])) {
             $publication->save(false);
             $publication->file = UploadedFile::getInstance($publication, 'file');
-            // var_dump($publication->file);
-            // die;
-            if (!$publication->upload()) {
+            if ($publication->file !== null && !$publication->upload()) {
                 $publication->delete();
             }
             return $this->refresh();

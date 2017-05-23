@@ -59,7 +59,8 @@ class Game extends \yii\db\ActiveRecord
         return [
             [['name'], 'required'],
             [['released', 'platforms'], 'safe'],
-            [['released'], 'date', 'format'=>'php:Y-m-d'],
+            [['released'], 'date', 'format' => 'php:Y-m-d'],
+            [['released'], 'match', 'pattern' => '/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/', 'message' => Yii::t('app', 'The format must be "yyyy-mm-dd" and must be a valid date.')],
             [['name', 'genre', 'developers'], 'string', 'max' => 255],
             [['imageFile'], 'image', 'skipOnEmpty' => false, 'extensions' => ['png', 'jpg', 'gif'], 'maxSize' => 1024*1024*1024*8],
         ];
@@ -161,8 +162,8 @@ class Game extends \yii\db\ActiveRecord
         $files = FileHelper::findFiles($covers);
         if (isset($files[0])) {
             foreach ($files as $file) {
-                $archivo = substr($file, strrpos($file, '/') + 1);
-                $nombre = substr($archivo, 0, strlen($archivo) - 4);
+                $archivo = substr($file, strrpos($file, DIRECTORY_SEPARATOR) + 1);
+                $nombre = substr($archivo, 0, strrpos($archivo, '.'));
                 if (intval($nombre) === $this->id) {
                     return "/$covers/$archivo";
                 }

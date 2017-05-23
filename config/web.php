@@ -15,7 +15,8 @@ $config = [
     ],
     'aliases' => [
         '@avatars' => 'avatars',
-        '@covers' => 'covers'
+        '@covers' => 'covers',
+        '@attachments' => 'attachments',
     ],
     'modules' => [
         'user' => [

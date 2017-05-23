@@ -77,6 +77,7 @@ return [
     'Send message' => 'Enviar mensaje',
     'Send' => 'Enviar',
     'Show old messages' => 'Mostrar mensajes antiguos',
+    'Show old publications' => 'Mostrar publicaciones antiguos',
     'No messages left' => 'No hay más mensajes',
     'Content' => 'Contenido',
     "The username doesn't exist, make sure you type it properly" => 'El nombre de usuario no existe, asegúrate de escribirlo correctamente',
@@ -123,4 +124,6 @@ return [
     'Users by game' => 'Usuarios por juego',
     'Searched: {0}' => 'Buscado: {0}',
     'Post' => 'Publicar',
+    'The format must be "yyyy-mm-dd" and must be a valid date.' => 'El formato debe ser "yyyy-mm-dd" y debe ser una fecha válida.',
+    'Attach File' => 'Adjuntar Archivo',
 ];

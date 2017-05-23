@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\helpers\FileHelper;
 
 /**
  * This is the model class for table "publications".
@@ -16,6 +17,9 @@ use Yii;
  */
 class Publication extends \yii\db\ActiveRecord
 {
+    /**
+     * @var $file Object archivo adjunto de la publicación
+     */
     public $file;
 
     /**
@@ -54,6 +58,11 @@ class Publication extends \yii\db\ActiveRecord
         ];
     }
 
+    /**
+     * Añade el creador de la publicación antes de guardarla
+     * @param  bool $insert Indica si el save() va a hacer una inserción
+     * @return bool
+     */
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {
@@ -63,6 +72,10 @@ class Publication extends \yii\db\ActiveRecord
         return false;
     }
 
+    /**
+     * Guarda el archivo adjunto de la publicación junto con el id
+     * @return bool
+     */
     public function upload()
     {
         if ($this->file && $this->validate()) {
@@ -71,6 +84,47 @@ class Publication extends \yii\db\ActiveRecord
         } else {
             return false;
         }
+    }
+
+    /**
+     * Devuelve la ruta a el archivo adjunti de la publicación si tiene
+     * @return string|null
+     */
+    public function getAttachment()
+    {
+        $attachments = Yii::getAlias('@attachments');
+        $files = FileHelper::findFiles($attachments);
+        if (isset($files[0])) {
+            foreach ($files as $file) {
+                $archivo = substr($file, strrpos($file, DIRECTORY_SEPARATOR) + 1);
+                $nombre = substr($archivo, 0, stripos($archivo, '-'));
+                if (intval($nombre) === $this->id) {
+                    return "/$attachments/$archivo";
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Devuelve la extensión del archivo adjunto
+     * @return string
+     */
+    public function getAttachmentType()
+    {
+        $attachments = Yii::getAlias('@attachments');
+        $files = FileHelper::findFiles($attachments);
+        if (isset($files[0])) {
+            foreach ($files as $file) {
+                $archivo = substr($file, strrpos($file, DIRECTORY_SEPARATOR) + 1);
+                $nombre = substr($archivo, 0, stripos($archivo, '-'));
+                $ext = substr($archivo, strrpos($archivo, '.') + 1);
+                if (intval($nombre) === $this->id) {
+                    return "$ext";
+                }
+            }
+        }
+        return null;
     }
 
     /**

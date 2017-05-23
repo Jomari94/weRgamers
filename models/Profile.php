@@ -59,8 +59,8 @@ class Profile extends BaseProfile
         if (isset($files[0])) {
             foreach ($files as $file) {
                 $archivo = substr($file, strrpos($file, DIRECTORY_SEPARATOR) + 1);
-                $nombre = substr($archivo, 0, strlen($archivo) - 4);
-                if (strlen($nombre) === 1 && intval($nombre) === $this->user_id) {
+                $nombre = substr($archivo, 0, strrpos($archivo, '.'));
+                if (intval($nombre) === $this->user_id) {
                     return "/$avatars/$archivo";
                 }
             }

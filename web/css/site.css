@@ -366,6 +366,19 @@ div.conversation-view img {
     font-size: 12px;
 }
 
+/* Estilos de las publicaciones */
+.publication-view {
+    display: flex;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #d01616;
+}
+
+.publication-view > img {
+    margin-right: 15px;
+    min-width: 64px;
+}
+
 /* Estilos del navbar */
 .navbar-default {
   background-color: #d01616;

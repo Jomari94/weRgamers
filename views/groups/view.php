@@ -102,56 +102,58 @@ if (!yiiOptions.newEvent) {
 }
 EOT;
 $this->registerJs($js);
-$listener = getenv('LISTENER')?: 'localhost:3000';
-$username = Yii::$app->user->identity->username;
-$avatar = Yii::$app->user->identity->profile->avatar;
-$room = $model->id;
-$jsChat = <<<JS
-var listener = "$listener";
-var username = "$username";
-var avatar = "$avatar";
-var room = "$room";
+if (!Yii::$app->user->isGuest) {
+    $listener = getenv('LISTENER')?: 'localhost:3000';
+    $username = Yii::$app->user->identity->username;
+    $avatar = Yii::$app->user->identity->profile->avatar;
+    $room = $model->id;
+    $jsChat = <<<JS
+    var listener = "$listener";
+    var username = "$username";
+    var avatar = "$avatar";
+    var room = "$room";
 
-var socket = io.connect(listener);
-socket.emit('join', username);
-socket.emit('switchRoom', room);
+    var socket = io.connect(listener);
+    socket.emit('join', username);
+    socket.emit('switchRoom', room);
 
-$("#message-field").keyup(function(event){
-    if(event.keyCode == 13){
-        $("#send-button").click();
-    }
-});
+    $("#message-field").keyup(function(event){
+        if(event.keyCode == 13){
+            $("#send-button").click();
+        }
+    });
 
-$('#send-button').on('click', function(){
-    socket.emit('chat message', JSON.stringify({name: username, message: $('#message-field').val()}));
-    $('#message-field').val('');
-    return false;
-});
+    $('#send-button').on('click', function(){
+        socket.emit('chat message', JSON.stringify({name: username, message: $('#message-field').val()}));
+        $('#message-field').val('');
+        return false;
+    });
 
-socket.on('chat message', function(msg){
-    msg = JSON.parse(msg);
-    if (msg.name == username) {
-        $('#messages').append($('<div>').html('<img class="img64 img-circle" src="' + avatar + '"><p>' + msg.message + '</p>').addClass('message-view sender'));
-    } else {
-        var avatarUser = $('#' + msg.name).attr('src');
-        $('#messages').append($('<div>').html('<img class="img64 img-circle" src="' + avatarUser + '"><p>' + msg.message + '</p>').addClass('message-view nosender'));
-    }
-    $("#list").scrollTop($("#list")[0].scrollHeight);
-});
+    socket.on('chat message', function(msg){
+        msg = JSON.parse(msg);
+        if (msg.name == username) {
+            $('#messages').append($('<div>').html('<img class="img64 img-circle" src="' + avatar + '"><p>' + msg.message + '</p>').addClass('message-view sender'));
+        } else {
+            var avatarUser = $('#' + msg.name).attr('src');
+            $('#messages').append($('<div>').html('<img class="img64 img-circle" src="' + avatarUser + '"><p>' + msg.message + '</p>').addClass('message-view nosender'));
+        }
+        $("#list").scrollTop($("#list")[0].scrollHeight);
+    });
 
-socket.on('joined', function(msg){
-    $('#messages').append($('<div>').text(msg + ' se ha conectado'));
-});
+    socket.on('joined', function(msg){
+        $('#messages').append($('<div>').text(msg + ' se ha conectado'));
+    });
 
-socket.on('leave', function(msg){
-    $('#messages').append($('<div>').text(msg + ' se ha desconectado'));
-});
+    socket.on('leave', function(msg){
+        $('#messages').append($('<div>').text(msg + ' se ha desconectado'));
+    });
 
-$(document).on('ready', function () {
-    $('#message-field').focus();
-});
+    $(document).on('ready', function () {
+        $('#message-field').focus();
+    });
 JS;
-$this->registerJs($jsChat, \yii\web\View::POS_READY);
+    $this->registerJs($jsChat, \yii\web\View::POS_READY);
+}
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Groups'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
@@ -272,7 +274,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div id="messages">
                         </div>
                     <?php } else { ?>
-                        <p>You can se the chat because you aren't in this group</p>
+                        <p><?= Yii::t('app', "You can't view this chat if you aren't a member") ?></p>
                     <?php } ?>
                 </div>
                 <?php if (Yii::$app->user->can('viewChat')) { ?>

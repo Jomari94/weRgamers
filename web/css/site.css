@@ -103,6 +103,25 @@ a.navbar-brand {
     font-family: 'Audiowide';
 }
 
+a.navbar-brand:hover {
+    animation-name: logoanimation;
+    animation-duration: 2s;
+}
+
+@keyframes logoanimation {
+    0%   {color: white;}
+    10%  {color: gray;}
+    20%  {color: white;}
+    30%  {color: gray;}
+    40%  {color: white;}
+    50%  {color: gray;}
+    60%  {color: white;}
+    70%  {color: gray;}
+    80%  {color: white;}
+    90%  {color: gray;}
+    100% {color: white;}
+}
+
 .navbar-nav > li:hover {
     box-shadow: inset 0px 5px 0px 0px #000000;
     transition: box-shadow .25s linear;

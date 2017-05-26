@@ -287,16 +287,65 @@ div.conversation-view img {
     border-bottom: 1px solid transparent;
 }
 
+/* Estilos del contador */
+
 #countdown {
     background-color: #383838;
     color: #ffffff;
     font-size: 22px;
     text-align: center;
-    min-width: 500px;
     margin-bottom: 25px;
-    border-radius: 5px;
+    border-radius: 15px;
 }
 
+#countdown-abs {
+    background-color: #383838;
+    color: #ffffff;
+    font-size: 22px;
+    text-align: center;
+    margin-bottom: 25px;
+    border-radius: 15px;
+    position: relative;
+    height: 350px;
+}
+
+#countdown-abs > div {
+    position: absolute !important;
+}
+
+#dia {
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    top: 85px;
+}
+
+#hora {
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    top:110px;
+}
+
+#minuto {
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    top: 135px;
+}
+
+#segundo {
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    top:160px;
+}
+
+/* Estilo de botones del perfil del usuario */
 #follows {
     border-bottom: 1px solid #d01616;
     padding-bottom: 10px;
@@ -420,6 +469,8 @@ div.conversation-view img {
 }
 
 #chat-body {
+    text-align: center;
+    width: 100%;
 }
 
 #chat-form {
@@ -453,6 +504,10 @@ div.conversation-view img {
     border-bottom: 2px solid black;
     text-shadow: 1px -1px 0 #000000, -1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000;
     padding-bottom: 10px;
+}
+
+#chat-guest {
+    margin-top: 20px;
 }
 
 .members-wrapper {

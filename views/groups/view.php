@@ -25,6 +25,7 @@ $inicio = $inicio->format('c');
 $options = [
     'inicio' => $inicio,
     'newEvent' => $event->isNewRecord,
+    'day' => Yii::t('app', 'day'),
     'activity' => Yii::t('app', '{activity} begins in:', ['activity' => $event->activity]),
     'finish' => Yii::t('app', 'The event is on!'),
 ];
@@ -34,73 +35,7 @@ $this->registerJs(
     View::POS_HEAD,
     'yiiOptions'
 );
-$js = <<<EOT
-if (!yiiOptions.newEvent) {
-    var begin = moment.tz(yiiOptions.inicio, moment.tz.guess());
-    $('#countdown').countdown(begin.toDate(), {})
-        .on('update.countdown', function(event) {
-            var format = '<input type="text" value="%H" max="24" class="dialh"> <input type="text" value="%M" max="60" class="dialm"> <input type="text" value="%S" max="60" class="dials">';
-            if(event.offset.totalDays > 0) {
-                format = '<input type="text" value="%-D" max="7" class="diald"> ' + format;
-            }
-            format = '<p>' + yiiOptions.activity + '</p>' + format;
-            $(this).html(event.strftime(format));
-            $(".diald").knob({
-                'thickness' : .3,
-                'width': 110,
-                'height': 110,
-                'max': 365,
-                'readOnly': true,
-                'fgColor': '#03fff7',
-                'bgColor': '#919191',
-                'format': function (value) {
-                    return value + ' d';
-                }
-            });
-            $(".dialh").knob({
-                'thickness' : .3,
-                'width': 110,
-                'height': 110,
-                'max': 24,
-                'readOnly': true,
-                'fgColor': '#62ff03',
-                'bgColor': '#919191',
-                'format': function (value) {
-                    return value + ' h';
-                }
-            });
-            $(".dialm").knob({
-                'thickness' : .3,
-                'width': 110,
-                'height': 110,
-                'max': 60,
-                'readOnly': true,
-                'fgColor': '#ffec03',
-                'bgColor': '#919191',
-                'format': function (value) {
-                    return value + ' m';
-                }
-
-            });
-            $(".dials").knob({
-                'thickness' : .3,
-                'width': 110,
-                'height': 110,
-                'max': 60,
-                'readOnly': true,
-                'fgColor': '#d01616',
-                'bgColor': '#919191',
-                'format': function (value) {
-                    return value + ' s';
-                }
-            });
-        }).on('finish.countdown', function(event) {
-            $(this).html(yiiOptions.finish)
-            .parent().addClass('disabled');
-        });
-}
-EOT;
-$this->registerJs($js);
+$this->registerJsFile('js/cuenta-atras-grupo.js',['depends' => [\yii\web\JqueryAsset::className()]]);
 if (!Yii::$app->user->isGuest) {
     $listener = getenv('LISTENER')?: 'localhost:3000';
     $username = Yii::$app->user->identity->username;
@@ -239,7 +174,8 @@ $this->params['breadcrumbs'][] = $this->title;
         </p>
     </header>
     <div class="row">
-        <div class="col-xs-12" id="countdown"></div>
+        <div class="col-xs-12 hidden-xs hidden-sm" id="countdown"></div>
+        <div class="col-xs-12 hidden-md hidden-lg" id="countdown-abs"></div>
         <div class="col-xs-12" id="chat">
             <div id="chat-members" class="hidden-sm hidden-xs">
                 <h4><?= Yii::t('app', 'Members') ?></h4>
@@ -259,15 +195,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]) ?>
             </div>
             <div id="chat-body">
+                <?php if (Yii::$app->user->can('viewChat')) { ?>
                 <div id="chat-messages">
-                    <?php if (Yii::$app->user->can('viewChat')) { ?>
                         <div id="messages">
                         </div>
-                    <?php } else { ?>
-                        <p><?= Yii::t('app', "You can't view this chat if you aren't a member") ?></p>
-                    <?php } ?>
                 </div>
-                <?php if (Yii::$app->user->can('viewChat')) { ?>
                 <div id="chat-form" class="input-group">
                     <?= Html::textInput('message', null, [
                         'id' => 'message-field',
@@ -278,6 +210,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         <button type="button" class="btn btn-primary" id="send-button"><span class="fa fa-paper-plane"></span></button>
                     </span>
                 </div>
+                <?php } else { ?>
+                    <div class="alert alert-warning" id="chat-guest"><?= Yii::t('app', "You can't view this chat if you aren't a member") ?></div>
                 <?php } ?>
             </div>
         </div>

@@ -13,6 +13,7 @@ body {
 
 .wrap > .container {
     padding: 70px 15px 20px;
+    overflow: hidden;
 }
 
 .not-set {
@@ -266,6 +267,7 @@ div.conversation-view img {
 .member-view, .collectionp-view {
     display: flex;
     flex-flow: row;
+    margin: 0px;
     margin-top: 7px;
     padding: 6px;
     border-bottom: 1px solid #d01616;
@@ -405,11 +407,72 @@ div.conversation-view img {
 }
 
 /* Estilos del chat del grupo */
-div.chat {
-    height: 500px;
+#chat {
+    display: flex;
+    background-color: #c1c1c1;
+    padding: 0px;
+    border: 1px solid #878787;
+    border-radius: 15px;
+}
+
+#messages {
+    padding: 15px;
+}
+
+#chat-body {
+}
+
+#chat-form {
+    border-top: 1px solid #d01616;
+    border-bottom-right-radius: 15px;
+    padding: 7px 7px 8px 7px;
+    background-color: black;
+}
+
+#chat-messages {
+    height: 550px;
     overflow: auto;
-    padding-bottom: 20px;
-    margin-bottom: 20px;
+}
+
+#chat-members {
+    border-right: 1px solid #d01616;
+    padding: 0px;
+    height: 600px;
+    max-width: 300px;
+    background-color: #ffffff;
+    border-radius: 15px 0px 0px 15px;
+}
+
+#chat-members > h4 {
+    padding-left: 15px;
+    background-color: #d01616;
+    margin-top: 0px;
+    padding-top: 10px;
+    border-top-left-radius: 15px;
+    color: #ffffff;
+    border-bottom: 2px solid black;
+    text-shadow: 1px -1px 0 #000000, -1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000;
+    padding-bottom: 10px;
+}
+
+.members-wrapper {
+    width: 100%;
+}
+
+.member-view {
+    display: flex;
+    flex-flow: row;
+    margin: 0px;
+    margin-top: 7px;
+    padding: 6px;
+    border-bottom: 1px solid #d01616;
+    min-width: 300px;
+}
+
+.chat-member-status {
+    text-align: center;
+    width: 100%;
+    margin: 2px;
 }
 
 /* Estilos del navbar */
@@ -501,6 +564,12 @@ div.chat {
     color: #ffffff;
     background-color: #000000;
   }
+}
+
+@media (max-width : 992px) {
+    #chat-form {
+        border-bottom-left-radius: 15px;
+    }
 }
 
 /**

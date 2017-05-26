@@ -10,7 +10,6 @@ use yii\helpers\Json;
 use yii\helpers\Html;
 use yii\widgets\ListView;
 use yii\widgets\ActiveForm;
-use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Group */
@@ -124,9 +123,10 @@ if (!Yii::$app->user->isGuest) {
     });
 
     $('#send-button').on('click', function(){
-        socket.emit('chat message', JSON.stringify({name: username, message: $('#message-field').val()}));
-        $('#message-field').val('');
-        return false;
+        if ($('#message-field').val() != '') {
+            socket.emit('chat message', JSON.stringify({name: username, message: $('#message-field').val()}));
+            $('#message-field').val('');
+        }
     });
 
     socket.on('chat message', function(msg){
@@ -137,20 +137,26 @@ if (!Yii::$app->user->isGuest) {
             var avatarUser = $('#' + msg.name).attr('src');
             $('#messages').append($('<div>').html('<img class="img64 img-circle" src="' + avatarUser + '"><p>' + msg.message + '</p>').addClass('message-view nosender'));
         }
-        $("#list").scrollTop($("#list")[0].scrollHeight);
+        scrollToBottom();
     });
 
     socket.on('joined', function(msg){
-        $('#messages').append($('<div>').text(msg + ' se ha conectado'));
+        $('#messages').append($('<div>').text(msg + ' se ha conectado').addClass('chat-member-status alert alert-success'));
+        scrollToBottom();
     });
 
     socket.on('leave', function(msg){
-        $('#messages').append($('<div>').text(msg + ' se ha desconectado'));
+        $('#messages').append($('<div>').text(msg + ' se ha desconectado').addClass('chat-member-status alert alert-danger'));
+        scrollToBottom();
     });
 
     $(document).on('ready', function () {
         $('#message-field').focus();
     });
+
+    function scrollToBottom() {
+        $("#chat-messages").scrollTop($("#chat-messages")[0].scrollHeight);
+    }
 JS;
     $this->registerJs($jsChat, \yii\web\View::POS_READY);
 }
@@ -164,8 +170,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php endif; ?>
 
     <h1><?= Html::encode($this->title) ?></h1>
+    <h2><?= Html::encode($model->game->game->name) ?> - <?= Html::encode($model->game->platform->name) ?></h2>
     <header class="row">
-        <p class="member-options col-sm-6">
+        <p class="member-options col-xs-12">
             <?php if (!Yii::$app->user->isGuest && Yii::$app->user->identity->isAdmin) { ?>
                 <?= Html::a(Yii::t('app', 'Delete group'), ['groups/delete', 'id' => $model->id], [
                     'class' => 'btn btn-danger',
@@ -232,31 +239,14 @@ $this->params['breadcrumbs'][] = $this->title;
         </p>
     </header>
     <div class="row">
-        <div class="col-xs-12 row">
-            <div class="col-xs-12 col-sm-4">
-                <?= DetailView::widget([
-                    'model' => $model,
-                    'attributes' => [
-                        [
-                            'label' => Yii::t('app', 'Game'),
-                            'attribute' => 'game.game.name',
-                        ],
-                        [
-                            'label' => Yii::t('app', 'Platform'),
-                            'attribute' => 'game.platform.name',
-                        ],
-                    ],
-                    ]) ?>
-            </div>
-            <div class="col-xs-12 col-sm-8" id="countdown"></div>
-        </div>
-        <div class="well col-xs-12 row">
-            <div class="col-xs-12 col-sm-4">
+        <div class="col-xs-12" id="countdown"></div>
+        <div class="col-xs-12" id="chat">
+            <div id="chat-members" class="hidden-sm hidden-xs">
                 <h4><?= Yii::t('app', 'Members') ?></h4>
                 <?= ListView::widget([
                     'dataProvider' => $dataProvider,
                     'itemOptions' => [
-                        'class' => 'row member-view',
+                        'class' => 'member-view',
                         'tag' => 'article',
                     ],
                     'options' => [
@@ -268,8 +258,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     'itemView' => '../members/_view',
                     ]) ?>
             </div>
-            <div class="col-xs-12 col-sm-8">
-                <div class="chat" id="list">
+            <div id="chat-body">
+                <div id="chat-messages">
                     <?php if (Yii::$app->user->can('viewChat')) { ?>
                         <div id="messages">
                         </div>
@@ -278,18 +268,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?php } ?>
                 </div>
                 <?php if (Yii::$app->user->can('viewChat')) { ?>
-                <div class="input-group">
+                <div id="chat-form" class="input-group">
                     <?= Html::textInput('message', null, [
                         'id' => 'message-field',
                         'class' => 'form-control',
-                        'placeholder' => 'Message',
                         'autocomplete' => 'off',
                     ]) ?>
                     <span class="input-group-btn">
-                        <?= Html::buttonInput('Send', [
-                            'id' => 'send-button',
-                            'class' => 'btn btn-block btn-primary'
-                            ]) ?>
+                        <button type="button" class="btn btn-primary" id="send-button"><span class="fa fa-paper-plane"></span></button>
                     </span>
                 </div>
                 <?php } ?>

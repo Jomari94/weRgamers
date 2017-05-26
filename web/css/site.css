@@ -176,6 +176,7 @@ div.message-wrapper {
     flex-direction: column-reverse;
     justify-content: flex-end;
 }
+
 div.message-view {
     margin-top: 10px;
     display: flex;
@@ -489,15 +490,17 @@ div.conversation-view img {
     border-right: 1px solid #d01616;
     padding: 0px;
     height: 600px;
-    max-width: 300px;
+    width: 350px;
     background-color: #ffffff;
     border-radius: 15px 0px 0px 15px;
+    overflow: hidden;
 }
 
 #chat-members > h4 {
     padding-left: 15px;
     background-color: #d01616;
     margin-top: 0px;
+    margin-bottom: 0px;
     padding-top: 10px;
     border-top-left-radius: 15px;
     color: #ffffff;
@@ -506,8 +509,22 @@ div.conversation-view img {
     padding-bottom: 10px;
 }
 
+#chat-members-body {
+    height: 560px;
+    width: 100%;
+    overflow-y: auto;
+}
+
 #chat-guest {
     margin-top: 20px;
+}
+
+.member-status {
+    display: inline-block;
+    background-color: #ff0000;
+    min-width: 6px;
+    min-height: 6px;
+    border-radius: 15px;
 }
 
 .members-wrapper {
@@ -521,7 +538,7 @@ div.conversation-view img {
     margin-top: 7px;
     padding: 6px;
     border-bottom: 1px solid #d01616;
-    min-width: 300px;
+    width: 100%;
 }
 
 .chat-member-status {

@@ -14,6 +14,7 @@ use yii\helpers\Html;
         ]) ?>
 </div>
 <div>
-    <h4><?= Html::a($model->user->username, Url::to(['user/profile/show', 'id' => $model->id_user]))?></h4>
+    <h4><?= Html::a($model->user->username, Url::to(['user/profile/show', 'id' => $model->id_user]))?>
+    <div class="member-status <?=$model->user->username?>"></div></h4>
     <p><?= $model->admin ? Yii::t('app', 'Administrator') : Yii::t('app', 'Member') ?></p>
 </div>

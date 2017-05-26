@@ -9,6 +9,7 @@ use app\models\Member;
 use app\models\GroupSearch;
 use app\models\Notification;
 use dektrium\user\filters\AccessRule;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -78,6 +79,11 @@ class GroupsController extends Controller
         if ($event === null) {
             $event = new Event;
         }
+        $dataProvider = new ActiveDataProvider([
+            'query' => Member::find()->where(['id_group' => $id, 'accepted' => true]),
+            'pagination' => false,
+        ]);
+
         if (Yii::$app->request->post('cancel') !== null) {
             if ($event->load(Yii::$app->request->post())) {
                 $members = $this->findModel($id)->members;
@@ -102,6 +108,7 @@ class GroupsController extends Controller
         return $this->render('view', [
             'model' => $this->findModel($id),
             'event' => $event,
+            'dataProvider' => $dataProvider,
         ]);
     }
 

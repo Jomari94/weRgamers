@@ -1,11 +1,9 @@
 <?php
 
 use app\assets\JsAsset;
-use app\models\Member;
 use kartik\datetime\DateTimePicker;
 use yii\web\View;
 use yii\bootstrap\Modal;
-use yii\data\ActiveDataProvider;
 use yii\helpers\Json;
 use yii\helpers\Html;
 use yii\widgets\ListView;
@@ -13,12 +11,6 @@ use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Group */
-$dataProvider = new ActiveDataProvider([
-    'query' => Member::find()->where(['id_group' => $model->id, 'accepted' => true]),
-    'pagination' => [
-        'pageSize' => 10,
-    ],
-]);
 JsAsset::register($this);
 $inicio = new DateTime($event->inicio);
 $inicio = $inicio->format('c');
@@ -31,11 +23,11 @@ $options = [
 ];
 Json::htmlEncode($options);
 $this->registerJs(
-    "var yiiOptions = ".\yii\helpers\Json::htmlEncode($options).";",
+    "var yiiOptions = " . Json::htmlEncode($options) . ";",
     View::POS_HEAD,
     'yiiOptions'
 );
-$this->registerJsFile('js/cuenta-atras-grupo.js',['depends' => [\yii\web\JqueryAsset::className()]]);
+$this->registerJsFile('js/cuenta-atras-grupo.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 if (!Yii::$app->user->isGuest) {
     $listener = getenv('LISTENER')?: 'localhost:3000';
     $username = Yii::$app->user->identity->username;
@@ -46,54 +38,12 @@ if (!Yii::$app->user->isGuest) {
     var username = "$username";
     var avatar = "$avatar";
     var room = "$room";
-
-    var socket = io.connect(listener);
-    socket.emit('join', username);
-    socket.emit('switchRoom', room);
-
-    $("#message-field").keyup(function(event){
-        if(event.keyCode == 13){
-            $("#send-button").click();
-        }
-    });
-
-    $('#send-button').on('click', function(){
-        if ($('#message-field').val() != '') {
-            socket.emit('chat message', JSON.stringify({name: username, message: $('#message-field').val()}));
-            $('#message-field').val('');
-        }
-    });
-
-    socket.on('chat message', function(msg){
-        msg = JSON.parse(msg);
-        if (msg.name == username) {
-            $('#messages').append($('<div>').html('<img class="img64 img-circle" src="' + avatar + '"><p>' + msg.message + '</p>').addClass('message-view sender'));
-        } else {
-            var avatarUser = $('#' + msg.name).attr('src');
-            $('#messages').append($('<div>').html('<img class="img64 img-circle" src="' + avatarUser + '"><p>' + msg.message + '</p>').addClass('message-view nosender'));
-        }
-        scrollToBottom();
-    });
-
-    socket.on('joined', function(msg){
-        $('#messages').append($('<div>').text(msg + ' se ha conectado').addClass('chat-member-status alert alert-success'));
-        scrollToBottom();
-    });
-
-    socket.on('leave', function(msg){
-        $('#messages').append($('<div>').text(msg + ' se ha desconectado').addClass('chat-member-status alert alert-danger'));
-        scrollToBottom();
-    });
-
-    $(document).on('ready', function () {
-        $('#message-field').focus();
-    });
-
-    function scrollToBottom() {
-        $("#chat-messages").scrollTop($("#chat-messages")[0].scrollHeight);
-    }
 JS;
-    $this->registerJs($jsChat, \yii\web\View::POS_READY);
+$this->registerJs($jsChat, View::POS_HEAD);
+$this->registerJsFile('js/chat.js', [
+    'depends' => [\yii\web\JqueryAsset::className()],
+    'position' => View::POS_END,
+]);
 }
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Groups'), 'url' => ['index']];
@@ -179,20 +129,22 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-xs-12" id="chat">
             <div id="chat-members" class="hidden-sm hidden-xs">
                 <h4><?= Yii::t('app', 'Members') ?></h4>
-                <?= ListView::widget([
-                    'dataProvider' => $dataProvider,
-                    'itemOptions' => [
-                        'class' => 'member-view',
-                        'tag' => 'article',
-                    ],
-                    'options' => [
-                        'tag' => 'div',
-                        'class' => 'members-wrapper',
-                        'id' => 'members-wrapper',
-                    ],
-                    'layout' => "{items}\n{pager}",
-                    'itemView' => '../members/_view',
-                    ]) ?>
+                <div id="chat-members-body">
+                    <?= ListView::widget([
+                        'dataProvider' => $dataProvider,
+                        'itemOptions' => [
+                            'class' => 'member-view',
+                            'tag' => 'article',
+                        ],
+                        'options' => [
+                            'tag' => 'div',
+                            'class' => 'members-wrapper',
+                            'id' => 'members-wrapper',
+                        ],
+                        'layout' => "{items}\n{pager}",
+                        'itemView' => '../members/_view',
+                        ]) ?>
+                </div>
             </div>
             <div id="chat-body">
                 <?php if (Yii::$app->user->can('viewChat')) { ?>

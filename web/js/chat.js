@@ -14,17 +14,26 @@ function stopTyping() {
 $("#message-field").keyup(function(event){
     if(event.keyCode == 13){
         $("#send-button").click();
-    } else if (event.keyCode != 13 && !typing) {
+    }
+});
+
+$("#message-field").keydown(function(event){
+    if (event.keyCode != 13 && !typing) {
         typing = true;
         socket.emit('typing');
         clearTimeout(timeout);
-        timeout = setTimeout(stopTyping, 2000);
+        timeout = setTimeout(stopTyping, 1500);
     }
 });
 
 $('#send-button').on('click', function(){
     if ($('#message-field').val() != '') {
         socket.emit('chat message', JSON.stringify({name: username, message: $('#message-field').val()}));
+        $.ajax({
+            url: urlSended,
+            type: 'POST',
+            data: {group: room, user: userId, message: $('#message-field').val()}
+        });
         $('#message-field').val('');
     }
 });
@@ -89,6 +98,7 @@ socket.on('stop typing', function(user) {
 
 $(document).on('ready', function () {
     $('#message-field').focus();
+    scrollToBottom();
 });
 
 function scrollToBottom() {

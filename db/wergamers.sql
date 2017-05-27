@@ -204,3 +204,18 @@ create table publications
 );
 
 create index publications_idx on publications using gin ((to_tsvector('english', content) || to_tsvector('spanish', content)));
+
+drop table if exists chat_messages cascade;
+
+create table chat_messages
+(
+    id      bigserial    constraint pk_chat_messages primary key,
+    content varchar(500) not null,
+    created timestamp    default current_timestamp,
+    id_user bigint       not null constraint fk_chat_messages_users
+                            references public.user(id)
+                            on delete cascade on update cascade,
+    id_group bigint      not null constraint fk_chat_messages_groups
+                            references groups(id)
+                            on delete cascade on update cascade
+);

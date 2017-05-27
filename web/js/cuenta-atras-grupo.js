@@ -2,8 +2,8 @@ if (!yiiOptions.newEvent) {
     var begin = moment.tz(yiiOptions.inicio, moment.tz.guess());
     $('#countdown').countdown(begin.toDate(), {})
         .on('update.countdown', function(event) {
-            var format = '<input type="text" value="%H" max="24" class="dialh" />';
-            format += '<input type="text" value="%M" max="60" class="dialm">';
+            var format = '<input type="text" value="%H" max="24" class="dialh" /> ';
+            format += '<input type="text" value="%M" max="60" class="dialm" /> ';
             format += '<input type="text" value="%S" max="60" class="dials" />';
             if (event.offset.totalDays > 0) {
                 format = '<input type="text" value="%-D" max="7" class="diald" /> ' + format;

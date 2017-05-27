@@ -482,14 +482,14 @@ div.conversation-view img {
 }
 
 #chat-messages {
-    height: 510px;
+    height: 511px;
     overflow: auto;
 }
 
 #chat-members {
     border-right: 1px solid #d01616;
     padding: 0px;
-    height: 600px;
+    height: 601px;
     width: 350px;
     background-color: #ffffff;
     border-radius: 15px 0px 0px 15px;
@@ -510,7 +510,7 @@ div.conversation-view img {
 }
 
 #chat-members-body {
-    height: 560px;
+    height: 561px;
     width: 100%;
     overflow-y: auto;
 }

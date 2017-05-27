@@ -2,6 +2,7 @@
 
 use app\assets\JsAsset;
 use kartik\datetime\DateTimePicker;
+use yii\helpers\Url;
 use yii\web\View;
 use yii\bootstrap\Modal;
 use yii\helpers\Json;
@@ -33,6 +34,8 @@ if (!Yii::$app->user->isGuest) {
     $username = Yii::$app->user->identity->username;
     $avatar = Yii::$app->user->identity->profile->avatar;
     $room = $model->id;
+    $userId = Yii::$app->user->id;
+    $urlSended = Url::to(['message-sended']);
     $mensajes = [
         'and' => Yii::t('app', ' and '),
         'oneTyping' => Yii::t('app', ' is typing ...'),
@@ -48,6 +51,8 @@ if (!Yii::$app->user->isGuest) {
     var username = "$username";
     var avatar = "$avatar";
     var room = "$room";
+    var userId = "$userId";
+    var urlSended = "$urlSended";
 JS;
 $this->registerJs($jsChat, View::POS_HEAD);
 $this->registerJsFile('js/chat.js', [
@@ -128,7 +133,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php } ?>
             <?php } elseif ($model->isPending(Yii::$app->user->id)) { ?>
                 <p class="alert alert-success"><?= Yii::t('app', 'Your request is pending of being valued') ?></p>
-            <?php } else { ?>
+            <?php } elseif (!Yii::$app->user->isGuest) { ?>
                 <?= Html::a(Yii::t('app', 'Join'), ['members/join', 'id_group' => $model->id], ['class' => 'btn btn-primary']) ?>
             <?php } ?>
         </p>
@@ -161,8 +166,16 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div id="typing">
                 </div>
                 <div id="chat-messages">
-                        <div id="messages">
-                        </div>
+                    <?= ListView::widget([
+                        'dataProvider' => $messagesProvider,
+                        'options' => [
+                            'tag' => 'div',
+                            'id' => 'messages',
+                        ],
+                        'layout' => "{items}",
+                        'itemView' => '../chat-messages/_view.php',
+                        'emptyText' => false,
+                        ]) ?>
                 </div>
                 <div id="chat-form" class="input-group">
                     <?= Html::textInput('message', null, [

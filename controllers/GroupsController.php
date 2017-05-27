@@ -6,6 +6,7 @@ use Yii;
 use app\models\Event;
 use app\models\Group;
 use app\models\Member;
+use app\models\ChatMessage;
 use app\models\GroupSearch;
 use app\models\Notification;
 use dektrium\user\filters\AccessRule;
@@ -83,6 +84,10 @@ class GroupsController extends Controller
             'query' => Member::find()->where(['id_group' => $id, 'accepted' => true]),
             'pagination' => false,
         ]);
+        $messagesProvider = new ActiveDataProvider([
+            'query' => ChatMessage::find()->where(['id_group' => $id])->orderBy('created ASC'),
+            'pagination' => false,
+        ]);
 
         if (Yii::$app->request->post('cancel') !== null) {
             if ($event->load(Yii::$app->request->post())) {
@@ -109,7 +114,21 @@ class GroupsController extends Controller
             'model' => $this->findModel($id),
             'event' => $event,
             'dataProvider' => $dataProvider,
+            'messagesProvider' => $messagesProvider,
         ]);
+    }
+
+    public function actionMessageSended()
+    {
+        $group = Yii::$app->request->post('group');
+        $user = Yii::$app->request->post('user');
+        $message = Yii::$app->request->post('message');
+
+        $chatMessage = new ChatMessage;
+        $chatMessage->id_user = $user;
+        $chatMessage->id_group = $group;
+        $chatMessage->content = $message;
+        $chatMessage->save();
     }
 
     /**

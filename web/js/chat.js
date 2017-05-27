@@ -2,9 +2,23 @@ var socket = io.connect(listener);
 socket.emit('join', username);
 socket.emit('switchRoom', room);
 
+var timeout;
+var typing = false;
+var usersTyping = [];
+
+function stopTyping() {
+    typing = false;
+    socket.emit('stop typing');
+}
+
 $("#message-field").keyup(function(event){
     if(event.keyCode == 13){
         $("#send-button").click();
+    } else if (event.keyCode != 13 && !typing) {
+        typing = true;
+        socket.emit('typing');
+        clearTimeout(timeout);
+        timeout = setTimeout(stopTyping, 2000);
     }
 });
 
@@ -49,6 +63,28 @@ socket.on('people connected', function(connected){
             backgroundColor: '#00ff00'
         });
     });
+});
+
+socket.on('typing', function(user) {
+    usersTyping.push(user);
+    if (usersTyping.length == 1) {
+        $('#typing').text(usersTyping[0] + mensajes.oneTyping);
+    } else if (usersTyping.length > 1) {
+        $('#typing').text(usersTyping[0] + mensajes.and + (usersTyping.length - 1) + mensajes.moreTyping);
+    } else if (usersTyping.length == 0) {
+        $('#typing').text('');
+    }
+});
+
+socket.on('stop typing', function(user) {
+    usersTyping.splice(usersTyping.indexOf(user), 1);
+    if (usersTyping.length == 1) {
+        $('#typing').text(usersTyping[0] + mensajes.oneTyping);
+    } else if (usersTyping.length > 1) {
+        $('#typing').text(usersTyping[0] + mensajes.and + (usersTyping.length - 1) + mensajes.moreTyping);
+    } else if (usersTyping.length == 0) {
+        $('#typing').text('');
+    }
 });
 
 $(document).on('ready', function () {

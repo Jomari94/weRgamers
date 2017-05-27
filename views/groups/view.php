@@ -33,6 +33,16 @@ if (!Yii::$app->user->isGuest) {
     $username = Yii::$app->user->identity->username;
     $avatar = Yii::$app->user->identity->profile->avatar;
     $room = $model->id;
+    $mensajes = [
+        'and' => Yii::t('app', ' and '),
+        'oneTyping' => Yii::t('app', ' is typing ...'),
+        'moreTyping' => Yii::t('app', ' more are typing ...'),
+    ];
+    $this->registerJs(
+        "var mensajes = " . Json::htmlEncode($mensajes) . ";",
+        View::POS_HEAD,
+        'mensajes'
+    );
     $jsChat = <<<JS
     var listener = "$listener";
     var username = "$username";
@@ -148,6 +158,8 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
             <div id="chat-body">
                 <?php if (Yii::$app->user->can('viewChat')) { ?>
+                <div id="typing">
+                </div>
                 <div id="chat-messages">
                         <div id="messages">
                         </div>

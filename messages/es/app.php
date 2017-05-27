@@ -130,4 +130,7 @@ return [
     'Publications' => 'Publicaciones',
     'Promote member' => 'Promocionar miembro',
     "You can't view this chat if you aren't a member" => 'No puedes ver este chat si no eres miembro',
+    ' is typing ...' => ' está escribiendo...',
+    ' and ' => ' y ',
+    ' more are typing ...' => ' más están escribiendo ...',
 ];

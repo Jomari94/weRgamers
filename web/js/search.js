@@ -23,7 +23,7 @@ $('.typeahead').typeahead({
     name: 'users',
     source: users,
     displayKey: 'username',
-    limit: 10,
+    limit: 5,
     templates: {
         header: '<h4 class="name">' + nameUsers + '</h4>',
         // pending: '<i class="fa fa-circle-o-notch fa-spin fa-2x fa-fw"></i>',
@@ -32,7 +32,7 @@ $('.typeahead').typeahead({
             html += '<div class="media-left"><a href ="' + userLink + data.id + '"><img class="img-suggestion img-rounded media-object" src=' + data.avatar + ' /></a></div>'
             html += '<div class="media-body">';
             html += '<p class="media-heading"><a href ="' + userLink + data.id + '">' + data.username + '</a></p>';
-            html += '<div class="user-search-view row"><span class="col-xs-5">' + data.karma + ' Karma</span><span class="col-xs-7">' + data.followers + ' ' + nameFollowers + '</span></div>';
+            html += '<div class="tt-search-view row"><span class="col-xs-5">' + data.karma + ' Karma</span><span class="col-xs-7">' + data.followers + ' ' + nameFollowers + '</span></div>';
             html += '</div></div>';
             return html;
         }
@@ -41,7 +41,7 @@ $('.typeahead').typeahead({
     name: 'games',
     source: games,
     displayKey: 'name',
-    limit: 10,
+    limit: 5,
     templates: {
         header: '<h4 class="name">' + nameGames + '</h4>',
         suggestion: function(data) {
@@ -49,7 +49,7 @@ $('.typeahead').typeahead({
             html += '<div class="media-left"><a href ="' + gameLink + data.id + '"><img class="img-suggestion media-object" src=' + data.cover + ' /></a></div>'
             html += '<div class="media-body">';
             html += '<p class="media-heading"><a href ="' + gameLink + data.id + '">' + data.name + '</a></p>';
-            html += '<div class="user-search-view row"><span class="col-xs-6">' + nameScore + ': ' + data.score + '</span><span class="col-xs-6">' + data.reviews + ' ' + nameReviews + '</span></div>';
+            html += '<div class="tt-search-view row"><span class="col-xs-6">' + nameScore + ': ' + data.score + '</span><span class="col-xs-6">' + data.reviews + ' ' + nameReviews + '</span></div>';
             html += '</div></div>';
             return html;
         }

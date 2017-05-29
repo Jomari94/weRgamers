@@ -4,10 +4,7 @@
 /* @var $content string */
 
 use app\assets\FontAsset;
-use yii\helpers\Url;
 use yii\helpers\Html;
-use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
@@ -31,13 +28,13 @@ $this->registerJs($js);
 <?php $this->beginBody() ?>
 
 <div class="wrap">
-    <nav id="w1" class="navbar navbar-fixed-top navbar-default" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="/conversations/index">Mensajes</a></div><div id="w1-collapse" class="collapse navbar-collapse">
-            </div>
-        </div>
-    </nav>
+        <header>
+            <nav role="navigation">
+                <div>
+                    <a href="/conversations/index"><?= Yii::t('app', 'Mensajes') ?></a>
+                </div>
+            </nav>
+        </header>
 
     <div class="container">
         <?= Breadcrumbs::widget([

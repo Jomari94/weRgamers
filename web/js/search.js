@@ -26,7 +26,6 @@ $('.typeahead').typeahead({
     limit: 5,
     templates: {
         header: '<h4 class="name">' + nameUsers + '</h4>',
-        // pending: '<i class="fa fa-circle-o-notch fa-spin fa-2x fa-fw"></i>',
         suggestion: function(data) {
             html = '<div class="media">';
             html += '<div class="media-left"><a href ="' + userLink + data.id + '"><img class="img-suggestion img-rounded media-object" src=' + data.avatar + ' /></a></div>'
@@ -54,4 +53,10 @@ $('.typeahead').typeahead({
             return html;
         }
     }
+});
+
+$('#search-submit').on('click', function(event) {
+    if ($('.tt-input').val() == "") {
+        return false;
+    };
 });

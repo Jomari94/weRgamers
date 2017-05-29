@@ -486,25 +486,33 @@ header {
     z-index: 1;
 }
 
-nav {
+header > div {
     width: 1300px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /*color: white;
-    text-shadow: 1px -1px 0 #000000, -1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000;*/
 }
 
-/*nav a, nav span {
-text-decoration: none;
-color: white;
-}*/
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
 
-/*nav a:hover, nav span:hover, nav a:hover .fa, nav span:hover .fa {
-cursor: pointer;
-text-decoration: none;
-color: gray;
-}*/
+nav > div * {
+    color: white;
+    text-shadow: 1px -1px 0 #000000, -1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000;
+    cursor: pointer;
+}
+
+nav a:hover {
+    text-decoration: none;
+}
+
+nav a:hover > *, nav span:hover > * {
+    color: #000000;
+    text-shadow: 1px -1px 0 #ffffff, -1px -1px 0 #ffffff, -1px 1px 0 #ffffff, 1px 1px 0 #ffffff;
+}
 
 nav > div:first-of-type {
     font-size: 24px;
@@ -513,31 +521,25 @@ nav > div:first-of-type {
 }
 
 nav > div:first-of-type:hover a {
-    animation: logoanimation 2s infinite;
+    animation: logoanimation .5s infinite;
 }
 
 @keyframes logoanimation {
     0%   {color: white;}
-    10%  {color: gray;}
-    20%  {color: white;}
-    30%  {color: gray;}
-    40%  {color: white;}
-    50%  {color: gray;}
-    60%  {color: white;}
-    70%  {color: gray;}
-    80%  {color: white;}
-    90%  {color: gray;}
-    100% {color: white;}
+    25%  {color: #16d073;}
+    50%  {color: #1673d0;}
+    75%  {color: #d01673;}
+    100%  {color: white;}
 }
 
-nav > div:nth-of-type(3) > a, nav > div:nth-of-type(3) > span {
-    padding-right: 15px;
+nav > div:nth-of-type(2) > a, nav > div:nth-of-type(2) > span {
+    padding-left: 15px;
 }
 
-.navbar-nav > li:hover {
+/*.navbar-nav > li:hover {
     box-shadow: inset 0px 5px 0px 0px #000000;
     transition: box-shadow .25s linear;
-}
+}*/
 
 .nav-expand {
     position: relative;
@@ -586,6 +588,44 @@ hr {
 
 /* Estilos del campo de búsqueda */
 
+#nav-search-form {
+    width: 330px;
+    text-align: right;
+}
+
+#nav-search-form > form * {
+    text-align: left;
+}
+
+#nav-search-form div.input-group-btn {
+    width: 38px;
+}
+
+#nav-search-form .input-group {
+    width: 38px;
+    transition: width .5s linear;
+}
+
+#nav-search-form .input-group:hover {
+    width: 300px;
+}
+
+span.twitter-typeahead {
+    width: 100%;
+}
+
+.form-control.typeahead.tt-input, .form-control.typeahead.tt-hint {
+    padding: 6px 0px 6px 0px;
+}
+
+.input-group:hover .form-control.typeahead.tt-input, .input-group:hover .form-control.typeahead.tt-hint {
+    padding: 6px 12px 6px 12px;
+}
+
+.input-group:hover .tt-menu {
+    visibility: visible;
+}
+
 .tt-dataset .name {
   margin: 0 20px 5px 20px;
   padding: 3px 0;
@@ -600,6 +640,7 @@ hr {
     box-shadow: 1px 2px 10px #626262;
     color: #000000 !important;
     text-shadow: none;
+    visibility: hidden;
 }
 
 .tt-suggestion.tt-selectable {
@@ -630,6 +671,12 @@ hr {
     font-size: 12px;
 }
 
+@media (max-width : 1024px) {
+    header .fa + span {
+        display: none;
+    }
+}
+
 @media (max-width : 992px) {
     #chat-form {
         border-bottom-left-radius: 15px;
@@ -639,6 +686,7 @@ hr {
         border-top-left-radius: 15px;
     }
 }
+
 
 /**
  * #1673d0

@@ -75,49 +75,51 @@ $this->registerJs($js);
 
 <div class="wrap">
     <header>
-        <nav>
-            <div>
-                <a href="<?= Yii::$app->homeUrl ?>"><?= Yii::$app->name ?></a>
-            </div>
-            <div>
-                <a href="<?= Url::to(['/groups/index']) ?>"><span class="fa fa-users"></span><?= Yii::t('app', 'Groups') ?></a>
-                <?php if (Yii::$app->user->isGuest): ?>
-                    <a href="<?= Url::to(['/user/security/login']) ?>"><span class="fa fa-sign-in"></span> <?= Yii::t('app', 'Sign in') ?></a>
-                    <a href="<?= Url::to(['/user/register']) ?>"><span class="fa fa-user-plus"></span> <?= Yii::t('app', 'Sign up') ?></a>
-                <?php else: ?>
-                    <span id="messages-link"><span class="fa fa-envelope"></span> <?= Yii::t('app', 'Messages') ?></span>
-                    <span id="notifications-link"><span class="fa fa-bell"></span><?= Yii::t('app', 'Notifications') ?></span>
-                    <span class="nav-expand">
-                        <?= Html::img(Yii::$app->user->identity->profile->getAvatar(), ['class' => 'img-rounded img32']) . ' ' . Yii::$app->user->identity->username ?>
-                        <div class="nav-dropdown nav-user">
-                            <a href="<?= Url::to(['/user/' . Yii::$app->user->id]) ?>"><?= Yii::t('app', 'My Profile') ?></a>
-                            <a href="<?= Url::to(['/user/settings/profile']) ?>"><?= Yii::t('app', 'Configuration') ?></a>
-                            <hr />
-                            <a href="<?= Url::to(['/user/security/logout']) ?>" data-method="post"><?= Yii::t('app', 'Logout') ?></a>
-                        </div>
-                    </span>
-                <?php endif; ?>
-                <?php if (!Yii::$app->user->isGuest && Yii::$app->user->identity->isAdmin): ?>
-                    <span class="nav-expand">
-                        <span class="fa fa-area-chart"></span> <?= Yii::t('app', 'Management') ?>
-                        <div class="nav-dropdown nav-manage">
-                            <a href="<?= Url::to(['/games/index']) ?>"><?= Yii::t('app', 'Games') ?></a>
-                            <a href="<?= Url::to(['/user/admin/index']) ?>"><?= Yii::t('app', 'Users') ?></a>
-                        </div>
-                    </span>
-                <?php endif; ?>
-            </div>
+        <div>
+            <nav>
+                <div>
+                    <a href="<?= Yii::$app->homeUrl ?>"><?= Yii::$app->name ?></a>
+                </div>
+                <div>
+                    <a href="<?= Url::to(['/groups/index']) ?>"><span class="fa fa-users"></span> <span><?= Yii::t('app', 'Groups') ?></span></a>
+                    <?php if (Yii::$app->user->isGuest): ?>
+                        <a href="<?= Url::to(['/user/security/login']) ?>"><span class="fa fa-sign-in"></span> <span><?= Yii::t('app', 'Sign in') ?></span></a>
+                        <a href="<?= Url::to(['/user/register']) ?>"><span class="fa fa-user-plus"></span> <span><?= Yii::t('app', 'Sign up') ?></span></a>
+                    <?php else: ?>
+                        <span id="messages-link"><span class="fa fa-envelope"></span> <span><?= Yii::t('app', 'Messages') ?></span></span>
+                        <span id="notifications-link"><span class="fa fa-bell"></span> <span><?= Yii::t('app', 'Notifications') ?></span></span>
+                        <span class="nav-expand">
+                            <?= Html::img(Yii::$app->user->identity->profile->getAvatar(), ['class' => 'img-rounded img32']) ?> <span><?= Yii::$app->user->identity->username ?></span>
+                            <div class="nav-dropdown nav-user">
+                                <a href="<?= Url::to(['/user/' . Yii::$app->user->id]) ?>"><?= Yii::t('app', 'My Profile') ?></a>
+                                <a href="<?= Url::to(['/user/settings/profile']) ?>"><?= Yii::t('app', 'Configuration') ?></a>
+                                <hr />
+                                <a href="<?= Url::to(['/user/security/logout']) ?>" data-method="post"><?= Yii::t('app', 'Logout') ?></a>
+                            </div>
+                        </span>
+                    <?php endif; ?>
+                    <?php if (!Yii::$app->user->isGuest && Yii::$app->user->identity->isAdmin): ?>
+                        <span class="nav-expand">
+                            <span class="fa fa-area-chart"></span> <span><?= Yii::t('app', 'Management') ?></span>
+                            <div class="nav-dropdown nav-manage">
+                                <a href="<?= Url::to(['/games/index']) ?>"><?= Yii::t('app', 'Games') ?></a>
+                                <a href="<?= Url::to(['/user/admin/index']) ?>"><?= Yii::t('app', 'Users') ?></a>
+                            </div>
+                        </span>
+                    <?php endif; ?>
+                </div>
+            </nav>
             <div id="nav-search-form">
                 <form class="navbar-form" method="GET" action="<?= Url::to(['/site/search']) ?>" role="search">
                     <div class="input-group">
-                        <input type="text" name="q" class="form-control typeahead" placeholder="<?= Yii::t('app', 'Buscar usuarios, grupos...') ?>">
+                        <input type="text" name="q" class="form-control typeahead" />
                         <div class="input-group-btn">
-                            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                            <button type="submit" id="search-submit" class="btn btn-default"><i class="fa fa-search"></i></button>
                         </div>
                     </div>
                 </form>
             </div>
-        </nav>
+        </div>
     </header>
 
     <div class="container">

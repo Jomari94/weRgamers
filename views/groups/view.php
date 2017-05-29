@@ -69,9 +69,8 @@ $this->params['breadcrumbs'][] = $this->title;
         <p class="alert alert-danger"><?= Yii::$app->session->getFlash('Error') ?></p>
     <?php endif; ?>
 
-    <h1><?= Html::encode($this->title) ?></h1>
-    <h2><?= Html::encode($model->game->game->name) ?> - <?= Html::encode($model->game->platform->name) ?></h2>
-    <header class="row">
+    <h1><?= Html::encode($this->title) ?> <small><?= Html::encode($model->game->game->name) ?> - <?= Html::encode($model->game->platform->name) ?></small></h1>
+    <div class="row">
         <p class="member-options col-xs-12">
             <?php if (!Yii::$app->user->isGuest && Yii::$app->user->identity->isAdmin) { ?>
                 <?= Html::a(Yii::t('app', 'Delete group'), ['groups/delete', 'id' => $model->id], [
@@ -137,7 +136,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= Html::a(Yii::t('app', 'Join'), ['members/join', 'id_group' => $model->id], ['class' => 'btn btn-primary']) ?>
             <?php } ?>
         </p>
-    </header>
+    </div>
     <div class="row">
         <div class="col-xs-12 hidden-xs hidden-sm" id="countdown"></div>
         <div class="col-xs-12 hidden-md hidden-lg" id="countdown-abs"></div>

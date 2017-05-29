@@ -58,32 +58,53 @@ $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Games'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="game-view">
+<div class="game-view" itemscope itemtype="http://schema.org/VideoGame">
+    <span itemprop="applicationCategory" hidden>Game</span>
     <?php if (!Yii::$app->user->isGuest && Yii::$app->user->identity->isAdmin): ?>
         <p>
             <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         </p>
     <?php endif; ?>
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1 itemprop="name"><?= Html::encode($this->title) ?></h1>
     <section class="col-xs-12 col-md-4 game-side">
-        <?= Html::img($model->getCover(), ['class' => 'cover']) ?>
+        <?= Html::img($model->getCover(), ['class' => 'cover', 'itemprop' => 'image', 'alt' => $model->name]) ?>
 
         <?= DetailView::widget([
             'model' => $model,
             'attributes' => [
-                'genre',
-                'released:date',
-                'developers',
+                [
+                    'label' => Yii::t('app', 'Genre'),
+                    'attribute' => 'genre',
+                    'contentOptions' => ['itemprop' => 'genre'],
+                ],
+                [
+                    'label' => Yii::t('app', 'Released'),
+                    'attribute' => 'released',
+                    'format' => 'date',
+                    'contentOptions' => ['itemprop' => 'datePublished'],
+                ],
+                [
+                    'label' => Yii::t('app', 'Developers'),
+                    'attribute' => 'developers',
+                    'value' => '<span itemprop="name">'.$model->developers.'</span>',
+                    'format' => 'raw',
+                    'contentOptions' => [
+                        'itemprop' => 'creator',
+                        'itemscope' => '',
+                        'itemtype' => 'http://schema.org/Organization'
+                    ],
+                ],
                 [
                     'label' => Yii::t('app', 'Platforms'),
                     'value' => $model->getNamePlatforms(),
+                    'contentOptions' => ['itemprop' => 'gamePlatform'],
                 ],
             ],
             ]) ?>
     </section>
-    <section class="col-xs-12 col-md-8">
+    <section class="col-xs-12 col-md-8" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
         <p id="total-score">
-            <input type="text" class="total-scored" value="<?= $model->score ?>" /> <?= Yii::t('app', 'based on') ?> <span><?= $model->totalReviews ?></span> <?= Yii::t('app', 'reviews') ?>
+            <input type="text" class="total-scored" itemprop="ratingValue" value="<?= $model->score ?>" /> <?= Yii::t('app', 'based on') ?> <span itemprop="ratingCount"><?= $model->totalReviews ?></span> <?= Yii::t('app', 'reviews') ?>
         </p>
         <br />
         <h3><?= Yii::t('app', 'Review this game') ?></h3>

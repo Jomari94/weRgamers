@@ -520,16 +520,18 @@ nav > div:first-of-type {
     padding: 10px;
 }
 
+nav > div:first-of-type:hover {
+    animation: reducir 1s infinite ease-in-out;
+    animation-direction: alternate;
+}
 nav > div:first-of-type:hover a {
-    animation: logoanimation .5s infinite;
+    color: #000000;
+    text-shadow: 1px -1px 0 #ffffff, -1px -1px 0 #ffffff, -1px 1px 0 #ffffff, 1px 1px 0 #ffffff;
 }
 
-@keyframes logoanimation {
-    0%   {color: white;}
-    25%  {color: #16d073;}
-    50%  {color: #1673d0;}
-    75%  {color: #d01673;}
-    100%  {color: white;}
+@keyframes reducir {
+    from { transform: scale(1, 1); }
+    to { transform: scale(0.8, 0.8); }
 }
 
 nav > div:nth-of-type(2) > a, nav > div:nth-of-type(2) > span {
@@ -597,6 +599,10 @@ hr {
     text-align: left;
 }
 
+#nav-search-form > form {
+    margin:  0px;
+}
+
 #nav-search-form div.input-group-btn {
     width: 38px;
 }
@@ -658,9 +664,9 @@ span.twitter-typeahead {
     color: #ffffff;
 }
 
-.tt-dropdown-menu {
-  max-height: 150px;
-  overflow-y: auto;
+.tt-menu {
+    max-height: 300px;
+    overflow-y: auto;
 }
 
 .img-suggestion {
@@ -671,19 +677,57 @@ span.twitter-typeahead {
     font-size: 12px;
 }
 
-@media (max-width : 1024px) {
+@media (max-width: 1024px) {
     header .fa + span {
         display: none;
     }
 }
 
-@media (max-width : 992px) {
+@media (max-width: 992px) {
     #chat-form {
         border-bottom-left-radius: 15px;
     }
 
     #typing {
         border-top-left-radius: 15px;
+    }
+}
+
+@media (max-width: 767px) {
+    nav > div:last-of-type {
+        display: none;
+    }
+
+    #nav-search-form > form {
+        display: flex;
+        justify-content: flex-end;
+    }
+}
+
+@media (max-width: 530px) {
+    nav > div:first-of-type > a:first-of-type {
+        display: none;
+    }
+
+    #nav-search-form {
+        width: 200px;
+    }
+
+    #nav-search-form .input-group:hover {
+        width: 180px;
+    }
+
+    .twitter-typeahead .tt-menu {
+        left: auto !important;
+        right: -38px !important;
+        max-height: 250px;
+        overflow-y: auto;
+    }
+}
+
+@media (min-width: 530px) {
+    nav > div:first-of-type > a:last-of-type {
+        display: none;
     }
 }
 

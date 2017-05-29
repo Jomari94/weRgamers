@@ -79,6 +79,7 @@ $this->registerJs($js);
             <nav>
                 <div>
                     <a href="<?= Yii::$app->homeUrl ?>"><?= Yii::$app->name ?></a>
+                    <a href="<?= Yii::$app->homeUrl ?>">W 'r' G</a>
                 </div>
                 <div>
                     <a href="<?= Url::to(['/groups/index']) ?>"><span class="fa fa-users"></span> <span><?= Yii::t('app', 'Groups') ?></span></a>
@@ -114,7 +115,7 @@ $this->registerJs($js);
                     <div class="input-group">
                         <input type="text" name="q" class="form-control typeahead" />
                         <div class="input-group-btn">
-                            <button type="submit" id="search-submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                            <button type="submit" id="search-submit" class="btn btn-default"><span class="fa fa-search"></span></button>
                         </div>
                     </div>
                 </form>

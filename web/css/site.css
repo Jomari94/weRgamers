@@ -106,17 +106,17 @@ div#alertas {
     min-width: 125px !important;
 }
 
-footer.footer {
-    height: 60px;
+footer {
+    display: flex;
+    justify-content: space-around;
+    min-height: 60px;
+    padding: 10px;
     background-color: #d01616;
-    border-top: 5px solid black;
+    border-top: 3px solid black;
     color: white;
     text-shadow: 1px -1px 0 #000000, -1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000;
 }
 
-.footer * {
-    margin-top: 3px;
-}
 
 /* Estilos de conversaciones */
 
@@ -478,6 +478,7 @@ div.conversation-view img {
 header {
     position: fixed;
     top: 0;
+    height:  59px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -499,7 +500,7 @@ nav {
     justify-content: flex-start;
 }
 
-nav > :not(.menu-lateral) * {
+nav > :not(.menu-lateral) *, .messages-brand {
     color: white;
     text-shadow: 1px -1px 0 #000000, -1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000;
     cursor: pointer;
@@ -509,22 +510,22 @@ nav a:hover {
     text-decoration: none;
 }
 
-nav a:hover > *, nav span:hover > *, -menu-link:hover {
+nav a:hover > *, nav span:hover > *, .menu-link:hover {
     color: #000000;
     text-shadow: 1px -1px 0 #ffffff, -1px -1px 0 #ffffff, -1px 1px 0 #ffffff, 1px 1px 0 #ffffff;
 }
 
-nav > div:nth-of-type(2) {
+nav > div:nth-of-type(2), .messages-brand {
     font-size: 24px;
     font-family: 'Audiowide';
     padding: 10px;
 }
 
-nav > div:nth-of-type(2):hover {
+nav > div:nth-of-type(2):hover, .messages-brand:hover {
     animation: reducir 1s infinite ease-in-out;
     animation-direction: alternate;
 }
-nav > div:nth-of-type(2):hover a {
+nav > div:nth-of-type(2):hover a, .messages-brand:hover {
     color: #000000;
     text-shadow: 1px -1px 0 #ffffff, -1px -1px 0 #ffffff, -1px 1px 0 #ffffff, 1px 1px 0 #ffffff;
 }
@@ -707,6 +708,11 @@ span.twitter-typeahead {
 @media (max-width: 530px) {
     nav > div:nth-of-type(2) > a:first-of-type {
         display: none;
+    }
+
+    footer {
+        flex-direction: column;
+        align-items: center;
     }
 
     #nav-search-form {

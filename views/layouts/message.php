@@ -28,13 +28,11 @@ $this->registerJs($js);
 <?php $this->beginBody() ?>
 
 <div class="wrap">
-        <header>
-            <nav role="navigation">
-                <div>
-                    <a href="/conversations/index"><?= Yii::t('app', 'Mensajes') ?></a>
-                </div>
-            </nav>
-        </header>
+    <header>
+        <nav role="navigation">
+            <a href="/conversations/index" class="messages-brand"><?= Yii::t('app', 'Mensajes') ?></a>
+        </nav>
+    </header>
 
     <div class="container">
         <?= Breadcrumbs::widget([

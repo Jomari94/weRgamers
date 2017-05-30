@@ -45,11 +45,11 @@ var nameFollowers = "$followers";
 EOT;
 $this->registerJs($jsHead, View::POS_HEAD);
 $js = <<<EOT
-$('#messages-link').on('click', function () {
+$('.messages-link').on('click', function () {
     var ventana = open(urlConversations, "ventana", "width=600,height=640,toolbar=0,titlebar=0");
 });
 
-$('#notifications-link').on('click', function () {
+$('.notifications-link').on('click', function () {
     $("#modal").modal("show");
     $.ajax({
         method: 'post',
@@ -80,7 +80,7 @@ $this->registerJs($js);
 <div class="wrap">
     <header>
         <div>
-            <nav>
+            <nav role="navigation">
                 <div class="menu-lateral">
                     <div class="menu-opener">
                         <div class="menu-opener-inner"></div>
@@ -98,10 +98,10 @@ $this->registerJs($js);
                                     <li><?= Yii::t('app', 'Sign up') ?></li>
                                 </a>
                             <?php else: ?>
-                                <span class="menu-link" id="messages-link">
+                                <span class="menu-link messages-link">
                                     <li><?= Yii::t('app', 'Messages') ?></li>
                                 </span>
-                                <span class="menu-link" id="notifications-link">
+                                <span class="menu-link notifications-link">
                                     <li><?= Yii::t('app', 'Notifications') ?></li>
                                 </span>
                                 <a href="<?= Url::to(['/user/' . Yii::$app->user->id]) ?>" class="menu-link">
@@ -135,8 +135,8 @@ $this->registerJs($js);
                         <a href="<?= Url::to(['/user/security/login']) ?>"><span class="fa fa-sign-in"></span> <span><?= Yii::t('app', 'Sign in') ?></span></a>
                         <a href="<?= Url::to(['/user/register']) ?>"><span class="fa fa-user-plus"></span> <span><?= Yii::t('app', 'Sign up') ?></span></a>
                     <?php else: ?>
-                        <span id="messages-link"><span class="fa fa-envelope"></span> <span><?= Yii::t('app', 'Messages') ?></span></span>
-                        <span id="notifications-link"><span class="fa fa-bell"></span> <span><?= Yii::t('app', 'Notifications') ?></span></span>
+                        <span class="messages-link"><span class="fa fa-envelope"></span> <span><?= Yii::t('app', 'Messages') ?></span></span>
+                        <span class="notifications-link"><span class="fa fa-bell"></span> <span><?= Yii::t('app', 'Notifications') ?></span></span>
                         <span class="nav-expand">
                             <?= Html::img(Yii::$app->user->identity->profile->getAvatar(), ['class' => 'img-rounded img32']) ?> <span><?= Yii::$app->user->identity->username ?></span>
                             <div class="nav-dropdown nav-user">
@@ -179,19 +179,17 @@ $this->registerJs($js);
     </div>
 </div>
 
-<footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; <?=Yii::$app->name . ' ' . date('Y') ?></p>
-        <div class="pull-right">
-            <?= Html::beginForm('/site/language') ?>
-            <div class="col-xs-8">
-                <?= Html::dropDownList('language', Yii::$app->language, ['en-US' => 'English', 'es-ES' => 'Spanish'], ['class' => 'form-control']) ?>
-            </div>
-            <div class="col-xs-4">
-                <?= Html::submitButton('Change', ['class' => 'btn btn-default']) ?>
-            </div>
-            <?= Html::endForm() ?>
+<footer>
+    <p>&copy; <?=Yii::$app->name . ' ' . date('Y') ?></p>
+    <div id="lang-selector">
+        <?= Html::beginForm('/site/language') ?>
+        <div class="col-xs-8">
+            <?= Html::dropDownList('language', Yii::$app->language, ['en-US' => 'English', 'es-ES' => 'Spanish'], ['class' => 'form-control']) ?>
         </div>
+        <div class="col-xs-4">
+            <?= Html::submitButton('Change', ['class' => 'btn btn-default']) ?>
+        </div>
+        <?= Html::endForm() ?>
     </div>
 </footer>
 <?php

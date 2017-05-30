@@ -107,7 +107,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <input type="text" class="total-scored" itemprop="ratingValue" value="<?= $model->score ?>" /> <?= Yii::t('app', 'based on') ?> <span itemprop="ratingCount"><?= $model->totalReviews ?></span> <?= Yii::t('app', 'reviews') ?>
         </p>
         <br />
-        <h3><?= Yii::t('app', 'Review this game') ?></h3>
+        <h2><?= Yii::t('app', 'Review this game') ?></h2>
         <?php if (Yii::$app->session->hasFlash('published')): ?>
             <p class="alert alert-danger"><?= Yii::$app->session->getFlash('published') ?></p>
         <?php endif; ?>
@@ -118,6 +118,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
         <?= ListView::widget([
             'dataProvider' => $reviewProvider,
+            'layout' => "{items}\n{pager}",
             'itemOptions' => [
                 'tag' => 'article',
                 'class' => 'reviewp-view',

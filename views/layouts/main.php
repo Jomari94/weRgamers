@@ -56,6 +56,10 @@ $('#notifications-link').on('click', function () {
         url: urlNotifications,
     });
 });
+
+$(".menu-opener").click(function(){
+  $(".menu-opener, .menu-opener-inner, .menu").toggleClass("active");
+});
 EOT;
 $this->registerJs($js);
 ?>
@@ -77,6 +81,50 @@ $this->registerJs($js);
     <header>
         <div>
             <nav>
+                <div class="menu-lateral">
+                    <div class="menu-opener">
+                        <div class="menu-opener-inner"></div>
+                    </div>
+                    <div class="menu">
+                        <ul class="menu-inner">
+                            <a href="<?= Url::to(['/groups/index']) ?>" class="menu-link">
+                                <li><?= Yii::t('app', 'Groups') ?></li>
+                            </a>
+                            <?php if (Yii::$app->user->isGuest): ?>
+                                <a href="<?= Url::to(['/user/security/login']) ?>" class="menu-link">
+                                    <li><?= Yii::t('app', 'Sign in') ?></li>
+                                </a>
+                                <a href="<?= Url::to(['/user/register']) ?>" class="menu-link">
+                                    <li><?= Yii::t('app', 'Sign up') ?></li>
+                                </a>
+                            <?php else: ?>
+                                <span class="menu-link" id="messages-link">
+                                    <li><?= Yii::t('app', 'Messages') ?></li>
+                                </span>
+                                <span class="menu-link" id="notifications-link">
+                                    <li><?= Yii::t('app', 'Notifications') ?></li>
+                                </span>
+                                <a href="<?= Url::to(['/user/' . Yii::$app->user->id]) ?>" class="menu-link">
+                                    <li><?= Yii::t('app', 'My Profile') ?></li>
+                                </a>
+                                <a href="<?= Url::to(['/user/settings/profile']) ?>" class="menu-link">
+                                    <li><?= Yii::t('app', 'Configuration') ?></li>
+                                </a>
+                                <a href="<?= Url::to(['/user/security/logout']) ?>" data-method="post" class="menu-link">
+                                    <li><?= Yii::t('app', 'Logout') ?></li>
+                                </a>
+                            <?php endif; ?>
+                            <?php if (!Yii::$app->user->isGuest && Yii::$app->user->identity->isAdmin): ?>
+                                <a href="<?= Url::to(['/games/index']) ?>" class="menu-link">
+                                    <li><?= Yii::t('app', 'Games') ?></li>
+                                </a>
+                                <a href="<?= Url::to(['/user/admin/index']) ?>" class="menu-link">
+                                    <li><?= Yii::t('app', 'Users') ?></li>
+                                </a>
+                            <?php endif; ?>
+                        </ul>
+                    </div>
+                </div>
                 <div>
                     <a href="<?= Yii::$app->homeUrl ?>"><?= Yii::$app->name ?></a>
                     <a href="<?= Yii::$app->homeUrl ?>">W 'r' G</a>

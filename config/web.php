@@ -10,7 +10,7 @@ $config = [
         'log',
         [
             'class' => 'app\components\LanguageSelector',
-            'supportedLanguages' => ['en_US', 'es_ES'],
+            'supportedLanguages' => ['en-US', 'es-ES'],
         ],
     ],
     'aliases' => [
@@ -132,7 +132,6 @@ $config = [
             ],
         ],
     ],
-    'language' => 'en-US',
     'params' => $params,
 ];
 

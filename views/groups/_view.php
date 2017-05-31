@@ -3,9 +3,9 @@
 use yii\helpers\Html;
 ?>
 
-<h4>
+<h2>
     <?= Html::a(Html::encode($model->name), ['groups/view', 'id' => $model->id]);?>
-</h4>
+</h2>
 <p>
     <?= $model->totalMembers . ' ' . ($model->totalMembers == 1 ? Yii::t('app', 'member') : Yii::t('app', 'members')) ?>
 </p>

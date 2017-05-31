@@ -87,7 +87,15 @@ $this->title = empty($profile->name) ? Html::encode($profile->user->username) : 
                 'class' => 'img-rounded img-responsive',
                 'alt' => $profile->user->username,
             ]) ?>
-            <h3><?= $this->title ?></h3>
+            <h3><?= $this->title ?>
+                <?php if ($profile->gender == 'Male'): ?>
+                    <small><span class="fa fa-mars"></span></small>
+                <?php elseif ($profile->gender == 'Female'): ?>
+                    <small><span class="fa fa-venus"></span></small>
+                <?php elseif ($profile->gender == 'Undefined'): ?>
+                    <small><span class="fa fa-neuter"></span></small>
+                <?php endif; ?>
+            </h3>
             <div id="follows" class="row">
                 <span class="col-xs-3">
                     <h3 id="karma"><?= $karma ?></h3> Karma

@@ -45,8 +45,15 @@ var nameFollowers = "$followers";
 EOT;
 $this->registerJs($jsHead, View::POS_HEAD);
 $js = <<<EOT
+var ventana;
+
 $('.messages-link').on('click', function () {
-    var ventana = open(urlConversations, "ventana", "width=600,height=640,toolbar=0,titlebar=0");
+    var ventana = open(urlConversations, 'mensajes', "width=600,height=640,toolbar=0,titlebar=0,menubar=0");
+});
+
+$('.logout').on('click', function(){
+    var ventana = window.open('', 'mensajes', '', true);
+    ventana.close();
 });
 
 $('.notifications-link').on('click', function () {
@@ -110,7 +117,7 @@ $this->registerJs($js);
                                 <a href="<?= Url::to(['/user/settings/profile']) ?>" class="menu-link">
                                     <li><?= Yii::t('app', 'Configuration') ?></li>
                                 </a>
-                                <a href="<?= Url::to(['/user/security/logout']) ?>" data-method="post" class="menu-link">
+                                <a href="<?= Url::to(['/user/security/logout']) ?>" data-method="post" class="menu-link logout">
                                     <li><?= Yii::t('app', 'Logout') ?></li>
                                 </a>
                             <?php endif; ?>
@@ -143,7 +150,7 @@ $this->registerJs($js);
                                 <a href="<?= Url::to(['/user/' . Yii::$app->user->id]) ?>"><?= Yii::t('app', 'My Profile') ?></a>
                                 <a href="<?= Url::to(['/user/settings/profile']) ?>"><?= Yii::t('app', 'Configuration') ?></a>
                                 <hr />
-                                <a href="<?= Url::to(['/user/security/logout']) ?>" data-method="post"><?= Yii::t('app', 'Logout') ?></a>
+                                <a href="<?= Url::to(['/user/security/logout']) ?>" data-method="post" class="logout"><?= Yii::t('app', 'Logout') ?></a>
                             </div>
                         </span>
                     <?php endif; ?>

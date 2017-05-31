@@ -23,17 +23,17 @@ class MemberRule extends Rule
     {
         if (isset(Yii::$app->request->queryParams['id_group']) && isset(Yii::$app->request->queryParams['id_user']) && Yii::$app->request->pathInfo == 'members/leave') {
             $group = Yii::$app->request->queryParams['id_group'];
-            $member = Member::find()->where(['and', ['id_group' => $group], ['id_user' => Yii::$app->user->id]])->one();
+            $member = Member::find()->where(['and', ['id_group' => $group], ['id_user' => Yii::$app->user->id], ['accepted' => true]])->one();
             return  $member !== null;
         }
         if (isset(Yii::$app->request->queryParams['id_group']) && Yii::$app->request->pathInfo == 'members/requests') {
             $group = Yii::$app->request->queryParams['id_group'];
-            $member = Member::find()->where(['and', ['id_group' => $group], ['id_user' => Yii::$app->user->id]])->one();
+            $member = Member::find()->where(['and', ['id_group' => $group], ['id_user' => Yii::$app->user->id], ['accepted' => true]])->one();
             return  $member !== null;
         }
         if (isset(Yii::$app->request->queryParams['id']) && Yii::$app->request->pathInfo == 'groups/view') {
             $group = Yii::$app->request->queryParams['id'];
-            $member = Member::find()->where(['and', ['id_group' => $group], ['id_user' => Yii::$app->user->id]])->one();
+            $member = Member::find()->where(['and', ['id_group' => $group], ['id_user' => Yii::$app->user->id], ['accepted' => true]])->one();
             return  $member !== null;
         }
         return false;

@@ -129,6 +129,20 @@ $config = [
                         'app' => 'app.php',
                     ],
                 ],
+                'user*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@app/messages',
+                    'fileMap' => [
+                        'user' => 'user.php',
+                    ],
+                ],
+                'rbac*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@app/messages',
+                    'fileMap' => [
+                        'rbac' => 'rbac.php',
+                    ],
+                ],
             ],
         ],
     ],

@@ -13,10 +13,13 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
-    <?= $form->field($model, 'content')->textarea(['maxlength' => true, 'rows' => 3])->label(false) ?>
-
+    <?= $form->field($model, 'content')->textarea(['maxlength' => true, 'rows' => 3, 'title' => 'publication content', 'aria-label' => 'publication-content'])->label(false) ?>
     <?= $form->field($model, 'file')->widget(FileInput::classname(), [
-        'options' => ['accept' => 'audio/mpeg, video/mp4, image/*'],
+        'options' => [
+            'accept' => 'audio/mpeg, video/mp4, image/*',
+            'aria-label' => Yii::t('app', 'Attach File'),
+            'title' => Yii::t('app', 'Attach File'),
+        ],
         'pluginOptions' => [
             'allowedFileExtensions'=>['png', 'jpg', 'gif', 'mp3', 'mp4'],
             'showPreview' => true,
@@ -24,7 +27,7 @@ use yii\widgets\ActiveForm;
             'showRemove' => false,
             'showUpload' => false,
             'browseClass' => 'btn btn-primary btn-block',
-            'browseIcon' => '<i class="fa fa-folder-open"></i> ',
+            'browseIcon' => '<span class="fa fa-folder-open"></span> ',
             'browseLabel' =>  Yii::t('app', 'Attach File'),
         ],
     ])->label(false) ?>

@@ -18,7 +18,9 @@ use yii\helpers\Html;
             <video controls="controls" width="100%" height="auto">
                 <source src="<?= $model->attachment ?>" type="video/mp4">
                 <object type="video/mp4" data="<?= $model->attachment ?>" >
-                <embed type="video/mp4" width="100%" height="auto" src"video/mp4" flashvars="mp4=<?= $model->attachment ?>"></embed>
+                <embed type="video/mp4" width="100%" height="auto" src"video/mp4" flashvars="mp4=<?= $model->attachment ?>">
+                    <noembed><p>Vídeo de <?= $model->attachment ?></p></noembed>
+                </embed>
                 </object>
             </video>
         <?php } else { ?>

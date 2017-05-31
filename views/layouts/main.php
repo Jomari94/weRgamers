@@ -80,7 +80,7 @@ $this->registerJs($js);
 <div class="wrap">
     <header>
         <div>
-            <nav role="navigation">
+            <nav>
                 <div class="menu-lateral">
                     <div class="menu-opener">
                         <div class="menu-opener-inner"></div>
@@ -161,7 +161,7 @@ $this->registerJs($js);
             <div id="nav-search-form">
                 <form class="navbar-form" method="GET" action="<?= Url::to(['/site/search']) ?>" role="search">
                     <div class="input-group">
-                        <input type="text" name="q" class="form-control typeahead" />
+                        <input type="text" name="q" class="form-control typeahead" title="Search" aria-label="Search" />
                         <div class="input-group-btn">
                             <button type="submit" id="search-submit" class="btn btn-default"><span class="fa fa-search"></span></button>
                         </div>
@@ -184,7 +184,11 @@ $this->registerJs($js);
     <div id="lang-selector">
         <?= Html::beginForm('/site/language') ?>
         <div class="col-xs-8">
-            <?= Html::dropDownList('language', Yii::$app->language, ['en-US' => 'English', 'es-ES' => 'Spanish'], ['class' => 'form-control']) ?>
+            <?= Html::dropDownList('language', Yii::$app->language, ['en-US' => 'English', 'es-ES' => 'Spanish'], [
+                'class' => 'form-control',
+                'aria-label' => 'Language selector',
+                'title' => 'Language selector',
+                ]) ?>
         </div>
         <div class="col-xs-4">
             <?= Html::submitButton('Change', ['class' => 'btn btn-default']) ?>

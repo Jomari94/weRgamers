@@ -132,6 +132,7 @@ $config = [
             ],
         ],
     ],
+    'language' => 'en-US',
     'params' => $params,
 ];
 

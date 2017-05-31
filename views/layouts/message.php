@@ -29,7 +29,7 @@ $this->registerJs($js);
 
 <div class="wrap">
     <header>
-        <nav role="navigation">
+        <nav>
             <a href="/conversations/index" class="messages-brand"><?= Yii::t('app', 'Mensajes') ?></a>
         </nav>
     </header>

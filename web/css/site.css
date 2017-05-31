@@ -95,7 +95,7 @@ a.desc:after {
 
 div#alertas {
     position: fixed;
-    top: 2;
+    top: 2%;
     right: 0;
     z-index: 1;
     width: 600px;
@@ -172,7 +172,6 @@ div.sender p:after {
 	height: 0;
 	width: 0;
 	position: absolute;
-	pointer-events: none;
 	border-color: rgba(208, 22, 22, 0);
 	border-left-color: #d01616;
 	border-width: 5px;
@@ -187,7 +186,6 @@ div.nosender p:after {
 	height: 0;
 	width: 0;
 	position: absolute;
-	pointer-events: none;
 	border-color: rgba(208, 22, 22, 0);
 	border-right-color: #d01616;
 	border-width: 5px;
@@ -756,10 +754,6 @@ span.twitter-typeahead {
     .menu-opener {
         cursor: pointer;
         height: 38px;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
         width: 38px;
         padding-top: 19px;
     }
@@ -820,8 +814,6 @@ span.twitter-typeahead {
         height: auto;
         position: absolute;
         top: 0;
-        -ms-user-select: none;
-        user-select: none;
         width: 0px;
         z-index: -1;
         border-bottom: 2px solid black;

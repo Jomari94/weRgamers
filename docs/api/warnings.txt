@@ -44,28 +44,28 @@ Array
 
     [6] => Array
         (
-            [line] => 23
+            [line] => 24
             [file] => assets/AppAsset.php
             [message] => No docblock for element '$js'
         )
 
     [7] => Array
         (
-            [line] => 23
+            [line] => 24
             [file] => assets/AppAsset.php
             [message] => No short description for element '$js'
         )
 
     [8] => Array
         (
-            [line] => 25
+            [line] => 26
             [file] => assets/AppAsset.php
             [message] => No docblock for element '$depends'
         )
 
     [9] => Array
         (
-            [line] => 25
+            [line] => 26
             [file] => assets/AppAsset.php
             [message] => No short description for element '$depends'
         )
@@ -191,14 +191,14 @@ Array
 
     [27] => Array
         (
-            [line] => 31
+            [line] => 32
             [file] => assets/JsAsset.php
             [message] => No docblock for element '$depends'
         )
 
     [28] => Array
         (
-            [line] => 31
+            [line] => 32
             [file] => assets/JsAsset.php
             [message] => No short description for element '$depends'
         )
@@ -226,369 +226,348 @@ Array
 
     [32] => Array
         (
+            [line] => 121
+            [file] => controllers/GroupsController.php
+            [message] => No docblock for element 'actionMessageSended'
+        )
+
+    [33] => Array
+        (
             [line] => 14
             [file] => controllers/MembersController.php
             [message] => No docblock for element 'app\controllers\MembersController'
         )
 
-    [33] => Array
+    [34] => Array
         (
-            [line] => 19
+            [line] => 21
             [file] => controllers/SiteController.php
             [message] => No docblock for element 'app\controllers\SiteController'
         )
 
-    [34] => Array
+    [35] => Array
         (
             [line] => 11
             [file] => controllers/VotesController.php
             [message] => No docblock for element 'app\controllers\VotesController'
         )
 
-    [35] => Array
+    [36] => Array
         (
             [line] => 13
             [file] => controllers/VotesController.php
             [message] => No docblock for element 'behaviors'
         )
 
-    [36] => Array
+    [37] => Array
         (
             [line] => 15
             [file] => controllers/user/ProfileController.php
             [message] => No docblock for element 'app\controllers\user\ProfileController'
         )
 
-    [37] => Array
+    [38] => Array
         (
             [line] => 14
             [file] => controllers/user/SettingsController.php
             [message] => No docblock for element 'app\controllers\user\SettingsController'
         )
 
-    [38] => Array
+    [39] => Array
         (
             [line] => 16
             [file] => controllers/user/SettingsController.php
             [message] => No docblock for element 'behaviors'
         )
 
-    [39] => Array
+    [40] => Array
         (
             [line] => 44
             [file] => controllers/user/SettingsController.php
             [message] => No docblock for element 'actionProfile'
         )
 
-    [40] => Array
+    [41] => Array
         (
             [line] => 11
             [file] => models/AvatarForm.php
             [message] => No docblock for element 'app\models\AvatarForm'
         )
 
-    [41] => Array
+    [42] => Array
         (
             [line] => 16
             [file] => models/AvatarForm.php
             [message] => No short description for element '$imageFile'
         )
 
-    [42] => Array
+    [43] => Array
         (
             [line] => 18
             [file] => models/AvatarForm.php
             [message] => No docblock for element 'rules'
         )
 
-    [43] => Array
+    [44] => Array
         (
             [line] => 25
             [file] => models/AvatarForm.php
             [message] => No docblock for element 'attributeLabels'
         )
 
-    [44] => Array
+    [45] => Array
         (
             [line] => 13
             [file] => models/ContactForm.php
             [message] => No docblock for element '$name'
         )
 
-    [45] => Array
+    [46] => Array
         (
             [line] => 13
             [file] => models/ContactForm.php
             [message] => No short description for element '$name'
         )
 
-    [46] => Array
+    [47] => Array
         (
             [line] => 14
             [file] => models/ContactForm.php
             [message] => No docblock for element '$email'
         )
 
-    [47] => Array
+    [48] => Array
         (
             [line] => 14
             [file] => models/ContactForm.php
             [message] => No short description for element '$email'
         )
 
-    [48] => Array
+    [49] => Array
         (
             [line] => 15
             [file] => models/ContactForm.php
             [message] => No docblock for element '$subject'
         )
 
-    [49] => Array
+    [50] => Array
         (
             [line] => 15
             [file] => models/ContactForm.php
             [message] => No short description for element '$subject'
         )
 
-    [50] => Array
+    [51] => Array
         (
             [line] => 16
             [file] => models/ContactForm.php
             [message] => No docblock for element '$body'
         )
 
-    [51] => Array
+    [52] => Array
         (
             [line] => 16
             [file] => models/ContactForm.php
             [message] => No short description for element '$body'
         )
 
-    [52] => Array
+    [53] => Array
         (
             [line] => 17
             [file] => models/ContactForm.php
             [message] => No docblock for element '$verifyCode'
         )
 
-    [53] => Array
+    [54] => Array
         (
             [line] => 17
             [file] => models/ContactForm.php
             [message] => No short description for element '$verifyCode'
         )
 
-    [54] => Array
+    [55] => Array
         (
             [line] => 20
             [file] => models/Conversation.php
             [message] => No docblock for element '$username'
         )
 
-    [55] => Array
+    [56] => Array
         (
             [line] => 20
             [file] => models/Conversation.php
             [message] => No short description for element '$username'
         )
 
-    [56] => Array
+    [57] => Array
         (
             [line] => 63
             [file] => models/Conversation.php
             [message] => No docblock for element 'beforeSave'
         )
 
-    [57] => Array
+    [58] => Array
         (
             [line] => 73
             [file] => models/Conversation.php
             [message] => No docblock for element 'vacias'
         )
 
-    [58] => Array
+    [59] => Array
         (
             [line] => 82
             [file] => models/Conversation.php
             [message] => No docblock for element 'getLast'
         )
 
-    [59] => Array
+    [60] => Array
         (
             [line] => 87
             [file] => models/Conversation.php
             [message] => No docblock for element 'getReceiver'
         )
 
-    [60] => Array
+    [61] => Array
         (
             [line] => 38
             [file] => models/Game.php
             [message] => No short description for element '$imageFile'
         )
 
-    [61] => Array
+    [62] => Array
         (
             [line] => 44
             [file] => models/Game.php
             [message] => No short description for element '$platforms'
         )
 
-    [62] => Array
+    [63] => Array
         (
-            [line] => 126
+            [line] => 127
             [file] => models/Game.php
             [message] => No docblock for element 'afterSave'
         )
 
-    [63] => Array
+    [64] => Array
         (
             [line] => 19
             [file] => models/GamePlatformSearch.php
             [message] => No short description for element '$name'
         )
 
-    [64] => Array
+    [65] => Array
         (
             [line] => 25
             [file] => models/GamePlatformSearch.php
             [message] => No short description for element '$genre'
         )
 
-    [65] => Array
+    [66] => Array
         (
             [line] => 31
             [file] => models/GamePlatformSearch.php
             [message] => No short description for element '$released'
         )
 
-    [66] => Array
+    [67] => Array
         (
             [line] => 37
             [file] => models/GamePlatformSearch.php
             [message] => No short description for element '$developers'
         )
 
-    [67] => Array
+    [68] => Array
         (
             [line] => 18
             [file] => models/GameSearch.php
             [message] => No short description for element '$namePlatforms'
         )
 
-    [68] => Array
+    [69] => Array
         (
             [line] => 24
             [file] => models/Group.php
             [message] => No short description for element '$game_name'
         )
 
-    [69] => Array
+    [70] => Array
         (
             [line] => 15
             [file] => models/GroupSearch.php
             [message] => No docblock for element '$game_name'
         )
 
-    [70] => Array
+    [71] => Array
         (
             [line] => 15
             [file] => models/GroupSearch.php
             [message] => No short description for element '$game_name'
         )
 
-    [71] => Array
+    [72] => Array
         (
             [line] => 16
             [file] => models/LoginForm.php
             [message] => No docblock for element '$username'
         )
 
-    [72] => Array
+    [73] => Array
         (
             [line] => 16
             [file] => models/LoginForm.php
             [message] => No short description for element '$username'
         )
 
-    [73] => Array
+    [74] => Array
         (
             [line] => 17
             [file] => models/LoginForm.php
             [message] => No docblock for element '$password'
         )
 
-    [74] => Array
+    [75] => Array
         (
             [line] => 17
             [file] => models/LoginForm.php
             [message] => No short description for element '$password'
         )
 
-    [75] => Array
+    [76] => Array
         (
             [line] => 18
             [file] => models/LoginForm.php
             [message] => No docblock for element '$rememberMe'
         )
 
-    [76] => Array
+    [77] => Array
         (
             [line] => 18
             [file] => models/LoginForm.php
             [message] => No short description for element '$rememberMe'
         )
 
-    [77] => Array
+    [78] => Array
         (
             [line] => 9
             [file] => models/Profile.php
             [message] => No docblock for element 'app\models\Profile'
         )
 
-    [78] => Array
-        (
-            [line] => 19
-            [file] => models/Publication.php
-            [message] => No docblock for element '$file'
-        )
-
     [79] => Array
-        (
-            [line] => 19
-            [file] => models/Publication.php
-            [message] => No short description for element '$file'
-        )
-
-    [80] => Array
-        (
-            [line] => 57
-            [file] => models/Publication.php
-            [message] => No docblock for element 'beforeSave'
-        )
-
-    [81] => Array
-        (
-            [line] => 66
-            [file] => models/Publication.php
-            [message] => No docblock for element 'upload'
-        )
-
-    [82] => Array
         (
             [line] => 20
             [file] => models/SettingsForm.php
             [message] => No short description for element '$repeat_password'
         )
 
-    [83] => Array
+    [80] => Array
         (
             [line] => 11
             [file] => models/User.php
             [message] => No docblock for element 'app\models\User'
         )
 
-    [84] => Array
+    [81] => Array
         (
             [line] => 85
             [file] => models/User.php

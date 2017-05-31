@@ -84,6 +84,14 @@ class Group extends \yii\db\ActiveRecord
     }
 
     /**
+     * @return string
+     */
+    public function getGameName()
+    {
+        return $this->hasOne(Game::className(), ['id' => 'id_game']);
+    }
+
+    /**
      * @return \yii\db\ActiveQuery
      */
     public function getChatMessages()

@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use Yii;
+use app\models\Game;
 use app\models\Event;
 use app\models\Group;
 use app\models\Member;
@@ -60,10 +61,12 @@ class GroupsController extends Controller
      */
     public function actionIndex()
     {
+        $model = new Group;
         $searchModel = new GroupSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
+            'model' => $model,
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
@@ -118,6 +121,10 @@ class GroupsController extends Controller
         ]);
     }
 
+    /**
+     * Guarda un mensaje del chat una vez se ha mandado
+     * @return void
+     */
     public function actionMessageSended()
     {
         $group = Yii::$app->request->post('group');
@@ -138,20 +145,36 @@ class GroupsController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Group();
+        $model = new Group;
+        $searchModel = new GroupSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $model->refresh();
-            $admin = new Member;
-            $admin->id_group = $model->id;
-            $admin->id_user = Yii::$app->user->id;
-            $admin->accepted = true;
-            $admin->admin = true;
-            $admin->save();
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $model->id_game = Game::find()
+                ->select('id')
+                ->where(['ilike', 'name', $model->game_name])
+                ->scalar();
+            if ($model->save()) {
+                $model->refresh();
+                $admin = new Member;
+                $admin->id_group = $model->id;
+                $admin->id_user = Yii::$app->user->id;
+                $admin->accepted = true;
+                $admin->admin = true;
+                $admin->save();
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                return $this->render('index', [
+                    'model' => $model,
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
+                ]);
+            }
         } else {
-            return $this->render('create', [
+            return $this->render('index', [
                 'model' => $model,
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
             ]);
         }
     }

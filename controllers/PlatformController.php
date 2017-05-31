@@ -3,9 +3,12 @@
 namespace app\controllers;
 
 use Yii;
+use app\models\Game;
 use app\models\Platform;
 use app\models\PlatformSearch;
 use dektrium\user\filters\AccessRule;
+use yii\helpers\Json;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -37,6 +40,11 @@ class PlatformController extends Controller
                         'allow' => true,
                         'actions' => ['index', 'create', 'update'],
                         'roles' => ['admin'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['search-ajax'],
+                        'roles' => ['@'],
                     ],
                 ],
             ],
@@ -93,6 +101,25 @@ class PlatformController extends Controller
                 'model' => $model,
             ]);
         }
+    }
+
+    /**
+     * Busca las plataformas de un juego y las devuelve
+     * @param  string $name Nombre del juego a buscar
+     * @return array Nombres de las plataformas encontrados
+     */
+    public function actionSearchAjax($name = null)
+    {
+        $platforms = [];
+        if ($name != null || $name != '') {
+            $platforms = Game::find()
+            ->where(['like', 'name', $name])
+            ->one()
+            ->getPlatforms()
+            ->all();
+            $platforms = ArrayHelper::map($platforms, 'id', 'name');
+        }
+        return Json::encode($platforms);
     }
 
     /**

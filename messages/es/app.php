@@ -133,4 +133,5 @@ return [
     ' is typing ...' => ' está escribiendo...',
     ' and ' => ' y ',
     ' more are typing ...' => ' más están escribiendo ...',
+    'My groups' => 'Mis grupos',
 ];

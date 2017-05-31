@@ -75,13 +75,29 @@ a.desc:after {
     margin: 0 0 15px 0;
 }
 
-.nav > li > form > button.logout:focus,
-.nav > li > form > button.logout:hover {
+ul.sorter {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    border-radius: 15px; 
+}
+
+ul.sorter li {
+    float: left;
+}
+
+ul.sorter li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
     text-decoration: none;
 }
 
-.nav > li > form > button.logout:focus {
-    outline: none;
+ul.sorter li a:hover {
+    background-color: #111;
 }
 
 .img32 {
@@ -117,6 +133,9 @@ footer {
     text-shadow: 1px -1px 0 #000000, -1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000;
 }
 
+.ui-autocomplete {
+    z-index: 1100;
+}
 
 /* Estilos de conversaciones */
 

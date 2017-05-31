@@ -211,31 +211,11 @@ class GamesController extends Controller
         $games = [];
         if ($game != null || $game != '') {
             $games = Game::find()
-            ->select(['id', 'name'])
+            ->select('name')
             ->where(['ilike', 'name', "$game"])
-            ->all();
-            $games = ArrayHelper::map($games, 'name', 'id');
+            ->column();
         }
         return Json::encode($games);
-    }
-
-    /**
-     * Busca las plataformas de un juego y las devuelve
-     * @param  string $name Nombre del juego a buscar
-     * @return array Nombres de las plataformas encontrados
-     */
-    public function actionPlatformsAjax($name = null)
-    {
-        $platforms = [];
-        if ($name != null || $name != '') {
-            $platforms = Game::find()
-            ->where(['like', 'name', $name])
-            ->one()
-            ->getPlatforms()
-            ->all();
-            $platforms = ArrayHelper::map($platforms, 'id', 'name');
-        }
-        return Json::encode($platforms);
     }
 
     /**

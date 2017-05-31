@@ -40,8 +40,8 @@ class Group extends \yii\db\ActiveRecord
             [['name', 'id_platform', 'game_name'], 'required'],
             [['id_game', 'id_platform'], 'integer'],
             [['name', 'game_name'], 'string', 'max' => 255],
-            [['game_name'], 'exist', 'skipOnError' => true, 'targetClass' => Game::className(), 'targetAttribute' => ['game_name' => 'name', 'id_game' => 'id']],
-            // [['id_game', 'id_platform'], 'exist', 'skipOnError' => true, 'targetClass' => GamePlatform::className(), 'targetAttribute' => ['id_game' => 'id_game', 'id_platform' => 'id_platform']],
+            [['game_name'], 'exist', 'skipOnError' => false, 'targetClass' => Game::className(), 'targetAttribute' => ['game_name' => 'name']],
+            [['id_game', 'id_platform'], 'exist', 'skipOnError' => true, 'targetClass' => GamePlatform::className(), 'targetAttribute' => ['id_game' => 'id_game', 'id_platform' => 'id_platform']],
         ];
     }
 

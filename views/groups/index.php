@@ -13,6 +13,8 @@ use yii\widgets\ActiveForm;
 $urlGames = Url::to(['/games/search-ajax']);
 $urlPlatforms = Url::to(['/platform/search-ajax']);
 $js = <<<EOT
+$('.create-submit').addClass('disabled');
+
 $('#group-game_name').on('focus keyup', function () {
     $.ajax({
         method: 'get',
@@ -42,9 +44,12 @@ function mostrarPlataformas(data, status, event) {
     var platforms = JSON.parse(data);
     $('#group-id_platform').empty();
     for(i in platforms) {
-        var radio = '<label><input type="radio" name="Group[id_platform]" value="'+ i + '"> '+platforms[i]+'</label> ';
+        var radio = '<label><input type="radio" class="radio-platforms" name="Group[id_platform]" value="'+ i + '"> '+platforms[i]+'</label> ';
         $('#group-id_platform').append(radio);
     }
+    $('.radio-platforms').on('click', function(){
+        $('.create-submit').removeClass('disabled');
+    });
 }
 EOT;
 $this->registerJs($js);
@@ -70,7 +75,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= $form->field($model, 'id_platform')->radioList([]) ?>
 
                     <div class="form-group">
-                        <?= Html::submitButton(Yii::t('app', 'Create'), ['class' => 'btn btn-success']) ?>
+                        <?= Html::submitButton(Yii::t('app', 'Create'), ['class' => 'btn btn-success create-submit']) ?>
                     </div>
                 </div>
                 <?php ActiveForm::end(); ?>

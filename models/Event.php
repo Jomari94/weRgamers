@@ -64,9 +64,18 @@ class Event extends \yii\db\ActiveRecord
     public function guarda($group)
     {
         $this->id_group = $group;
-        $tz = new DateTimeZone(Yii::$app->user->identity->profile->timezone);
-        $dt = new DateTime($this->inicio, $tz);
-        $this->inicio = $dt->format('Y-m-d H:i:sO');
+        $user = Yii::$app->user->identity;
+        if ($user && $user->profile->timezone) {
+            $tz = new DateTimeZone($user->profile->timezone);
+        } else {
+            $tz = new DateTimeZone('UTC');
+        }
+        $this->inicio = $iniciotz->format('Y-m-d H:i:sO');
+        $iniciotz = new DateTime($this->inicio, $tz);
+        if ($this->fin) {
+            $fintz = new DateTime($this->fin, $tz);
+            $this->fin = $fintz->format('Y-m-d H:i:sO');
+        }
         return $this->save();
     }
 

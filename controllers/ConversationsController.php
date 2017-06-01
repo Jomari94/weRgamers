@@ -41,11 +41,12 @@ class ConversationsController extends \yii\web\Controller
         $model = new Conversation();
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $model->id_participant2 = User::find()->select('id')->where(['username' => $model->username])->scalar();
+            $model->id_participant1 = Yii::$app->user->id;
             $conversation = Conversation::find()
-            ->where(['id_participant1' => Yii::$app->user->id, 'id_participant2' => $model->id_participant2])
-            ->orWhere(['id_participant2' => Yii::$app->user->id, 'id_participant1' => $model->id_participant2])->one();
+            ->where(['id_participant1' => $model->id_participant1, 'id_participant2' => $model->id_participant2])
+            ->orWhere(['id_participant2' =>$model->id_participant1, 'id_participant1' => $model->id_participant2])->one();
             if ($conversation == null) {
-                $model->id_participant2 = User::find()->select('id')->where(['like', 'username', $model->username])->scalar();
                 $model->save();
                 $model->refresh();
                 return $this->redirect(['view', 'id' => $model->id]);

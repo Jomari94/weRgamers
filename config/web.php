@@ -146,6 +146,12 @@ $config = [
             ],
         ],
     ],
+    'on beforeRequest' => function () {
+        $user = Yii::$app->user->identity;
+        if ($user && $user->profile->timezone) {
+            Yii::$app->setTimeZone($user->profile->timezone);
+        }
+    },
     'params' => $params,
 ];
 

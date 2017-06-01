@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use DateTime;
+use DateTimeZone;
 
 /**
  * This is the model class for table "events".
@@ -62,6 +64,9 @@ class Event extends \yii\db\ActiveRecord
     public function guarda($group)
     {
         $this->id_group = $group;
+        $tz = new DateTimeZone(Yii::$app->user->identity->profile->timezone);
+        $dt = new DateTime($this->inicio, $tz);
+        $this->inicio = $dt->format('Y-m-d H:i:sO');
         return $this->save();
     }
 

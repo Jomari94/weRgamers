@@ -221,4 +221,5 @@ return [
     'Repeat password' => 'Repetir contraseña',
     'Passwords do not match' => 'Las contraseñas no coinciden',
     'Rules' => 'Reglas',
+    'New rule' => 'Nueva regla',
 ];

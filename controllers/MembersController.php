@@ -86,13 +86,8 @@ class MembersController extends \yii\web\Controller
         if (!$model->save()) {
             Yii::$app->session->setFlash('Error', Yii::t('app', 'There was a problem submitting your request'));
         } else {
-            $group = Group::findOne($id_group)->name;
             $admins = Member::find()->select('id_user')->where(['id_group' => $id_group, 'admin' => true])->column();
-            Notification::create('solic',
-                Yii::t('app', "There is a join request from {user} for your group {group}",
-                    ['user' => Yii::$app->user->identity->username, 'group' => $group]),
-                $admins
-            );
+            Notification::create(Notification::REQUEST, $admins, Yii::$app->user->id, $id_group);
         }
         return $this->redirect(['/groups/view', 'id' => $id_group]);
     }
@@ -135,11 +130,7 @@ class MembersController extends \yii\web\Controller
         if ($model !== null) {
             $model->accepted = true;
             $model->update();
-            $group = Group::findOne($id_group)->name;
-            Notification::create('confi',
-                Yii::t('app', "You've been accepted in the group {group}", ['group' => $group]),
-                [$id_user]
-            );
+            Notification::create(Notification::CONFIRMATION, [$id_user], null, $id_group);
         }
         $this->redirect(['index', 'id_group' => $id_group]);
     }

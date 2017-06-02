@@ -79,11 +79,7 @@ class ConversationsController extends \yii\web\Controller
             $message->id_conversation = $id;
             $message->save();
             $receiver = Conversation::findOne($id)->receiver->id;
-            Notification::create('messg',
-                Yii::t('app', "{user} has send you: {content}",
-                    ['user' => Yii::$app->user->identity->username, 'content' => $message->content]),
-                [$receiver]
-            );
+            Notification::create(Notification::MESSAGE, [$receiver], Yii::$app->user->id);
             return $this->redirect(['view', 'id' => $id]);
         }
         return $this->render('view', [

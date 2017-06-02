@@ -81,7 +81,7 @@ ul.sorter {
     padding: 0;
     overflow: hidden;
     background-color: #333;
-    border-radius: 15px; 
+    border-radius: 15px;
 }
 
 ul.sorter li {
@@ -872,4 +872,23 @@ span.twitter-typeahead {
     .menu-link li {
         margin: auto;
     }
+}
+
+span.fa.fa-bell {
+    position: relative;
+}
+
+[data-bubble]:after {
+    content:attr(data-bubble);
+
+    position: absolute;
+    top: -5px;
+    left: 5px;
+    min-width: 15px;
+    min-height: 15px;
+    text-align:center;
+    font-weight:bold;
+    background-color: #36ba4f;
+    border-radius: 50%;
+    text-shadow: none;
 }

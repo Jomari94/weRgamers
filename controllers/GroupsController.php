@@ -99,7 +99,7 @@ class GroupsController extends Controller
                 foreach ($members as $member) {
                     $ids[] = $member->id_user;
                 }
-                Notification::create('evenc', Yii::t('app', '{user} from {group} has cancelled the event "{activity}".', ['user' => Yii::$app->user->identity->username, 'group' => $this->findModel($id)->name, 'activity' => $event->activity]), $ids);
+                Notification::create(Notification::EVENT_CANCELLED, $ids, Yii::$app->user->id, $id);
                 $event->delete();
                 return $this->redirect(['view', 'id' => $id]);
             }
@@ -110,7 +110,7 @@ class GroupsController extends Controller
             foreach ($members as $member) {
                 $ids[] = $member->id_user;
             }
-            Notification::create('event', Yii::t('app', '{user} from {group} has created an event for {inicio}.', ['user' => Yii::$app->user->identity->username, 'group' => $this->findModel($id)->name, 'inicio' => $event->inicio]), $ids);
+            Notification::create(Notification::EVENT, $ids, Yii::$app->user->id, $id);
             return $this->redirect(['view', 'id' => $id]);
         }
         return $this->render('view', [

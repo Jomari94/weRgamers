@@ -44,8 +44,19 @@ var nameReviews = "$reviews";
 var nameFollowers = "$followers";
 EOT;
 $this->registerJs($jsHead, View::POS_HEAD);
+$notificationQuery = Notification::find()->where(['id_receiver' => Yii::$app->user->id]);
+$notificationsProvider = new ActiveDataProvider([
+    'query' => $notificationQuery,
+    'pagination' => false,
+]);
+$totalNotifications = $notificationQuery->count();
 $js = <<<EOT
+var notifications = $totalNotifications;
 var ventana;
+
+if (notifications > 0) {
+    $('.fa.fa-bell').attr('data-bubble', notifications);
+}
 
 $('.messages-link').on('click', function () {
     var ventana = open(urlConversations, 'mensajes', "width=600,height=640,toolbar=0,titlebar=0,menubar=0");
@@ -58,6 +69,7 @@ $('.logout').on('click', function(){
 
 $('.notifications-link').on('click', function () {
     $("#modal").modal("show");
+    $('.fa.fa-bell').removeAttr('data-bubble');
     $.ajax({
         method: 'post',
         url: urlNotifications,
@@ -204,10 +216,6 @@ $this->registerJs($js);
     </div>
 </footer>
 <?php
-    $notificationsProvider = new ActiveDataProvider([
-        'query' => Notification::find()->where(['id_receiver' => Yii::$app->user->id]),
-        'pagination' => false,
-    ]);
     Modal::begin(['id' => 'modal',
        'header' => '<h3>'.Yii::t('app', 'Notifications').'</h3>']);
 
@@ -227,7 +235,7 @@ $this->registerJs($js);
         ]);
 
     Modal::end();
-   ?>
+?>
 <?php $this->endBody() ?>
 </body>
 </html>

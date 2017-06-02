@@ -42,11 +42,7 @@ class FollowersController extends Controller
         $follower->id_follower = Yii::$app->user->id;
         $follower->id_followed = $followed;
         $follower->save();
-        Notification::create('follw',
-            Yii::t('app', "{user} is now your follower",
-                ['user' => $follower->follower->username]),
-            [$follower->id_followed]
-        );
+        Notification::create(Notification::FOLLOW, [$follower->id_followed], $follower->id_follower);
         return User::findOne(['id' => $followed])->profile->totalFollowers;
     }
 

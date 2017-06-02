@@ -78,9 +78,9 @@ class Group extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getEvents()
+    public function getEvent()
     {
-        return $this->hasMany(Event::className(), ['id_group' => 'id'])->inverseOf('group');
+        return $this->hasOne(Event::className(), ['id_group' => 'id'])->inverseOf('group');
     }
 
     /**

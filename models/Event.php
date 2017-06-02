@@ -70,8 +70,8 @@ class Event extends \yii\db\ActiveRecord
         } else {
             $tz = new DateTimeZone('UTC');
         }
-        $this->inicio = $iniciotz->format('Y-m-d H:i:sO');
         $iniciotz = new DateTime($this->inicio, $tz);
+        $this->inicio = $iniciotz->format('Y-m-d H:i:sO');
         if ($this->fin) {
             $fintz = new DateTime($this->fin, $tz);
             $this->fin = $fintz->format('Y-m-d H:i:sO');

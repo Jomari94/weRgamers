@@ -146,18 +146,18 @@ $this->registerJs($js);
                 </div>
                 <div>
                     <a href="<?= Yii::$app->homeUrl ?>"><?= Yii::$app->name ?></a>
-                    <a href="<?= Yii::$app->homeUrl ?>"><?= Html::img(Url::to('images/logo.png'), [
+                    <a href="<?= Yii::$app->homeUrl ?>"><?= Html::img(Url::to('/images/logo.png'), [
                         'class' => 'logo'
                         ]) ?></a>
                 </div>
                 <div>
-                    <a href="<?= Url::to(['/groups/index']) ?>"><span class="fa fa-users"></span> <span><?= Yii::t('app', 'Groups') ?></span></a>
+                    <a href="<?= Url::to(['/groups/index']) ?>"><span class="fa fa-users" title=<?= Yii::t('app', 'Groups') ?>></span> <span><?= Yii::t('app', 'Groups') ?></span></a>
                     <?php if (Yii::$app->user->isGuest): ?>
-                        <a href="<?= Url::to(['/user/security/login']) ?>"><span class="fa fa-sign-in"></span> <span><?= Yii::t('app', 'Sign in') ?></span></a>
-                        <a href="<?= Url::to(['/user/register']) ?>"><span class="fa fa-user-plus"></span> <span><?= Yii::t('app', 'Sign up') ?></span></a>
+                        <a href="<?= Url::to(['/user/security/login']) ?>"><span class="fa fa-sign-in" title=<?= Yii::t('app', 'Sign in') ?>></span> <span><?= Yii::t('app', 'Sign in') ?></span></a>
+                        <a href="<?= Url::to(['/user/register']) ?>"><span class="fa fa-user-plus" title=<?= Yii::t('app', 'Sign up') ?>></span> <span><?= Yii::t('app', 'Sign up') ?></span></a>
                     <?php else: ?>
-                        <span class="messages-link"><span class="fa fa-envelope"></span> <span><?= Yii::t('app', 'Messages') ?></span></span>
-                        <span class="notifications-link"><span class="fa fa-bell"></span> <span><?= Yii::t('app', 'Notifications') ?></span></span>
+                        <span class="messages-link"><span class="fa fa-envelope" title=<?= Yii::t('app', 'Messages') ?>></span> <span><?= Yii::t('app', 'Messages') ?></span></span>
+                        <span class="notifications-link"><span class="fa fa-bell" title=<?= Yii::t('app', 'Notifications') ?>></span> <span><?= Yii::t('app', 'Notifications') ?></span></span>
                         <span class="nav-expand">
                             <?= Html::img(Yii::$app->user->identity->profile->getAvatar(), ['class' => 'img-rounded img32']) ?> <span><?= Yii::$app->user->identity->username ?></span>
                             <div class="nav-dropdown nav-user">
@@ -184,7 +184,7 @@ $this->registerJs($js);
                     <div class="input-group">
                         <input type="text" name="q" class="form-control typeahead" title="Search" aria-label="Search" />
                         <div class="input-group-btn">
-                            <button type="submit" id="search-submit" class="btn btn-default"><span class="fa fa-search"></span></button>
+                            <button type="submit" id="search-submit" class="btn btn-default"><span class="fa fa-search" title=<?= YII::t('app', 'Search') ?>></span></button>
                         </div>
                     </div>
                 </form>

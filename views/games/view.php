@@ -55,7 +55,6 @@ if ($('.review-scored, .total-scored').val() > 7) {
 EOT;
 $this->registerJs($js);
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Games'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="game-view" itemscope itemtype="http://schema.org/VideoGame">

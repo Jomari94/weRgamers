@@ -1,5 +1,6 @@
 <?php
 
+use DateTime;
 use app\assets\JsAsset;
 use kartik\datetime\DateTimePicker;
 use yii\helpers\Url;
@@ -19,7 +20,7 @@ $options = [
     'inicio' => $inicio,
     'newEvent' => $event->isNewRecord,
     'day' => Yii::t('app', 'day'),
-    'activity' => Yii::t('app', '{activity} begins in:', ['activity' => $event->activity]),
+    'activity' => Yii::t('app', '{activity} begins in:', ['activity' => Html::encode($event->activity)]),
     'finish' => Yii::t('app', 'The event is on!'),
 ];
 Json::htmlEncode($options);
@@ -29,7 +30,7 @@ $this->registerJs(
     'yiiOptions'
 );
 $this->registerJsFile('js/cuenta-atras-grupo.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
-if (!Yii::$app->user->isGuest) {
+if (!Yii::$app->user->isGuest && $model->isMember(Yii::$app->user->id)) {
     $listener = getenv('LISTENER')?: 'localhost:3000';
     $username = Yii::$app->user->identity->username;
     $avatar = Yii::$app->user->identity->profile->avatar;
@@ -54,11 +55,11 @@ if (!Yii::$app->user->isGuest) {
     var userId = "$userId";
     var urlSended = "$urlSended";
 JS;
-$this->registerJs($jsChat, View::POS_HEAD);
-$this->registerJsFile('js/chat.js', [
-    'depends' => [\yii\web\JqueryAsset::className()],
-    'position' => View::POS_END,
-]);
+    $this->registerJs($jsChat, View::POS_HEAD);
+    $this->registerJsFile('js/chat.js', [
+        'depends' => [\yii\web\JqueryAsset::className()],
+        'position' => View::POS_END,
+    ]);
 }
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Groups'), 'url' => ['index']];

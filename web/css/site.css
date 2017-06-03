@@ -722,7 +722,13 @@ span.twitter-typeahead {
     }
 }
 
-@media (max-width: 530px) {
+@media (min-width: 768px) {
+    .menu-lateral {
+        display: none;
+    }
+}
+
+@media (max-width: 565px) {
     nav > div:nth-of-type(2) > a:first-of-type {
         display: none;
     }
@@ -748,14 +754,11 @@ span.twitter-typeahead {
     }
 }
 
-@media (min-width: 530px) {
+@media (min-width: 566px) {
     nav > div:nth-of-type(2) > a:last-of-type {
         display: none;
     }
 
-    .menu-lateral {
-        display: none;
-    }
 }
 
 
@@ -764,7 +767,8 @@ span.twitter-typeahead {
  * #16d073
  */
 
-@media (max-width: 530px) {
+@media (max-width: 767px) {
+
     .menu-opener, .menu-opener:hover, .menu-opener.active, .menu-opener-inner, .menu-opener-inner::before, .menu-opener-inner::after, .menu, .menu.active {
         -webkit-transition: 250ms all;
         transition: 250ms all;
@@ -896,4 +900,9 @@ span.fa.fa-bell {
 
 .logo {
     max-height: 54px;
+}
+
+.breadcrumb li, .site-search h3 {
+    max-width: 100%;
+    word-wrap: break-word;
 }

@@ -32,7 +32,7 @@ return [
     'Name' => 'Nombre',
     'New permission' => 'Nuevo permiso',
     'New role' => 'Nuevo rol',
-    'New rule' => 'Nuevo regla',
+    'New rule' => 'Nueva regla',
     'New user' => 'Nuevo usuario',
     'Permissions' => 'Permisos',
     'Roles' => 'Roles',

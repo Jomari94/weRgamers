@@ -222,4 +222,5 @@ return [
     'Passwords do not match' => 'Las contraseñas no coinciden',
     'Rules' => 'Reglas',
     'New rule' => 'Nueva regla',
+    'We have generated a password for you' => 'Hemos generado una contraseña para ti',
 ];

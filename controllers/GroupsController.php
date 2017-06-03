@@ -3,6 +3,8 @@
 namespace app\controllers;
 
 use Yii;
+use DateTime;
+use DateTimeZone;
 use app\models\Game;
 use app\models\Event;
 use app\models\Group;
@@ -82,6 +84,19 @@ class GroupsController extends Controller
         $event = Event::findOne(['id_group' => $id]);
         if ($event === null) {
             $event = new Event;
+        } else {
+            $user = Yii::$app->user->identity;
+            if ($user && $user->profile->timezone) {
+                $tz = new DateTimeZone($user->profile->timezone);
+            } else {
+                $tz = new DateTimeZone('UTC');
+            }
+            $iniciotz = new DateTime($event->inicio, $tz);
+            $event->inicio = $iniciotz->format('Y-m-d H:i');
+            if ($event->fin) {
+                $fintz = new DateTime($event->fin, $tz);
+                $event->fin = $fintz->format('Y-m-d H:i');
+            }
         }
         $dataProvider = new ActiveDataProvider([
             'query' => Member::find()->where(['id_group' => $id, 'accepted' => true]),

@@ -97,7 +97,7 @@ return [
     'There is a join request from {user} for your group {group}' => 'Hay una solicitud de unión de {user} para tu grupo {group}',
     "You've been accepted in the group {group}" => 'Has sido aceptado en el grupo {group}',
     '{user} from {group} has cancelled the event' => '{user} de {group} ha cancelado el evento',
-    '{user} from {group} has created an event for {inicio}' => '{user} de {group} ha credo un evento que empieza el {inicio}',
+    '{user} from {group} has created an event for {inicio}' => '{user} de {group} ha creado un evento que empieza el {inicio}',
     'What are you planning to do?' => '¿Qué estáis pensando hacer?',
     'Activity' => 'Actividad',
     'Event' => 'Evento',

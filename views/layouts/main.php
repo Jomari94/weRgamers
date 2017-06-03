@@ -146,7 +146,9 @@ $this->registerJs($js);
                 </div>
                 <div>
                     <a href="<?= Yii::$app->homeUrl ?>"><?= Yii::$app->name ?></a>
-                    <a href="<?= Yii::$app->homeUrl ?>">W 'r' G</a>
+                    <a href="<?= Yii::$app->homeUrl ?>"><?= Html::img(Url::to('images/logo.png'), [
+                        'class' => 'logo'
+                        ]) ?></a>
                 </div>
                 <div>
                     <a href="<?= Url::to(['/groups/index']) ?>"><span class="fa fa-users"></span> <span><?= Yii::t('app', 'Groups') ?></span></a>

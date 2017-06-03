@@ -882,6 +882,7 @@ span.fa.fa-bell {
     content:attr(data-bubble);
 
     position: absolute;
+    padding: 1px;
     top: -5px;
     left: 5px;
     min-width: 15px;
@@ -891,4 +892,8 @@ span.fa.fa-bell {
     background-color: #36ba4f;
     border-radius: 50%;
     text-shadow: none;
+}
+
+.logo {
+    max-height: 54px;
 }

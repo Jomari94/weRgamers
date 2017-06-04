@@ -26,7 +26,19 @@ $toolbar = Url::to(['/user/profile/show?id='.$profile->user_id]). ' #toolbar';
 
 
 $js = <<<EOT
-cargaBotones();
+$(document).ready(function(){
+    if(!$('#publications-list').is(':visible') && !$('#followers-list').is(':visible') && !$('#followings-list').is(':visible')) {
+        document.getElementById('link-publications-list').click();
+    }
+    scrollTo(0,0);
+
+    cargaBotones();
+});
+
+$('[href*="#"]').click(function(event) {
+    scrollTo(0,0);
+});
+
 
 function cargaBotones(datos, status, xhr) {
     $('#column').load("$toolbar", function(){
@@ -102,15 +114,15 @@ $this->title = empty($profile->name) ? Html::encode($profile->user->username) : 
                     <p>karma</p>
                 </div>
                 <div class="user-statistics">
-                    <p id="followers"><?= $profile->totalFollowers ?></p>
+                    <a href="#followers-list" id="followers"><?= $profile->totalFollowers ?></a>
                     <p><?= Yii::t('app', 'followers') ?></p>
                 </div>
                 <div class="user-statistics">
-                    <p><?= $profile->totalFollowed ?></p>
+                    <a href="#followings-list"><?= $profile->totalFollowed ?></a>
                     <p><?= Yii::t('app', 'following') ?></p>
                 </div>
                 <div class="user-statistics">
-                    <p><?= $profile->totalPublications ?></p>
+                    <a href="#publications-list" id="link-publications-list"><?= $profile->totalPublications ?></a>
                     <p><?= Yii::t('app', 'publications') ?></p>
                 </div>
             </div>
@@ -180,38 +192,75 @@ $this->title = empty($profile->name) ? Html::encode($profile->user->username) : 
             ]) ?>
         </div>
     </div>
-    <div class="col-xs-12 col-sm-8">
-        <div>
-            <?php if (!Yii::$app->user->isGuest && Yii::$app->user->id == $profile->user_id): ?>
-                <?= $this->render('../../publications/_form', [
-                    'model' => $publication,
-                    ]) ?>
-            <?php endif; ?>
+    <div class="col-xs-12 col-sm-8 user-lists">
+        <div id="publications-list">
+            <h2><?= Yii::t('app', 'Publications') ?></h2>
+            <div>
+                <?php if (!Yii::$app->user->isGuest && Yii::$app->user->id == $profile->user_id): ?>
+                    <?= $this->render('../../publications/_form', [
+                        'model' => $publication,
+                        ]) ?>
+                    <?php endif; ?>
+                </div>
+                <div>
+                    <?= ListView::widget([
+                        'dataProvider' => $publicationProvider,
+                        'layout' => "{items}\n{pager}",
+                        'options' => [
+                            'tag' => 'div',
+                            'class' => 'publications-wrapper',
+                            'id' => 'publications-wrapper',
+                        ],
+                        'layout' => "{items}\n{pager}",
+                        'itemView' => '../messages/_view.php',
+                        'pager' => [
+                            'class' => ScrollPager::className(),
+                            'container' => '.publications-wrapper',
+                            'triggerText' => Yii::t('app', 'Show old publications'),
+                            'noneLeftText' => '',
+                            //'overflowContainer' => '.list'
+                        ],
+                        'itemOptions' => [
+                            'tag' => 'article',
+                            'class' => 'publication-view',
+                        ],
+                        'itemView' => '../../publications/_view',
+                        ]) ?>
+                    </div>
         </div>
-        <div>
+        <div id="followers-list">
+            <h2><?= Yii::t('app', 'Followers') ?></h2>
             <?= ListView::widget([
-               'dataProvider' => $publicationProvider,
-               'layout' => "{items}\n{pager}",
-               'options' => [
-                   'tag' => 'div',
-                   'class' => 'publications-wrapper',
-                   'id' => 'publications-wrapper',
-               ],
-               'layout' => "{items}\n{pager}",
-               'itemView' => '../messages/_view.php',
-               'pager' => [
-                   'class' => ScrollPager::className(),
-                   'container' => '.publications-wrapper',
-                   'triggerText' => Yii::t('app', 'Show old publications'),
-                   'noneLeftText' => '',
-                   //'overflowContainer' => '.list'
-               ],
-               'itemOptions' => [
-                   'tag' => 'article',
-                   'class' => 'publication-view',
-               ],
-               'itemView' => '../../publications/_view',
-           ]) ?>
+                'dataProvider' => $followerProvider,
+                'itemOptions' => [
+                    'class' => 'user-view media',
+                    'tag' => 'article',
+                ],
+                'options' => [
+                    'tag' => 'div',
+                    'class' => 'users-wrapper',
+                    'id' => 'users-wrapper',
+                ],
+                'layout' => "{items}\n{pager}",
+                'itemView' => '../_view',
+            ]) ?>
+        </div>
+        <div id="followings-list">
+            <h2><?= Yii::t('app', 'Following') ?></h2>
+            <?= ListView::widget([
+                'dataProvider' => $followingProvider,
+                'itemOptions' => [
+                    'class' => 'user-view media',
+                    'tag' => 'article',
+                ],
+                'options' => [
+                    'tag' => 'div',
+                    'class' => 'users-wrapper',
+                    'id' => 'users-wrapper',
+                ],
+                'layout' => "{items}\n{pager}",
+                'itemView' => '../_view',
+            ]) ?>
         </div>
     </div>
 </div>

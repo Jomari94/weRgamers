@@ -137,4 +137,5 @@ return [
     ' more are typing ...' => ' más están escribiendo ...',
     'My groups' => 'Mis grupos',
     'publications' => 'publicaciones',
+    'Following' => 'Siguiendo',
 ];

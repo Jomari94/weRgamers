@@ -3,7 +3,9 @@
 namespace app\controllers\user;
 
 use Yii;
+use app\models\User;
 use app\models\Vote;
+use app\models\Follower;
 use app\models\Collection;
 use app\models\Publication;
 use yii\data\ActiveDataProvider;
@@ -66,8 +68,22 @@ class ProfileController extends BaseProfileController
                 'pageSize' => 20,
             ],
         ]);
+        $collection->pagination->pageParam = 'collectionPage';
+        $followers = Follower::find()->select('id_follower')->where(['id_followed' => $id]);
+        $followerProvider = new ActiveDataProvider([
+            'query' => User::find()->where(['in', 'id', $followers]),
+            'pagination' => false,
+        ]);
+        $followings = Follower::find()->select('id_followed')->where(['id_follower' => $id]);
+        $followingProvider = new ActiveDataProvider([
+            'query' => User::find()->where(['in', 'id', $followings]),
+            'pagination' => false,
+        ]);
         $publicationProvider = new ActiveDataProvider([
-            'query' => Publication::find()->where(['id_user' => $profile->user_id])->orderBy('created DESC'),
+            'query' => Publication::find()->where(['id_user' => $profile->user_id])->orWhere(['in', 'id_user', $followings])->orderBy('created DESC'),
+            'pagination' => [
+                'pageSize' => 20,
+            ],
         ]);
         if ($publication->load(Yii::$app->request->post()) && $publication->validate(['content'])) {
             $publication->save(false);
@@ -83,6 +99,8 @@ class ProfileController extends BaseProfileController
             'collection' => $collection,
             'publication' => $publication,
             'publicationProvider' => $publicationProvider,
+            'followerProvider' => $followerProvider,
+            'followingProvider' => $followingProvider,
         ]);
     }
 }

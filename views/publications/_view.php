@@ -4,7 +4,7 @@ use yii\helpers\Html;
 
 <?= Html::img($model->user->profile->avatar, ['class' => 'img64 img-rounded']) ?>
 <div>
-    <h5><?= Html::a($model->user->username, ['profile/show', 'id' => $model->user->id]) ?> <?= Yii::$app->formatter->asRelativeTime($model->created) ?></h5>
+    <h5><?= Html::a($model->user->username, ['/user/profile/show', 'id' => $model->user->id]) ?> <?= Yii::$app->formatter->asRelativeTime($model->created) ?></h5>
     <p><?= $model->content ?></p>
     <?php if ($model->attachment !== null) {
         if ($model->attachmentType == 'mp3') { ?>

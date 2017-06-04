@@ -136,4 +136,5 @@ return [
     ' and ' => ' y ',
     ' more are typing ...' => ' más están escribiendo ...',
     'My groups' => 'Mis grupos',
+    'publications' => 'publicaciones',
 ];

@@ -85,4 +85,22 @@ class Profile extends BaseProfile
     {
         return Follower::find()->where(['id_follower' => $this->user_id])->count();
     }
+
+    /**
+     * Calcula el numero total de publicaciones que tiene el usuario
+     * @return int      Número de publicaciones
+     */
+    public function getTotalPublications()
+    {
+        return Publication::find()->where(['id_user' => $this->user_id])->count();
+    }
+
+    /**
+     * Calcula el numero total de juegos que tiene el usuario
+     * @return int      Número de juegos
+     */
+    public function getTotalCollection()
+    {
+        return Collection::find()->where(['id_user' => $this->user_id])->count();
+    }
 }

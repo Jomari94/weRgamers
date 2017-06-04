@@ -26,9 +26,6 @@ chmod 777 attachments, avatars, covers
 cd ../db
 sh ./create.sh
 sh ./load.sh
-psql -U wergamers wergamers > auth.sql
-sh ./migrations.sh
-psql -U wergamers wergamers > wergamers.sql
 ```
 
 4.  En '/config/web.php' modificamos el nombre del usuario administrador y el  
@@ -57,6 +54,3 @@ email a usar:
         ```
         cd listener
         node index.js
-        ```
-
-7.  La aplicación ya está lista para funcionar

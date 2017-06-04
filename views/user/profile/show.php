@@ -96,16 +96,23 @@ $this->title = empty($profile->name) ? Html::encode($profile->user->username) : 
                     <small><span class="fa fa-neuter"></span></small>
                 <?php endif; ?>
             </h3>
-            <div id="follows" class="row">
-                <span class="col-xs-3">
-                    <h3 id="karma"><?= $karma ?></h3> Karma
-                </span>
-                <span class="col-xs-3">
-                    <h3 id="followers"><?= $profile->totalFollowers ?></h3> <?= Yii::t('app', 'followers') ?>
-                </span>
-                <span class="col-xs-3">
-                    <h3><?= $profile->totalFollowed ?></h3> <?= Yii::t('app', 'following') ?>
-                </span>
+            <div id="follows">
+                <div class="user-statistics">
+                    <p id="karma"><?= $karma ?></p>
+                    <p>karma</p>
+                </div>
+                <div class="user-statistics">
+                    <p id="followers"><?= $profile->totalFollowers ?></p>
+                    <p><?= Yii::t('app', 'followers') ?></p>
+                </div>
+                <div class="user-statistics">
+                    <p><?= $profile->totalFollowed ?></p>
+                    <p><?= Yii::t('app', 'following') ?></p>
+                </div>
+                <div class="user-statistics">
+                    <p><?= $profile->totalPublications ?></p>
+                    <p><?= Yii::t('app', 'publications') ?></p>
+                </div>
             </div>
             <div id="column">
                 <div class="toolbar" id="toolbar">

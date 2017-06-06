@@ -171,7 +171,7 @@ div.sender img {
     order:1;
 }
 
-div.sender p, div.nosender p {
+div.message-view p {
     margin: 15px;
     padding: 10px;
     border-radius: 5px;
@@ -284,11 +284,14 @@ div.conversation-view img {
     margin-bottom: 25px;
     border-radius: 15px;
     position: relative;
-    height: 350px;
 }
 
 #countdown-abs > div {
     position: absolute !important;
+}
+
+.countdown-active {
+    height: 350px;
 }
 
 #dia {
@@ -338,8 +341,9 @@ div.conversation-view img {
     align-items: center;
 }
 
-.user-statistics > a {
+.user-statistics > a, .user-statistics > p:first-child {
     font-size: 20px;
+    margin-bottom: 0px;
 }
 
 /*Estilos de vista parcial de review */
@@ -403,33 +407,57 @@ div.conversation-view img {
     padding: 0px;
     border: 1px solid #878787;
     border-radius: 15px;
+    max-height: 600px;
+    height: 90vh;
+}
+
+
+#chat-body {
+    text-align: center;
+    width: 100%;
+    height: 100%;
+}
+
+#typing {
+    height: 40px;
+    color: #ffffff;
+    text-align: left;
+    padding-left: 10px;
+    text-shadow: 1px -1px 0 #000000, -1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000;
+    background-color: #d01616;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-top: 10px;
+    border-top-right-radius: 15px;
+    border-bottom: 2px solid black;
+    padding-bottom: 10px;
+}
+
+#chat-messages {
+    max-height: 511px;
+    height: calc(100% - 86px);
+    overflow: auto;
 }
 
 #messages {
     padding: 15px;
 }
 
-#chat-body {
-    text-align: center;
-    width: 100%;
-}
-
 #chat-form {
     border-top: 1px solid #d01616;
     border-bottom-right-radius: 15px;
-    padding: 7px 7px 8px 7px;
+    padding: 6px 7px 6px 7px;
     background-color: black;
+    width: 100%;
+    height: 46px;
 }
 
-#chat-messages {
-    height: 511px;
-    overflow: auto;
-}
 
 #chat-members {
     border-right: 1px solid #d01616;
     padding: 0px;
-    height: 601px;
+    max-height: 598px;
+    height: 100%;
     width: 350px;
     background-color: #ffffff;
     border-radius: 15px 0px 0px 15px;
@@ -447,10 +475,12 @@ div.conversation-view img {
     border-bottom: 2px solid black;
     text-shadow: 1px -1px 0 #000000, -1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000;
     padding-bottom: 10px;
+    height: 40px;
 }
 
 #chat-members-body {
-    height: 561px;
+    max-height: 561px;
+    height: 100%;
     width: 100%;
     overflow-y: auto;
 }
@@ -459,19 +489,32 @@ div.conversation-view img {
     margin-top: 20px;
 }
 
-#typing {
-    height: 40px;
-    color: #ffffff;
-    text-align: left;
-    padding-left: 10px;
-    text-shadow: 1px -1px 0 #000000, -1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000;
+div.chat-message-view {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+div.chat-message-content {
+    margin: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
     background-color: #d01616;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    padding-top: 10px;
-    border-top-right-radius: 15px;
-    border-bottom: 2px solid black;
-    padding-bottom: 10px;
+    overflow: visible;
+    max-width: 80%;
+    word-wrap: break-word;
+    position: relative;
+    text-align: left;
+}
+div.chat-message-view p {
+    margin: 0px;
+}
+
+div.nosender p:first-of-type {
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 8px;
 }
 
 .member-status {

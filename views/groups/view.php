@@ -140,7 +140,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
     <div class="row">
         <div class="col-xs-12 hidden-xs hidden-sm" id="countdown"></div>
-        <div class="col-xs-12 hidden-md hidden-lg" id="countdown-abs"></div>
+        <div class="col-xs-12 hidden-md hidden-lg countdown-active" id="countdown-abs"></div>
         <div class="col-xs-12" id="chat">
             <div id="chat-members" class="hidden-sm hidden-xs">
                 <h4><?= Yii::t('app', 'Members') ?></h4>
@@ -182,6 +182,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'id' => 'message-field',
                         'class' => 'form-control',
                         'autocomplete' => 'off',
+                        'maxlength' => 500,
                     ]) ?>
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-primary" id="send-button"><span class="fa fa-paper-plane"></span></button>

@@ -60,8 +60,7 @@ if (!yiiOptions.newEvent) {
                 }
             });
         }).on('finish.countdown', function(event) {
-            $(this).html(yiiOptions.finish)
-                .parent().addClass('disabled');
+            $(this).html(yiiOptions.finish);
         });
 
     $('#countdown-abs').countdown(begin.toDate(), {})
@@ -116,7 +115,6 @@ if (!yiiOptions.newEvent) {
                 'displayInput': false
             });
         }).on('finish.countdown', function(event) {
-            $(this).html(yiiOptions.finish)
-                .parent().addClass('disabled');
+            $(this).html(yiiOptions.finish).removeClass('countdown-active');
         });
 }

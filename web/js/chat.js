@@ -41,10 +41,14 @@ $('#send-button').on('click', function(){
 socket.on('chat message', function(msg){
     msg = JSON.parse(msg);
     if (msg.name == username) {
-        $('#messages').append($('<div>').html('<img class="img64 img-circle" src="' + avatar + '"><p>' + msg.message + '</p>').addClass('message-view sender'));
+        $('#messages').append($('<div>')
+            .html('<img class="img64 img-circle" src="' + avatar + '"><div class="chat-message-content"><p>' + msg.message + '</p><div>')
+            .addClass('chat-message-view sender'));
     } else {
         var avatarUser = $('#' + msg.name).attr('src');
-        $('#messages').append($('<div>').html('<img class="img64 img-circle" src="' + avatarUser + '"><p>' + msg.message + '</p>').addClass('message-view nosender'));
+        $('#messages').append($('<div>')
+            .html('<img class="img64 img-circle" src="' + avatarUser + '"><div class="chat-message-content"><p>' + msg.name + '</p><p>' + msg.message + '</p><div>')
+            .addClass('chat-message-view nosender'));
     }
     scrollToBottom();
 });
@@ -102,5 +106,5 @@ $(document).on('ready', function () {
 });
 
 function scrollToBottom() {
-    $("#chat-messages").scrollTop($("#chat-messages")[0].scrollHeight);
+    $('#chat-messages').scrollTop($('#chat-messages')[0].scrollHeight);
 }

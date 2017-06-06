@@ -2,576 +2,834 @@ Array
 (
     [0] => Array
         (
-            [line] => 31
-            [file] => controllers/GamesController.php
-            [message] => Method behaviors has no parent to inherit from in app\controllers\GamesController.
+            [line] => 58
+            [file] => commands/HelloController.php
+            [message] => Property $help conflicts with a defined getter getHelp in app\commands\HelloController.
         )
 
     [1] => Array
         (
-            [line] => 26
-            [file] => controllers/GroupsController.php
-            [message] => Method behaviors has no parent to inherit from in app\controllers\GroupsController.
+            [file] => controllers/GamesController.php
+            [message] => broken link to \app\controllers\Behavior in app\controllers\GamesController
         )
 
     [2] => Array
         (
-            [line] => 19
-            [file] => controllers/MembersController.php
-            [message] => Method behaviors has no parent to inherit from in app\controllers\MembersController.
+            [file] => controllers/GroupsController.php
+            [message] => broken link to \app\controllers\Behavior in app\controllers\GroupsController
         )
 
     [3] => Array
         (
-            [line] => 21
-            [file] => controllers/PlatformController.php
-            [message] => Method behaviors has no parent to inherit from in app\controllers\PlatformController.
+            [file] => controllers/MembersController.php
+            [message] => broken link to \Behavior in app\controllers\MembersController
         )
 
     [4] => Array
         (
-            [line] => 21
-            [file] => controllers/ReviewsController.php
-            [message] => Method behaviors has no parent to inherit from in app\controllers\ReviewsController.
+            [file] => controllers/PlatformController.php
+            [message] => broken link to \app\controllers\Behavior in app\controllers\PlatformController
         )
 
     [5] => Array
         (
-            [line] => 26
-            [file] => controllers/SiteController.php
-            [message] => Method behaviors has no parent to inherit from in app\controllers\SiteController.
+            [file] => controllers/ReviewsController.php
+            [message] => broken link to \app\controllers\Behavior in app\controllers\ReviewsController
         )
 
     [6] => Array
         (
-            [line] => 52
             [file] => controllers/SiteController.php
-            [message] => Method actions has no parent to inherit from in app\controllers\SiteController.
+            [message] => broken link to \Behavior in app\controllers\SiteController
         )
 
     [7] => Array
         (
-            [line] => 20
+            [line] => 22
             [file] => controllers/user/ProfileController.php
             [message] => Method behaviors has no parent to inherit from in app\controllers\user\ProfileController.
         )
 
     [8] => Array
         (
-            [line] => 24
             [file] => models/ChatMessage.php
-            [message] => Method tableName has no parent to inherit from in app\models\ChatMessage.
+            [message] => broken link to \app\models\Validator in app\models\ChatMessage
         )
 
     [9] => Array
         (
-            [line] => 32
             [file] => models/ChatMessage.php
-            [message] => Method rules has no parent to inherit from in app\models\ChatMessage.
+            [message] => broken link to \app\models\Validator::builtInValidators in app\models\ChatMessage
         )
 
     [10] => Array
         (
-            [line] => 47
             [file] => models/ChatMessage.php
-            [message] => Method attributeLabels has no parent to inherit from in app\models\ChatMessage.
+            [message] => broken link to \app\models\Inflector::camel2id() in app\models\ChatMessage
         )
 
     [11] => Array
         (
-            [line] => 22
-            [file] => models/Collection.php
-            [message] => Method tableName has no parent to inherit from in app\models\Collection.
+            [file] => models/ChatMessage.php
+            [message] => broken link to \app\models\Connection::tablePrefix in app\models\ChatMessage
         )
 
     [12] => Array
         (
-            [line] => 30
-            [file] => models/Collection.php
-            [message] => Method rules has no parent to inherit from in app\models\Collection.
+            [file] => models/ChatMessage.php
+            [message] => broken link to \app\models\Connection::tablePrefix in app\models\ChatMessage
         )
 
     [13] => Array
         (
-            [line] => 43
             [file] => models/Collection.php
-            [message] => Method attributeLabels has no parent to inherit from in app\models\Collection.
+            [message] => broken link to \app\models\Validator in app\models\Collection
         )
 
     [14] => Array
         (
-            [line] => 25
-            [file] => models/Conversation.php
-            [message] => Method tableName has no parent to inherit from in app\models\Conversation.
+            [file] => models/Collection.php
+            [message] => broken link to \app\models\Validator::builtInValidators in app\models\Collection
         )
 
     [15] => Array
         (
-            [line] => 33
-            [file] => models/Conversation.php
-            [message] => Method rules has no parent to inherit from in app\models\Conversation.
+            [file] => models/Collection.php
+            [message] => broken link to \app\models\Inflector::camel2id() in app\models\Collection
         )
 
     [16] => Array
         (
-            [line] => 53
-            [file] => models/Conversation.php
-            [message] => Method attributeLabels has no parent to inherit from in app\models\Conversation.
+            [file] => models/Collection.php
+            [message] => broken link to \app\models\Connection::tablePrefix in app\models\Collection
         )
 
     [17] => Array
         (
-            [line] => 23
-            [file] => models/Event.php
-            [message] => Method tableName has no parent to inherit from in app\models\Event.
+            [file] => models/Collection.php
+            [message] => broken link to \app\models\Connection::tablePrefix in app\models\Collection
         )
 
     [18] => Array
         (
-            [line] => 31
-            [file] => models/Event.php
-            [message] => Method rules has no parent to inherit from in app\models\Event.
+            [file] => models/Conversation.php
+            [message] => broken link to \app\models\Validator in app\models\Conversation
         )
 
     [19] => Array
         (
-            [line] => 46
-            [file] => models/Event.php
-            [message] => Method attributeLabels has no parent to inherit from in app\models\Event.
+            [file] => models/Conversation.php
+            [message] => broken link to \app\models\Validator::builtInValidators in app\models\Conversation
         )
 
     [20] => Array
         (
-            [line] => 21
-            [file] => models/Follower.php
-            [message] => Method tableName has no parent to inherit from in app\models\Follower.
+            [file] => models/Conversation.php
+            [message] => broken link to \app\models\Inflector::camel2id() in app\models\Conversation
         )
 
     [21] => Array
         (
-            [line] => 29
-            [file] => models/Follower.php
-            [message] => Method rules has no parent to inherit from in app\models\Follower.
+            [file] => models/Conversation.php
+            [message] => broken link to \app\models\Connection::tablePrefix in app\models\Conversation
         )
 
     [22] => Array
         (
-            [line] => 42
-            [file] => models/Follower.php
-            [message] => Method attributeLabels has no parent to inherit from in app\models\Follower.
+            [file] => models/Conversation.php
+            [message] => broken link to \app\models\Connection::tablePrefix in app\models\Conversation
         )
 
     [23] => Array
         (
-            [line] => 49
-            [file] => models/Game.php
-            [message] => Method tableName has no parent to inherit from in app\models\Game.
+            [file] => models/Event.php
+            [message] => broken link to \app\models\Validator in app\models\Event
         )
 
     [24] => Array
         (
-            [line] => 57
-            [file] => models/Game.php
-            [message] => Method rules has no parent to inherit from in app\models\Game.
+            [file] => models/Event.php
+            [message] => broken link to \app\models\Validator::builtInValidators in app\models\Event
         )
 
     [25] => Array
         (
-            [line] => 72
-            [file] => models/Game.php
-            [message] => Method attributeLabels has no parent to inherit from in app\models\Game.
+            [file] => models/Event.php
+            [message] => broken link to \app\models\Inflector::camel2id() in app\models\Event
         )
 
     [26] => Array
         (
-            [line] => 88
-            [file] => models/Game.php
-            [message] => Method scenarios has no parent to inherit from in app\models\Game.
+            [file] => models/Event.php
+            [message] => broken link to \app\models\Connection::tablePrefix in app\models\Event
         )
 
     [27] => Array
         (
-            [line] => 49
-            [file] => models/Game.php
-            [message] => Method tableName has no parent to inherit from in app\models\Game.
+            [file] => models/Event.php
+            [message] => broken link to \app\models\Connection::tablePrefix in app\models\Event
         )
 
     [28] => Array
         (
-            [line] => 57
-            [file] => models/Game.php
-            [message] => Method rules has no parent to inherit from in app\models\Game.
+            [file] => models/Follower.php
+            [message] => broken link to \app\models\Validator in app\models\Follower
         )
 
     [29] => Array
         (
-            [line] => 72
-            [file] => models/Game.php
-            [message] => Method attributeLabels has no parent to inherit from in app\models\Game.
+            [file] => models/Follower.php
+            [message] => broken link to \app\models\Validator::builtInValidators in app\models\Follower
         )
 
     [30] => Array
         (
-            [line] => 88
-            [file] => models/Game.php
-            [message] => Method scenarios has no parent to inherit from in app\models\Game.
+            [file] => models/Follower.php
+            [message] => broken link to \app\models\Inflector::camel2id() in app\models\Follower
         )
 
     [31] => Array
         (
-            [line] => 49
-            [file] => models/Game.php
-            [message] => Method tableName has no parent to inherit from in app\models\Game.
+            [file] => models/Follower.php
+            [message] => broken link to \app\models\Connection::tablePrefix in app\models\Follower
         )
 
     [32] => Array
         (
-            [line] => 57
-            [file] => models/Game.php
-            [message] => Method rules has no parent to inherit from in app\models\Game.
+            [file] => models/Follower.php
+            [message] => broken link to \app\models\Connection::tablePrefix in app\models\Follower
         )
 
     [33] => Array
         (
-            [line] => 72
+            [line] => 44
             [file] => models/Game.php
-            [message] => Method attributeLabels has no parent to inherit from in app\models\Game.
+            [message] => Property $platforms conflicts with a defined getter getPlatforms in app\models\Game.
         )
 
     [34] => Array
         (
-            [line] => 88
             [file] => models/Game.php
-            [message] => Method scenarios has no parent to inherit from in app\models\Game.
+            [message] => broken link to \app\models\Validator in app\models\Game
         )
 
     [35] => Array
         (
-            [line] => 19
-            [file] => models/GamePlatform.php
-            [message] => Method tableName has no parent to inherit from in app\models\GamePlatform.
+            [file] => models/Game.php
+            [message] => broken link to \app\models\Validator::builtInValidators in app\models\Game
         )
 
     [36] => Array
         (
-            [line] => 27
-            [file] => models/GamePlatform.php
-            [message] => Method rules has no parent to inherit from in app\models\GamePlatform.
+            [file] => models/Game.php
+            [message] => broken link to \app\models\Inflector::camel2id() in app\models\Game
         )
 
     [37] => Array
         (
-            [line] => 40
-            [file] => models/GamePlatform.php
-            [message] => Method attributeLabels has no parent to inherit from in app\models\GamePlatform.
+            [file] => models/Game.php
+            [message] => broken link to \app\models\Connection::tablePrefix in app\models\Game
         )
 
     [38] => Array
         (
-            [line] => 19
-            [file] => models/GamePlatform.php
-            [message] => Method tableName has no parent to inherit from in app\models\GamePlatform.
+            [file] => models/Game.php
+            [message] => broken link to \app\models\Connection::tablePrefix in app\models\Game
         )
 
     [39] => Array
         (
-            [line] => 27
             [file] => models/GamePlatform.php
-            [message] => Method rules has no parent to inherit from in app\models\GamePlatform.
+            [message] => broken link to \app\models\Validator in app\models\GamePlatform
         )
 
     [40] => Array
         (
-            [line] => 40
             [file] => models/GamePlatform.php
-            [message] => Method attributeLabels has no parent to inherit from in app\models\GamePlatform.
+            [message] => broken link to \app\models\Validator::builtInValidators in app\models\GamePlatform
         )
 
     [41] => Array
         (
-            [line] => 53
-            [file] => models/GamePlatformSearch.php
-            [message] => Method scenarios has no parent to inherit from in app\models\GamePlatformSearch.
+            [file] => models/GamePlatform.php
+            [message] => broken link to \app\models\Inflector::camel2id() in app\models\GamePlatform
         )
 
     [42] => Array
         (
-            [line] => 29
-            [file] => models/Group.php
-            [message] => Method tableName has no parent to inherit from in app\models\Group.
+            [file] => models/GamePlatform.php
+            [message] => broken link to \app\models\Connection::tablePrefix in app\models\GamePlatform
         )
 
     [43] => Array
         (
-            [line] => 37
-            [file] => models/Group.php
-            [message] => Method rules has no parent to inherit from in app\models\Group.
+            [file] => models/GamePlatform.php
+            [message] => broken link to \app\models\Connection::tablePrefix in app\models\GamePlatform
         )
 
     [44] => Array
         (
-            [line] => 51
-            [file] => models/Group.php
-            [message] => Method attributeLabels has no parent to inherit from in app\models\Group.
+            [file] => models/GamePlatformSearch.php
+            [message] => broken link to \app\models\Validator in app\models\GamePlatformSearch
         )
 
     [45] => Array
         (
-            [line] => 29
-            [file] => models/Group.php
-            [message] => Method tableName has no parent to inherit from in app\models\Group.
+            [file] => models/GamePlatformSearch.php
+            [message] => broken link to \app\models\Validator::builtInValidators in app\models\GamePlatformSearch
         )
 
     [46] => Array
         (
-            [line] => 37
-            [file] => models/Group.php
-            [message] => Method rules has no parent to inherit from in app\models\Group.
+            [line] => 18
+            [file] => models/GameSearch.php
+            [message] => Property $namePlatforms conflicts with a defined getter getNamePlatforms in app\models\GameSearch.
         )
 
     [47] => Array
         (
-            [line] => 51
-            [file] => models/Group.php
-            [message] => Method attributeLabels has no parent to inherit from in app\models\Group.
+            [file] => models/GameSearch.php
+            [message] => broken link to \app\models\Validator in app\models\GameSearch
         )
 
     [48] => Array
         (
-            [line] => 31
-            [file] => models/GroupSearch.php
-            [message] => Method scenarios has no parent to inherit from in app\models\GroupSearch.
+            [file] => models/GameSearch.php
+            [message] => broken link to \app\models\Validator::builtInValidators in app\models\GameSearch
         )
 
     [49] => Array
         (
-            [line] => 23
-            [file] => models/Member.php
-            [message] => Method tableName has no parent to inherit from in app\models\Member.
+            [file] => models/Group.php
+            [message] => broken link to \app\models\Validator in app\models\Group
         )
 
     [50] => Array
         (
-            [line] => 31
-            [file] => models/Member.php
-            [message] => Method rules has no parent to inherit from in app\models\Member.
+            [file] => models/Group.php
+            [message] => broken link to \app\models\Validator::builtInValidators in app\models\Group
         )
 
     [51] => Array
         (
-            [line] => 46
-            [file] => models/Member.php
-            [message] => Method attributeLabels has no parent to inherit from in app\models\Member.
+            [file] => models/Group.php
+            [message] => broken link to \app\models\Inflector::camel2id() in app\models\Group
         )
 
     [52] => Array
         (
-            [line] => 25
-            [file] => models/Message.php
-            [message] => Method tableName has no parent to inherit from in app\models\Message.
+            [file] => models/Group.php
+            [message] => broken link to \app\models\Connection::tablePrefix in app\models\Group
         )
 
     [53] => Array
         (
-            [line] => 33
-            [file] => models/Message.php
-            [message] => Method rules has no parent to inherit from in app\models\Message.
+            [file] => models/Group.php
+            [message] => broken link to \app\models\Connection::tablePrefix in app\models\Group
         )
 
     [54] => Array
         (
-            [line] => 49
-            [file] => models/Message.php
-            [message] => Method attributeLabels has no parent to inherit from in app\models\Message.
+            [file] => models/GroupSearch.php
+            [message] => broken link to \app\models\Validator in app\models\GroupSearch
         )
 
     [55] => Array
         (
-            [line] => 22
-            [file] => models/Notification.php
-            [message] => Method tableName has no parent to inherit from in app\models\Notification.
+            [file] => models/GroupSearch.php
+            [message] => broken link to \app\models\Validator::builtInValidators in app\models\GroupSearch
         )
 
     [56] => Array
         (
-            [line] => 30
-            [file] => models/Notification.php
-            [message] => Method rules has no parent to inherit from in app\models\Notification.
+            [file] => models/Member.php
+            [message] => broken link to \app\models\Validator in app\models\Member
         )
 
     [57] => Array
         (
-            [line] => 44
-            [file] => models/Notification.php
-            [message] => Method attributeLabels has no parent to inherit from in app\models\Notification.
+            [file] => models/Member.php
+            [message] => broken link to \app\models\Validator::builtInValidators in app\models\Member
         )
 
     [58] => Array
         (
-            [line] => 20
-            [file] => models/Platform.php
-            [message] => Method tableName has no parent to inherit from in app\models\Platform.
+            [file] => models/Member.php
+            [message] => broken link to \app\models\Inflector::camel2id() in app\models\Member
         )
 
     [59] => Array
         (
-            [line] => 28
-            [file] => models/Platform.php
-            [message] => Method rules has no parent to inherit from in app\models\Platform.
+            [file] => models/Member.php
+            [message] => broken link to \app\models\Connection::tablePrefix in app\models\Member
         )
 
     [60] => Array
         (
-            [line] => 40
-            [file] => models/Platform.php
-            [message] => Method attributeLabels has no parent to inherit from in app\models\Platform.
+            [file] => models/Member.php
+            [message] => broken link to \app\models\Connection::tablePrefix in app\models\Member
         )
 
     [61] => Array
         (
-            [line] => 20
-            [file] => models/Platform.php
-            [message] => Method tableName has no parent to inherit from in app\models\Platform.
+            [file] => models/Message.php
+            [message] => broken link to \app\models\Validator in app\models\Message
         )
 
     [62] => Array
         (
-            [line] => 28
-            [file] => models/Platform.php
-            [message] => Method rules has no parent to inherit from in app\models\Platform.
+            [file] => models/Message.php
+            [message] => broken link to \app\models\Validator::builtInValidators in app\models\Message
         )
 
     [63] => Array
         (
-            [line] => 40
-            [file] => models/Platform.php
-            [message] => Method attributeLabels has no parent to inherit from in app\models\Platform.
+            [file] => models/Message.php
+            [message] => broken link to \app\models\Inflector::camel2id() in app\models\Message
         )
 
     [64] => Array
         (
-            [line] => 29
-            [file] => models/PlatformSearch.php
-            [message] => Method scenarios has no parent to inherit from in app\models\PlatformSearch.
+            [file] => models/Message.php
+            [message] => broken link to \app\models\Connection::tablePrefix in app\models\Message
         )
 
     [65] => Array
+        (
+            [file] => models/Message.php
+            [message] => broken link to \app\models\Connection::tablePrefix in app\models\Message
+        )
+
+    [66] => Array
+        (
+            [file] => models/Notification.php
+            [message] => broken link to \app\models\Validator in app\models\Notification
+        )
+
+    [67] => Array
+        (
+            [file] => models/Notification.php
+            [message] => broken link to \app\models\Validator::builtInValidators in app\models\Notification
+        )
+
+    [68] => Array
+        (
+            [file] => models/Notification.php
+            [message] => broken link to \app\models\Inflector::camel2id() in app\models\Notification
+        )
+
+    [69] => Array
+        (
+            [file] => models/Notification.php
+            [message] => broken link to \app\models\Connection::tablePrefix in app\models\Notification
+        )
+
+    [70] => Array
+        (
+            [file] => models/Notification.php
+            [message] => broken link to \app\models\Connection::tablePrefix in app\models\Notification
+        )
+
+    [71] => Array
+        (
+            [file] => models/Platform.php
+            [message] => broken link to \app\models\Validator in app\models\Platform
+        )
+
+    [72] => Array
+        (
+            [file] => models/Platform.php
+            [message] => broken link to \app\models\Validator::builtInValidators in app\models\Platform
+        )
+
+    [73] => Array
+        (
+            [file] => models/Platform.php
+            [message] => broken link to \app\models\Inflector::camel2id() in app\models\Platform
+        )
+
+    [74] => Array
+        (
+            [file] => models/Platform.php
+            [message] => broken link to \app\models\Connection::tablePrefix in app\models\Platform
+        )
+
+    [75] => Array
+        (
+            [file] => models/Platform.php
+            [message] => broken link to \app\models\Connection::tablePrefix in app\models\Platform
+        )
+
+    [76] => Array
+        (
+            [file] => models/PlatformSearch.php
+            [message] => broken link to \app\models\Validator in app\models\PlatformSearch
+        )
+
+    [77] => Array
+        (
+            [file] => models/PlatformSearch.php
+            [message] => broken link to \app\models\Validator::builtInValidators in app\models\PlatformSearch
+        )
+
+    [78] => Array
         (
             [line] => 14
             [file] => models/Profile.php
             [message] => Method rules has no parent to inherit from in app\models\Profile.
         )
 
-    [66] => Array
+    [79] => Array
         (
             [line] => 35
             [file] => models/Profile.php
             [message] => Method attributeLabels has no parent to inherit from in app\models\Profile.
         )
 
-    [67] => Array
+    [80] => Array
         (
-            [line] => 28
             [file] => models/Publication.php
-            [message] => Method tableName has no parent to inherit from in app\models\Publication.
+            [message] => broken link to \app\models\Validator in app\models\Publication
         )
 
-    [68] => Array
+    [81] => Array
         (
-            [line] => 36
             [file] => models/Publication.php
-            [message] => Method rules has no parent to inherit from in app\models\Publication.
+            [message] => broken link to \app\models\Validator::builtInValidators in app\models\Publication
         )
 
-    [69] => Array
+    [82] => Array
         (
-            [line] => 51
             [file] => models/Publication.php
-            [message] => Method attributeLabels has no parent to inherit from in app\models\Publication.
+            [message] => broken link to \app\models\Inflector::camel2id() in app\models\Publication
         )
 
-    [70] => Array
+    [83] => Array
         (
-            [line] => 25
+            [file] => models/Publication.php
+            [message] => broken link to \app\models\Connection::tablePrefix in app\models\Publication
+        )
+
+    [84] => Array
+        (
+            [file] => models/Publication.php
+            [message] => broken link to \app\models\Connection::tablePrefix in app\models\Publication
+        )
+
+    [85] => Array
+        (
             [file] => models/Review.php
-            [message] => Method tableName has no parent to inherit from in app\models\Review.
+            [message] => broken link to \app\models\Validator in app\models\Review
         )
 
-    [71] => Array
+    [86] => Array
         (
-            [line] => 33
             [file] => models/Review.php
-            [message] => Method rules has no parent to inherit from in app\models\Review.
+            [message] => broken link to \app\models\Validator::builtInValidators in app\models\Review
         )
 
-    [72] => Array
+    [87] => Array
         (
-            [line] => 48
             [file] => models/Review.php
-            [message] => Method attributeLabels has no parent to inherit from in app\models\Review.
+            [message] => broken link to \app\models\Inflector::camel2id() in app\models\Review
         )
 
-    [73] => Array
+    [88] => Array
         (
-            [line] => 25
             [file] => models/Review.php
-            [message] => Method tableName has no parent to inherit from in app\models\Review.
+            [message] => broken link to \app\models\Connection::tablePrefix in app\models\Review
         )
 
-    [74] => Array
+    [89] => Array
         (
-            [line] => 33
             [file] => models/Review.php
-            [message] => Method rules has no parent to inherit from in app\models\Review.
+            [message] => broken link to \app\models\Connection::tablePrefix in app\models\Review
         )
 
-    [75] => Array
+    [90] => Array
         (
-            [line] => 48
-            [file] => models/Review.php
-            [message] => Method attributeLabels has no parent to inherit from in app\models\Review.
-        )
-
-    [76] => Array
-        (
-            [line] => 29
             [file] => models/ReviewSearch.php
-            [message] => Method scenarios has no parent to inherit from in app\models\ReviewSearch.
+            [message] => broken link to \app\models\Validator in app\models\ReviewSearch
         )
 
-    [77] => Array
+    [91] => Array
+        (
+            [file] => models/ReviewSearch.php
+            [message] => broken link to \app\models\Validator::builtInValidators in app\models\ReviewSearch
+        )
+
+    [92] => Array
         (
             [line] => 23
             [file] => models/SettingsForm.php
             [message] => Method rules has no parent to inherit from in app\models\SettingsForm.
         )
 
-    [78] => Array
+    [93] => Array
         (
             [line] => 52
             [file] => models/SettingsForm.php
             [message] => Method attributeLabels has no parent to inherit from in app\models\SettingsForm.
         )
 
-    [79] => Array
+    [94] => Array
         (
-            [line] => 22
             [file] => models/Vote.php
-            [message] => Method tableName has no parent to inherit from in app\models\Vote.
+            [message] => broken link to \app\models\Validator in app\models\Vote
         )
 
-    [80] => Array
+    [95] => Array
         (
-            [line] => 30
             [file] => models/Vote.php
-            [message] => Method rules has no parent to inherit from in app\models\Vote.
+            [message] => broken link to \app\models\Validator::builtInValidators in app\models\Vote
         )
 
-    [81] => Array
+    [96] => Array
         (
-            [line] => 44
             [file] => models/Vote.php
-            [message] => Method attributeLabels has no parent to inherit from in app\models\Vote.
+            [message] => broken link to \app\models\Inflector::camel2id() in app\models\Vote
+        )
+
+    [97] => Array
+        (
+            [file] => models/Vote.php
+            [message] => broken link to \app\models\Connection::tablePrefix in app\models\Vote
+        )
+
+    [98] => Array
+        (
+            [file] => models/Vote.php
+            [message] => broken link to \app\models\Connection::tablePrefix in app\models\Vote
+        )
+
+    [99] => Array
+        (
+            [file] => vendor/yiisoft/yii2/db/Command.php
+            [message] => broken link to \yii\db\yii\db\Query in yii\db\Command
+        )
+
+    [100] => Array
+        (
+            [file] => vendor/yiisoft/yii2/db/Command.php
+            [message] => broken link to \yii\db\yii\db\Query in yii\db\Command
+        )
+
+    [101] => Array
+        (
+            [line] => 81
+            [file] => vendor/yiisoft/yii2/db/Migration.php
+            [message] => Method getDb has no parent to inherit from in yii\db\Migration.
+        )
+
+    [102] => Array
+        (
+            [line] => 573
+            [file] => vendor/yiisoft/yii2/db/Query.php
+            [message] => Method param $params does not exist in parent method, @inheritdoc not possible in where in yii\db\Query.
+        )
+
+    [103] => Array
+        (
+            [file] => vendor/yiisoft/yii2/db/QueryBuilder.php
+            [message] => broken link to \yii\db\yii\db\Query in yii\db\QueryBuilder
+        )
+
+    [104] => Array
+        (
+            [file] => vendor/yiisoft/yii2/db/QueryBuilder.php
+            [message] => broken link to \yii\db\yii\db\Query in yii\db\QueryBuilder
+        )
+
+    [105] => Array
+        (
+            [file] => vendor/yiisoft/yii2/db/QueryTrait.php
+            [message] => broken link to \yii\db\one() in yii\db\QueryTrait
+        )
+
+    [106] => Array
+        (
+            [file] => vendor/yiisoft/yii2/db/QueryTrait.php
+            [message] => broken link to \yii\db\all() in yii\db\QueryTrait
+        )
+
+    [107] => Array
+        (
+            [file] => vendor/yiisoft/yii2/db/QueryTrait.php
+            [message] => broken link to \yii\db\exists() in yii\db\QueryTrait
+        )
+
+    [108] => Array
+        (
+            [file] => vendor/yiisoft/yii2/db/mssql/QueryBuilder.php
+            [message] => broken link to \yii\db\mssql\Query::orderBy in yii\db\mssql\QueryBuilder
+        )
+
+    [109] => Array
+        (
+            [file] => vendor/yiisoft/yii2/db/mssql/QueryBuilder.php
+            [message] => broken link to \yii\db\mssql\Query::limit in yii\db\mssql\QueryBuilder
+        )
+
+    [110] => Array
+        (
+            [file] => vendor/yiisoft/yii2/db/mssql/QueryBuilder.php
+            [message] => broken link to \yii\db\mssql\Query::offset in yii\db\mssql\QueryBuilder
+        )
+
+    [111] => Array
+        (
+            [file] => vendor/yiisoft/yii2/db/mssql/QueryBuilder.php
+            [message] => broken link to \yii\db\mssql\yii\db\Query in yii\db\mssql\QueryBuilder
+        )
+
+    [112] => Array
+        (
+            [file] => vendor/yiisoft/yii2/db/mssql/QueryBuilder.php
+            [message] => broken link to \yii\db\mssql\yii\db\Query in yii\db\mssql\QueryBuilder
+        )
+
+    [113] => Array
+        (
+            [file] => vendor/yiisoft/yii2/db/mssql/QueryBuilder.php
+            [message] => broken link to \yii\db\mssql\Query::where() in yii\db\mssql\QueryBuilder
+        )
+
+    [114] => Array
+        (
+            [file] => vendor/yiisoft/yii2/db/mysql/QueryBuilder.php
+            [message] => broken link to \yii\db\mysql\yii\db\Query in yii\db\mysql\QueryBuilder
+        )
+
+    [115] => Array
+        (
+            [file] => vendor/yiisoft/yii2/db/mysql/QueryBuilder.php
+            [message] => broken link to \yii\db\mysql\yii\db\Query in yii\db\mysql\QueryBuilder
+        )
+
+    [116] => Array
+        (
+            [file] => vendor/yiisoft/yii2/db/oci/QueryBuilder.php
+            [message] => broken link to \yii\db\oci\Query::orderBy in yii\db\oci\QueryBuilder
+        )
+
+    [117] => Array
+        (
+            [file] => vendor/yiisoft/yii2/db/oci/QueryBuilder.php
+            [message] => broken link to \yii\db\oci\Query::limit in yii\db\oci\QueryBuilder
+        )
+
+    [118] => Array
+        (
+            [file] => vendor/yiisoft/yii2/db/oci/QueryBuilder.php
+            [message] => broken link to \yii\db\oci\Query::offset in yii\db\oci\QueryBuilder
+        )
+
+    [119] => Array
+        (
+            [file] => vendor/yiisoft/yii2/db/oci/QueryBuilder.php
+            [message] => broken link to \yii\db\oci\yii\db\Query in yii\db\oci\QueryBuilder
+        )
+
+    [120] => Array
+        (
+            [file] => vendor/yiisoft/yii2/db/oci/QueryBuilder.php
+            [message] => broken link to \yii\db\oci\yii\db\Query in yii\db\oci\QueryBuilder
+        )
+
+    [121] => Array
+        (
+            [file] => vendor/yiisoft/yii2/db/pgsql/QueryBuilder.php
+            [message] => broken link to \yii\db\pgsql\yii\db\Query in yii\db\pgsql\QueryBuilder
+        )
+
+    [122] => Array
+        (
+            [file] => vendor/yiisoft/yii2/db/pgsql/QueryBuilder.php
+            [message] => broken link to \yii\db\pgsql\yii\db\Query in yii\db\pgsql\QueryBuilder
+        )
+
+    [123] => Array
+        (
+            [file] => vendor/yiisoft/yii2/db/pgsql/QueryBuilder.php
+            [message] => broken link to \yii\db\pgsql\Query::where() in yii\db\pgsql\QueryBuilder
+        )
+
+    [124] => Array
+        (
+            [line] => 24
+            [file] => vendor/yiisoft/yii2/di/NotInstantiableException.php
+            [message] => Method __construct has no parent to inherit from in yii\di\NotInstantiableException.
+        )
+
+    [125] => Array
+        (
+            [line] => 121
+            [file] => vendor/yiisoft/yii2/rbac/DbManager.php
+            [message] => Method checkAccess has no parent to inherit from in yii\rbac\DbManager.
+        )
+
+    [126] => Array
+        (
+            [line] => 98
+            [file] => vendor/yiisoft/yii2/rbac/DbManager.php
+            [message] => Property $rules conflicts with a defined getter getRules in yii\rbac\DbManager.
+        )
+
+    [127] => Array
+        (
+            [line] => 99
+            [file] => vendor/yiisoft/yii2/rbac/PhpManager.php
+            [message] => Method checkAccess has no parent to inherit from in yii\rbac\PhpManager.
+        )
+
+    [128] => Array
+        (
+            [line] => 79
+            [file] => vendor/yiisoft/yii2/rbac/PhpManager.php
+            [message] => Property $rules conflicts with a defined getter getRules in yii\rbac\PhpManager.
+        )
+
+    [129] => Array
+        (
+            [file] => vendor/yiisoft/yii2/rest/ActiveController.php
+            [message] => broken link to \yii\rest\VerbFilter::actions in yii\rest\ActiveController
+        )
+
+    [130] => Array
+        (
+            [file] => vendor/yiisoft/yii2/rest/Controller.php
+            [message] => broken link to \yii\rest\Behavior in yii\rest\Controller
+        )
+
+    [131] => Array
+        (
+            [line] => 317
+            [file] => vendor/yiisoft/yii2/validators/FileValidator.php
+            [message] => Method param $trim does not exist in parent method, @inheritdoc not possible in isEmpty in yii\validators\FileValidator.
+        )
+
+    [132] => Array
+        (
+            [file] => vendor/yiisoft/yii2/web/ErrorAction.php
+            [message] => broken link to \yii\web\yii\web\ErrorHandler in yii\web\ErrorAction
+        )
+
+    [133] => Array
+        (
+            [file] => vendor/yiisoft/yii2/web/ErrorAction.php
+            [message] => broken link to \yii\web\yii\base\UserException in yii\web\ErrorAction
+        )
+
+    [134] => Array
+        (
+            [file] => vendor/yiisoft/yii2/web/ErrorAction.php
+            [message] => broken link to \yii\web\yii\web\ErrorHandler in yii\web\ErrorAction
+        )
+
+    [135] => Array
+        (
+            [file] => vendor/yiisoft/yii2/web/ErrorAction.php
+            [message] => broken link to \yii\web\yii\base\UserException in yii\web\ErrorAction
         )
 
 )

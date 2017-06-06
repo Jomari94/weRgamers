@@ -108,6 +108,7 @@ return [
     'End' => 'Fin',
     'Cancel' => 'Cancelar',
     '{activity} begins in:' => '{activity} empieza en:',
+    '{activity} finish in:' => '{activity} termina en:',
     'The event is on!' => '¡El evento ha empezado!',
     'day' => 'día',
     'Score' => 'Puntuación',

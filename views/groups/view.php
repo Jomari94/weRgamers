@@ -20,9 +20,16 @@ $options = [
     'inicio' => $inicio,
     'newEvent' => $event->isNewRecord,
     'day' => Yii::t('app', 'day'),
-    'activity' => Yii::t('app', '{activity} begins in:', ['activity' => Html::encode($event->activity)]),
+    'activityBeginning' => Yii::t('app', '{activity} begins in:', ['activity' => Html::encode($event->activity)]),
+    'activityActive' => Yii::t('app', '{activity} finish in:', ['activity' => Html::encode($event->activity)]),
     'finish' => Yii::t('app', 'The event is on!'),
 ];
+if ($event->fin) {
+    $fin = new DateTime($event->fin);
+    $fin = $fin->format('c');
+    $options['fin'] = $fin;
+}
+$options['hayFin'] = isset($options['fin']);
 Json::htmlEncode($options);
 $this->registerJs(
     "var yiiOptions = " . Json::htmlEncode($options) . ";",

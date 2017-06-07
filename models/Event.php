@@ -34,8 +34,8 @@ class Event extends \yii\db\ActiveRecord
     {
         return [
             [['activity', 'inicio'], 'required'],
-            [['id_group'], 'integer'],
             [['fin'], 'safe'],
+            [['id_group'], 'integer'],
             [['activity'], 'string', 'max' => 250],
             [['id_group'], 'unique'],
             [['id_group'], 'exist', 'skipOnError' => true, 'targetClass' => Group::className(), 'targetAttribute' => ['id_group' => 'id']],

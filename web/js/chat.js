@@ -101,7 +101,6 @@ socket.on('stop typing', function(user) {
 });
 
 $(document).on('ready', function () {
-    $('#message-field').focus();
     scrollToBottom();
 });
 

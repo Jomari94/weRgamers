@@ -22,7 +22,8 @@ $options = [
     'day' => Yii::t('app', 'day'),
     'activityBeginning' => Yii::t('app', '{activity} begins in:', ['activity' => Html::encode($event->activity)]),
     'activityActive' => Yii::t('app', '{activity} finish in:', ['activity' => Html::encode($event->activity)]),
-    'finish' => Yii::t('app', 'The event is on!'),
+    'finish' => Yii::t('app', '{activity} is on!', ['activity' => Html::encode($event->activity)]),
+    'nofinish' => Yii::t('app', '{activity} has finished', ['activity' => Html::encode($event->activity)]),
 ];
 if ($event->fin) {
     $fin = new DateTime($event->fin);
@@ -103,12 +104,15 @@ $this->params['breadcrumbs'][] = $this->title;
         				'header' => '<h3>'.Yii::t('app', 'Event').'</h3>',
         				'toggleButton' => ['label' => Yii::t('app', 'Event'), 'class' => 'btn btn-primary'],
         			]); ?>
-                        <?php $form = ActiveForm::begin(); ?>
+                        <?php $form = ActiveForm::begin([
+                            'id' => 'event-group-form',
+                        ]); ?>
             			<?= $form->field($event, 'activity')->label(Yii::t('app', 'What are you planning to do?')) ?>
             			<div class="row" style="margin-bottom: 8px">
             				<div class="col-sm-6">
             					<?= $form->field($event, 'inicio')->widget(DateTimePicker::classname(), [
                                 	'options' => ['placeholder' => Yii::t('app', 'Start time ...')],
+                                    'readonly' => true,
                                 	'pluginOptions' => [
                                 		'autoclose' => true
                                 	]
@@ -117,6 +121,7 @@ $this->params['breadcrumbs'][] = $this->title;
             				<div class="col-sm-6">
             					<?= $form->field($event, 'fin')->widget(DateTimePicker::classname(), [
                                 	'options' => ['placeholder' => Yii::t('app', 'End time ...')],
+                                    'readonly' => true,
                                 	'pluginOptions' => [
                                 		'autoclose' => true
                                 	]

@@ -146,8 +146,9 @@ $this->registerJs($js);
                 </div>
                 <div>
                     <a href="<?= Yii::$app->homeUrl ?>"><?= Yii::$app->name ?></a>
-                    <a href="<?= Yii::$app->homeUrl ?>"><?= Html::img(Url::to('/images/logo.png', ['alt' => "We 'r' Gamers"]), [
-                        'class' => 'logo'
+                    <a href="<?= Yii::$app->homeUrl ?>"><?= Html::img(Url::to('/images/logo.png'), [
+                        'class' => 'logo',
+                        'alt' => "We 'r' Gamers"
                         ]) ?></a>
                 </div>
                 <div>

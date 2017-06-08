@@ -3,11 +3,12 @@ Validación
 
 CSS3
 ---
-![Validación del css](imagenes/validacion-css.png)
+![Validación del css](images/validacion-css.png)
 
 HTML5
 -----
-![Validación del html](imagenes/validacion-html.png)
+![Validación del html](images/validacion-html.png)
 
 Accesibilidad
 -------------
+![Validación de accesibilidad](images/validacion-accesibilidad.png)

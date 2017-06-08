@@ -13,6 +13,7 @@ use yii\widgets\ActiveForm;
 <div class="game-form">
 
     <?php $form = ActiveForm::begin([
+        'id' => 'game-form',
         'options' => ['class' => 'form-horizontal', 'enctype' => 'multipart/form-data'],
 
     ]); ?>

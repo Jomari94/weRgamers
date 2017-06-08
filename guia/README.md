@@ -50,3 +50,9 @@ Conclusiones
 ------------
 
 *   [Conclusiones](conclusiones.md)
+
+Anexos
+------
+
+*   [Prueba del seis](prueba-seis.md)
+*   [Validación](validacion.md)

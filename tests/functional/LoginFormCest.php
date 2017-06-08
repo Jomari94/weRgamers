@@ -1,4 +1,5 @@
 <?php
+use app\models\User;
 use yii\helpers\Url;
 
 class LoginFormCest
@@ -13,13 +14,13 @@ class LoginFormCest
         $I->see('Sign in', 'h3');
     }
 
-    // // demonstrates `amLoggedInAs` method
-    // public function internalLoginById(\FunctionalTester $I)
-    // {
-    //     $I->amLoggedInAs(1);
-    //     $I->amOnPage('/');
-    //     $I->see('Logout');
-    // }
+    // demonstrates `amLoggedInAs` method
+    public function internalLoginById(\FunctionalTester $I)
+    {
+        $I->amLoggedInAs(User::findIdentity(3));
+        $I->amOnPage('/');
+        $I->see('Logout');
+    }
 
     public function loginWithEmptyCredentials(\FunctionalTester $I)
     {

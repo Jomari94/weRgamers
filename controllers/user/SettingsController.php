@@ -11,8 +11,16 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use yii\web\UploadedFile;
 
+/**
+ * Controlador que se encarga de la configuración del perfil del usuario
+ * que hereda de dektrium\user\controllers\SettingsController
+ */
 class SettingsController extends BaseSettingsController
 {
+    /**
+     * Behaviors del controlador de Settings.
+     * @return [type] [description]
+     */
     public function behaviors()
     {
         return [
@@ -41,6 +49,10 @@ class SettingsController extends BaseSettingsController
         ];
     }
 
+    /**
+     * Muestra los datos del usuario actual.
+     * @return mixed
+     */
     public function actionProfile()
     {
         $avatar = new AvatarForm;
@@ -68,7 +80,7 @@ class SettingsController extends BaseSettingsController
     }
 
     /**
-     * Muestra todos los juegos almacenados en la db marcando los del usuario
+     * Muestra todos los juegos almacenados en la db marcando los del usuario.
      * @return mixed
      */
     public function actionCollection()

@@ -2,7 +2,6 @@
 
 namespace app\models;
 
-use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Platform;
@@ -13,7 +12,8 @@ use app\models\Platform;
 class PlatformSearch extends Platform
 {
     /**
-     * @inheritdoc
+     * Reglas del modelo.
+     * @return array
      */
     public function rules()
     {
@@ -24,7 +24,8 @@ class PlatformSearch extends Platform
     }
 
     /**
-     * @inheritdoc
+     * Escenarios del modelo.
+     * @return array
      */
     public function scenarios()
     {

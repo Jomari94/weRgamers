@@ -33,18 +33,18 @@ class Game extends \yii\db\ActiveRecord
     const ESCENARIO_UPLOAD = 'upload';
 
     /**
-     * @var UploadedFile
+     * @var UploadedFile Carátula del juego
      */
     public $imageFile;
 
     /**
-     * Variable para guardar las plataformas que tiene el modelo
-     * @var string[]
+     * @var string[] Plataformas que tiene el modelo
      */
     public $platforms;
 
     /**
-     * @inheritdoc
+     * Nombre de la tabla asociada al modelo.
+     * @return string
      */
     public static function tableName()
     {
@@ -52,7 +52,8 @@ class Game extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * Reglas del modelo.
+     * @return array
      */
     public function rules()
     {
@@ -67,7 +68,8 @@ class Game extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * Labels de las propiedades del modelo.
+     * @return array
      */
     public function attributeLabels()
     {
@@ -83,7 +85,8 @@ class Game extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * Escenarios del modelo.
+     * @return array
      */
     public function scenarios()
     {
@@ -94,7 +97,7 @@ class Game extends \yii\db\ActiveRecord
     }
 
     /**
-     * Guarda una imagen en covers
+     * Guarda una imagen en covers.
      * @return bool
      */
     public function upload()
@@ -124,6 +127,12 @@ class Game extends \yii\db\ActiveRecord
         }
     }
 
+    /**
+     * Cambia el escenario después de save().
+     * @param  bool $insert            Indica si se ha insertado o modificado el modelo
+     * @param  array $changedAttributes Atributos cambiados
+     * @return bool
+     */
     public function afterSave($insert, $changedAttributes)
     {
         parent::afterSave($insert, $changedAttributes);
@@ -132,7 +141,7 @@ class Game extends \yii\db\ActiveRecord
     }
 
     /**
-    * Guarda las plataformas del juego
+    * Guarda las plataformas del juego.
     * @return bool true si ha guardado todas las plataformas, false en caso contrario
     */
     public function savePlatforms()
@@ -153,7 +162,7 @@ class Game extends \yii\db\ActiveRecord
     }
 
     /**
-     * Devuelve la ruta a la caratula del juego
+     * Devuelve la ruta a la caratula del juego.
      * @return string Ruta de la caratula del juego
      */
     public function getCover()
@@ -174,7 +183,7 @@ class Game extends \yii\db\ActiveRecord
 
 
     /**
-     * Devuelve los nombres de las plataformas del juego concatenadas
+     * Devuelve los nombres de las plataformas del juego concatenadas.
      * @return string Nombres de las plataformas del juego
      */
     public function getNamePlatforms()
@@ -186,7 +195,7 @@ class Game extends \yii\db\ActiveRecord
     }
 
     /**
-     * Devuelve el número total de reseñas que tienen un juego
+     * Devuelve el número total de reseñas que tienen un juego.
      * @return int Número de reseñas
      */
     public function getTotalReviews()
@@ -194,7 +203,7 @@ class Game extends \yii\db\ActiveRecord
         return Review::find()->where(['id_game' => $this->id])->count();
     }
     /**
-     * Devuelve la puntuación media del juego
+     * Devuelve la puntuación media del juego.
      * @return float Puntuación del juego
      */
     public function getScore()

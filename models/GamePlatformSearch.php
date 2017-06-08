@@ -13,31 +13,28 @@ use app\models\GamePlatform;
 class GamePlatformSearch extends GamePlatform
 {
     /**
-     * Nombre del juego
-     * @var string
+     * @var string Nombre del juego
      */
     public $name;
 
     /**
-     * Géneros del juego
-     * @var string
+     * @var string Géneros del juego
      */
     public $genre;
 
     /**
-     * Fecha de publicación
-     * @var string
+     * @var string Fecha de publicación
      */
     public $released;
 
     /**
-     * Desarrolladores del juego
-     * @var string
+     * @var string  Desarrolladores del juego
      */
     public $developers;
 
     /**
-     * @inheritdoc
+     * Reglas del modelo.
+     * @return array
      */
     public function rules()
     {
@@ -48,7 +45,8 @@ class GamePlatformSearch extends GamePlatform
     }
 
     /**
-     * @inheritdoc
+     * Escenarios del modelo
+     * @return array
      */
     public function scenarios()
     {

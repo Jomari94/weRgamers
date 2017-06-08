@@ -18,10 +18,14 @@ use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\Notification;
 
+/**
+ * Controlador de la página
+ */
 class SiteController extends Controller
 {
     /**
-     * @inheritdoc
+     * Behaviors del controlador de Site.
+     * @return array
      */
     public function behaviors()
     {
@@ -47,7 +51,8 @@ class SiteController extends Controller
     }
 
     /**
-     * @inheritdoc
+     * Acciones del controlador de Site.
+     * @return array
      */
     public function actions()
     {
@@ -63,7 +68,7 @@ class SiteController extends Controller
     }
 
     /**
-     * Displays homepage.
+     * Muestra la página de inicio.
      *
      * @return string
      */
@@ -77,7 +82,7 @@ class SiteController extends Controller
     }
 
     /**
-     * Cambia el lenguaje en el que se muestra la página
+     * Cambia el idioma en el que se muestra la página.
      * @return mixed
      */
     public function actionLanguage()
@@ -101,7 +106,7 @@ class SiteController extends Controller
     }
 
     /**
-     * Busca usuarios para darselo a bloodhound
+     * Busca usuarios para dárselo a Bloodhound.
      * @param  string $q Término a buscar
      * @return string    Resultados de la búsqueda
      */
@@ -124,7 +129,7 @@ class SiteController extends Controller
     }
 
     /**
-     * Busca juegos para darselo a bloodhound
+     * Busca juegos para darselo a Bloodhound.
      * @param  string $q Término a buscar
      * @return string    Resultados de la búsqueda
      */
@@ -147,7 +152,7 @@ class SiteController extends Controller
     }
 
     /**
-     * Lista los resultados de una búsqueda
+     * Lista los resultados de una búsqueda.
      * @param  string $q Término a buscar
      * @return mixed
      */
@@ -252,7 +257,7 @@ class SiteController extends Controller
     }
 
     /**
-     * Borra las notificaciones ya vistas
+     * Borra las notificaciones ya vistas.
      * @return void
      */
     public function actionNotificated()

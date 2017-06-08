@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "conversations".
@@ -17,10 +18,14 @@ use Yii;
  */
 class Conversation extends \yii\db\ActiveRecord
 {
+    /**
+     * @var string  Nombre del usuario con el que se va a conversar
+     */
     public $username;
 
     /**
-     * @inheritdoc
+     * Nombre de la tabla asociada al modelo.
+     * @return string
      */
     public static function tableName()
     {
@@ -28,7 +33,8 @@ class Conversation extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * Reglas del modelo.
+     * @return array
      */
     public function rules()
     {
@@ -48,7 +54,8 @@ class Conversation extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * Labels de las propiedades del modelo.
+     * @return array
      */
     public function attributeLabels()
     {
@@ -60,6 +67,11 @@ class Conversation extends \yii\db\ActiveRecord
         ];
     }
 
+    /**
+     * Se ejecuta antes del save().
+     * @param  bool $insert Indica si se va a hacer un insert o un update
+     * @return bool         True si es insert, false si es update
+     */
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {
@@ -70,6 +82,10 @@ class Conversation extends \yii\db\ActiveRecord
         }
     }
 
+    /**
+     * Borra las conversaciones del usuario sin mensajes.
+     * @return void
+     */
     public static function vacias()
     {
         $ids = Message::find()->select('id_conversation')->column();
@@ -79,11 +95,19 @@ class Conversation extends \yii\db\ActiveRecord
         }
     }
 
+    /**
+     * Obtiene el último mensaje de la conversación.
+     * @return ActiveRecord Último mensaje de la conversación.
+     */
     public function getLast()
     {
         return Message::find()->where(['id_conversation' => $this->id])->orderBy('created DESC')->one();
     }
 
+    /**
+     * Busca quien es la persona con la que conversa el usuario actual.
+     * @return ActiveRecord Usuario participante en la conversación
+     */
     public function getReceiver()
     {
         if ($this->id_participant1 == Yii::$app->user->id) {

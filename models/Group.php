@@ -18,13 +18,13 @@ use Yii;
 class Group extends \yii\db\ActiveRecord
 {
     /**
-     * Nombre del juego en el formulario
-     * @var string
+     * @var string Nombre del juego en el formulario
      */
     public $game_name;
 
     /**
-     * @inheritdoc
+     * Nombre de la tabla asociada al modelo.
+     * @return string
      */
     public static function tableName()
     {
@@ -32,7 +32,8 @@ class Group extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * Reglas del modelo.
+     * @return array
      */
     public function rules()
     {
@@ -46,7 +47,8 @@ class Group extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * Labels de las propiedades del modelo.
+     * @return array
      */
     public function attributeLabels()
     {
@@ -100,7 +102,7 @@ class Group extends \yii\db\ActiveRecord
     }
 
     /**
-     * Comprueba si el usuario indicado es miembro aceptado del grupo
+     * Comprueba si el usuario indicado es miembro aceptado del grupo.
      * @param  int  $id ID del usuario
      * @return bool True si es miembro, false en caso contrario
      */
@@ -111,7 +113,7 @@ class Group extends \yii\db\ActiveRecord
     }
 
     /**
-     * Comprueba si el usuario indicado es administrador del grupo
+     * Comprueba si el usuario indicado es administrador del grupo.
      * @param  int  $id ID del usuario
      * @return bool True si es miembro, false en caso contrario
      */
@@ -122,7 +124,7 @@ class Group extends \yii\db\ActiveRecord
     }
 
     /**
-     * Comprueba si el usuario indicado es miembro pendiente de aceptar del grupo
+     * Comprueba si el usuario indicado es miembro pendiente de aceptar del grupo.
      * @param  int  $id ID del usuario
      * @return bool True si es miembro, false en caso contrario
      */
@@ -133,7 +135,7 @@ class Group extends \yii\db\ActiveRecord
     }
 
     /**
-     * Devuelve el número total de miembros del grupo
+     * Devuelve el número total de miembros del grupo.
      * @return int número de miembros
      */
     public function getTotalMembers()

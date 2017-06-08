@@ -21,12 +21,13 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * GamesController implements the CRUD actions for Game model.
+ * Controlador del modelo Game
  */
 class GamesController extends Controller
 {
     /**
-     * @inheritdoc
+     * Behaviors del controlador de Game
+     * @return array
      */
     public function behaviors()
     {
@@ -61,7 +62,7 @@ class GamesController extends Controller
     }
 
     /**
-     * Lists all Game models.
+     * Lista los modelos Game.
      * @return mixed
      */
     public function actionIndex()
@@ -84,7 +85,7 @@ class GamesController extends Controller
     }
 
     /**
-     * Displays a single Game model.
+     * Muestra un modelo Game.
      * @param int $id
      * @return mixed
      */
@@ -102,8 +103,7 @@ class GamesController extends Controller
     }
 
     /**
-     * Creates a new Game model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
+     * Crea un nuevo modelo Game.
      * @return mixed
      */
     public function actionCreate()
@@ -128,8 +128,7 @@ class GamesController extends Controller
     }
 
     /**
-     * Updates an existing Game model.
-     * If update is successful, the browser will be redirected to the 'view' page.
+     * Modifica un modelo Game existente.
      * @param int $id
      * @return mixed
      */
@@ -158,7 +157,7 @@ class GamesController extends Controller
     }
 
     /**
-     * Añade un juego a la colección
+     * Añade un juego a la colección.
      * @return bool True si se añade el juego a la coleccion, false en caso contrario
      */
     public function actionAddgame()
@@ -180,7 +179,7 @@ class GamesController extends Controller
     }
 
     /**
-     * Elimina juego de la coleccion del usuario
+     * Elimina juego de la coleccion del usuario.
      * @return bool true si se ha borrado, false en caso contrario
      */
     public function actionDropgame()
@@ -202,7 +201,7 @@ class GamesController extends Controller
     }
 
     /**
-     * Busca juegos y los devuelve
+     * Busca juegos y los devuelve.
      * @param  string $game Nombre del juego a buscar
      * @return array        Nombres de los juegos encontrados
      */

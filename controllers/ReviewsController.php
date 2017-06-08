@@ -11,12 +11,13 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * ReviewsController implements the CRUD actions for Review model.
+ * Controlador del modelo Review
  */
 class ReviewsController extends Controller
 {
     /**
-     * @inheritdoc
+     * Behaviors del controlador de Review
+     * @return array
      */
     public function behaviors()
     {
@@ -45,8 +46,7 @@ class ReviewsController extends Controller
     }
 
     /**
-     * Creates a new Review model.
-     * The browser will be redirected to the 'games/view' page.
+     * Crea un nuevo modelo Review.
      * @return mixed
      */
     public function actionCreate()

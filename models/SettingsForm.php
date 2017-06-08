@@ -16,10 +16,15 @@ use dektrium\user\models\SettingsForm as BaseSettingsForm;
 class SettingsForm extends BaseSettingsForm
 {
 
-    /** @var string */
+    /**
+     * @var string Repetición de contraseña para validarla
+     */
     public $repeat_password;
 
-    /** @inheritdoc */
+    /**
+     * Reglas del modelo.
+     * @return array
+     */
     public function rules()
     {
         return [
@@ -48,7 +53,10 @@ class SettingsForm extends BaseSettingsForm
         ];
     }
 
-    /** @inheritdoc */
+    /**
+     * Labels de las propiedades del modelo.
+     * @return array
+     */
     public function attributeLabels()
     {
         return [

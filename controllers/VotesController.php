@@ -8,8 +8,15 @@ use dektrium\user\filters\AccessRule;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 
+/**
+ * Controlador del modelo Vote
+ */
 class VotesController extends Controller
 {
+    /**
+     * Behaviors del modelo Vote
+     * @return [type] [description]
+     */
     public function behaviors()
     {
         return [
@@ -30,7 +37,7 @@ class VotesController extends Controller
     }
 
     /**
-     * Se añade un voto del usuario actual a otro usuario
+     * Se añade un voto del usuario actual a otro usuario.
      * @return bool true cuando se completa la acción, false si no se ha completado correctamente
      */
     public function actionVote()

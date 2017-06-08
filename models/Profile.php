@@ -6,10 +6,14 @@ use Yii;
 use dektrium\user\models\Profile as BaseProfile;
 use yii\helpers\FileHelper;
 
+/**
+ * Perfil del usuario
+ */
 class Profile extends BaseProfile
 {
     /**
-     * @inheritdoc
+     * Reglas del modelo.
+     * @return array
      */
     public function rules()
     {
@@ -30,7 +34,8 @@ class Profile extends BaseProfile
     }
 
     /**
-     * @inheritdoc
+     * Labels de las propiedades del modelo.
+     * @return array
      */
     public function attributeLabels()
     {
@@ -49,7 +54,7 @@ class Profile extends BaseProfile
 
     /**
      * Se obtiene la ruta hacia el avatar del usuario, si no tiene se le
-     * da un avatar por defecto
+     * da un avatar por defecto.
      * @return string ruta hacia el avatar
      */
     public function getAvatar()
@@ -69,7 +74,7 @@ class Profile extends BaseProfile
     }
 
     /**
-     * Calcula el numero total de seguidores que tiene el usuario
+     * Calcula el numero total de seguidores que tiene el usuario.
      * @return int      Número de seguidores
      */
     public function getTotalFollowers()
@@ -78,7 +83,7 @@ class Profile extends BaseProfile
     }
 
     /**
-     * Calcula el numero total de seguidos que tiene el usuario
+     * Calcula el numero total de seguidos que tiene el usuario.
      * @return int      Número de seguidos
      */
     public function getTotalFollowed()
@@ -87,7 +92,7 @@ class Profile extends BaseProfile
     }
 
     /**
-     * Calcula el numero total de publicaciones que tiene el usuario
+     * Calcula el numero total de publicaciones que tiene el usuario.
      * @return int      Número de publicaciones
      */
     public function getTotalPublications()
@@ -96,7 +101,7 @@ class Profile extends BaseProfile
     }
 
     /**
-     * Calcula el numero total de juegos que tiene el usuario
+     * Calcula el numero total de juegos que tiene el usuario.
      * @return int      Número de juegos
      */
     public function getTotalCollection()

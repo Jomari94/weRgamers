@@ -17,7 +17,8 @@ use Yii;
 class Collection extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * Nombre de la tabla asociada al modelo.
+     * @return string
      */
     public static function tableName()
     {
@@ -25,7 +26,8 @@ class Collection extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * Reglas del modelo.
+     * @return array
      */
     public function rules()
     {
@@ -38,7 +40,8 @@ class Collection extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * Labels de las propiedades del modelo.
+     * @return array
      */
     public function attributeLabels()
     {

@@ -8,13 +8,20 @@ use yii\helpers\FileHelper;
 use yii\web\UploadedFile;
 use yii\imagine\Image;
 
+/**
+ * Modelo del formulario para subir el avatar
+ */
 class AvatarForm extends Model
 {
     /**
-     * @var UploadedFile
+     * @var UploadedFile Avatar subido por el usuario
      */
     public $imageFile;
 
+    /**
+     * Reglas del modelo.
+     * @return array
+     */
     public function rules()
     {
         return [
@@ -22,6 +29,10 @@ class AvatarForm extends Model
         ];
     }
 
+    /**
+     * Labels de las propiedades del modelo.
+     * @return array
+     */
     public function attributeLabels()
     {
         return [
@@ -30,7 +41,7 @@ class AvatarForm extends Model
     }
 
     /**
-     * Guarda una imagen en avatars
+     * Guarda una imagen en avatars.
      * @return bool
      */
     public function upload()

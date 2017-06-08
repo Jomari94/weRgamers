@@ -50,7 +50,8 @@ class Notification extends \yii\db\ActiveRecord
     const CONFIRMATION = 5;
 
     /**
-     * @inheritdoc
+     * Nombre de la tabla asociada al modelo.
+     * @return string
      */
     public static function tableName()
     {
@@ -58,7 +59,8 @@ class Notification extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * Reglas del modelo.
+     * @return array
      */
     public function rules()
     {
@@ -73,7 +75,8 @@ class Notification extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * Labels de las propiedades del modelo.
+     * @return array
      */
     public function attributeLabels()
     {
@@ -87,7 +90,7 @@ class Notification extends \yii\db\ActiveRecord
     }
 
     /**
-     * Crea notificaciones para todos los que tienen que recibirla
+     * Crea notificaciones para todos los que tienen que recibirla.
      * @param  int   $type      Tipo de notificacion
      * @param  array $receivers Array con los ids de los usuarios que recibiran las notificaciones
      * @param  int   $user      Usuario referenciado en la notificación

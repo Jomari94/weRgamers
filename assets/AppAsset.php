@@ -15,14 +15,33 @@ use yii\web\AssetBundle;
  */
 class AppAsset extends AssetBundle
 {
+    /**
+     * @var string Directorio base
+     */
     public $basePath = '@webroot';
+
+    /**
+     * @var string Url de en el que se encuentran los assets
+     */
     public $baseUrl = '@web';
+
+    /**
+     * @var array Archivos CSS de la aplicación
+     */
     public $css = [
         'css/site.css',
         'css/typeahead.css',
     ];
+
+    /**
+     * @var array Archivos Javascript de la aplicación
+     */
     public $js = [
     ];
+
+    /**
+     * @var array Dependencias del asset
+     */
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',

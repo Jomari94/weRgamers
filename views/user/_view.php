@@ -17,8 +17,18 @@ use yii\helpers\Html;
     <p>
         <?= $model->profile->bio ?>
     </p>
-    <div class="user-searched-view row">
-        <span class="col-xs-1"><?= $model->karma ?> Karma</span>
-        <span class="col-xs-2"><?= $model->profile->totalFollowers ?> Followers</span>
+    <div class="follows-partial">
+        <div class="user-statistics-partial">
+            <p><?= $model->karma ?></p>
+            <p>karma</p>
+        </div>
+        <div class="user-statistics-partial">
+            <p><?= $model->profile->totalFollowers ?></a>
+            <p><?= Yii::t('app', 'followers') ?></p>
+        </div>
+        <div class="user-statistics-partial">
+            <p><?= $model->profile->totalFollowed ?></a>
+            <p><?= Yii::t('app', 'following') ?></p>
+        </div>
     </div>
 </div>

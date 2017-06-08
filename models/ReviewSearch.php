@@ -2,7 +2,6 @@
 
 namespace app\models;
 
-use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Review;
@@ -13,7 +12,8 @@ use app\models\Review;
 class ReviewSearch extends Review
 {
     /**
-     * @inheritdoc
+     * Reglas del modelo.
+     * @return array
      */
     public function rules()
     {
@@ -24,7 +24,8 @@ class ReviewSearch extends Review
     }
 
     /**
-     * @inheritdoc
+     * Escenarios del modelo.
+     * @return array
      */
     public function scenarios()
     {

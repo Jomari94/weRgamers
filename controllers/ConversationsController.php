@@ -11,10 +11,13 @@ use yii\data\ActiveDataProvider;
 use yii\helpers\Json;
 use yii\web\NotFoundHttpException;
 
+/**
+ * Controlador del modelo Conversation
+ */
 class ConversationsController extends \yii\web\Controller
 {
     /**
-     * Lista las conversaciones del usuario
+     * Lista las conversaciones del usuario.
      * @return mixed
      */
     public function actionIndex()
@@ -31,8 +34,7 @@ class ConversationsController extends \yii\web\Controller
     }
 
     /**
-     * Creates a new Conversation model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
+     * Crea un nuevo modelo Conversation.
      * @return mixed
      */
     public function actionCreate()
@@ -61,7 +63,7 @@ class ConversationsController extends \yii\web\Controller
     }
 
     /**
-     * Muestra los mensajes de la conversacion
+     * Muestra los mensajes de la conversación.
      * @param  int $id Id de la conversacion
      * @return mixed
      */
@@ -91,7 +93,7 @@ class ConversationsController extends \yii\web\Controller
     }
 
     /**
-     * Busca usuarios y los devuelve
+     * Busca usuarios y los devuelve.
      * @param  string $name Nombre del usuario a buscar
      * @return array Nombres de los usuario encontrados
      */

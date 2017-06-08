@@ -23,7 +23,8 @@ class Publication extends \yii\db\ActiveRecord
     public $file;
 
     /**
-     * @inheritdoc
+     * Nombre de la tabla asociada al modelo.
+     * @return string
      */
     public static function tableName()
     {
@@ -31,7 +32,8 @@ class Publication extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * Reglas del modelo.
+     * @return array
      */
     public function rules()
     {
@@ -46,7 +48,8 @@ class Publication extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * Labels de las propiedades del modelo.
+     * @return array
      */
     public function attributeLabels()
     {
@@ -59,7 +62,7 @@ class Publication extends \yii\db\ActiveRecord
     }
 
     /**
-     * Añade el creador de la publicación antes de guardarla
+     * Añade el creador de la publicación antes de guardarla.
      * @param  bool $insert Indica si el save() va a hacer una inserción
      * @return bool
      */
@@ -73,7 +76,7 @@ class Publication extends \yii\db\ActiveRecord
     }
 
     /**
-     * Guarda el archivo adjunto de la publicación junto con el id
+     * Guarda el archivo adjunto de la publicación junto con el id.
      * @return bool
      */
     public function upload()
@@ -87,7 +90,7 @@ class Publication extends \yii\db\ActiveRecord
     }
 
     /**
-     * Devuelve la ruta a el archivo adjunti de la publicación si tiene
+     * Devuelve la ruta a el archivo adjunto de la publicación si tiene.
      * @return string|null
      */
     public function getAttachment()
@@ -107,7 +110,7 @@ class Publication extends \yii\db\ActiveRecord
     }
 
     /**
-     * Devuelve la extensión del archivo adjunto
+     * Devuelve la extensión del archivo adjunto.
      * @return string
      */
     public function getAttachmentType()

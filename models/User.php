@@ -8,10 +8,13 @@ use app\models\Conversation;
 use dektrium\user\models\User as BaseUser;
 use dektrium\rbac\models\Assignment;
 
+/**
+ * Modelo User que hereda de dektrium\user\models\User
+ */
 class User extends BaseUser
 {
     /**
-     * Determina si el usuario es seguidor de otro
+     * Determina si el usuario es seguidor de otro.
      * @param  int  $id id del usuario seguido
      * @return bool ture si el usuario lo sigue, false en caso contrario
      */
@@ -22,7 +25,7 @@ class User extends BaseUser
     }
 
     /**
-     * indica si el usuarario ha votado al usuario indicado
+     * Indica si el usuarario ha votado al usuario indicado.
      * @param  int  $id ID del usuario votado
      * @return bool     true si ha votado a ese usuario, false en caso contrario
      */
@@ -72,7 +75,7 @@ class User extends BaseUser
     }
 
     /**
-     * Devuelve el karma del usuario
+     * Devuelve el karma del usuario.
      * @return int Karma del usuario
      */
     public function getKarma()
@@ -82,6 +85,12 @@ class User extends BaseUser
         return $positive - $negative;
     }
 
+    /**
+     * Se ejecuta tras el save();
+     * @param  bool $insert             Indica si el modelo se ha insertado o modificado.
+     * @param  array $changedAttributes Atributos cambiados.
+     * @return bool
+     */
     public function afterSave($insert, $changedAttributes)
     {
         parent::afterSave($insert, $changedAttributes);

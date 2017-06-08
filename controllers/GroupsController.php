@@ -19,12 +19,13 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * GroupsController implements the CRUD actions for Group model.
+ * Controlador del modelo Group
  */
 class GroupsController extends Controller
 {
     /**
-     * @inheritdoc
+     * Behaviors del controlador de Group.
+     * @return array
      */
     public function behaviors()
     {
@@ -58,7 +59,7 @@ class GroupsController extends Controller
     }
 
     /**
-     * Lists all Group models.
+     * Lista los modelos Group.
      * @return mixed
      */
     public function actionIndex()
@@ -75,7 +76,7 @@ class GroupsController extends Controller
     }
 
     /**
-     * Displays a single Group model.
+     * Muestra un modelo Group.
      * @param int $id
      * @return mixed
      */
@@ -137,7 +138,7 @@ class GroupsController extends Controller
     }
 
     /**
-     * Guarda un mensaje del chat una vez se ha mandado
+     * Guarda un mensaje del chat una vez se ha mandado.
      * @return void
      */
     public function actionMessageSended()
@@ -154,7 +155,7 @@ class GroupsController extends Controller
     }
 
     /**
-     * Creates a new Group model.
+     * Crea un modelo Group.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
@@ -195,7 +196,7 @@ class GroupsController extends Controller
     }
 
     /**
-     * Deletes an existing Group model.
+     * Borra un modelo Group.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id
      * @return mixed

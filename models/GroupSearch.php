@@ -18,7 +18,8 @@ class GroupSearch extends Group
     public $myGroups;
 
     /**
-     * @inheritdoc
+     * Reglas del modelo.
+     * @return array
      */
     public function rules()
     {
@@ -29,7 +30,8 @@ class GroupSearch extends Group
     }
 
     /**
-     * @inheritdoc
+     * Labels de las propiedades del modelo.
+     * @return array
      */
     public function attributeLabels()
     {
@@ -41,7 +43,8 @@ class GroupSearch extends Group
     }
 
     /**
-     * @inheritdoc
+     * Escenarios del modelo
+     * @return array
      */
     public function scenarios()
     {

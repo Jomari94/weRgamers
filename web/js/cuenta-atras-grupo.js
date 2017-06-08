@@ -74,6 +74,9 @@ if (!yiiOptions.newEvent) {
                 $(this).removeClass('countdown-active');
             }
         });
+} else {
+    $('#countdown').hide();
+    $('#countdown-abs').hide();
 }
 
 function knobify(){

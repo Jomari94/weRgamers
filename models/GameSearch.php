@@ -12,13 +12,13 @@ use app\models\Game;
 class GameSearch extends Game
 {
     /**
-     * Nombre de las plataformas del juego
-     * @var array
+     * @var array Nombre de las plataformas del juego
      */
     public $namePlatforms = '';
 
     /**
-     * @inheritdoc
+     * Reglas del modelo.
+     * @return array
      */
     public function rules()
     {
@@ -29,7 +29,8 @@ class GameSearch extends Game
     }
 
     /**
-     * @inheritdoc
+     * Escenarios del modelo.
+     * @return array
      */
     public function scenarios()
     {

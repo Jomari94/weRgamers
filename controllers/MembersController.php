@@ -11,10 +11,14 @@ use yii\data\ActiveDataProvider;
 use yii\filters\VerbFilter;
 use yii\web\NotFoundHttpException;
 
+/**
+ * Controlador del modelo Member
+ */
 class MembersController extends \yii\web\Controller
 {
     /**
-     * @inheritdoc
+     * Behaviors del controlador de Member.
+     * @return array
      */
     public function behaviors()
     {
@@ -53,8 +57,7 @@ class MembersController extends \yii\web\Controller
     }
 
     /**
-    * Deletes an existing Member model.
-    * If deletion is successful, the browser will be redirected to the 'index' page.
+    * Borra un modelo Member.
     * @param int $id_group
     * @param int $id_user
     * @return mixed
@@ -72,7 +75,7 @@ class MembersController extends \yii\web\Controller
     }
 
     /**
-     * Crea una solicitud de unión al grupo
+     * Crea una solicitud de unión al grupo.
      * @param  int $id_group Id del grupo
      * @return mixed
      */
@@ -93,7 +96,7 @@ class MembersController extends \yii\web\Controller
     }
 
     /**
-     * Lista de las solicitudes de unión al grupo
+     * Lista de las solicitudes de unión al grupo.
      * @param  int $id_group Id del grupo]
      * @return mixed
      */
@@ -119,7 +122,7 @@ class MembersController extends \yii\web\Controller
     }
 
     /**
-     * Se acepta una solicitud de unión
+     * Se acepta una solicitud de unión.
      * @param  int $id_group Id del grupo
      * @param  int $id_user  Id del miembro
      * @return mixed
@@ -136,7 +139,7 @@ class MembersController extends \yii\web\Controller
     }
 
     /**
-     * Se rechaza una solicitud de unión
+     * Se rechaza una solicitud de unión.
      * @param  int $id_group Id del grupo
      * @param  int $id_user  Id del miembro
      * @return mixed
@@ -151,7 +154,7 @@ class MembersController extends \yii\web\Controller
     }
 
     /**
-     * Se expulsa a un miembro del grupo
+     * Se expulsa a un miembro del grupo.
      * @param  int $id_group Id del grupo
      * @param  int $id_user  Id del miembro
      * @return mixed
@@ -166,7 +169,7 @@ class MembersController extends \yii\web\Controller
     }
 
     /**
-     * Se asciende a un miembro del grupo a administrador
+     * Se asciende a un miembro del grupo a administrador.
      * @param  int $id_group Id del grupo
      * @param  int $id_user  Id del miembro
      * @return mixed

@@ -14,11 +14,17 @@ use yii\web\UploadedFile;
 use yii\web\NotFoundHttpException;
 use dektrium\user\controllers\ProfileController as BaseProfileController;
 
+/**
+ * Controlador del modelo Profile que hereda de dektrium\user\controllers\ProfileController
+ */
 class ProfileController extends BaseProfileController
 {
 
 
-    /** @inheritdoc */
+    /**
+     * Behaviors del controlador de Profile
+     * @return [type] [description]
+     */
     public function behaviors()
     {
         return [
@@ -33,7 +39,7 @@ class ProfileController extends BaseProfileController
     }
 
     /**
-     * Redirects to current user's profile.
+     * Redirige al perfil del usuario actual.
      *
      * @return \yii\web\Response
      */
@@ -43,7 +49,7 @@ class ProfileController extends BaseProfileController
     }
 
     /**
-     * Shows user's profile.
+     * Muestra el perfil del usuario.
      *
      * @param int $id
      *

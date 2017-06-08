@@ -14,12 +14,13 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * PlatformController implements the CRUD actions for Platform model.
+ * Controlador del modelo Platform
  */
 class PlatformController extends Controller
 {
     /**
-     * @inheritdoc
+     * Behaviors del controlador de Platform.
+     * @return [type] [description]
      */
     public function behaviors()
     {
@@ -52,7 +53,7 @@ class PlatformController extends Controller
     }
 
     /**
-     * Lists all Platform models.
+     * Lista los modelos Platform.
      * @return mixed
      */
     public function actionIndex()
@@ -67,8 +68,7 @@ class PlatformController extends Controller
     }
 
     /**
-     * Creates a new Platform model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
+     * Crea un nuevo modelo Platform.
      * @return mixed
      */
     public function actionCreate()
@@ -85,8 +85,7 @@ class PlatformController extends Controller
     }
 
     /**
-     * Updates an existing Platform model.
-     * If update is successful, the browser will be redirected to the 'view' page.
+     * Modifica un modelo Platform.
      * @param int $id
      * @return mixed
      */
@@ -104,7 +103,7 @@ class PlatformController extends Controller
     }
 
     /**
-     * Busca las plataformas de un juego y las devuelve
+     * Busca las plataformas de un juego y las devuelve.
      * @param  string $name Nombre del juego a buscar
      * @return array Nombres de las plataformas encontrados
      */

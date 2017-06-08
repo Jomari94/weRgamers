@@ -10,8 +10,15 @@ use dektrium\user\filters\AccessRule;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 
+/**
+ * Controlador del modelo Follower
+ */
 class FollowersController extends Controller
 {
+    /**
+     * Behaviors del controlador de Follower.
+     * @return array
+     */
     public function behaviors()
     {
         return [
@@ -32,7 +39,7 @@ class FollowersController extends Controller
     }
 
     /**
-     * Añade al usuario actual como seguidor de otro usuario
+     * Añade al usuario actual como seguidor de otro usuario.
      * @return int numero de followers
      */
     public function actionFollow()
@@ -47,7 +54,7 @@ class FollowersController extends Controller
     }
 
     /**
-     * Elimina al usuario actual como seguidor de otro usuario
+     * Elimina al usuario actual como seguidor de otro usuario.
      * @return int numero de followers
      */
     public function actionUnfollow()

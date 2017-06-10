@@ -16,31 +16,29 @@ Una vez cumplidos los requisitos procedemos a la instalación.
 2.  Habilitamos el módulo RewriteEngine del Apache
 
 3.  Ejecutamos los siguientes comandos:
-```
-git clone https://github.com/Jomari94/weRgamers.git
-cd weRgamers
-composer install
-composer run post-create-project-cmd
-cd web
-chmod 777 attachments, avatars, covers
-cd ../db
-sh ./create.sh
-sh ./load.sh
-```
+    ```
+    git clone https://github.com/Jomari94/weRgamers.git
+    cd weRgamers
+    composer install
+    composer run post-create-project-cmd
+    cd web
+    chmod 777 attachments, avatars, covers
+    cd ../db
+    sh ./create.sh
+    sh ./load.sh
+    ```
 
-4.  En '/config/web.php' modificamos el nombre del usuario administrador y el  
-email a usar:
-```
-'modules' => [
-    'user' => [
-        ...
-        'admins' => ['Usuario_admin'],
-        'mailer' => [
-            'sender' => ['correo_a_usar' => "We 'r' Gamers"]
+4.  En '/config/web.php' modificamos el nombre del usuario administrador y el  email a usar:
+    ```
+    'modules' => [
+        'user' => [
+            'admins' => ['Usuario_admin'],
+            'mailer' => [
+                'sender' => ['correo_a_usar' => "We 'r' Gamers"]
+            ],
         ],
     ],
-],
-```
+    ```
 
 5.  Configurar las siguientes variables de entorno:
     -   GOOGLE_ID:  Id de la api de google
@@ -54,3 +52,5 @@ email a usar:
         ```
         cd listener
         node index.js
+        ```
+        

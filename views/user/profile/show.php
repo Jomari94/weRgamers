@@ -189,6 +189,8 @@ $this->title = empty($profile->name) ? Html::encode($profile->user->username) : 
                 ],
                 'layout' => "{items}\n{pager}",
                 'itemView' => '../../collections/_view',
+                'emptyText' => !Yii::$app->user->isGuest && Yii::$app->user->id == $profile->user_id ? (Yii::t('app', "You don't have games in you collection") . '<br /> ' .
+                    Html::a(Yii::t('app','Add games to your collection'), ['/user/settings/collection'])) : Yii::t('app', "This doesn't have any games in his collection")
             ]) ?>
         </div>
     </div>

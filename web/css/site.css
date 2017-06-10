@@ -414,7 +414,7 @@ div.conversation-view img {
 
 #chat-body {
     text-align: center;
-    width: 100%;
+    max-width: calc(100% - 250px);
     height: 100%;
 }
 
@@ -458,7 +458,7 @@ div.conversation-view img {
     padding: 0px;
     max-height: 598px;
     height: 100%;
-    width: 350px;
+    min-width: 250px;
     background-color: #ffffff;
     border-radius: 15px 0px 0px 15px;
     overflow: hidden;

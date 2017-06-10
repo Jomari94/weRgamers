@@ -140,4 +140,7 @@ return [
     'My groups' => 'Mis grupos',
     'publications' => 'publicaciones',
     'Following' => 'Siguiendo',
+    "You don't have games in you collection" => 'No tienes juegos en tu colección',
+    'Add games to your collection' => 'Añade juegos a tu colección',
+    "This doesn't have any games in his collection" => 'Este usuario no tiene juegos en su colección'
 ];

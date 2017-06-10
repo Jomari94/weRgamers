@@ -56,3 +56,4 @@ Anexos
 
 *   [Prueba del seis](prueba-seis.md)
 *   [Validación](validacion.md)
+*   [Compatibilidad del diseño con navegadores](compatibilidad.md)

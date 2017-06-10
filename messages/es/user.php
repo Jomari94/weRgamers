@@ -154,7 +154,7 @@ return [
     'Current password' => 'Contraseña actual',
     'Current password is not valid' => 'La contraseña actual no es válida',
     'Didn\'t receive confirmation message?' => '¿No ha recibido el mensaje de confirmación?',
-    'Disconnect' => 'Deconectar',
+    'Disconnect' => 'Desconectar',
     'Email' => 'Correo electrónico',
     'Email (public)' => 'Correo electrónico (público)',
     'Error occurred while changing password' => 'Se ha producido un error al cambiar la contraseña',

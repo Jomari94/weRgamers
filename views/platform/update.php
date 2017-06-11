@@ -6,10 +6,9 @@ use yii\helpers\Html;
 /* @var $model app\models\Platform */
 
 $this->title = Yii::t('app', 'Update {modelClass}: ', [
-    'modelClass' => 'Platform',
+    'modelClass' => Yii::t('app', 'Platform'),
 ]) . $model->name;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Platforms'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Platforms'), 'url' => ['/games/index']];
 $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 ?>
 <div class="platform-update">

@@ -751,6 +751,10 @@ span.twitter-typeahead {
         border-bottom-left-radius: 15px;
     }
 
+    #chat-body {
+        max-width: 100%;
+    }
+
     #typing {
         border-top-left-radius: 15px;
     }

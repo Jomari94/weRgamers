@@ -22,3 +22,10 @@ ___
 pero esta extensión te permite crear roles y permisos y además asignarlos sin
 tocar el código o la base de datos, por lo que lo encontré interesante para la
 gestión de usuarios.
+
+
+#### No implementación de los requisitos opcionales R41, R42 y R46
+-   No he implementado los requisitos R41, R42 y R46 porque viendo que ya no
+quedaba demasiado tiempo para la entrega, consideré más importante asegurarme
+de que lo que ya tenía funcionaba bien y arreglar detalles por aquí y por allá,
+que siempre hay.
